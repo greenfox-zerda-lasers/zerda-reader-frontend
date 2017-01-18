@@ -32,5 +32,12 @@
   "bugs": {
     "url": "https://github.com/greenfox-zerda-lasers/zerda-reader-frontend/issues"
   },
-  "homepage": "https://github.com/greenfox-zerda-lasers/zerda-reader-frontend#readme"
+  "homepage": "https://github.com/greenfox-zerda-lasers/zerda-reader-frontend#readme",
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "node-sass": "^4.3.0",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0"
+  }
 }
