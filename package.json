@@ -1,16 +1,33 @@
 {
   "name": "zerda-reader-frontend",
   "version": "1.0.0",
-  "description": "reader frontend",
+  "description": "",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "semantic-ui": "^2.2.7"
+  },
+  "devDependencies": {
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "jasmine": "^2.5.3",
+    "karma": "^1.4.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  },
   "scripts": {
-    "test": "test.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/greenfox-zerda-lasers/zerda-reader-frontend.git"
   },
-  "author": "Team malachit",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/greenfox-zerda-lasers/zerda-reader-frontend/issues"
