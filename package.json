@@ -1,0 +1,19 @@
+{
+  "name": "zerda-reader-frontend",
+  "version": "1.0.0",
+  "description": "reader frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greenfox-zerda-lasers/zerda-reader-frontend.git"
+  },
+  "author": "Team malachit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/greenfox-zerda-lasers/zerda-reader-frontend/issues"
+  },
+  "homepage": "https://github.com/greenfox-zerda-lasers/zerda-reader-frontend#readme"
+}
