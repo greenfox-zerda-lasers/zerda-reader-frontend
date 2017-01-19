@@ -86,7 +86,7 @@
 
 
 	// module
-	exports.push([module.id, ".login-window {\n  width: 40%;\n  align-items: center;\n  padding: 30px; }\n  .login-window h2 {\n    text-transform: uppercase; }\n", ""]);
+	exports.push([module.id, ".login-window {\n  width: 40%;\n  align-items: center;\n  padding: 30px;\n  float: right; }\n  .login-window h2 {\n    text-transform: uppercase; }\n", ""]);
 
 	// exports
 
