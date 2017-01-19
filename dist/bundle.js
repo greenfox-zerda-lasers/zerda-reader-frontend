@@ -44,40 +44,6 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-	__webpack_require__(1);
-	__webpack_require__(2);
-	__webpack_require__(3);
-	// require('../content/css/login.scss');
-	// require('../content/css/index.scss');
-	__webpack_require__(4);
-
-	var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
-
-	zerdaReader.config(['$routeProvider', function($routeProvider){
-
-	  $routeProvider
-	    .when('/login', {
-	      templateUrl: 'views/login.html',
-	      controller: 'ReaderController'
-	    })
-	    .when('/register', {
-	      templateUrl: 'views/registration.html'
-	    })
-	    .when('/home', {
-	      templateUrl: 'views/home.html',
-	      controller: 'ReaderController'
-	    }).otherwise({
-	      redirectTo: '/login'
-	    });
-	}]);
-
-	zerdaReader.controller('ReaderController', ['$scope', function($scope){
-	  $scope.login = function() {
-
-	  };
-	}]);
-=======
 	__webpack_require__(1);
 	__webpack_require__(2);
 	__webpack_require__(3);
@@ -92,25 +58,37 @@
 	  $routeProvider
 	    .when('/login', {
 	      templateUrl: 'views/login.html',
-	      controller: 'ReaderController'
+	      controller: 'ReaderController',
 	    })
 	    .when('/register', {
-	      templateUrl: 'views/registration.html'
+	      templateUrl: 'views/registration.html',
 	    })
 	    .when('/home', {
 	      templateUrl: 'views/home.html',
-	      controller: 'ReaderController'
+	      // controller: 'ReaderController',
 	    }).otherwise({
-	      redirectTo: '/login'
+	      redirectTo: '/login',
 	    });
 	}]);
 
-	zerdaReader.controller('ReaderController', ['$scope', function($scope){
-	  $scope.login = function() {
+	zerdaReader.controller('ReaderController', ['$scope', '$http', function($scope, $http){
 
+	  $scope.message = 'valami'
+	  $scope.login = function() {
+	    console.log($scope)
+	  //   $http({
+	  //     method: 'POST',
+	  //     url: '/user/login'
+	  //   }).then(function(data){
+	  //     if (data){
+	  //       console.log('very good');
+	  //     } else {
+	  //       console.log('error');
+	  //     }
+	  //   })
+	  //  });
 	  };
 	}]);
->>>>>>> 1ee7d8d5c107899bbee2bb289d3524d8e3136c08
 
 
 /***/ },

@@ -1,6 +1,8 @@
-<div class="login-window" ng-model="ReaderController as readerCtrl">
+<div class="login-window">
+  {{message}}
+
   <h2>Log In</h2>
-  <form class="login" name="login" novalidate>
+  <form class="login" name="llogin" novalidate>
     <input type="text" placeholder="example@gmail.com" name="email" ng-model="user.email" ng-required="true"/>
     <div ng-show="login.email.$touched && login.email.$invalid">
       <small style="color: red; display: block; text-align: center">Invalid e-mail adress</small>
@@ -9,6 +11,6 @@
     <div ng-show="login.password.$touched && login.password.$invalid">
       <small style="color: red; display: block; text-align: center">Password incorrect</small>
     </div>
-    <input type="submit" value="Send" ng-click="login()"/>
+    <input type="submit" value="Send" ng-click="login()" />
   </form>
 </div>

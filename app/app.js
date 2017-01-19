@@ -12,22 +12,24 @@ zerdaReader.config(['$routeProvider', function($routeProvider){
   $routeProvider
     .when('/login', {
       templateUrl: 'views/login.html',
-      controller: 'ReaderController'
+      controller: 'ReaderController',
     })
     .when('/register', {
-      templateUrl: 'views/registration.html'
+      templateUrl: 'views/registration.html',
     })
     .when('/home', {
       templateUrl: 'views/home.html',
-      controller: 'ReaderController'
+      // controller: 'ReaderController',
     }).otherwise({
-      redirectTo: '/login'
+      redirectTo: '/login',
     });
 }]);
 
 zerdaReader.controller('ReaderController', ['$scope', '$http', function($scope, $http){
+
+  $scope.message = 'valami'
   $scope.login = function() {
-    console.log('valami');
+    console.log($scope)
   //   $http({
   //     method: 'POST',
   //     url: '/user/login'
