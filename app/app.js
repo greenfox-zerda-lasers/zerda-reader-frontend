@@ -25,8 +25,19 @@ zerdaReader.config(['$routeProvider', function($routeProvider){
     });
 }]);
 
-zerdaReader.controller('ReaderController', ['$scope', function($scope){
+zerdaReader.controller('ReaderController', ['$scope', '$http', function($scope, $http){
   $scope.login = function() {
-
+    console.log('valami');
+  //   $http({
+  //     method: 'POST',
+  //     url: '/user/login'
+  //   }).then(function(data){
+  //     if (data){
+  //       console.log('very good');
+  //     } else {
+  //       console.log('error');
+  //     }
+  //   })
+  //  });
   };
 }]);
