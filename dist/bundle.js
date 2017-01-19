@@ -44,6 +44,40 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
+	__webpack_require__(1);
+	__webpack_require__(2);
+	__webpack_require__(3);
+	// require('../content/css/login.scss');
+	// require('../content/css/index.scss');
+	__webpack_require__(4);
+
+	var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
+
+	zerdaReader.config(['$routeProvider', function($routeProvider){
+
+	  $routeProvider
+	    .when('/login', {
+	      templateUrl: 'views/login.html',
+	      controller: 'ReaderController'
+	    })
+	    .when('/register', {
+	      templateUrl: 'views/registration.html'
+	    })
+	    .when('/home', {
+	      templateUrl: 'views/home.html',
+	      controller: 'ReaderController'
+	    }).otherwise({
+	      redirectTo: '/login'
+	    });
+	}]);
+
+	zerdaReader.controller('ReaderController', ['$scope', function($scope){
+	  $scope.login = function() {
+
+	  };
+	}]);
+=======
 	__webpack_require__(1);
 	__webpack_require__(2);
 	__webpack_require__(3);
@@ -76,6 +110,7 @@
 
 	  };
 	}]);
+>>>>>>> 1ee7d8d5c107899bbee2bb289d3524d8e3136c08
 
 
 /***/ },
