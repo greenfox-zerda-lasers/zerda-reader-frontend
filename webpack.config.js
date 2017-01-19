@@ -5,15 +5,19 @@ module.exports = {
   },
   output: {
     path: 'dist',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
 
   module: {
-    loaders:[
+    loaders: [
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader'
-      }
+        loader: 'style-loader!css-loader!sass-loader',
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+      },
     ],
-  }
+  },
 };
