@@ -26,6 +26,23 @@ zerdaReader.config(['$routeProvider', function($routeProvider){
 
 zerdaReader.controller('ReaderController', ['$scope', function($scope){
   $scope.login = function() {
+    $http.post("data/users.json", {email: user.email, password: user.password}).then(function(data){
+
+  }, function(data){
+    console.log("error");
+  });
+
+    $scope.ninjaaas.push({
+      name: $scope.newninja.name,
+      belt: $scope.newninja.belt,
+      rate: parseInt($scope.newninja.rate),
+      available: true
+    });
+
+
+    $scope.newninja.name = ""
+    $scope.newninja.belt = ""
+    $scope.newninja.rate = ""
 
   };
 }]);
