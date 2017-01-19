@@ -1,6 +1,8 @@
 module.exports = {
-
-  entry: './app/lib/app.js',
+  entry: {
+    app: './app/app.js',
+    // vendor: ['angular']
+  },
   output: {
     path: 'dist',
     filename: 'bundle.js'
