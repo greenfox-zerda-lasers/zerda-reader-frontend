@@ -26,6 +26,9 @@ zerdaReader.config(['$routeProvider', function($routeProvider){
 }]);
 
 zerdaReader.controller('ReaderController', ['$scope', '$http', function($scope, $http){
+
+  console.log('valami2');
+
   $scope.login = function() {
     console.log('valami');
   //   $http({
