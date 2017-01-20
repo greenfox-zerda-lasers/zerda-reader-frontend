@@ -47,9 +47,9 @@
 	__webpack_require__(1);
 	__webpack_require__(2);
 	__webpack_require__(3);
-	__webpack_require__(4);
 	// require('../content/css/index.scss');
-	// require('../node_modules/semantic-ui/dist/semantic.min.css');
+	__webpack_require__(15);
+	__webpack_require__(4);
 
 	var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
 
@@ -76,22 +76,23 @@
 	  console.log('valami2');
 	  $scope.login = function() {
 	    console.log($scope)
-	    $http({
-	      method: 'POST',
-	      data: {
-	        email: $scope.user.email,
-	        password: $scope.user.password
-	      },
-	      url: 'http://localhost:3000/user/login'
-	    }).then(function(data){
-	      if (data){
-	        console.log($scope.user.email);
-	        $location.path( "/home" );
-	      }
-	    }).catch(function(data){
-	      console.log('error');
-	      //$location.path( "/home" );
-	    })
+	    if ( $scope.user.email !== "" && $scope.user.password !== ""){
+	      $http({
+	        method: 'POST',
+	        data: {
+	          email: $scope.user.email,
+	          password: $scope.user.password
+	        },
+	        url: 'http://localhost:3000/user/login'
+	      }).then(function(data){
+	        if (data){
+	          console.log($scope.user.email);
+	          $location.path( "/home" );
+	        }
+	      }).catch(function(data){
+	        console.log('error');
+	      })
+	    }
 	  }
 
 	  $scope.signup = function(){
@@ -552,10 +553,10 @@
 
 	exports = module.exports = __webpack_require__(6)();
 	// imports
-	exports.i(__webpack_require__(7), "");
+
 
 	// module
-	exports.push([module.id, "\n", ""]);
+	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.signup {\n  text-align: center; }\n  .signup:hover {\n    font-weight: bold; }\n  .signup:active {\n    color: grey; }\n", ""]);
 
 	// exports
 
@@ -917,6 +918,32 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(7);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(14)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../css-loader/index.js!./semantic.min.css", function() {
+				var newContent = require("!!./../../css-loader/index.js!./semantic.min.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
 
 /***/ }
 /******/ ]);
