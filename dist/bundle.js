@@ -533,7 +533,7 @@
 	exports.i(__webpack_require__(7), "");
 
 	// module
-	exports.push([module.id, "\n", ""]);
+	exports.push([module.id, "input {\n  margin-bottom: 14px; }\n\nh2 {\n  margin: 30px; }\n", ""]);
 
 	// exports
 

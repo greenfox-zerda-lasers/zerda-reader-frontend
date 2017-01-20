@@ -1,8 +1,11 @@
-<div class="login-window">
-  <h2>Log In</h2>
-  <form class="login" name="login" novalidate>
-    <input type="text" placeholder="nickname/email" name="name" ng-model="user.name" ng-required="true"/>
-    <input type="text" placeholder="password" name="password" ng-model="user.password" ng-required="true"/>
-    <input class="ui yellow button" type="submit" value="Send" />
-  </form>
+<div class="ui middle aligned center aligned grid">
+  <h2 class="row">Log In</h2>
+  <div class="ui stacked segment">
+
+    <form class="ui large form" novalidate>
+      <input class="field" type="text" placeholder="nickname/email" name="name" ng-model="user.name" ng-required="true"/>
+      <input  class="field" type="text" placeholder="password" name="password" ng-model="user.password" ng-required="true"/>
+      <input class="ui fluid large teal submit yellow button" type="submit" value="Send" />
+    </form>
+  </div>
 </div>
