@@ -93,6 +93,10 @@
 	      //$location.path( "/home" );
 	    })
 	  }
+
+	  $scope.signup = function(){
+	    $location.path( "/register" );
+	  }
 	}]);
 
 
