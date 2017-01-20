@@ -25,21 +25,26 @@ zerdaReader.config(['$routeProvider', function($routeProvider){
     });
 }]);
 
-zerdaReader.controller('ReaderController', ['$scope', '$http', function($scope, $http){
+zerdaReader.controller('ReaderController', ['$scope', '$http', '$location', function($scope, $http, $location){
 
-  $scope.message = 'valami'
+  console.log('valami2');
   $scope.login = function() {
     console.log($scope)
-  //   $http({
-  //     method: 'POST',
-  //     url: '/user/login'
-  //   }).then(function(data){
-  //     if (data){
-  //       console.log('very good');
-  //     } else {
-  //       console.log('error');
-  //     }
-  //   })
-  //  });
-  };
+    $http({
+      method: 'POST',
+      data: {
+        email: $scope.user.email,
+        password: $scope.user.password
+      },
+      url: 'http://localhost:3000/user/login'
+    }).then(function(data){
+      if (data){
+        console.log($scope.user.email);
+        $location.path( "/home" );
+      }
+    }).catch(function(data){
+      console.log('error');
+      //$location.path( "/home" );
+    })
+  }
 }]);
