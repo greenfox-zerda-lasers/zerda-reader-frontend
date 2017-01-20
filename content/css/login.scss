@@ -1,4 +1,16 @@
-@import url("../../node_modules/semantic-ui/dist/semantic.min.css");
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#login-box {
+  input {
+    margin-bottom: 10px;
+  }
+
+}
 
 // .login-window {
 //   width: 40%;

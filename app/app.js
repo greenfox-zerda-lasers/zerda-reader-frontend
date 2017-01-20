@@ -1,9 +1,9 @@
 require('./lib/angular.min.js');
 require('./lib/angular-route.min.js');
 require('./lib/angular-animate.min.js');
-require('../content/css/login.scss');
 // require('../content/css/index.scss');
-// require('../node_modules/semantic-ui/dist/semantic.min.css');
+require('../node_modules/semantic-ui/dist/semantic.min.css');
+require('../content/css/login.scss');
 
 var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
 
