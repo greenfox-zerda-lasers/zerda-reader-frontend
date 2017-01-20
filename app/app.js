@@ -30,21 +30,26 @@ zerdaReader.controller('ReaderController', ['$scope', '$http', '$location', func
   console.log('valami2');
   $scope.login = function() {
     console.log($scope)
-    $http({
-      method: 'POST',
-      data: {
-        email: $scope.user.email,
-        password: $scope.user.password
-      },
-      url: 'http://localhost:3000/user/login'
-    }).then(function(data){
-      if (data){
-        console.log($scope.user.email);
-        $location.path( "/home" );
-      }
-    }).catch(function(data){
-      console.log('error');
-      //$location.path( "/home" );
-    })
+    if ( $scope.user.email !== "" && $scope.user.password !== ""){
+      $http({
+        method: 'POST',
+        data: {
+          email: $scope.user.email,
+          password: $scope.user.password
+        },
+        url: 'http://localhost:3000/user/login'
+      }).then(function(data){
+        if (data){
+          console.log($scope.user.email);
+          $location.path( "/home" );
+        }
+      }).catch(function(data){
+        console.log('error');
+      })
+    }
+  }
+
+  $scope.signup = function(){
+    $location.path( "/register" );
   }
 }]);
