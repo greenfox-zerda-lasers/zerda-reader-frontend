@@ -44,54 +44,6 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-	__webpack_require__(1);
-	__webpack_require__(2);
-	__webpack_require__(3);
-	__webpack_require__(4);
-	__webpack_require__(8);
-	// require('../node_modules/semantic-ui/dist/semantic.min.css');
-
-	var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
-
-	zerdaReader.config(['$routeProvider', function($routeProvider){
-
-	  $routeProvider
-	    .when('/login', {
-	      templateUrl: 'views/login.html',
-	      controller: 'ReaderController'
-	    })
-	    .when('/register', {
-	      templateUrl: 'views/registration.html'
-	    })
-	    .when('/home', {
-	      templateUrl: 'views/home.html',
-	      controller: 'ReaderController'
-	    }).otherwise({
-	      redirectTo: '/login'
-	    });
-	}]);
-
-	zerdaReader.controller('ReaderController', ['$scope', '$http', function($scope, $http){
-
-	  console.log('valami2');
-
-	  $scope.login = function() {
-	    console.log('valami');
-	  //   $http({
-	  //     method: 'POST',
-	  //     url: '/user/login'
-	  //   }).then(function(data){
-	  //     if (data){
-	  //       console.log('very good');
-	  //     } else {
-	  //       console.log('error');
-	  //     }
-	  //   })
-	  //  });
-	  };
-	}]);
-=======
 	__webpack_require__(1);
 	__webpack_require__(2);
 	__webpack_require__(3);
@@ -119,25 +71,29 @@
 	    });
 	}]);
 
-	zerdaReader.controller('ReaderController', ['$scope', '$http', function($scope, $http){
+	zerdaReader.controller('ReaderController', ['$scope', '$http', '$location', function($scope, $http, $location){
 
-	  $scope.message = 'valami'
+	  console.log('valami2');
 	  $scope.login = function() {
 	    console.log($scope)
-	  //   $http({
-	  //     method: 'POST',
-	  //     url: '/user/login'
-	  //   }).then(function(data){
-	  //     if (data){
-	  //       console.log('very good');
-	  //     } else {
-	  //       console.log('error');
-	  //     }
-	  //   })
-	  //  });
-	  };
+	    $http({
+	      method: 'POST',
+	      data: {
+	        email: $scope.user.email,
+	        password: $scope.user.password
+	      },
+	      url: 'http://localhost:3000/user/login'
+	    }).then(function(data){
+	      if (data){
+	        console.log($scope.user.email);
+	        $location.path( "/home" );
+	      }
+	    }).catch(function(data){
+	      console.log('error');
+	      //$location.path( "/home" );
+	    })
+	  }
 	}]);
->>>>>>> 4b9680c5c161d209789d0716d18471d5b542b85b
 
 
 /***/ },
@@ -595,7 +551,7 @@
 	exports.i(__webpack_require__(7), "");
 
 	// module
-	exports.push([module.id, "input {\n  margin-bottom: 14px; }\n\nh2 {\n  margin: 30px; }\n", ""]);
+	exports.push([module.id, "\n", ""]);
 
 	// exports
 
