@@ -2,3 +2,4 @@ node_modules/
 semantic
 .eslintrc.js
 semantic.json
+dist
