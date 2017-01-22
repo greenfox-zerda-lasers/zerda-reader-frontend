@@ -14,8 +14,11 @@ body {
 
 .signup {
   text-align: center;
+  margin: 0px;
+  padding: 2px;
   &:hover {
     font-weight: bold;
+    color: white;
   }
   &:active {
     color: grey;
