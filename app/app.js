@@ -14,10 +14,12 @@ zerdaReader.config(['$routeProvider', function($routeProvider){
   $routeProvider
     .when('/login', {
       templateUrl: 'views/login.html',
-      controller: 'ReaderController',
+      // controller: 'ReaderController',
+      controller: 'LoginController',
     })
-    .when('/register', {
+    .when('/signup', {
       templateUrl: 'views/registration.html',
+      controller: 'SignUpController',
     })
     .when('/home', {
       templateUrl: 'views/home.html',
@@ -27,29 +29,51 @@ zerdaReader.config(['$routeProvider', function($routeProvider){
     });
 }]);
 
-zerdaReader.controller('ReaderController', ['$scope', '$http', '$location', function($scope, $http, $location){
+zerdaReader.controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
   $scope.login = function() {
-    if ( $scope.user.email !== "" && $scope.user.password !== ""){
+    if ($scope.user.email !== '' && $scope.user.password !== '') {
       $http({
         method: 'POST',
         data: {
           email: $scope.user.email,
-          password: $scope.user.password
+          password: $scope.user.password,
         },
-        url: 'http://localhost:3000/user/login'
-      }).then(function(data){
+        url: 'http://localhost:3000/user/login',
+      }).then(function (data) {
         var respond = (data.data);
         if (respond.result === 'success') {
           $location.path('/home');
         }
-      }).catch(function(data){
+      }).catch(function (data) {
+        console.log('error');
+      });
+    }
+  };
+  $scope.sindUpView = function () {
+    $location.path('/signup');
+  };
+}]);
+
+zerdaReader.controller('SignUpController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+
+  $scope.signUp = function() {
+    if ($scope.user.email !== '' && $scope.user.password !== '') {
+      $http({
+        method: 'POST',
+        data: {
+          email: $scope.user.email,
+          password: $scope.user.password,
+        },
+        url: 'http://localhost:3000/user/signup',
+      }).then(function (data) {
+        let respond = (data.data);
+        if (respond.result === 'success') {
+          $location.path('/home');
+        }
+      }).catch(function (data) {
         console.log('error');
       })
     }
-  }
-
-  $scope.signup = function(){
-    $location.path( "/register" );
   }
 }]);

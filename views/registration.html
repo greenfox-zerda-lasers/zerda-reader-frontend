@@ -2,10 +2,6 @@
   <div class="column">
     <h2 class="ui teal image header" style="width: 40vw">Registration</h2>
     <form class="ui large form" name="reg" novalidate>
-      <input class="field" type="text" placeholder="John Example" name="name" ng-model="user.name" ng-required="true" style="width: 40vw;  display: block"/>
-      <div  class="ui fluid row" ng-show="reg.name.$touched && reg.name.$invalid" style="display: block">
-        <small style="color: red; display: block; text-align: center" style="width: 40vw">Please add a username</small>
-      </div>
       <input type="email" placeholder="John@domain.com" name="email" ng-model="user.email" ng-required="true" style="width: 40vw;  display: block"/>
       <div ng-show="reg.email.$touched && reg.email.$invalid">
         <small style="color: red; display: block; text-align: center; style=width: 40vw">Invalid e-mail adress</small>
@@ -14,7 +10,7 @@
       <div ng-show="reg.password.$touched && reg.password.$invalid">
         <small style="color: red; display: block; text-align: center">Invalid password</small>
       </div>
-      <input class="ui fluid large submit yellow button" type="submit" value="Send" style="width: 40vw;"/>
+      <input class="ui fluid large submit yellow button" type="submit" value="Send" ng-click="signUp()" style="width: 40vw;"/>
     </form>
   </div>
 </div>
