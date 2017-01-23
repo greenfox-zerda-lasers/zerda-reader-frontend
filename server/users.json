@@ -1,10 +1,14 @@
-[{
+[
+	{
 	"email": "bogi@reader.com",
-	"password": "bogi",
-}, {
+	"password": "bogi"
+	},
+	{
 	"email": "gabor@reader.com",
-	"password": "gabor",
-}, {
+	"password": "gabor"
+	},
+	{
 	"email": "tamas@reader.com",
-	"password": "tamas",
-}]
+	"password": "tamas"
+	}
+]

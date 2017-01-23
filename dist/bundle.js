@@ -44,63 +44,6 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-	__webpack_require__(1);
-	__webpack_require__(2);
-	__webpack_require__(3);
-	// require('../content/css/index.scss');
-	__webpack_require__(4);
-	__webpack_require__(14);
-
-	var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
-
-	zerdaReader.config(['$routeProvider', function($routeProvider){
-
-	  $routeProvider
-	    .when('/login', {
-	      templateUrl: 'views/login.html',
-	      controller: 'ReaderController',
-	    })
-	    .when('/register', {
-	      templateUrl: 'views/registration.html',
-	    })
-	    .when('/home', {
-	      templateUrl: 'views/home.html',
-	      // controller: 'ReaderController',
-	    }).otherwise({
-	      redirectTo: '/login',
-	    });
-	}]);
-
-	zerdaReader.controller('ReaderController', ['$scope', '$http', '$location', function($scope, $http, $location){
-
-	  console.log('valami2');
-	  $scope.login = function() {
-	    console.log($scope)
-	    if ( $scope.user.email !== "" && $scope.user.password !== ""){
-	      $http({
-	        method: 'POST',
-	        data: {
-	          email: $scope.user.email,
-	          password: $scope.user.password
-	        },
-	        url: 'http://localhost:3000/user/login'
-	      }).then(function(data){
-	        if (data){
-	          console.log($scope.user.email);
-	          $location.path( "/home" );
-	        }
-	      }).catch(function(data){
-	        console.log('error');
-	      })
-	    }
-	  }
-
-	  $scope.signup = function(){
-	    $location.path( "/register" );
-	  }
-	}]);
-=======
 	__webpack_require__(1);
 	__webpack_require__(2);
 	__webpack_require__(3);
@@ -132,9 +75,7 @@
 
 	zerdaReader.controller('ReaderController', ['$scope', '$http', '$location', function($scope, $http, $location){
 
-	  console.log('valami2');
 	  $scope.login = function() {
-	    console.log($scope)
 	    if ( $scope.user.email !== "" && $scope.user.password !== ""){
 	      $http({
 	        method: 'POST',
@@ -144,9 +85,9 @@
 	        },
 	        url: 'http://localhost:3000/user/login'
 	      }).then(function(data){
-	        if (data){
-	          console.log($scope.user.email);
-	          $location.path( "/home" );
+	        var respond = (data.data);
+	        if (respond.result === 'success') {
+	          $location.path('/home');
 	        }
 	      }).catch(function(data){
 	        console.log('error');
@@ -158,7 +99,6 @@
 	    $location.path( "/register" );
 	  }
 	}]);
->>>>>>> c60d6611ba98f518bfe0e288f0cd7c2401087008
 
 
 /***/ },
@@ -1000,11 +940,7 @@
 
 
 	// module
-<<<<<<< HEAD
-	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.signup {\n  text-align: center; }\n  .signup:hover {\n    font-weight: bold; }\n  .signup:active {\n    color: grey; }\n", ""]);
-=======
-	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.signup {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  .signup:hover {\n    font-weight: bold;\n    color: white; }\n  .signup:active {\n    color: grey; }\n", ""]);
->>>>>>> c60d6611ba98f518bfe0e288f0cd7c2401087008
+	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.signup {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  .signup:hover {\n    font-weight: bold;\n    color: white; }\n  .signup:active {\n    color: grey; }\n\n#lock-icon::before {\n  vertical-align: top;\n  margin-bottom: 10px; }\n", ""]);
 
 	// exports
 
