@@ -25,6 +25,11 @@ body {
   }
 }
 
+#lock-icon::before {
+  vertical-align: top;
+  margin-bottom: 10px;
+}
+
 // .login-window {
 //   width: 40%;
 //   align-items: center;
