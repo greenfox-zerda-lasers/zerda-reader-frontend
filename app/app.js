@@ -6,6 +6,7 @@ require('./lib/angular-animate.min.js');
 require('../node_modules/semantic-ui/dist/semantic.min.css');
 //require('../node_modules/semantic-ui/dist/semantic.min.js');
 require('../content/css/login.scss');
+require('../content/css/home.scss');
 
 var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
 
@@ -23,7 +24,7 @@ zerdaReader.config(['$routeProvider', function($routeProvider){
     })
     .when('/home', {
       templateUrl: 'views/home.html',
-      // controller: 'ReaderController',
+      controller: 'ReaderController',
     }).otherwise({
       redirectTo: '/login',
     });
@@ -76,4 +77,16 @@ zerdaReader.controller('SignUpController', ['$scope', '$http', '$location', func
       })
     }
   }
+
+  $scope.logout = function(){
+    $location.path( "/login" );
+  }
+
+
 }]);
+
+$('#add')
+.popup({
+  popup: $('#addpopup'),
+  on: 'click'
+});
