@@ -1,43 +1,83 @@
-<header>
-    <h1>Zerda reader</h1>
-    <section class="nav-bar ui menu">
-        <ul>
-            <li>
-                <input type="text" placeholder="Search">
-            </li>
-            <li>
-                <button type="button">Quit</button>
-            </li>
-        </ul>
-    </section>
-</header>
-<aside>
-        <div>All</div>
-        <div>Favorites</div>
-    <ul class="chanel-list">
-        <li>1 chanel</li>
-        <li>2 chanel</li>
-        <li>3 chanel</li>
-        <li>4 chanel</li>
-        <li>5 chanel</li>
-    </ul>
-    <section class="add-chanel">
-        <div>Add</div>
-    </section>
-</aside>
-<main>
-    <header>
-        <h2>Chanel name</h2>
-    </header>
-    <section>
-        <ul>
-            <li>1 title</li>
-            <li>2 title</li>
-            <li>3 title</li>
-            <li>4 title</li>
-            <li>5 title</li>
-            <li>6 title</li>
-            <li>7 title</li>
-        </ul>
-    </section>
-</main>
+<div id="navbar" class="ui secondary menu">
+
+  <a class="item">
+    <i class="item" style="padding: 0px">Zerda Reader</i>
+  </a>
+
+  <a class="item">
+    Messages
+  </a>
+  <a class="item">
+    Friends
+  </a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+    <a class="ui item" ng-click="logout()">
+      Logout
+    </a>
+  </div>
+</div>
+
+
+<div id="sidebar" class="ui left visible sidebar">
+  <div class="ui secondary vertical pointing menu" style="width: auto">
+    <a class="active item">
+      All
+    </a>
+    <a class="item">
+      Favourites
+    </a>
+    <a class="item">
+      Friends
+    </a>
+  </div>
+  <div class="ui list">
+    <div class="item">
+      <i class="folder icon"></i>
+      <div class="content">
+        <div class="header">First Folder</div>
+        <div class="list">
+          <div class="item">
+            <i class="map icon"></i>
+            <div class="content">
+              <div class="header">first channel</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="add" class="ui button">Add
+    <div id="addpopup" class="ui flowing popup top left transition visible">
+      <div class="column">
+        <h4 class="ui header">Add new RSS channel</h4>
+        <div class="ui input" style="align-items: center">
+          <input type="text" placeholder="URL..." />
+          <i class="plus large icon" style="padding-left: 10px;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="mainlist" class="ui celled list" >
+  <!-- Site content !-->
+
+
+  <div id="mainlist-item" class="item">
+    <div class="right floated content">
+      <i class="ui star icon"></i>
+    </div>
+    <i class="ui user icon"></i>
+    <div class="content">
+      Lena
+    </div>
+  </div>
+</div>

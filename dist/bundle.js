@@ -52,6 +52,7 @@
 	__webpack_require__(4);
 	//require('../node_modules/semantic-ui/dist/semantic.min.js');
 	__webpack_require__(14);
+	__webpack_require__(16);
 
 	var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
 
@@ -67,7 +68,7 @@
 	    })
 	    .when('/home', {
 	      templateUrl: 'views/home.html',
-	      // controller: 'ReaderController',
+	      controller: 'ReaderController',
 	    }).otherwise({
 	      redirectTo: '/login',
 	    });
@@ -100,7 +101,19 @@
 	  $scope.signup = function(){
 	    $location.path( "/register" );
 	  }
+
+	  $scope.logout = function(){
+	    $location.path( "/login" );
+	  }
+
+
 	}]);
+
+	$('#add')
+	.popup({
+	  popup: $('#addpopup'),
+	  on: 'click'
+	});
 
 
 /***/ },
@@ -942,7 +955,47 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.signup {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  .signup:hover {\n    font-weight: bold;\n    color: white; }\n  .signup:active {\n    color: grey; }\n", ""]);
+	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.signup {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  .signup:hover {\n    font-weight: bold;\n    color: white; }\n  .signup:active {\n    color: grey; }\n\n#lock-icon::before {\n  vertical-align: top;\n  margin-bottom: 10px; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(17);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(13)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./home.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./home.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(6)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px; }\n  #sidebar a:hover {\n    color: teal; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: space-between;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  bottom: 45px;\n  height: 45px;\n  width: 100%; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -50px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%; }\n\n#mainlist-item {\n  height: 40px;\n  width: auto;\n  vertical-align: middle; }\n", ""]);
 
 	// exports
 
