@@ -76,9 +76,7 @@
 
 	zerdaReader.controller('ReaderController', ['$scope', '$http', '$location', function($scope, $http, $location){
 
-	  console.log('valami2');
 	  $scope.login = function() {
-	    console.log($scope)
 	    if ( $scope.user.email !== "" && $scope.user.password !== ""){
 	      $http({
 	        method: 'POST',
@@ -88,9 +86,9 @@
 	        },
 	        url: 'http://localhost:3000/user/login'
 	      }).then(function(data){
-	        if (data){
-	          console.log($scope.user.email);
-	          $location.path( "/home" );
+	        var respond = (data.data);
+	        if (respond.result === 'success') {
+	          $location.path('/home');
 	        }
 	      }).catch(function(data){
 	        console.log('error');

@@ -1,11 +1,19 @@
 'use strict';
 
+var users = require('./users.json');
+
 function validator(email, password) {
-  var validEmail = email.indexOf('@') > -1;
-  var validPassword = password.length > 0;
+  return (validUser(email, password) && (email.indexOf('@') > -1));
+}
 
-  return validEmail && validPassword;
-
+function validUser(email, password) {
+  var value = false
+  users.forEach(function (u) {
+    if (u.email === email && u.password === password) {
+      value = true;
+    }
+  });
+  return value;
 }
 
 module.exports = validator;

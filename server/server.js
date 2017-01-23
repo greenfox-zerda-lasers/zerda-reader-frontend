@@ -9,21 +9,21 @@ var app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-// app.use(express.static('client'));
 
 
-app.post('/user/login', function(req, res) {
-  console.log(req.body);
+app.post('/user/login', function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
-
-  if(validator(email, password)) {
+  if (validator(email, password)) {
       var response = {
-          "status": "ok",
+        result: 'success',
+        token: '0-9A-Z',
+        id: 4321,
       };
   } else {
       var response = {
-          "status": "incorrect password",
+        result: 'fail',
+        message: 'invalid username or password',
       };
   }
   res.send(response);
