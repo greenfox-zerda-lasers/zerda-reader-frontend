@@ -51,7 +51,6 @@ app.post('/user/signup', function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
   var checkResult = validator(email, password);
-  console.log(checkResult)
   if (checkResult.value) {
     var response = {
       result: 'fail',
