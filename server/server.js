@@ -3,9 +3,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var validator = require('./validator');
+
 var randomToken = require('./tokengenerator.js');
 
 var users = require('./users.json')
+var fs = require('fs');
+
 // var cors = require('cors');
 
 
@@ -44,11 +47,15 @@ app.post('/user/login', function (req, res) {
 ////////////////  SIGN UP  ////////////////
 
 app.post('/user/signup', function (req, res) {
+  var id = users.length + 1;
   var user = {
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    id: id
   }
-  console.log(user)
+  users.push(user);
+  console.log(users);
+  fs.writeFile('users.json', JSON.stringify(users));
 });
 
 app.listen(3000);
