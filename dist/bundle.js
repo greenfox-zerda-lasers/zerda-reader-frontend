@@ -47,6 +47,9 @@
 	__webpack_require__(1);
 	__webpack_require__(2);
 	__webpack_require__(3);
+	var LoginController = __webpack_require__(22);
+	var HomeController = __webpack_require__(23);
+	var SignUpController = __webpack_require__(24);
 	// require('../content/css/index.scss');
 	__webpack_require__(4);
 	__webpack_require__(14);
@@ -55,13 +58,12 @@
 	__webpack_require__(18);
 	__webpack_require__(20);
 
-	var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
+	var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate', 'LoginController', 'HomeController', 'SignUpController']);
 
 	zerdaReader.config(['$routeProvider', function($routeProvider){
 	  $routeProvider
 	    .when('/login', {
 	      templateUrl: 'views/login.html',
-	      // controller: 'ReaderController',
 	      controller: 'LoginController',
 	    })
 	    .when('/signup', {
@@ -70,71 +72,10 @@
 	    })
 	    .when('/home', {
 	      templateUrl: 'views/home.html',
-	      controller: 'ReaderController',
+	      controller: 'HomeController',
 	    }).otherwise({
 	      redirectTo: '/login',
 	    });
-	}]);
-
-	zerdaReader.controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
-
-	  $scope.login = function() {
-	    if ($scope.user.email !== '' && $scope.user.password !== '') {
-	      $http({
-	        method: 'POST',
-	        data: {
-	          email: $scope.user.email,
-	          password: $scope.user.password,
-	        },
-	        url: 'http://localhost:3000/user/login',
-	      }).then(function (data) {
-	        var respond = (data.data);
-	        if (respond.result === 'success') {
-	          $location.path('/home');
-	        }
-	      }).catch(function (data) {
-	        console.log('error');
-	      });
-	    }
-	  };
-	  $scope.singUpView = function () {
-	    $location.path('/signup');
-	  };
-	}]);
-
-	zerdaReader.controller('SignUpController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
-
-	  $scope.signUp = function() {
-	    if ($scope.user.email !== '' && $scope.user.password !== '') {
-	      $http({
-	        method: 'POST',
-	        data: {
-	          email: $scope.user.email,
-	          password: $scope.user.password,
-	        },
-	        url: 'http://localhost:3000/user/signup',
-	      }).then(function (data) {
-	        let respond = (data.data);
-	        if (respond.result === 'success') {
-	          $location.path('/home');
-	        }
-	      }).catch(function (data) {
-	        console.log('error');
-	      })
-	    }
-	  }
-
-	  $scope.logout = function(){
-	    $location.path( "/login" );
-	  }
-
-	  $scope.makevisible = function(){
-	    if($scope.visible == "visible"){
-	      $scope.visible = "hidden";
-	    } else {
-	      $scope.visible = "visible";
-	    }
-	  }
 	}]);
 
 
@@ -1097,9 +1038,130 @@
 
 
 	// module
-	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: space-between;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%; }\n\n#mainlist-item {\n  height: 40px;\n  width: auto;\n  vertical-align: middle; }\n", ""]);
+	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-start;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%; }\n\n#mainlist-item {\n  height: 40px;\n  width: auto;\n  vertical-align: middle; }\n", ""]);
 
 	// exports
+
+
+/***/ },
+/* 22 */
+/***/ function(module, exports) {
+
+	module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+
+	  $scope.login = function() {
+	    if ($scope.user.email !== '' && $scope.user.password !== '') {
+	      $http({
+	        method: 'POST',
+	        data: {
+	          email: $scope.user.email,
+	          password: $scope.user.password,
+	        },
+	        url: 'http://localhost:3000/user/login',
+	      }).then(function (data) {
+	        var respond = (data.data);
+	        if (respond.result === 'success') {
+	          $location.path('/home');
+	        }
+	      }).catch(function (data) {
+	        console.log('error');
+	      });
+	    }
+	  };
+	  $scope.signUpView = function () {
+	    $location.path('/signup');
+	  };
+	}]);
+
+
+	// LoginController;
+
+
+/***/ },
+/* 23 */
+/***/ function(module, exports) {
+
+	module.exports = angular.module('SignUpController', ['ngRoute', 'ngAnimate']).controller('SignUpController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+
+	  $scope.signUp = function() {
+	    if ($scope.user.email !== '' && $scope.user.password !== '') {
+	      $http({
+	        method: 'POST',
+	        data: {
+	          email: $scope.user.email,
+	          password: $scope.user.password,
+	        },
+	        url: 'http://localhost:3000/user/signup',
+	      }).then(function (data) {
+	        let respond = (data.data);
+	        if (respond.result === 'success') {
+	          $location.path('/home');
+	        }
+	      }).catch(function (data) {
+	        console.log('error');
+	      })
+	    }
+	  }
+
+	}]);
+
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).controller('HomeController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+	  //
+	  $scope.logout = function(){
+	    $location.path( "/login" );
+	  }
+	  // $scope.itemClicked = function ($index) {
+	  //   $scope.menu.child[$scope.current].active == '';
+	  //   console.log($index);
+	  //   $scope.current = $index;
+	  //   $scope.menu.child[$scope.current].active == 'active';
+	  // };
+	  //
+	  // $scope.changeactive = function () {
+	  //   $scope.menu[$scope.current].active == ''
+	  //   $scope.menu[$scope.current].active == 'active';
+	  // }
+	  //
+	  // console.log($scope.menu.length);
+	  // console.log($scope.menu[$scope.current]);
+
+	  $scope.makevisible = function(){
+	    if($scope.visible == "visible"){
+	      $scope.visible = "hidden";
+	    } else {
+	      $scope.visible = "visible";
+	    }
+	  }
+
+	  $scope.clickitem = function($index){
+	    $scope.selected = $index;
+	    console.log($scope.selected);
+	  }
+
+	  $http.get("data/data.json").then(function(data){
+	    $scope.folders = data.data;
+	  }, function(data){
+	    console.log("error");
+	  });
+
+	  $scope.menu = document.querySelectorAll('.ui.secondary.vertical.pointing.menu');
+	  console.log($scope.menu)
+
+	  // $scope.current = 0;
+	  // console.log($scope.current);
+	  // console.log($scope.menu[0]);
+	  // console.log($scope.menu[0].children);
+	  console.log($scope.menu[0].children[0]);
+	  //$scope.menu[0].children[$scope.current].active = "active";
+
+	}]);
+
+	//module.exports = HomeController;
 
 
 /***/ }
