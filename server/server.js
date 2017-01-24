@@ -3,13 +3,23 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var validator = require('./validator');
-var cors = require('cors');
+var users = require('./users.json')
+// var cors = require('cors');
+
 
 var app = express();
 
-app.use(cors());
+// app.use(cors());
 app.use(bodyParser.json());
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  // res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
+  next();
+});
+
+////////////////  LOG IN  ////////////////
 
 app.post('/user/login', function (req, res) {
   var email = req.body.email;
@@ -29,5 +39,14 @@ app.post('/user/login', function (req, res) {
   res.send(response);
 });
 
+////////////////  SIGN UP  ////////////////
+
+app.post('/user/signup', function (req, res) {
+  var user = {
+    email: req.body.email,
+    password: req.body.password
+  }
+  console.log(user)
+});
 
 app.listen(3000);
