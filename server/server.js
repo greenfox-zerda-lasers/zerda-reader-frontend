@@ -4,6 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var validator = require('./validator');
 var cors = require('cors');
+var randomToken = require('./tokengenerator.js');
 
 var app = express();
 
@@ -17,7 +18,7 @@ app.post('/user/login', function (req, res) {
   if (validator(email, password)) {
       var response = {
         result: 'success',
-        token: '0-9A-Z',
+        token: randomToken(),
         id: 4321,
       };
   } else {
