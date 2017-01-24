@@ -26,15 +26,21 @@
 
 <div id="sidebar" class="ui left visible sidebar">
   <div class="ui secondary vertical pointing menu" style="width: auto">
-    <a class="active item">
+    <a ng-repeat="folder in folders" class="item" ng-class="{{active}}" ng-click="clickitem($index)">
+      {{folder.name}} - {{$index}}
+    </a>
+    <!-- <a class="item {{active}}" ng-click="itemClicked($index)">
       All
     </a>
-    <a class="item">
+    <a class="{{active}} item" ng-click="itemClicked($index)">
       Favourites
     </a>
-    <a class="item">
+    <a class="{{active}} item" ng-click="itemClicked($index)">
       Friends
     </a>
+    <a id="channels" class="{{active}} item" ng-click="itemClicked($index)">
+      {channel.name}
+    <a> -->
   </div>
   <div id="add" class="ui button" ng-click="makevisible()">Add
     <div id="addpopup" class="ui flowing popup top left transition {{visible}}" ng-click="makevisible()">

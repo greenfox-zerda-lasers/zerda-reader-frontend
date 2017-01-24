@@ -44,7 +44,7 @@ $mainlist-width: 78vw;
 #add {
   display: flex;
   flex-flow: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   font-size: 14px;
   align-items: center;
   position: fixed;
