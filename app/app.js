@@ -4,7 +4,10 @@ require('./lib/angular-animate.min.js');
 // require('../content/css/index.scss');
 //require('../node_modules/semantic-ui/dist/components/icon.css');
 require('../node_modules/semantic-ui/dist/semantic.min.css');
-//require('../node_modules/semantic-ui/dist/semantic.min.js');
+require('../node_modules/semantic-ui/dist/components/accordion.css');
+require('../node_modules/semantic-ui/dist/components/popup.css');
+//require('../node_modules/semantic-ui/dist/semantic.js');
+
 require('../content/css/login.scss');
 require('../content/css/home.scss');
 
@@ -15,10 +18,12 @@ zerdaReader.config(['$routeProvider', function($routeProvider){
   $routeProvider
     .when('/login', {
       templateUrl: 'views/login.html',
-      controller: 'ReaderController',
+      // controller: 'ReaderController',
+      controller: 'LoginController',
     })
-    .when('/register', {
+    .when('/signup', {
       templateUrl: 'views/registration.html',
+      controller: 'SignUpController',
     })
     .when('/home', {
       templateUrl: 'views/home.html',
@@ -28,41 +33,63 @@ zerdaReader.config(['$routeProvider', function($routeProvider){
     });
 }]);
 
-zerdaReader.controller('ReaderController', ['$scope', '$http', '$location', function($scope, $http, $location){
+zerdaReader.controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
   $scope.login = function() {
-    if ( $scope.user.email !== "" && $scope.user.password !== ""){
+    if ($scope.user.email !== '' && $scope.user.password !== '') {
       $http({
         method: 'POST',
         data: {
           email: $scope.user.email,
-          password: $scope.user.password
+          password: $scope.user.password,
         },
-        url: 'http://localhost:3000/user/login'
-      }).then(function(data){
+        url: 'http://localhost:3000/user/login',
+      }).then(function (data) {
         var respond = (data.data);
         if (respond.result === 'success') {
           $location.path('/home');
         }
-      }).catch(function(data){
+      }).catch(function (data) {
+        console.log('error');
+      });
+    }
+  };
+  $scope.sindUpView = function () {
+    $location.path('/signup');
+  };
+}]);
+
+zerdaReader.controller('SignUpController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+
+  $scope.signUp = function() {
+    if ($scope.user.email !== '' && $scope.user.password !== '') {
+      $http({
+        method: 'POST',
+        data: {
+          email: $scope.user.email,
+          password: $scope.user.password,
+        },
+        url: 'http://localhost:3000/user/signup',
+      }).then(function (data) {
+        let respond = (data.data);
+        if (respond.result === 'success') {
+          $location.path('/home');
+        }
+      }).catch(function (data) {
         console.log('error');
       })
     }
-  }
-
-  $scope.signup = function(){
-    $location.path( "/register" );
   }
 
   $scope.logout = function(){
     $location.path( "/login" );
   }
 
-
+  $scope.makevisible = function(){
+    if($scope.visible == "visible"){
+      $scope.visible = "hidden";
+    } else {
+      $scope.visible = "visible";
+    }
+  }
 }]);
-
-$('#add')
-.popup({
-  popup: $('#addpopup'),
-  on: 'click'
-});

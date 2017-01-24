@@ -4,12 +4,12 @@
     <i class="item" style="padding: 0px">Zerda Reader</i>
   </a>
 
-  <a class="item">
+  <!-- <a class="item">
     Messages
   </a>
   <a class="item">
     Friends
-  </a>
+  </a> -->
   <div class="right menu">
     <div class="item">
       <div class="ui icon input">
@@ -36,30 +36,15 @@
       Friends
     </a>
   </div>
-  <div class="ui list">
-    <div class="item">
-      <i class="folder icon"></i>
-      <div class="content">
-        <div class="header">First Folder</div>
-        <div class="list">
-          <div class="item">
-            <i class="map icon"></i>
-            <div class="content">
-              <div class="header">first channel</div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="add" class="ui button">Add
-    <div id="addpopup" class="ui flowing popup top left transition visible">
+  <div id="add" class="ui button" ng-click="makevisible()">Add
+    <div id="addpopup" class="ui flowing popup top left transition {{visible}}" ng-click="makevisible()">
       <div class="column">
         <h4 class="ui header">Add new RSS channel</h4>
         <div class="ui input" style="align-items: center">
           <input type="text" placeholder="URL..." />
-          <i class="plus large icon" style="padding-left: 10px;"></i>
+          <div class="ui small button" style="width: 30px; align-items: center" ng-click="makevisible()">
+            <i class="plus icon"></i>
+          </div>
         </div>
       </div>
     </div>
@@ -72,6 +57,20 @@
 
 
   <div id="mainlist-item" class="item">
+    <div class="right floated content">
+      <i class="ui star icon"></i>
+    </div>
+    <i class="ui user icon"></i>
+    <div class="content">
+      Lena
+    </div>
+    <div class="right floated content">
+      <i class="ui star icon"></i>
+    </div>
+    <i class="ui user icon"></i>
+    <div class="content">
+      Lena
+    </div>
     <div class="right floated content">
       <i class="ui star icon"></i>
     </div>

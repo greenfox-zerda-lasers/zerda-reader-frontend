@@ -7,9 +7,9 @@ function validator(email, password) {
 }
 
 function validUser(email, password) {
-  var value = false
-  users.forEach(function (u) {
-    if (u.email === email && u.password === password) {
+  var value = false;
+  users.forEach(function (user) {
+    if (user.email === email && user.password === password) {
       value = true;
     }
   });
