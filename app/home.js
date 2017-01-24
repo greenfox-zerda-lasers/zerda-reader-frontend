@@ -1,6 +1,9 @@
 module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).controller('HomeController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
   //
   $scope.logout = function(){
+    console.log(localStorage);
+    localStorage.clear();
+    console.log(localStorage);
     $location.path( "/login" );
   }
   // $scope.itemClicked = function ($index) {

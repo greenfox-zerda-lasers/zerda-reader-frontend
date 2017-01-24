@@ -1,5 +1,7 @@
 module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
+  $scope.token={}
+
   $scope.login = function() {
     if ($scope.user.email !== '' && $scope.user.password !== '') {
       $http({
@@ -12,6 +14,10 @@ module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).con
       }).then(function (data) {
         var respond = (data.data);
         if (respond.result === 'success') {
+          console.log(respond.token);
+          console.log(respond);
+          localStorage.setItem("token", respond.token);
+          console.log(localStorage);
           $location.path('/home');
         }
       }).catch(function (data) {
