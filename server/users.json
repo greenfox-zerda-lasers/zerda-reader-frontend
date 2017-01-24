@@ -1,17 +1,1 @@
-[
-	{
-	"email": "bogi@reader.com",
-	"password": "bogi",
-	"token": ""
-	},
-	{
-	"email": "gabor@reader.com",
-	"password": "gabor",
-	"token": ""
-	},
-	{
-	"email": "tamas@reader.com",
-	"password": "tamas",
-	"token": ""
-	}
-]
+[{"email":"bogi@reader.com","password":"bogi","id":1},{"email":"gabor@reader.com","password":"gabor","id":2},{"email":"tamas@reader.com","password":"tamas","id":3},{"email":"baba@reader.com","password":"adffds","id":4}]

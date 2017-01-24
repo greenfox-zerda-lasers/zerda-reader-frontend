@@ -48,16 +48,13 @@
 	__webpack_require__(2);
 	__webpack_require__(3);
 	// require('../content/css/index.scss');
-	//require('../node_modules/semantic-ui/dist/components/icon.css');
 	__webpack_require__(4);
-	//require('../node_modules/semantic-ui/dist/semantic.min.js');
 	__webpack_require__(14);
 	__webpack_require__(16);
 
 	var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
 
 	zerdaReader.config(['$routeProvider', function($routeProvider){
-
 	  $routeProvider
 	    .when('/login', {
 	      templateUrl: 'views/login.html',
@@ -97,7 +94,7 @@
 	      });
 	    }
 	  };
-	  $scope.sindUpView = function () {
+	  $scope.singUpView = function () {
 	    $location.path('/signup');
 	  };
 	}]);
@@ -131,11 +128,11 @@
 
 	}]);
 
-	$('#add')
-	.popup({
-	  popup: $('#addpopup'),
-	  on: 'click'
-	});
+	// $('#add')
+	// .popup({
+	//   popup: $('#addpopup'),
+	//   on: 'click'
+	// });
 
 
 /***/ },

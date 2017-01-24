@@ -2,16 +2,13 @@ require('./lib/angular.min.js');
 require('./lib/angular-route.min.js');
 require('./lib/angular-animate.min.js');
 // require('../content/css/index.scss');
-//require('../node_modules/semantic-ui/dist/components/icon.css');
 require('../node_modules/semantic-ui/dist/semantic.min.css');
-//require('../node_modules/semantic-ui/dist/semantic.min.js');
 require('../content/css/login.scss');
 require('../content/css/home.scss');
 
 var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
 
 zerdaReader.config(['$routeProvider', function($routeProvider){
-
   $routeProvider
     .when('/login', {
       templateUrl: 'views/login.html',
@@ -51,7 +48,7 @@ zerdaReader.controller('LoginController', ['$scope', '$http', '$location', funct
       });
     }
   };
-  $scope.sindUpView = function () {
+  $scope.singUpView = function () {
     $location.path('/signup');
   };
 }]);
@@ -85,8 +82,8 @@ zerdaReader.controller('SignUpController', ['$scope', '$http', '$location', func
 
 }]);
 
-$('#add')
-.popup({
-  popup: $('#addpopup'),
-  on: 'click'
-});
+// $('#add')
+// .popup({
+//   popup: $('#addpopup'),
+//   on: 'click'
+// });
