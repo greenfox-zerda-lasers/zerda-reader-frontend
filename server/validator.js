@@ -3,17 +3,28 @@
 var users = require('./users.json');
 
 function validator(email, password) {
-  return (validUser(email, password) && (email.indexOf('@') > -1));
+  var checkUser = validUser(email, password);
+
+  if (email.indexOf('@') <= -1){
+    checkUser.value = false;
+  };
+  return checkUser;
 }
 
 function validUser(email, password) {
   var value = false;
+  var id = 0;
   users.forEach(function (user) {
     if (user.email === email && user.password === password) {
+      id = user.id;
       value = true;
     }
   });
-  return value;
+  var response = {
+    value: value,
+    id: id
+  };
+  return response;
 }
 
 module.exports = validator;
