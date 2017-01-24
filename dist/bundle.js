@@ -48,35 +48,16 @@
 	__webpack_require__(2);
 	__webpack_require__(3);
 	// require('../content/css/index.scss');
-<<<<<<< HEAD
-	//require('../node_modules/semantic-ui/dist/components/icon.css');
 	__webpack_require__(4);
-<<<<<<< HEAD
-	__webpack_require__(18);
-	__webpack_require__(20);
-	//require('../node_modules/semantic-ui/dist/semantic.js');
-=======
-	//require('../node_modules/semantic-ui/dist/semantic.min.js');
-=======
-	__webpack_require__(4);
->>>>>>> 474980e07fcc45042c315a2a777e628267a49695
->>>>>>> 425573e2d990149a4e55539e4786d9528c7219ac
 	__webpack_require__(14);
 	__webpack_require__(16);
+	//require('../node_modules/semantic-ui/dist/semantic.js');
+	__webpack_require__(18);
+	__webpack_require__(20);
 
 	var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
 
 	zerdaReader.config(['$routeProvider', function($routeProvider){
-<<<<<<< HEAD
-
-	  $routeProvider
-	    .when('/login', {
-	      templateUrl: 'views/login.html',
-	      controller: 'ReaderController',
-	    })
-	    .when('/register', {
-	      templateUrl: 'views/registration.html',
-=======
 	  $routeProvider
 	    .when('/login', {
 	      templateUrl: 'views/login.html',
@@ -86,7 +67,6 @@
 	    .when('/signup', {
 	      templateUrl: 'views/registration.html',
 	      controller: 'SignUpController',
->>>>>>> 474980e07fcc45042c315a2a777e628267a49695
 	    })
 	    .when('/home', {
 	      templateUrl: 'views/home.html',
@@ -96,46 +76,22 @@
 	    });
 	}]);
 
-<<<<<<< HEAD
-	zerdaReader.controller('ReaderController', ['$scope', '$http', '$location', function($scope, $http, $location){
-
-	  $scope.login = function() {
-	    if ( $scope.user.email !== "" && $scope.user.password !== ""){
-=======
 	zerdaReader.controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
 	  $scope.login = function() {
 	    if ($scope.user.email !== '' && $scope.user.password !== '') {
->>>>>>> 474980e07fcc45042c315a2a777e628267a49695
 	      $http({
 	        method: 'POST',
 	        data: {
 	          email: $scope.user.email,
-<<<<<<< HEAD
-	          password: $scope.user.password
-	        },
-	        url: 'http://localhost:3000/user/login'
-	      }).then(function(data){
-=======
 	          password: $scope.user.password,
 	        },
 	        url: 'http://localhost:3000/user/login',
 	      }).then(function (data) {
->>>>>>> 474980e07fcc45042c315a2a777e628267a49695
 	        var respond = (data.data);
 	        if (respond.result === 'success') {
 	          $location.path('/home');
 	        }
-<<<<<<< HEAD
-	      }).catch(function(data){
-	        console.log('error');
-	      })
-	    }
-	  }
-
-	  $scope.signup = function(){
-	    $location.path( "/register" );
-=======
 	      }).catch(function (data) {
 	        console.log('error');
 	      });
@@ -166,7 +122,6 @@
 	        console.log('error');
 	      })
 	    }
->>>>>>> 474980e07fcc45042c315a2a777e628267a49695
 	  }
 
 	  $scope.logout = function(){
@@ -182,23 +137,6 @@
 	  }
 	}]);
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-	$('#add')
-	.popup({
-	  popup: $('#addpopup'),
-	  on: 'click'
-	});
-=======
-	// $('#add')
-	// .popup({
-	//   popup: $('#addpopup'),
-	//   on: 'click'
-	// });
->>>>>>> 474980e07fcc45042c315a2a777e628267a49695
-
->>>>>>> 425573e2d990149a4e55539e4786d9528c7219ac
 
 /***/ },
 /* 1 */
@@ -664,7 +602,6 @@
 /* 6 */
 /***/ function(module, exports) {
 
-<<<<<<< HEAD
 	/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
 		Author Tobias Koppers @sokra
@@ -715,58 +652,6 @@
 		};
 		return list;
 	};
-=======
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	// css base code, injected by the css-loader
-	module.exports = function() {
-		var list = [];
-
-		// return the list of modules as css string
-		list.toString = function toString() {
-			var result = [];
-			for(var i = 0; i < this.length; i++) {
-				var item = this[i];
-				if(item[2]) {
-					result.push("@media " + item[2] + "{" + item[1] + "}");
-				} else {
-					result.push(item[1]);
-				}
-			}
-			return result.join("");
-		};
-
-		// import a list of modules into the list
-		list.i = function(modules, mediaQuery) {
-			if(typeof modules === "string")
-				modules = [[null, modules, ""]];
-			var alreadyImportedModules = {};
-			for(var i = 0; i < this.length; i++) {
-				var id = this[i][0];
-				if(typeof id === "number")
-					alreadyImportedModules[id] = true;
-			}
-			for(i = 0; i < modules.length; i++) {
-				var item = modules[i];
-				// skip already imported module
-				// this implementation is not 100% perfect for weird media query combinations
-				//  when a module is imported multiple times with different media queries.
-				//  I hope this will never occur (Hey this way we have smaller bundles)
-				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-					if(mediaQuery && !item[2]) {
-						item[2] = mediaQuery;
-					} else if(mediaQuery) {
-						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-					}
-					list.push(item);
-				}
-			}
-		};
-		return list;
-	};
->>>>>>> 474980e07fcc45042c315a2a777e628267a49695
 
 
 /***/ },
@@ -809,7 +694,6 @@
 /* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 	/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
 		Author Tobias Koppers @sokra
@@ -1056,254 +940,6 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
-=======
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	var stylesInDom = {},
-		memoize = function(fn) {
-			var memo;
-			return function () {
-				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-				return memo;
-			};
-		},
-		isOldIE = memoize(function() {
-			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
-		}),
-		getHeadElement = memoize(function () {
-			return document.head || document.getElementsByTagName("head")[0];
-		}),
-		singletonElement = null,
-		singletonCounter = 0,
-		styleElementsInsertedAtTop = [];
-
-	module.exports = function(list, options) {
-		if(false) {
-			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-		}
-
-		options = options || {};
-		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-		// tags it will allow on a page
-		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
-
-		// By default, add <style> tags to the bottom of <head>.
-		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
-
-		var styles = listToStyles(list);
-		addStylesToDom(styles, options);
-
-		return function update(newList) {
-			var mayRemove = [];
-			for(var i = 0; i < styles.length; i++) {
-				var item = styles[i];
-				var domStyle = stylesInDom[item.id];
-				domStyle.refs--;
-				mayRemove.push(domStyle);
-			}
-			if(newList) {
-				var newStyles = listToStyles(newList);
-				addStylesToDom(newStyles, options);
-			}
-			for(var i = 0; i < mayRemove.length; i++) {
-				var domStyle = mayRemove[i];
-				if(domStyle.refs === 0) {
-					for(var j = 0; j < domStyle.parts.length; j++)
-						domStyle.parts[j]();
-					delete stylesInDom[domStyle.id];
-				}
-			}
-		};
-	}
-
-	function addStylesToDom(styles, options) {
-		for(var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-			if(domStyle) {
-				domStyle.refs++;
-				for(var j = 0; j < domStyle.parts.length; j++) {
-					domStyle.parts[j](item.parts[j]);
-				}
-				for(; j < item.parts.length; j++) {
-					domStyle.parts.push(addStyle(item.parts[j], options));
-				}
-			} else {
-				var parts = [];
-				for(var j = 0; j < item.parts.length; j++) {
-					parts.push(addStyle(item.parts[j], options));
-				}
-				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-			}
-		}
-	}
-
-	function listToStyles(list) {
-		var styles = [];
-		var newStyles = {};
-		for(var i = 0; i < list.length; i++) {
-			var item = list[i];
-			var id = item[0];
-			var css = item[1];
-			var media = item[2];
-			var sourceMap = item[3];
-			var part = {css: css, media: media, sourceMap: sourceMap};
-			if(!newStyles[id])
-				styles.push(newStyles[id] = {id: id, parts: [part]});
-			else
-				newStyles[id].parts.push(part);
-		}
-		return styles;
-	}
-
-	function insertStyleElement(options, styleElement) {
-		var head = getHeadElement();
-		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
-		if (options.insertAt === "top") {
-			if(!lastStyleElementInsertedAtTop) {
-				head.insertBefore(styleElement, head.firstChild);
-			} else if(lastStyleElementInsertedAtTop.nextSibling) {
-				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
-			} else {
-				head.appendChild(styleElement);
-			}
-			styleElementsInsertedAtTop.push(styleElement);
-		} else if (options.insertAt === "bottom") {
-			head.appendChild(styleElement);
-		} else {
-			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-		}
-	}
-
-	function removeStyleElement(styleElement) {
-		styleElement.parentNode.removeChild(styleElement);
-		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
-		if(idx >= 0) {
-			styleElementsInsertedAtTop.splice(idx, 1);
-		}
-	}
-
-	function createStyleElement(options) {
-		var styleElement = document.createElement("style");
-		styleElement.type = "text/css";
-		insertStyleElement(options, styleElement);
-		return styleElement;
-	}
-
-	function createLinkElement(options) {
-		var linkElement = document.createElement("link");
-		linkElement.rel = "stylesheet";
-		insertStyleElement(options, linkElement);
-		return linkElement;
-	}
-
-	function addStyle(obj, options) {
-		var styleElement, update, remove;
-
-		if (options.singleton) {
-			var styleIndex = singletonCounter++;
-			styleElement = singletonElement || (singletonElement = createStyleElement(options));
-			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
-			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-		} else if(obj.sourceMap &&
-			typeof URL === "function" &&
-			typeof URL.createObjectURL === "function" &&
-			typeof URL.revokeObjectURL === "function" &&
-			typeof Blob === "function" &&
-			typeof btoa === "function") {
-			styleElement = createLinkElement(options);
-			update = updateLink.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-				if(styleElement.href)
-					URL.revokeObjectURL(styleElement.href);
-			};
-		} else {
-			styleElement = createStyleElement(options);
-			update = applyToTag.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-			};
-		}
-
-		update(obj);
-
-		return function updateStyle(newObj) {
-			if(newObj) {
-				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
-					return;
-				update(obj = newObj);
-			} else {
-				remove();
-			}
-		};
-	}
-
-	var replaceText = (function () {
-		var textStore = [];
-
-		return function (index, replacement) {
-			textStore[index] = replacement;
-			return textStore.filter(Boolean).join('\n');
-		};
-	})();
-
-	function applyToSingletonTag(styleElement, index, remove, obj) {
-		var css = remove ? "" : obj.css;
-
-		if (styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = replaceText(index, css);
-		} else {
-			var cssNode = document.createTextNode(css);
-			var childNodes = styleElement.childNodes;
-			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
-			if (childNodes.length) {
-				styleElement.insertBefore(cssNode, childNodes[index]);
-			} else {
-				styleElement.appendChild(cssNode);
-			}
-		}
-	}
-
-	function applyToTag(styleElement, obj) {
-		var css = obj.css;
-		var media = obj.media;
-
-		if(media) {
-			styleElement.setAttribute("media", media)
-		}
-
-		if(styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = css;
-		} else {
-			while(styleElement.firstChild) {
-				styleElement.removeChild(styleElement.firstChild);
-			}
-			styleElement.appendChild(document.createTextNode(css));
-		}
-	}
-
-	function updateLink(linkElement, obj) {
-		var css = obj.css;
-		var sourceMap = obj.sourceMap;
-
-		if(sourceMap) {
-			// http://stackoverflow.com/a/26603875
-			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-		}
-
-		var blob = new Blob([css], { type: "text/css" });
-
-		var oldSrc = linkElement.href;
-
-		linkElement.href = URL.createObjectURL(blob);
-
-		if(oldSrc)
-			URL.revokeObjectURL(oldSrc);
-	}
->>>>>>> 474980e07fcc45042c315a2a777e628267a49695
 
 
 /***/ },
@@ -1322,8 +958,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./login.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./login.scss");
+			module.hot.accept("!!./../../../css-loader/index.js!./accordion.css", function() {
+				var newContent = require("!!./../../../css-loader/index.js!./accordion.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1341,7 +977,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.signup {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  .signup:hover {\n    font-weight: bold;\n    color: white; }\n  .signup:active {\n    color: grey; }\n\n#lock-icon::before {\n  vertical-align: top;\n  margin-bottom: 10px; }\n", ""]);
+	exports.push([module.id, "/*!\n * # Semantic UI 2.2.7 - Accordion\n * http://github.com/semantic-org/semantic-ui/\n *\n *\n * Released under the MIT license\n * http://opensource.org/licenses/MIT\n *\n */\n\n\n/*******************************\n            Accordion\n*******************************/\n\n.ui.accordion,\n.ui.accordion .accordion {\n  max-width: 100%;\n}\n.ui.accordion .accordion {\n  margin: 1em 0em 0em;\n  padding: 0em;\n}\n\n/* Title */\n.ui.accordion .title,\n.ui.accordion .accordion .title {\n  cursor: pointer;\n}\n\n/* Default Styling */\n.ui.accordion .title:not(.ui) {\n  padding: 0.5em 0em;\n  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;\n  font-size: 1em;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n/* Content */\n.ui.accordion .title ~ .content,\n.ui.accordion .accordion .title ~ .content {\n  display: none;\n}\n\n/* Default Styling */\n.ui.accordion:not(.styled) .title ~ .content:not(.ui),\n.ui.accordion:not(.styled) .accordion .title ~ .content:not(.ui) {\n  margin: '';\n  padding: 0.5em 0em 1em;\n}\n.ui.accordion:not(.styled) .title ~ .content:not(.ui):last-child {\n  padding-bottom: 0em;\n}\n\n/* Arrow */\n.ui.accordion .title .dropdown.icon,\n.ui.accordion .accordion .title .dropdown.icon {\n  display: inline-block;\n  float: none;\n  opacity: 1;\n  width: 1.25em;\n  height: 1em;\n  margin: 0em 0.25rem 0em 0rem;\n  padding: 0em;\n  font-size: 1em;\n  -webkit-transition: opacity 0.1s ease, -webkit-transform 0.1s ease;\n  transition: opacity 0.1s ease, -webkit-transform 0.1s ease;\n  transition: transform 0.1s ease, opacity 0.1s ease;\n  transition: transform 0.1s ease, opacity 0.1s ease, -webkit-transform 0.1s ease;\n  vertical-align: baseline;\n  -webkit-transform: none;\n          transform: none;\n}\n\n/*--------------\n    Coupling\n---------------*/\n\n\n/* Menu */\n.ui.accordion.menu .item .title {\n  display: block;\n  padding: 0em;\n}\n.ui.accordion.menu .item .title > .dropdown.icon {\n  float: right;\n  margin: 0.21425em 0em 0em 1em;\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n}\n\n/* Header */\n.ui.accordion .ui.header .dropdown.icon {\n  font-size: 1em;\n  margin: 0em 0.25rem 0em 0rem;\n}\n\n\n/*******************************\n            States\n*******************************/\n\n.ui.accordion .active.title .dropdown.icon,\n.ui.accordion .accordion .active.title .dropdown.icon {\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg);\n}\n.ui.accordion.menu .item .active.title > .dropdown.icon {\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg);\n}\n\n\n/*******************************\n            Types\n*******************************/\n\n\n/*--------------\n     Styled\n---------------*/\n\n.ui.styled.accordion {\n  width: 600px;\n}\n.ui.styled.accordion,\n.ui.styled.accordion .accordion {\n  border-radius: 0.28571429rem;\n  background: #FFFFFF;\n  box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15), 0px 0px 0px 1px rgba(34, 36, 38, 0.15);\n}\n.ui.styled.accordion .title,\n.ui.styled.accordion .accordion .title {\n  margin: 0em;\n  padding: 0.75em 1em;\n  color: rgba(0, 0, 0, 0.4);\n  font-weight: bold;\n  border-top: 1px solid rgba(34, 36, 38, 0.15);\n  -webkit-transition: background 0.1s ease, color 0.1s ease;\n  transition: background 0.1s ease, color 0.1s ease;\n}\n.ui.styled.accordion > .title:first-child,\n.ui.styled.accordion .accordion .title:first-child {\n  border-top: none;\n}\n\n/* Content */\n.ui.styled.accordion .content,\n.ui.styled.accordion .accordion .content {\n  margin: 0em;\n  padding: 0.5em 1em 1.5em;\n}\n.ui.styled.accordion .accordion .content {\n  padding: 0em;\n  padding: 0.5em 1em 1.5em;\n}\n\n/* Hover */\n.ui.styled.accordion .title:hover,\n.ui.styled.accordion .active.title,\n.ui.styled.accordion .accordion .title:hover,\n.ui.styled.accordion .accordion .active.title {\n  background: transparent;\n  color: rgba(0, 0, 0, 0.87);\n}\n.ui.styled.accordion .accordion .title:hover,\n.ui.styled.accordion .accordion .active.title {\n  background: transparent;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n/* Active */\n.ui.styled.accordion .active.title {\n  background: transparent;\n  color: rgba(0, 0, 0, 0.95);\n}\n.ui.styled.accordion .accordion .active.title {\n  background: transparent;\n  color: rgba(0, 0, 0, 0.95);\n}\n\n\n/*******************************\n            States\n*******************************/\n\n\n/*--------------\n     Active\n---------------*/\n\n.ui.accordion .active.content,\n.ui.accordion .accordion .active.content {\n  display: block;\n}\n\n\n/*******************************\n           Variations\n*******************************/\n\n\n/*--------------\n     Fluid\n---------------*/\n\n.ui.fluid.accordion,\n.ui.fluid.accordion .accordion {\n  width: 100%;\n}\n\n/*--------------\n     Inverted\n---------------*/\n\n.ui.inverted.accordion .title:not(.ui) {\n  color: rgba(255, 255, 255, 0.9);\n}\n\n\n/*******************************\n         Theme Overrides\n*******************************/\n\n@font-face {\n  font-family: 'Accordion';\n  src: url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMggjB5AAAAC8AAAAYGNtYXAPfOIKAAABHAAAAExnYXNwAAAAEAAAAWgAAAAIZ2x5Zryj6HgAAAFwAAAAyGhlYWT/0IhHAAACOAAAADZoaGVhApkB5wAAAnAAAAAkaG10eAJuABIAAAKUAAAAGGxvY2EAjABWAAACrAAAAA5tYXhwAAgAFgAAArwAAAAgbmFtZfC1n04AAALcAAABPHBvc3QAAwAAAAAEGAAAACAAAwIAAZAABQAAAUwBZgAAAEcBTAFmAAAA9QAZAIQAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADw2gHg/+D/4AHgACAAAAABAAAAAAAAAAAAAAAgAAAAAAACAAAAAwAAABQAAwABAAAAFAAEADgAAAAKAAgAAgACAAEAIPDa//3//wAAAAAAIPDZ//3//wAB/+MPKwADAAEAAAAAAAAAAAAAAAEAAf//AA8AAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQASAEkAtwFuABMAADc0PwE2FzYXFh0BFAcGJwYvASY1EgaABQgHBQYGBQcIBYAG2wcGfwcBAQcECf8IBAcBAQd/BgYAAAAAAQAAAEkApQFuABMAADcRNDc2MzIfARYVFA8BBiMiJyY1AAUGBwgFgAYGgAUIBwYFWwEACAUGBoAFCAcFgAYGBQcAAAABAAAAAQAAqWYls18PPPUACwIAAAAAAM/9o+4AAAAAz/2j7gAAAAAAtwFuAAAACAACAAAAAAAAAAEAAAHg/+AAAAIAAAAAAAC3AAEAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAAAQAAAAC3ABIAtwAAAAAAAAAKABQAHgBCAGQAAAABAAAABgAUAAEAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEADAAAAAEAAAAAAAIADgBAAAEAAAAAAAMADAAiAAEAAAAAAAQADABOAAEAAAAAAAUAFgAMAAEAAAAAAAYABgAuAAEAAAAAAAoANABaAAMAAQQJAAEADAAAAAMAAQQJAAIADgBAAAMAAQQJAAMADAAiAAMAAQQJAAQADABOAAMAAQQJAAUAFgAMAAMAAQQJAAYADAA0AAMAAQQJAAoANABaAHIAYQB0AGkAbgBnAFYAZQByAHMAaQBvAG4AIAAxAC4AMAByAGEAdABpAG4AZ3JhdGluZwByAGEAdABpAG4AZwBSAGUAZwB1AGwAYQByAHIAYQB0AGkAbgBnAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA) format('truetype'), url(data:application/font-woff;charset=utf-8;base64,d09GRk9UVE8AAASwAAoAAAAABGgAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAAA9AAAAS0AAAEtFpovuE9TLzIAAAIkAAAAYAAAAGAIIweQY21hcAAAAoQAAABMAAAATA984gpnYXNwAAAC0AAAAAgAAAAIAAAAEGhlYWQAAALYAAAANgAAADb/0IhHaGhlYQAAAxAAAAAkAAAAJAKZAedobXR4AAADNAAAABgAAAAYAm4AEm1heHAAAANMAAAABgAAAAYABlAAbmFtZQAAA1QAAAE8AAABPPC1n05wb3N0AAAEkAAAACAAAAAgAAMAAAEABAQAAQEBB3JhdGluZwABAgABADr4HAL4GwP4GAQeCgAZU/+Lix4KABlT/4uLDAeLa/iU+HQFHQAAAHkPHQAAAH4RHQAAAAkdAAABJBIABwEBBw0PERQZHnJhdGluZ3JhdGluZ3UwdTF1MjB1RjBEOXVGMERBAAACAYkABAAGAQEEBwoNVp38lA78lA78lA77lA773Z33bxWLkI2Qj44I9xT3FAWOj5CNkIuQi4+JjoePiI2Gi4YIi/uUBYuGiYeHiIiHh4mGi4aLho2Ijwj7FPcUBYeOiY+LkAgO+92L5hWL95QFi5CNkI6Oj4+PjZCLkIuQiY6HCPcU+xQFj4iNhouGi4aJh4eICPsU+xQFiIeGiYaLhouHjYePiI6Jj4uQCA74lBT4lBWLDAoAAAAAAwIAAZAABQAAAUwBZgAAAEcBTAFmAAAA9QAZAIQAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADw2gHg/+D/4AHgACAAAAABAAAAAAAAAAAAAAAgAAAAAAACAAAAAwAAABQAAwABAAAAFAAEADgAAAAKAAgAAgACAAEAIPDa//3//wAAAAAAIPDZ//3//wAB/+MPKwADAAEAAAAAAAAAAAAAAAEAAf//AA8AAQAAAAEAADfYOJZfDzz1AAsCAAAAAADP/aPuAAAAAM/9o+4AAAAAALcBbgAAAAgAAgAAAAAAAAABAAAB4P/gAAACAAAAAAAAtwABAAAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAAAEAAAAAtwASALcAAAAAUAAABgAAAAAADgCuAAEAAAAAAAEADAAAAAEAAAAAAAIADgBAAAEAAAAAAAMADAAiAAEAAAAAAAQADABOAAEAAAAAAAUAFgAMAAEAAAAAAAYABgAuAAEAAAAAAAoANABaAAMAAQQJAAEADAAAAAMAAQQJAAIADgBAAAMAAQQJAAMADAAiAAMAAQQJAAQADABOAAMAAQQJAAUAFgAMAAMAAQQJAAYADAA0AAMAAQQJAAoANABaAHIAYQB0AGkAbgBnAFYAZQByAHMAaQBvAG4AIAAxAC4AMAByAGEAdABpAG4AZ3JhdGluZwByAGEAdABpAG4AZwBSAGUAZwB1AGwAYQByAHIAYQB0AGkAbgBnAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA) format('woff');\n  font-weight: normal;\n  font-style: normal;\n}\n\n/* Dropdown Icon */\n.ui.accordion .title .dropdown.icon,\n.ui.accordion .accordion .title .dropdown.icon {\n  font-family: Accordion;\n  line-height: 1;\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  font-weight: normal;\n  font-style: normal;\n  text-align: center;\n}\n.ui.accordion .title .dropdown.icon:before,\n.ui.accordion .accordion .title .dropdown.icon:before {\n  content: '\\F0DA' ;\n}\n\n\n/*******************************\n        User Overrides\n*******************************/\n\n", ""]);
 
 	// exports
 
@@ -1362,8 +998,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./home.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./home.scss");
+			module.hot.accept("!!./../../../css-loader/index.js!./popup.css", function() {
+				var newContent = require("!!./../../../css-loader/index.js!./popup.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1381,7 +1017,7 @@
 
 
 	// module
-	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: space-between;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%; }\n\n#mainlist-item {\n  height: 40px;\n  width: auto;\n  vertical-align: middle; }\n", ""]);
+	exports.push([module.id, "/*!\n * # Semantic UI 2.2.7 - Popup\n * http://github.com/semantic-org/semantic-ui/\n *\n *\n * Released under the MIT license\n * http://opensource.org/licenses/MIT\n *\n */\n\n\n/*******************************\n            Popup\n*******************************/\n\n.ui.popup {\n  display: none;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  \n/* Fixes content being squished when inline (moz only) */\n  min-width: -webkit-min-content;\n  min-width: -moz-min-content;\n  min-width: min-content;\n  z-index: 1900;\n  border: 1px solid #D4D4D5;\n  line-height: 1.4285em;\n  max-width: 250px;\n  background: #FFFFFF;\n  padding: 0.833em 1em;\n  font-weight: normal;\n  font-style: normal;\n  color: rgba(0, 0, 0, 0.87);\n  border-radius: 0.28571429rem;\n  box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);\n}\n.ui.popup > .header {\n  padding: 0em;\n  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;\n  font-size: 1.14285714em;\n  line-height: 1.2;\n  font-weight: bold;\n}\n.ui.popup > .header + .content {\n  padding-top: 0.5em;\n}\n.ui.popup:before {\n  position: absolute;\n  content: '';\n  width: 0.71428571em;\n  height: 0.71428571em;\n  background: #FFFFFF;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  z-index: 2;\n  box-shadow: 1px 1px 0px 0px #bababc;\n}\n\n\n/*******************************\n            Types\n*******************************/\n\n\n/*--------------\n    Tooltip\n---------------*/\n\n\n/* Content */\n[data-tooltip] {\n  position: relative;\n}\n\n/* Arrow */\n[data-tooltip]:before {\n  pointer-events: none;\n  position: absolute;\n  content: '';\n  font-size: 1rem;\n  width: 0.71428571em;\n  height: 0.71428571em;\n  background: #FFFFFF;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  z-index: 2;\n  box-shadow: 1px 1px 0px 0px #bababc;\n}\n\n/* Popup */\n[data-tooltip]:after {\n  pointer-events: none;\n  content: attr(data-tooltip);\n  position: absolute;\n  text-transform: none;\n  text-align: left;\n  white-space: nowrap;\n  font-size: 1rem;\n  border: 1px solid #D4D4D5;\n  line-height: 1.4285em;\n  max-width: none;\n  background: #FFFFFF;\n  padding: 0.833em 1em;\n  font-weight: normal;\n  font-style: normal;\n  color: rgba(0, 0, 0, 0.87);\n  border-radius: 0.28571429rem;\n  box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);\n  z-index: 1;\n}\n\n/* Default Position (Top Center) */\n[data-tooltip]:not([data-position]):before {\n  top: auto;\n  right: auto;\n  bottom: 100%;\n  left: 50%;\n  background: #FFFFFF;\n  margin-left: -0.07142857rem;\n  margin-bottom: 0.14285714rem;\n}\n[data-tooltip]:not([data-position]):after {\n  left: 50%;\n  -webkit-transform: translateX(-50%);\n          transform: translateX(-50%);\n  bottom: 100%;\n  margin-bottom: 0.5em;\n}\n\n/* Animation */\n[data-tooltip]:before,\n[data-tooltip]:after {\n  pointer-events: none;\n  visibility: hidden;\n}\n[data-tooltip]:before {\n  opacity: 0;\n  -webkit-transform: rotate(45deg) scale(0) !important;\n          transform: rotate(45deg) scale(0) !important;\n  -webkit-transform-origin: center top;\n          transform-origin: center top;\n  -webkit-transition: all 0.1s ease;\n  transition: all 0.1s ease;\n}\n[data-tooltip]:after {\n  opacity: 1;\n  -webkit-transform-origin: center bottom;\n          transform-origin: center bottom;\n  -webkit-transition: all 0.1s ease;\n  transition: all 0.1s ease;\n}\n[data-tooltip]:hover:before,\n[data-tooltip]:hover:after {\n  visibility: visible;\n  pointer-events: auto;\n}\n[data-tooltip]:hover:before {\n  -webkit-transform: rotate(45deg) scale(1) !important;\n          transform: rotate(45deg) scale(1) !important;\n  opacity: 1;\n}\n\n/* Animation Position */\n[data-tooltip]:after,\n[data-tooltip][data-position=\"top center\"]:after,\n[data-tooltip][data-position=\"bottom center\"]:after {\n  -webkit-transform: translateX(-50%) scale(0) !important;\n          transform: translateX(-50%) scale(0) !important;\n}\n[data-tooltip]:hover:after,\n[data-tooltip][data-position=\"bottom center\"]:hover:after {\n  -webkit-transform: translateX(-50%) scale(1) !important;\n          transform: translateX(-50%) scale(1) !important;\n}\n[data-tooltip][data-position=\"left center\"]:after,\n[data-tooltip][data-position=\"right center\"]:after {\n  -webkit-transform: translateY(-50%) scale(0) !important;\n          transform: translateY(-50%) scale(0) !important;\n}\n[data-tooltip][data-position=\"left center\"]:hover:after,\n[data-tooltip][data-position=\"right center\"]:hover:after {\n  -webkit-transform: translateY(-50%) scale(1) !important;\n          transform: translateY(-50%) scale(1) !important;\n}\n[data-tooltip][data-position=\"top left\"]:after,\n[data-tooltip][data-position=\"top right\"]:after,\n[data-tooltip][data-position=\"bottom left\"]:after,\n[data-tooltip][data-position=\"bottom right\"]:after {\n  -webkit-transform: scale(0) !important;\n          transform: scale(0) !important;\n}\n[data-tooltip][data-position=\"top left\"]:hover:after,\n[data-tooltip][data-position=\"top right\"]:hover:after,\n[data-tooltip][data-position=\"bottom left\"]:hover:after,\n[data-tooltip][data-position=\"bottom right\"]:hover:after {\n  -webkit-transform: scale(1) !important;\n          transform: scale(1) !important;\n}\n\n/*--------------\n    Inverted\n---------------*/\n\n\n/* Arrow */\n[data-tooltip][data-inverted]:before {\n  box-shadow: none !important;\n}\n\n/* Arrow Position */\n[data-tooltip][data-inverted]:before {\n  background: #1B1C1D;\n}\n\n/* Popup  */\n[data-tooltip][data-inverted]:after {\n  background: #1B1C1D;\n  color: #FFFFFF;\n  border: none;\n  box-shadow: none;\n}\n[data-tooltip][data-inverted]:after .header {\n  background-color: none;\n  color: #FFFFFF;\n}\n\n/*--------------\n    Position\n---------------*/\n\n\n/* Top Center */\n[data-position=\"top center\"][data-tooltip]:after {\n  top: auto;\n  right: auto;\n  left: 50%;\n  bottom: 100%;\n  -webkit-transform: translateX(-50%);\n          transform: translateX(-50%);\n  margin-bottom: 0.5em;\n}\n[data-position=\"top center\"][data-tooltip]:before {\n  top: auto;\n  right: auto;\n  bottom: 100%;\n  left: 50%;\n  background: #FFFFFF;\n  margin-left: -0.07142857rem;\n  margin-bottom: 0.14285714rem;\n}\n\n/* Top Left */\n[data-position=\"top left\"][data-tooltip]:after {\n  top: auto;\n  right: auto;\n  left: 0;\n  bottom: 100%;\n  margin-bottom: 0.5em;\n}\n[data-position=\"top left\"][data-tooltip]:before {\n  top: auto;\n  right: auto;\n  bottom: 100%;\n  left: 1em;\n  margin-left: -0.07142857rem;\n  margin-bottom: 0.14285714rem;\n}\n\n/* Top Right */\n[data-position=\"top right\"][data-tooltip]:after {\n  top: auto;\n  left: auto;\n  right: 0;\n  bottom: 100%;\n  margin-bottom: 0.5em;\n}\n[data-position=\"top right\"][data-tooltip]:before {\n  top: auto;\n  left: auto;\n  bottom: 100%;\n  right: 1em;\n  margin-left: -0.07142857rem;\n  margin-bottom: 0.14285714rem;\n}\n\n/* Bottom Center */\n[data-position=\"bottom center\"][data-tooltip]:after {\n  bottom: auto;\n  right: auto;\n  left: 50%;\n  top: 100%;\n  -webkit-transform: translateX(-50%);\n          transform: translateX(-50%);\n  margin-top: 0.5em;\n}\n[data-position=\"bottom center\"][data-tooltip]:before {\n  bottom: auto;\n  right: auto;\n  top: 100%;\n  left: 50%;\n  margin-left: -0.07142857rem;\n  margin-top: 0.14285714rem;\n}\n\n/* Bottom Left */\n[data-position=\"bottom left\"][data-tooltip]:after {\n  left: 0;\n  top: 100%;\n  margin-top: 0.5em;\n}\n[data-position=\"bottom left\"][data-tooltip]:before {\n  bottom: auto;\n  right: auto;\n  top: 100%;\n  left: 1em;\n  margin-left: -0.07142857rem;\n  margin-top: 0.14285714rem;\n}\n\n/* Bottom Right */\n[data-position=\"bottom right\"][data-tooltip]:after {\n  right: 0;\n  top: 100%;\n  margin-top: 0.5em;\n}\n[data-position=\"bottom right\"][data-tooltip]:before {\n  bottom: auto;\n  left: auto;\n  top: 100%;\n  right: 1em;\n  margin-left: -0.14285714rem;\n  margin-top: 0.07142857rem;\n}\n\n/* Left Center */\n[data-position=\"left center\"][data-tooltip]:after {\n  right: 100%;\n  top: 50%;\n  margin-right: 0.5em;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n}\n[data-position=\"left center\"][data-tooltip]:before {\n  right: 100%;\n  top: 50%;\n  margin-top: -0.14285714rem;\n  margin-right: -0.07142857rem;\n}\n\n/* Right Center */\n[data-position=\"right center\"][data-tooltip]:after {\n  left: 100%;\n  top: 50%;\n  margin-left: 0.5em;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n}\n[data-position=\"right center\"][data-tooltip]:before {\n  left: 100%;\n  top: 50%;\n  margin-top: -0.07142857rem;\n  margin-left: 0.14285714rem;\n}\n\n/* Arrow */\n[data-position~=\"bottom\"][data-tooltip]:before {\n  background: #FFFFFF;\n  box-shadow: -1px -1px 0px 0px #bababc;\n}\n[data-position=\"left center\"][data-tooltip]:before {\n  background: #FFFFFF;\n  box-shadow: 1px -1px 0px 0px #bababc;\n}\n[data-position=\"right center\"][data-tooltip]:before {\n  background: #FFFFFF;\n  box-shadow: -1px 1px 0px 0px #bababc;\n}\n[data-position~=\"top\"][data-tooltip]:before {\n  background: #FFFFFF;\n}\n\n/* Inverted Arrow Color */\n[data-inverted][data-position~=\"bottom\"][data-tooltip]:before {\n  background: #1B1C1D;\n  box-shadow: -1px -1px 0px 0px #bababc;\n}\n[data-inverted][data-position=\"left center\"][data-tooltip]:before {\n  background: #1B1C1D;\n  box-shadow: 1px -1px 0px 0px #bababc;\n}\n[data-inverted][data-position=\"right center\"][data-tooltip]:before {\n  background: #1B1C1D;\n  box-shadow: -1px 1px 0px 0px #bababc;\n}\n[data-inverted][data-position~=\"top\"][data-tooltip]:before {\n  background: #1B1C1D;\n}\n[data-position~=\"bottom\"][data-tooltip]:before {\n  -webkit-transform-origin: center bottom;\n          transform-origin: center bottom;\n}\n[data-position~=\"bottom\"][data-tooltip]:after {\n  -webkit-transform-origin: center top;\n          transform-origin: center top;\n}\n[data-position=\"left center\"][data-tooltip]:before {\n  -webkit-transform-origin: top center;\n          transform-origin: top center;\n}\n[data-position=\"left center\"][data-tooltip]:after {\n  -webkit-transform-origin: right center;\n          transform-origin: right center;\n}\n[data-position=\"right center\"][data-tooltip]:before {\n  -webkit-transform-origin: right center;\n          transform-origin: right center;\n}\n[data-position=\"right center\"][data-tooltip]:after {\n  -webkit-transform-origin: left center;\n          transform-origin: left center;\n}\n\n/*--------------\n     Spacing\n---------------*/\n\n.ui.popup {\n  margin: 0em;\n}\n\n/* Extending from Top */\n.ui.top.popup {\n  margin: 0em 0em 0.71428571em;\n}\n.ui.top.left.popup {\n  -webkit-transform-origin: left bottom;\n          transform-origin: left bottom;\n}\n.ui.top.center.popup {\n  -webkit-transform-origin: center bottom;\n          transform-origin: center bottom;\n}\n.ui.top.right.popup {\n  -webkit-transform-origin: right bottom;\n          transform-origin: right bottom;\n}\n\n/* Extending from Vertical Center */\n.ui.left.center.popup {\n  margin: 0em 0.71428571em 0em 0em;\n  -webkit-transform-origin: right 50%;\n          transform-origin: right 50%;\n}\n.ui.right.center.popup {\n  margin: 0em 0em 0em 0.71428571em;\n  -webkit-transform-origin: left 50%;\n          transform-origin: left 50%;\n}\n\n/* Extending from Bottom */\n.ui.bottom.popup {\n  margin: 0.71428571em 0em 0em;\n}\n.ui.bottom.left.popup {\n  -webkit-transform-origin: left top;\n          transform-origin: left top;\n}\n.ui.bottom.center.popup {\n  -webkit-transform-origin: center top;\n          transform-origin: center top;\n}\n.ui.bottom.right.popup {\n  -webkit-transform-origin: right top;\n          transform-origin: right top;\n}\n\n/*--------------\n     Pointer\n---------------*/\n\n\n/*--- Below ---*/\n\n.ui.bottom.center.popup:before {\n  margin-left: -0.30714286em;\n  top: -0.30714286em;\n  left: 50%;\n  right: auto;\n  bottom: auto;\n  box-shadow: -1px -1px 0px 0px #bababc;\n}\n.ui.bottom.left.popup {\n  margin-left: 0em;\n}\n/*rtl:rename*/\n.ui.bottom.left.popup:before {\n  top: -0.30714286em;\n  left: 1em;\n  right: auto;\n  bottom: auto;\n  margin-left: 0em;\n  box-shadow: -1px -1px 0px 0px #bababc;\n}\n.ui.bottom.right.popup {\n  margin-right: 0em;\n}\n/*rtl:rename*/\n.ui.bottom.right.popup:before {\n  top: -0.30714286em;\n  right: 1em;\n  bottom: auto;\n  left: auto;\n  margin-left: 0em;\n  box-shadow: -1px -1px 0px 0px #bababc;\n}\n\n/*--- Above ---*/\n\n.ui.top.center.popup:before {\n  top: auto;\n  right: auto;\n  bottom: -0.30714286em;\n  left: 50%;\n  margin-left: -0.30714286em;\n}\n.ui.top.left.popup {\n  margin-left: 0em;\n}\n/*rtl:rename*/\n.ui.top.left.popup:before {\n  bottom: -0.30714286em;\n  left: 1em;\n  top: auto;\n  right: auto;\n  margin-left: 0em;\n}\n.ui.top.right.popup {\n  margin-right: 0em;\n}\n/*rtl:rename*/\n.ui.top.right.popup:before {\n  bottom: -0.30714286em;\n  right: 1em;\n  top: auto;\n  left: auto;\n  margin-left: 0em;\n}\n\n/*--- Left Center ---*/\n\n/*rtl:rename*/\n.ui.left.center.popup:before {\n  top: 50%;\n  right: -0.30714286em;\n  bottom: auto;\n  left: auto;\n  margin-top: -0.30714286em;\n  box-shadow: 1px -1px 0px 0px #bababc;\n}\n\n/*--- Right Center  ---*/\n\n/*rtl:rename*/\n.ui.right.center.popup:before {\n  top: 50%;\n  left: -0.30714286em;\n  bottom: auto;\n  right: auto;\n  margin-top: -0.30714286em;\n  box-shadow: -1px 1px 0px 0px #bababc;\n}\n\n/* Arrow Color By Location */\n.ui.bottom.popup:before {\n  background: #FFFFFF;\n}\n.ui.right.center.popup:before,\n.ui.left.center.popup:before {\n  background: #FFFFFF;\n}\n.ui.top.popup:before {\n  background: #FFFFFF;\n}\n\n/* Inverted Arrow Color */\n.ui.inverted.bottom.popup:before {\n  background: #1B1C1D;\n}\n.ui.inverted.right.center.popup:before,\n.ui.inverted.left.center.popup:before {\n  background: #1B1C1D;\n}\n.ui.inverted.top.popup:before {\n  background: #1B1C1D;\n}\n\n\n/*******************************\n            Coupling\n*******************************/\n\n\n/* Immediate Nested Grid */\n.ui.popup > .ui.grid:not(.padded) {\n  width: calc(100% + 1.75rem);\n  margin: -0.7rem -0.875rem;\n}\n\n\n/*******************************\n            States\n*******************************/\n\n.ui.loading.popup {\n  display: block;\n  visibility: hidden;\n  z-index: -1;\n}\n.ui.animating.popup,\n.ui.visible.popup {\n  display: block;\n}\n.ui.visible.popup {\n  -webkit-transform: translateZ(0px);\n          transform: translateZ(0px);\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n}\n\n\n/*******************************\n            Variations\n*******************************/\n\n\n/*--------------\n     Basic\n---------------*/\n\n.ui.basic.popup:before {\n  display: none;\n}\n\n/*--------------\n     Wide\n---------------*/\n\n.ui.wide.popup {\n  max-width: 350px;\n}\n.ui[class*=\"very wide\"].popup {\n  max-width: 550px;\n}\n@media only screen and (max-width: 767px) {\n  .ui.wide.popup,\n  .ui[class*=\"very wide\"].popup {\n    max-width: 250px;\n  }\n}\n\n/*--------------\n     Fluid\n---------------*/\n\n.ui.fluid.popup {\n  width: 100%;\n  max-width: none;\n}\n\n/*--------------\n     Colors\n---------------*/\n\n\n/* Inverted colors  */\n.ui.inverted.popup {\n  background: #1B1C1D;\n  color: #FFFFFF;\n  border: none;\n  box-shadow: none;\n}\n.ui.inverted.popup .header {\n  background-color: none;\n  color: #FFFFFF;\n}\n.ui.inverted.popup:before {\n  background-color: #1B1C1D;\n  box-shadow: none !important;\n}\n\n/*--------------\n     Flowing\n---------------*/\n\n.ui.flowing.popup {\n  max-width: none;\n}\n\n/*--------------\n     Sizes\n---------------*/\n\n.ui.mini.popup {\n  font-size: 0.78571429rem;\n}\n.ui.tiny.popup {\n  font-size: 0.85714286rem;\n}\n.ui.small.popup {\n  font-size: 0.92857143rem;\n}\n.ui.popup {\n  font-size: 1rem;\n}\n.ui.large.popup {\n  font-size: 1.14285714rem;\n}\n.ui.huge.popup {\n  font-size: 1.42857143rem;\n}\n\n\n/*******************************\n         Theme Overrides\n*******************************/\n\n\n\n/*******************************\n        User Overrides\n*******************************/\n\n", ""]);
 
 	// exports
 
@@ -1402,8 +1038,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../css-loader/index.js!./accordion.css", function() {
-				var newContent = require("!!./../../../css-loader/index.js!./accordion.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./login.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./login.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1421,7 +1057,7 @@
 
 
 	// module
-	exports.push([module.id, "/*!\n * # Semantic UI 2.2.7 - Accordion\n * http://github.com/semantic-org/semantic-ui/\n *\n *\n * Released under the MIT license\n * http://opensource.org/licenses/MIT\n *\n */\n\n\n/*******************************\n            Accordion\n*******************************/\n\n.ui.accordion,\n.ui.accordion .accordion {\n  max-width: 100%;\n}\n.ui.accordion .accordion {\n  margin: 1em 0em 0em;\n  padding: 0em;\n}\n\n/* Title */\n.ui.accordion .title,\n.ui.accordion .accordion .title {\n  cursor: pointer;\n}\n\n/* Default Styling */\n.ui.accordion .title:not(.ui) {\n  padding: 0.5em 0em;\n  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;\n  font-size: 1em;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n/* Content */\n.ui.accordion .title ~ .content,\n.ui.accordion .accordion .title ~ .content {\n  display: none;\n}\n\n/* Default Styling */\n.ui.accordion:not(.styled) .title ~ .content:not(.ui),\n.ui.accordion:not(.styled) .accordion .title ~ .content:not(.ui) {\n  margin: '';\n  padding: 0.5em 0em 1em;\n}\n.ui.accordion:not(.styled) .title ~ .content:not(.ui):last-child {\n  padding-bottom: 0em;\n}\n\n/* Arrow */\n.ui.accordion .title .dropdown.icon,\n.ui.accordion .accordion .title .dropdown.icon {\n  display: inline-block;\n  float: none;\n  opacity: 1;\n  width: 1.25em;\n  height: 1em;\n  margin: 0em 0.25rem 0em 0rem;\n  padding: 0em;\n  font-size: 1em;\n  -webkit-transition: opacity 0.1s ease, -webkit-transform 0.1s ease;\n  transition: opacity 0.1s ease, -webkit-transform 0.1s ease;\n  transition: transform 0.1s ease, opacity 0.1s ease;\n  transition: transform 0.1s ease, opacity 0.1s ease, -webkit-transform 0.1s ease;\n  vertical-align: baseline;\n  -webkit-transform: none;\n          transform: none;\n}\n\n/*--------------\n    Coupling\n---------------*/\n\n\n/* Menu */\n.ui.accordion.menu .item .title {\n  display: block;\n  padding: 0em;\n}\n.ui.accordion.menu .item .title > .dropdown.icon {\n  float: right;\n  margin: 0.21425em 0em 0em 1em;\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n}\n\n/* Header */\n.ui.accordion .ui.header .dropdown.icon {\n  font-size: 1em;\n  margin: 0em 0.25rem 0em 0rem;\n}\n\n\n/*******************************\n            States\n*******************************/\n\n.ui.accordion .active.title .dropdown.icon,\n.ui.accordion .accordion .active.title .dropdown.icon {\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg);\n}\n.ui.accordion.menu .item .active.title > .dropdown.icon {\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg);\n}\n\n\n/*******************************\n            Types\n*******************************/\n\n\n/*--------------\n     Styled\n---------------*/\n\n.ui.styled.accordion {\n  width: 600px;\n}\n.ui.styled.accordion,\n.ui.styled.accordion .accordion {\n  border-radius: 0.28571429rem;\n  background: #FFFFFF;\n  box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15), 0px 0px 0px 1px rgba(34, 36, 38, 0.15);\n}\n.ui.styled.accordion .title,\n.ui.styled.accordion .accordion .title {\n  margin: 0em;\n  padding: 0.75em 1em;\n  color: rgba(0, 0, 0, 0.4);\n  font-weight: bold;\n  border-top: 1px solid rgba(34, 36, 38, 0.15);\n  -webkit-transition: background 0.1s ease, color 0.1s ease;\n  transition: background 0.1s ease, color 0.1s ease;\n}\n.ui.styled.accordion > .title:first-child,\n.ui.styled.accordion .accordion .title:first-child {\n  border-top: none;\n}\n\n/* Content */\n.ui.styled.accordion .content,\n.ui.styled.accordion .accordion .content {\n  margin: 0em;\n  padding: 0.5em 1em 1.5em;\n}\n.ui.styled.accordion .accordion .content {\n  padding: 0em;\n  padding: 0.5em 1em 1.5em;\n}\n\n/* Hover */\n.ui.styled.accordion .title:hover,\n.ui.styled.accordion .active.title,\n.ui.styled.accordion .accordion .title:hover,\n.ui.styled.accordion .accordion .active.title {\n  background: transparent;\n  color: rgba(0, 0, 0, 0.87);\n}\n.ui.styled.accordion .accordion .title:hover,\n.ui.styled.accordion .accordion .active.title {\n  background: transparent;\n  color: rgba(0, 0, 0, 0.87);\n}\n\n/* Active */\n.ui.styled.accordion .active.title {\n  background: transparent;\n  color: rgba(0, 0, 0, 0.95);\n}\n.ui.styled.accordion .accordion .active.title {\n  background: transparent;\n  color: rgba(0, 0, 0, 0.95);\n}\n\n\n/*******************************\n            States\n*******************************/\n\n\n/*--------------\n     Active\n---------------*/\n\n.ui.accordion .active.content,\n.ui.accordion .accordion .active.content {\n  display: block;\n}\n\n\n/*******************************\n           Variations\n*******************************/\n\n\n/*--------------\n     Fluid\n---------------*/\n\n.ui.fluid.accordion,\n.ui.fluid.accordion .accordion {\n  width: 100%;\n}\n\n/*--------------\n     Inverted\n---------------*/\n\n.ui.inverted.accordion .title:not(.ui) {\n  color: rgba(255, 255, 255, 0.9);\n}\n\n\n/*******************************\n         Theme Overrides\n*******************************/\n\n@font-face {\n  font-family: 'Accordion';\n  src: url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMggjB5AAAAC8AAAAYGNtYXAPfOIKAAABHAAAAExnYXNwAAAAEAAAAWgAAAAIZ2x5Zryj6HgAAAFwAAAAyGhlYWT/0IhHAAACOAAAADZoaGVhApkB5wAAAnAAAAAkaG10eAJuABIAAAKUAAAAGGxvY2EAjABWAAACrAAAAA5tYXhwAAgAFgAAArwAAAAgbmFtZfC1n04AAALcAAABPHBvc3QAAwAAAAAEGAAAACAAAwIAAZAABQAAAUwBZgAAAEcBTAFmAAAA9QAZAIQAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADw2gHg/+D/4AHgACAAAAABAAAAAAAAAAAAAAAgAAAAAAACAAAAAwAAABQAAwABAAAAFAAEADgAAAAKAAgAAgACAAEAIPDa//3//wAAAAAAIPDZ//3//wAB/+MPKwADAAEAAAAAAAAAAAAAAAEAAf//AA8AAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQASAEkAtwFuABMAADc0PwE2FzYXFh0BFAcGJwYvASY1EgaABQgHBQYGBQcIBYAG2wcGfwcBAQcECf8IBAcBAQd/BgYAAAAAAQAAAEkApQFuABMAADcRNDc2MzIfARYVFA8BBiMiJyY1AAUGBwgFgAYGgAUIBwYFWwEACAUGBoAFCAcFgAYGBQcAAAABAAAAAQAAqWYls18PPPUACwIAAAAAAM/9o+4AAAAAz/2j7gAAAAAAtwFuAAAACAACAAAAAAAAAAEAAAHg/+AAAAIAAAAAAAC3AAEAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAAAQAAAAC3ABIAtwAAAAAAAAAKABQAHgBCAGQAAAABAAAABgAUAAEAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEADAAAAAEAAAAAAAIADgBAAAEAAAAAAAMADAAiAAEAAAAAAAQADABOAAEAAAAAAAUAFgAMAAEAAAAAAAYABgAuAAEAAAAAAAoANABaAAMAAQQJAAEADAAAAAMAAQQJAAIADgBAAAMAAQQJAAMADAAiAAMAAQQJAAQADABOAAMAAQQJAAUAFgAMAAMAAQQJAAYADAA0AAMAAQQJAAoANABaAHIAYQB0AGkAbgBnAFYAZQByAHMAaQBvAG4AIAAxAC4AMAByAGEAdABpAG4AZ3JhdGluZwByAGEAdABpAG4AZwBSAGUAZwB1AGwAYQByAHIAYQB0AGkAbgBnAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA) format('truetype'), url(data:application/font-woff;charset=utf-8;base64,d09GRk9UVE8AAASwAAoAAAAABGgAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAAA9AAAAS0AAAEtFpovuE9TLzIAAAIkAAAAYAAAAGAIIweQY21hcAAAAoQAAABMAAAATA984gpnYXNwAAAC0AAAAAgAAAAIAAAAEGhlYWQAAALYAAAANgAAADb/0IhHaGhlYQAAAxAAAAAkAAAAJAKZAedobXR4AAADNAAAABgAAAAYAm4AEm1heHAAAANMAAAABgAAAAYABlAAbmFtZQAAA1QAAAE8AAABPPC1n05wb3N0AAAEkAAAACAAAAAgAAMAAAEABAQAAQEBB3JhdGluZwABAgABADr4HAL4GwP4GAQeCgAZU/+Lix4KABlT/4uLDAeLa/iU+HQFHQAAAHkPHQAAAH4RHQAAAAkdAAABJBIABwEBBw0PERQZHnJhdGluZ3JhdGluZ3UwdTF1MjB1RjBEOXVGMERBAAACAYkABAAGAQEEBwoNVp38lA78lA78lA77lA773Z33bxWLkI2Qj44I9xT3FAWOj5CNkIuQi4+JjoePiI2Gi4YIi/uUBYuGiYeHiIiHh4mGi4aLho2Ijwj7FPcUBYeOiY+LkAgO+92L5hWL95QFi5CNkI6Oj4+PjZCLkIuQiY6HCPcU+xQFj4iNhouGi4aJh4eICPsU+xQFiIeGiYaLhouHjYePiI6Jj4uQCA74lBT4lBWLDAoAAAAAAwIAAZAABQAAAUwBZgAAAEcBTAFmAAAA9QAZAIQAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADw2gHg/+D/4AHgACAAAAABAAAAAAAAAAAAAAAgAAAAAAACAAAAAwAAABQAAwABAAAAFAAEADgAAAAKAAgAAgACAAEAIPDa//3//wAAAAAAIPDZ//3//wAB/+MPKwADAAEAAAAAAAAAAAAAAAEAAf//AA8AAQAAAAEAADfYOJZfDzz1AAsCAAAAAADP/aPuAAAAAM/9o+4AAAAAALcBbgAAAAgAAgAAAAAAAAABAAAB4P/gAAACAAAAAAAAtwABAAAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAAAEAAAAAtwASALcAAAAAUAAABgAAAAAADgCuAAEAAAAAAAEADAAAAAEAAAAAAAIADgBAAAEAAAAAAAMADAAiAAEAAAAAAAQADABOAAEAAAAAAAUAFgAMAAEAAAAAAAYABgAuAAEAAAAAAAoANABaAAMAAQQJAAEADAAAAAMAAQQJAAIADgBAAAMAAQQJAAMADAAiAAMAAQQJAAQADABOAAMAAQQJAAUAFgAMAAMAAQQJAAYADAA0AAMAAQQJAAoANABaAHIAYQB0AGkAbgBnAFYAZQByAHMAaQBvAG4AIAAxAC4AMAByAGEAdABpAG4AZ3JhdGluZwByAGEAdABpAG4AZwBSAGUAZwB1AGwAYQByAHIAYQB0AGkAbgBnAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA) format('woff');\n  font-weight: normal;\n  font-style: normal;\n}\n\n/* Dropdown Icon */\n.ui.accordion .title .dropdown.icon,\n.ui.accordion .accordion .title .dropdown.icon {\n  font-family: Accordion;\n  line-height: 1;\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  font-weight: normal;\n  font-style: normal;\n  text-align: center;\n}\n.ui.accordion .title .dropdown.icon:before,\n.ui.accordion .accordion .title .dropdown.icon:before {\n  content: '\\F0DA' ;\n}\n\n\n/*******************************\n        User Overrides\n*******************************/\n\n", ""]);
+	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.signup {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  .signup:hover {\n    font-weight: bold;\n    color: white; }\n  .signup:active {\n    color: grey; }\n\n#lock-icon::before {\n  vertical-align: top;\n  margin-bottom: 10px; }\n", ""]);
 
 	// exports
 
@@ -1442,8 +1078,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../css-loader/index.js!./popup.css", function() {
-				var newContent = require("!!./../../../css-loader/index.js!./popup.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./home.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./home.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1461,7 +1097,7 @@
 
 
 	// module
-	exports.push([module.id, "/*!\n * # Semantic UI 2.2.7 - Popup\n * http://github.com/semantic-org/semantic-ui/\n *\n *\n * Released under the MIT license\n * http://opensource.org/licenses/MIT\n *\n */\n\n\n/*******************************\n            Popup\n*******************************/\n\n.ui.popup {\n  display: none;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  \n/* Fixes content being squished when inline (moz only) */\n  min-width: -webkit-min-content;\n  min-width: -moz-min-content;\n  min-width: min-content;\n  z-index: 1900;\n  border: 1px solid #D4D4D5;\n  line-height: 1.4285em;\n  max-width: 250px;\n  background: #FFFFFF;\n  padding: 0.833em 1em;\n  font-weight: normal;\n  font-style: normal;\n  color: rgba(0, 0, 0, 0.87);\n  border-radius: 0.28571429rem;\n  box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);\n}\n.ui.popup > .header {\n  padding: 0em;\n  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;\n  font-size: 1.14285714em;\n  line-height: 1.2;\n  font-weight: bold;\n}\n.ui.popup > .header + .content {\n  padding-top: 0.5em;\n}\n.ui.popup:before {\n  position: absolute;\n  content: '';\n  width: 0.71428571em;\n  height: 0.71428571em;\n  background: #FFFFFF;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  z-index: 2;\n  box-shadow: 1px 1px 0px 0px #bababc;\n}\n\n\n/*******************************\n            Types\n*******************************/\n\n\n/*--------------\n    Tooltip\n---------------*/\n\n\n/* Content */\n[data-tooltip] {\n  position: relative;\n}\n\n/* Arrow */\n[data-tooltip]:before {\n  pointer-events: none;\n  position: absolute;\n  content: '';\n  font-size: 1rem;\n  width: 0.71428571em;\n  height: 0.71428571em;\n  background: #FFFFFF;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  z-index: 2;\n  box-shadow: 1px 1px 0px 0px #bababc;\n}\n\n/* Popup */\n[data-tooltip]:after {\n  pointer-events: none;\n  content: attr(data-tooltip);\n  position: absolute;\n  text-transform: none;\n  text-align: left;\n  white-space: nowrap;\n  font-size: 1rem;\n  border: 1px solid #D4D4D5;\n  line-height: 1.4285em;\n  max-width: none;\n  background: #FFFFFF;\n  padding: 0.833em 1em;\n  font-weight: normal;\n  font-style: normal;\n  color: rgba(0, 0, 0, 0.87);\n  border-radius: 0.28571429rem;\n  box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);\n  z-index: 1;\n}\n\n/* Default Position (Top Center) */\n[data-tooltip]:not([data-position]):before {\n  top: auto;\n  right: auto;\n  bottom: 100%;\n  left: 50%;\n  background: #FFFFFF;\n  margin-left: -0.07142857rem;\n  margin-bottom: 0.14285714rem;\n}\n[data-tooltip]:not([data-position]):after {\n  left: 50%;\n  -webkit-transform: translateX(-50%);\n          transform: translateX(-50%);\n  bottom: 100%;\n  margin-bottom: 0.5em;\n}\n\n/* Animation */\n[data-tooltip]:before,\n[data-tooltip]:after {\n  pointer-events: none;\n  visibility: hidden;\n}\n[data-tooltip]:before {\n  opacity: 0;\n  -webkit-transform: rotate(45deg) scale(0) !important;\n          transform: rotate(45deg) scale(0) !important;\n  -webkit-transform-origin: center top;\n          transform-origin: center top;\n  -webkit-transition: all 0.1s ease;\n  transition: all 0.1s ease;\n}\n[data-tooltip]:after {\n  opacity: 1;\n  -webkit-transform-origin: center bottom;\n          transform-origin: center bottom;\n  -webkit-transition: all 0.1s ease;\n  transition: all 0.1s ease;\n}\n[data-tooltip]:hover:before,\n[data-tooltip]:hover:after {\n  visibility: visible;\n  pointer-events: auto;\n}\n[data-tooltip]:hover:before {\n  -webkit-transform: rotate(45deg) scale(1) !important;\n          transform: rotate(45deg) scale(1) !important;\n  opacity: 1;\n}\n\n/* Animation Position */\n[data-tooltip]:after,\n[data-tooltip][data-position=\"top center\"]:after,\n[data-tooltip][data-position=\"bottom center\"]:after {\n  -webkit-transform: translateX(-50%) scale(0) !important;\n          transform: translateX(-50%) scale(0) !important;\n}\n[data-tooltip]:hover:after,\n[data-tooltip][data-position=\"bottom center\"]:hover:after {\n  -webkit-transform: translateX(-50%) scale(1) !important;\n          transform: translateX(-50%) scale(1) !important;\n}\n[data-tooltip][data-position=\"left center\"]:after,\n[data-tooltip][data-position=\"right center\"]:after {\n  -webkit-transform: translateY(-50%) scale(0) !important;\n          transform: translateY(-50%) scale(0) !important;\n}\n[data-tooltip][data-position=\"left center\"]:hover:after,\n[data-tooltip][data-position=\"right center\"]:hover:after {\n  -webkit-transform: translateY(-50%) scale(1) !important;\n          transform: translateY(-50%) scale(1) !important;\n}\n[data-tooltip][data-position=\"top left\"]:after,\n[data-tooltip][data-position=\"top right\"]:after,\n[data-tooltip][data-position=\"bottom left\"]:after,\n[data-tooltip][data-position=\"bottom right\"]:after {\n  -webkit-transform: scale(0) !important;\n          transform: scale(0) !important;\n}\n[data-tooltip][data-position=\"top left\"]:hover:after,\n[data-tooltip][data-position=\"top right\"]:hover:after,\n[data-tooltip][data-position=\"bottom left\"]:hover:after,\n[data-tooltip][data-position=\"bottom right\"]:hover:after {\n  -webkit-transform: scale(1) !important;\n          transform: scale(1) !important;\n}\n\n/*--------------\n    Inverted\n---------------*/\n\n\n/* Arrow */\n[data-tooltip][data-inverted]:before {\n  box-shadow: none !important;\n}\n\n/* Arrow Position */\n[data-tooltip][data-inverted]:before {\n  background: #1B1C1D;\n}\n\n/* Popup  */\n[data-tooltip][data-inverted]:after {\n  background: #1B1C1D;\n  color: #FFFFFF;\n  border: none;\n  box-shadow: none;\n}\n[data-tooltip][data-inverted]:after .header {\n  background-color: none;\n  color: #FFFFFF;\n}\n\n/*--------------\n    Position\n---------------*/\n\n\n/* Top Center */\n[data-position=\"top center\"][data-tooltip]:after {\n  top: auto;\n  right: auto;\n  left: 50%;\n  bottom: 100%;\n  -webkit-transform: translateX(-50%);\n          transform: translateX(-50%);\n  margin-bottom: 0.5em;\n}\n[data-position=\"top center\"][data-tooltip]:before {\n  top: auto;\n  right: auto;\n  bottom: 100%;\n  left: 50%;\n  background: #FFFFFF;\n  margin-left: -0.07142857rem;\n  margin-bottom: 0.14285714rem;\n}\n\n/* Top Left */\n[data-position=\"top left\"][data-tooltip]:after {\n  top: auto;\n  right: auto;\n  left: 0;\n  bottom: 100%;\n  margin-bottom: 0.5em;\n}\n[data-position=\"top left\"][data-tooltip]:before {\n  top: auto;\n  right: auto;\n  bottom: 100%;\n  left: 1em;\n  margin-left: -0.07142857rem;\n  margin-bottom: 0.14285714rem;\n}\n\n/* Top Right */\n[data-position=\"top right\"][data-tooltip]:after {\n  top: auto;\n  left: auto;\n  right: 0;\n  bottom: 100%;\n  margin-bottom: 0.5em;\n}\n[data-position=\"top right\"][data-tooltip]:before {\n  top: auto;\n  left: auto;\n  bottom: 100%;\n  right: 1em;\n  margin-left: -0.07142857rem;\n  margin-bottom: 0.14285714rem;\n}\n\n/* Bottom Center */\n[data-position=\"bottom center\"][data-tooltip]:after {\n  bottom: auto;\n  right: auto;\n  left: 50%;\n  top: 100%;\n  -webkit-transform: translateX(-50%);\n          transform: translateX(-50%);\n  margin-top: 0.5em;\n}\n[data-position=\"bottom center\"][data-tooltip]:before {\n  bottom: auto;\n  right: auto;\n  top: 100%;\n  left: 50%;\n  margin-left: -0.07142857rem;\n  margin-top: 0.14285714rem;\n}\n\n/* Bottom Left */\n[data-position=\"bottom left\"][data-tooltip]:after {\n  left: 0;\n  top: 100%;\n  margin-top: 0.5em;\n}\n[data-position=\"bottom left\"][data-tooltip]:before {\n  bottom: auto;\n  right: auto;\n  top: 100%;\n  left: 1em;\n  margin-left: -0.07142857rem;\n  margin-top: 0.14285714rem;\n}\n\n/* Bottom Right */\n[data-position=\"bottom right\"][data-tooltip]:after {\n  right: 0;\n  top: 100%;\n  margin-top: 0.5em;\n}\n[data-position=\"bottom right\"][data-tooltip]:before {\n  bottom: auto;\n  left: auto;\n  top: 100%;\n  right: 1em;\n  margin-left: -0.14285714rem;\n  margin-top: 0.07142857rem;\n}\n\n/* Left Center */\n[data-position=\"left center\"][data-tooltip]:after {\n  right: 100%;\n  top: 50%;\n  margin-right: 0.5em;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n}\n[data-position=\"left center\"][data-tooltip]:before {\n  right: 100%;\n  top: 50%;\n  margin-top: -0.14285714rem;\n  margin-right: -0.07142857rem;\n}\n\n/* Right Center */\n[data-position=\"right center\"][data-tooltip]:after {\n  left: 100%;\n  top: 50%;\n  margin-left: 0.5em;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n}\n[data-position=\"right center\"][data-tooltip]:before {\n  left: 100%;\n  top: 50%;\n  margin-top: -0.07142857rem;\n  margin-left: 0.14285714rem;\n}\n\n/* Arrow */\n[data-position~=\"bottom\"][data-tooltip]:before {\n  background: #FFFFFF;\n  box-shadow: -1px -1px 0px 0px #bababc;\n}\n[data-position=\"left center\"][data-tooltip]:before {\n  background: #FFFFFF;\n  box-shadow: 1px -1px 0px 0px #bababc;\n}\n[data-position=\"right center\"][data-tooltip]:before {\n  background: #FFFFFF;\n  box-shadow: -1px 1px 0px 0px #bababc;\n}\n[data-position~=\"top\"][data-tooltip]:before {\n  background: #FFFFFF;\n}\n\n/* Inverted Arrow Color */\n[data-inverted][data-position~=\"bottom\"][data-tooltip]:before {\n  background: #1B1C1D;\n  box-shadow: -1px -1px 0px 0px #bababc;\n}\n[data-inverted][data-position=\"left center\"][data-tooltip]:before {\n  background: #1B1C1D;\n  box-shadow: 1px -1px 0px 0px #bababc;\n}\n[data-inverted][data-position=\"right center\"][data-tooltip]:before {\n  background: #1B1C1D;\n  box-shadow: -1px 1px 0px 0px #bababc;\n}\n[data-inverted][data-position~=\"top\"][data-tooltip]:before {\n  background: #1B1C1D;\n}\n[data-position~=\"bottom\"][data-tooltip]:before {\n  -webkit-transform-origin: center bottom;\n          transform-origin: center bottom;\n}\n[data-position~=\"bottom\"][data-tooltip]:after {\n  -webkit-transform-origin: center top;\n          transform-origin: center top;\n}\n[data-position=\"left center\"][data-tooltip]:before {\n  -webkit-transform-origin: top center;\n          transform-origin: top center;\n}\n[data-position=\"left center\"][data-tooltip]:after {\n  -webkit-transform-origin: right center;\n          transform-origin: right center;\n}\n[data-position=\"right center\"][data-tooltip]:before {\n  -webkit-transform-origin: right center;\n          transform-origin: right center;\n}\n[data-position=\"right center\"][data-tooltip]:after {\n  -webkit-transform-origin: left center;\n          transform-origin: left center;\n}\n\n/*--------------\n     Spacing\n---------------*/\n\n.ui.popup {\n  margin: 0em;\n}\n\n/* Extending from Top */\n.ui.top.popup {\n  margin: 0em 0em 0.71428571em;\n}\n.ui.top.left.popup {\n  -webkit-transform-origin: left bottom;\n          transform-origin: left bottom;\n}\n.ui.top.center.popup {\n  -webkit-transform-origin: center bottom;\n          transform-origin: center bottom;\n}\n.ui.top.right.popup {\n  -webkit-transform-origin: right bottom;\n          transform-origin: right bottom;\n}\n\n/* Extending from Vertical Center */\n.ui.left.center.popup {\n  margin: 0em 0.71428571em 0em 0em;\n  -webkit-transform-origin: right 50%;\n          transform-origin: right 50%;\n}\n.ui.right.center.popup {\n  margin: 0em 0em 0em 0.71428571em;\n  -webkit-transform-origin: left 50%;\n          transform-origin: left 50%;\n}\n\n/* Extending from Bottom */\n.ui.bottom.popup {\n  margin: 0.71428571em 0em 0em;\n}\n.ui.bottom.left.popup {\n  -webkit-transform-origin: left top;\n          transform-origin: left top;\n}\n.ui.bottom.center.popup {\n  -webkit-transform-origin: center top;\n          transform-origin: center top;\n}\n.ui.bottom.right.popup {\n  -webkit-transform-origin: right top;\n          transform-origin: right top;\n}\n\n/*--------------\n     Pointer\n---------------*/\n\n\n/*--- Below ---*/\n\n.ui.bottom.center.popup:before {\n  margin-left: -0.30714286em;\n  top: -0.30714286em;\n  left: 50%;\n  right: auto;\n  bottom: auto;\n  box-shadow: -1px -1px 0px 0px #bababc;\n}\n.ui.bottom.left.popup {\n  margin-left: 0em;\n}\n/*rtl:rename*/\n.ui.bottom.left.popup:before {\n  top: -0.30714286em;\n  left: 1em;\n  right: auto;\n  bottom: auto;\n  margin-left: 0em;\n  box-shadow: -1px -1px 0px 0px #bababc;\n}\n.ui.bottom.right.popup {\n  margin-right: 0em;\n}\n/*rtl:rename*/\n.ui.bottom.right.popup:before {\n  top: -0.30714286em;\n  right: 1em;\n  bottom: auto;\n  left: auto;\n  margin-left: 0em;\n  box-shadow: -1px -1px 0px 0px #bababc;\n}\n\n/*--- Above ---*/\n\n.ui.top.center.popup:before {\n  top: auto;\n  right: auto;\n  bottom: -0.30714286em;\n  left: 50%;\n  margin-left: -0.30714286em;\n}\n.ui.top.left.popup {\n  margin-left: 0em;\n}\n/*rtl:rename*/\n.ui.top.left.popup:before {\n  bottom: -0.30714286em;\n  left: 1em;\n  top: auto;\n  right: auto;\n  margin-left: 0em;\n}\n.ui.top.right.popup {\n  margin-right: 0em;\n}\n/*rtl:rename*/\n.ui.top.right.popup:before {\n  bottom: -0.30714286em;\n  right: 1em;\n  top: auto;\n  left: auto;\n  margin-left: 0em;\n}\n\n/*--- Left Center ---*/\n\n/*rtl:rename*/\n.ui.left.center.popup:before {\n  top: 50%;\n  right: -0.30714286em;\n  bottom: auto;\n  left: auto;\n  margin-top: -0.30714286em;\n  box-shadow: 1px -1px 0px 0px #bababc;\n}\n\n/*--- Right Center  ---*/\n\n/*rtl:rename*/\n.ui.right.center.popup:before {\n  top: 50%;\n  left: -0.30714286em;\n  bottom: auto;\n  right: auto;\n  margin-top: -0.30714286em;\n  box-shadow: -1px 1px 0px 0px #bababc;\n}\n\n/* Arrow Color By Location */\n.ui.bottom.popup:before {\n  background: #FFFFFF;\n}\n.ui.right.center.popup:before,\n.ui.left.center.popup:before {\n  background: #FFFFFF;\n}\n.ui.top.popup:before {\n  background: #FFFFFF;\n}\n\n/* Inverted Arrow Color */\n.ui.inverted.bottom.popup:before {\n  background: #1B1C1D;\n}\n.ui.inverted.right.center.popup:before,\n.ui.inverted.left.center.popup:before {\n  background: #1B1C1D;\n}\n.ui.inverted.top.popup:before {\n  background: #1B1C1D;\n}\n\n\n/*******************************\n            Coupling\n*******************************/\n\n\n/* Immediate Nested Grid */\n.ui.popup > .ui.grid:not(.padded) {\n  width: calc(100% + 1.75rem);\n  margin: -0.7rem -0.875rem;\n}\n\n\n/*******************************\n            States\n*******************************/\n\n.ui.loading.popup {\n  display: block;\n  visibility: hidden;\n  z-index: -1;\n}\n.ui.animating.popup,\n.ui.visible.popup {\n  display: block;\n}\n.ui.visible.popup {\n  -webkit-transform: translateZ(0px);\n          transform: translateZ(0px);\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n}\n\n\n/*******************************\n            Variations\n*******************************/\n\n\n/*--------------\n     Basic\n---------------*/\n\n.ui.basic.popup:before {\n  display: none;\n}\n\n/*--------------\n     Wide\n---------------*/\n\n.ui.wide.popup {\n  max-width: 350px;\n}\n.ui[class*=\"very wide\"].popup {\n  max-width: 550px;\n}\n@media only screen and (max-width: 767px) {\n  .ui.wide.popup,\n  .ui[class*=\"very wide\"].popup {\n    max-width: 250px;\n  }\n}\n\n/*--------------\n     Fluid\n---------------*/\n\n.ui.fluid.popup {\n  width: 100%;\n  max-width: none;\n}\n\n/*--------------\n     Colors\n---------------*/\n\n\n/* Inverted colors  */\n.ui.inverted.popup {\n  background: #1B1C1D;\n  color: #FFFFFF;\n  border: none;\n  box-shadow: none;\n}\n.ui.inverted.popup .header {\n  background-color: none;\n  color: #FFFFFF;\n}\n.ui.inverted.popup:before {\n  background-color: #1B1C1D;\n  box-shadow: none !important;\n}\n\n/*--------------\n     Flowing\n---------------*/\n\n.ui.flowing.popup {\n  max-width: none;\n}\n\n/*--------------\n     Sizes\n---------------*/\n\n.ui.mini.popup {\n  font-size: 0.78571429rem;\n}\n.ui.tiny.popup {\n  font-size: 0.85714286rem;\n}\n.ui.small.popup {\n  font-size: 0.92857143rem;\n}\n.ui.popup {\n  font-size: 1rem;\n}\n.ui.large.popup {\n  font-size: 1.14285714rem;\n}\n.ui.huge.popup {\n  font-size: 1.42857143rem;\n}\n\n\n/*******************************\n         Theme Overrides\n*******************************/\n\n\n\n/*******************************\n        User Overrides\n*******************************/\n\n", ""]);
+	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: space-between;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%; }\n\n#mainlist-item {\n  height: 40px;\n  width: auto;\n  vertical-align: middle; }\n", ""]);
 
 	// exports
 
