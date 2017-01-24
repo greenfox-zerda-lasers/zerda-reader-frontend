@@ -13,6 +13,9 @@ module.exports = angular.module('SignUpController', ['ngRoute', 'ngAnimate']).co
         let respond = (data.data);
         if (respond.result === 'success') {
           $location.path('/home');
+          
+        } else {
+          alert(respond.message);
         }
       }).catch(function (data) {
         console.log('error');

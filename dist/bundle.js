@@ -505,6 +505,8 @@
 
 	module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
+	  $scope.token={}
+
 	  $scope.login = function() {
 	    if ($scope.user.email !== '' && $scope.user.password !== '') {
 	      $http({
@@ -517,6 +519,10 @@
 	      }).then(function (data) {
 	        var respond = (data.data);
 	        if (respond.result === 'success') {
+	          console.log(respond.token);
+	          console.log(respond);
+	          localStorage.setItem("token", respond.token);
+	          console.log(localStorage);
 	          $location.path('/home');
 	        }
 	      }).catch(function (data) {
@@ -552,6 +558,9 @@
 	        let respond = (data.data);
 	        if (respond.result === 'success') {
 	          $location.path('/home');
+	          
+	        } else {
+	          alert(respond.message);
 	        }
 	      }).catch(function (data) {
 	        console.log('error');
@@ -569,6 +578,9 @@
 	module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).controller('HomeController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 	  //
 	  $scope.logout = function(){
+	    console.log(localStorage);
+	    localStorage.clear();
+	    console.log(localStorage);
 	    $location.path( "/login" );
 	  }
 	  // $scope.itemClicked = function ($index) {
