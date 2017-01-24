@@ -3,8 +3,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var validator = require('./validator');
-var users = require('./users.json');
+
+var randomToken = require('./tokengenerator.js');
+
+var users = require('./users.json')
 var fs = require('fs');
+
 // var cors = require('cors');
 
 
@@ -25,11 +29,12 @@ app.use(function(req, res, next) {
 app.post('/user/login', function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
-  if (validator(email, password)) {
+  var checkResult = validator(email, password);
+  if (checkResult.value) {
       var response = {
         result: 'success',
-        token: '0-9A-Z',
-        id: 4321,
+        token: randomToken(),
+        id: checkResult.id,
       };
   } else {
       var response = {
@@ -43,15 +48,31 @@ app.post('/user/login', function (req, res) {
 ////////////////  SIGN UP  ////////////////
 
 app.post('/user/signup', function (req, res) {
-  var id = users.length + 1;
-  var user = {
-    email: req.body.email,
-    password: req.body.password,
-    id: id
+  var email = req.body.email;
+  var password = req.body.password;
+  var checkResult = validator(email, password);
+  console.log(checkResult)
+  if (checkResult.value) {
+    var response = {
+      result: 'fail',
+      message: 'email address already exists',
+    };
+  } else {
+    var id = users.length + 1;
+    var user = {
+      email: req.body.email,
+      password: req.body.password,
+      id: id
+    }
+    users.push(user);
+    fs.writeFile('users.json', JSON.stringify(users));
+    var response = {
+      result: 'success',
+      token: randomToken(),
+      id: id,
+    };
   }
-  users.push(user);
-  console.log(users);
-  fs.writeFile('users.json', JSON.stringify(users));
+  res.send(response);
 });
 
 app.listen(3000);
