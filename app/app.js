@@ -4,7 +4,10 @@ require('./lib/angular-animate.min.js');
 // require('../content/css/index.scss');
 //require('../node_modules/semantic-ui/dist/components/icon.css');
 require('../node_modules/semantic-ui/dist/semantic.min.css');
-//require('../node_modules/semantic-ui/dist/semantic.min.js');
+require('../node_modules/semantic-ui/dist/components/accordion.css');
+require('../node_modules/semantic-ui/dist/components/popup.css');
+//require('../node_modules/semantic-ui/dist/semantic.js');
+
 require('../content/css/login.scss');
 require('../content/css/home.scss');
 
@@ -58,11 +61,11 @@ zerdaReader.controller('ReaderController', ['$scope', '$http', '$location', func
     $location.path( "/login" );
   }
 
-
+  $scope.makevisible = function(){
+    if($scope.visible == "visible"){
+      $scope.visible = "hidden";
+    } else {
+      $scope.visible = "visible";
+    }
+  }
 }]);
-
-$('#add')
-.popup({
-  popup: $('#addpopup'),
-  on: 'click'
-});
