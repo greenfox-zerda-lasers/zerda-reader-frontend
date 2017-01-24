@@ -1,5 +1,6 @@
 module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).controller('HomeController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
+
   $scope.checkToken = function ($routeProvider){
     if (localStorage.length === 0){
       $location.path('/login');
@@ -7,11 +8,11 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   };
 
   $scope.checkToken();
-  //
+
   $scope.logout = function(){
-    console.log(localStorage);
+    //console.log(localStorage);
     localStorage.clear();
-    console.log(localStorage);
+    //console.log(localStorage);
     $location.path( "/login" );
   }
   // $scope.itemClicked = function ($index) {
@@ -39,7 +40,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
 
   $scope.clickitem = function($index){
     $scope.selected = $index;
-    console.log($scope.selected);
+    //console.log($scope.selected);
   }
 
   $http.get("data/data.json").then(function(data){
@@ -49,13 +50,13 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   });
 
   $scope.menu = document.querySelectorAll('.ui.secondary.vertical.pointing.menu');
-  console.log($scope.menu)
+  //console.log($scope.menu)
 
   // $scope.current = 0;
   // console.log($scope.current);
   // console.log($scope.menu[0]);
   // console.log($scope.menu[0].children);
-  console.log($scope.menu[0].children[0]);
+  //console.log($scope.menu[0].children[0]);
   //$scope.menu[0].children[$scope.current].active = "active";
 
 }]);

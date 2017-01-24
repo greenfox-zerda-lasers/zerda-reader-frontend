@@ -577,6 +577,7 @@
 
 	module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).controller('HomeController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
+
 	  $scope.checkToken = function ($routeProvider){
 	    if (localStorage.length === 0){
 	      $location.path('/login');
@@ -584,11 +585,11 @@
 	  };
 
 	  $scope.checkToken();
-	  //
+
 	  $scope.logout = function(){
-	    console.log(localStorage);
+	    //console.log(localStorage);
 	    localStorage.clear();
-	    console.log(localStorage);
+	    //console.log(localStorage);
 	    $location.path( "/login" );
 	  }
 	  // $scope.itemClicked = function ($index) {
@@ -616,7 +617,7 @@
 
 	  $scope.clickitem = function($index){
 	    $scope.selected = $index;
-	    console.log($scope.selected);
+	    //console.log($scope.selected);
 	  }
 
 	  $http.get("data/data.json").then(function(data){
@@ -626,13 +627,13 @@
 	  });
 
 	  $scope.menu = document.querySelectorAll('.ui.secondary.vertical.pointing.menu');
-	  console.log($scope.menu)
+	  //console.log($scope.menu)
 
 	  // $scope.current = 0;
 	  // console.log($scope.current);
 	  // console.log($scope.menu[0]);
 	  // console.log($scope.menu[0].children);
-	  console.log($scope.menu[0].children[0]);
+	  //console.log($scope.menu[0].children[0]);
 	  //$scope.menu[0].children[$scope.current].active = "active";
 
 	}]);
@@ -1179,7 +1180,7 @@
 
 
 	// module
-	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-start;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%; }\n\n#mainlist-item {\n  height: 40px;\n  width: auto;\n  vertical-align: middle; }\n", ""]);
+	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-start;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%; }\n\n#mainlist > .item {\n  height: 40px;\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  #mainlist > .item i:before {\n    width: 40px; }\n  #mainlist > .item:hover {\n    color: white;\n    background-color: grey; }\n", ""]);
 
 	// exports
 
