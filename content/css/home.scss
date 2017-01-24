@@ -69,8 +69,17 @@ $mainlist-width: 78vw;
   width: 80%;
 }
 
-#mainlist-item {
+#mainlist > .item {
   height: 40px;
   width: auto;
-  vertical-align: middle;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  i:before {
+    width: 40px;
+  }
+  &:hover {
+    color: white;
+    background-color: grey;
+  }
 }
