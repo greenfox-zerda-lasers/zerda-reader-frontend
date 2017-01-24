@@ -1,6 +1,7 @@
 $navbar-heigth: 40px;
 $add-heigth: 45px;
 $sidebar-width: 22vw;
+$addbutton-width: 20vw;
 $mainlist-width: 78vw;
 
 #navbar {
@@ -27,11 +28,17 @@ $mainlist-width: 78vw;
   width: 20%;
   top: $navbar-heigth;
   padding-left: 10px;
+  overflow-y: visible!important;
   a {
     &:hover {
       color: teal;
     }
   }
+}
+
+#folder {
+  padding-top: 0px;
+  width: 100%;
 }
 
 #add {
@@ -41,15 +48,18 @@ $mainlist-width: 78vw;
   font-size: 14px;
   align-items: center;
   position: fixed;
+  left: 0px;
   bottom: $add-heigth;
   height: $add-heigth;
-  width: 100%;
+  width: $addbutton-width;
 }
 
 #addpopup {
   position: relative;
   top: -80px;
-  left: -50px;
+  left: -40px;
+  z-index: 100
+
 }
 
 #mainlist {
