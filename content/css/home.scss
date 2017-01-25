@@ -23,6 +23,12 @@ $mainlist-width: 78vw;
   }
 }
 
+#logo {
+  font-family: 'Gloria Hallelujah', cursive;
+  padding-left: 0px;
+  font-size: 26px;
+}
+
 #sidebar {
   position: fixed;
   width: 20%;
@@ -88,5 +94,13 @@ $mainlist-width: 78vw;
   }
   &:active {
     background-color: lightgrey;
+  }
+}
+
+#feed-title {
+  padding-left: 50px;
+  #feed-date {
+    position: fixed;
+    right: 200px;
   }
 }
