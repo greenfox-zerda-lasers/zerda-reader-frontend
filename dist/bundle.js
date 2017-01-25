@@ -592,6 +592,8 @@
 	    //console.log(localStorage);
 	    $location.path( "/login" );
 	  }
+
+
 	  // $scope.itemClicked = function ($index) {
 	  //   $scope.menu.child[$scope.current].active == '';
 	  //   console.log($index);
@@ -617,7 +619,7 @@
 
 	  $scope.clickitem = function($index){
 	    $scope.selected = $index;
-	    //console.log($scope.selected);
+	    console.log($scope.selected);
 	  }
 
 	  $http.get("data/data.json").then(function(data){
