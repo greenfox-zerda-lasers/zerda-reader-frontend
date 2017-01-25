@@ -15,6 +15,8 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
     //console.log(localStorage);
     $location.path( "/login" );
   }
+
+
   // $scope.itemClicked = function ($index) {
   //   $scope.menu.child[$scope.current].active == '';
   //   console.log($index);
@@ -40,7 +42,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
 
   $scope.clickitem = function($index){
     $scope.selected = $index;
-    //console.log($scope.selected);
+    console.log($scope.selected);
   }
 
 

@@ -6,6 +6,7 @@ var validator = require('./validator');
 
 var randomToken = require('./tokengenerator.js');
 var searchFeed = require('./choosefeed.js');
+var listChannel = require('./listchannel.js');
 
 var users = require('./users.json')
 var feed = require('./feed.json')
@@ -84,7 +85,12 @@ app.get('/feed/:id', function (req, res) {
   res.send(response);
 });
 
+////////////////  LIST SUBSCRIPTION  ////////////////
 
+app.get('/subscription', function (req, res) {
+  var response = listChannel();
+  res.send(response);
+});
 
 
 
