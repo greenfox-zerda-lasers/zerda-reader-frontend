@@ -28,7 +28,7 @@
   <div class="ui secondary vertical pointing menu" style="width: auto">
     <a ng-repeat="folder in folders" class="item {{}}" ng-click="clickitem($index)">
       {{folder.name}} - {{$index}}
-    </a>
+    <!-- </a>
     <a class="item {{active}}" ng-click="itemClicked($index)">
       All
     </a>
@@ -40,7 +40,7 @@
     </a>
     <a ng-repeat="subscription in subscriptions" id="channels" class="{{active}} item" ng-click="itemClicked($index)">
       {{subscription}}
-    <a>
+    <a> -->
   </div>
   <div id="add" class="ui button" ng-click="makevisible()">Add
     <div id="addpopup" class="ui flowing popup top left transition {{visible}}" ng-click="makevisible()">

@@ -19,14 +19,16 @@ function listChannel() {
   //     response.push({name: element.feed_name, id: element.feed_id});
   //   }
   // });
+  function filterByID(value, index, self) {
+  if (self.feed_id.indexOf(value.feed_id) === index) {
+    return true;
+  }
+}
 
-
-  var res = feed.filter( function (element, index, arr){
-    return arr.indexOf(element) === index
-  })
+  var res = feed.filter(filterByID);
 
   console.log(res);
-  return response;
+  return res;
 }
 
 module.exports = listChannel;

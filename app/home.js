@@ -60,7 +60,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
     console.log(localStorage)
     $http({
       method: 'GET',
-      url: 'http://localhost:3000/subscriptions',
+      url: 'http://localhost:3000/subscription',
     }).then(function (data) {
       $scope.subscriptions = (data.data);
 
