@@ -26,7 +26,7 @@
 
 <div id="sidebar" class="ui left visible sidebar">
   <div class="ui secondary vertical pointing menu" style="width: auto">
-    <a ng-repeat="folder in folders" class="item {{}}" ng-click="clickitem($index)">
+    <a ng-repeat="folder in folders" class="item {{folder.active ? 'active' : ''}}" ng-click="clickitem($index)">
       {{folder.name}} - {{$index}}
     </a>
     <!-- <a class="item {{active}}" ng-click="itemClicked($index)">
