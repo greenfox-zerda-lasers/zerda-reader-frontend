@@ -5,8 +5,10 @@ var bodyParser = require('body-parser');
 var validator = require('./validator');
 
 var randomToken = require('./tokengenerator.js');
+var searchFeed = require('./choosefeed.js');
 
 var users = require('./users.json')
+var feed = require('./feed.json')
 var fs = require('fs');
 
 // var cors = require('cors');
@@ -73,5 +75,17 @@ app.post('/user/signup', function (req, res) {
   }
   res.send(response);
 });
+
+////////////////  LIST FEED  ////////////////
+
+app.get('/feed/:id', function (req, res) {
+  var id = req.params.id;
+  var response = searchFeed(id);
+  res.send(response);
+});
+
+
+
+
 
 app.listen(3000);
