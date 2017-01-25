@@ -26,14 +26,14 @@
 
 <div id="sidebar" class="ui left visible sidebar">
   <div class="ui secondary vertical pointing menu" style="width: auto">
-    <a ng-repeat="folder in folders" class="item {{}}" ng-click="clickitem($index)">
+    <!-- <a ng-repeat="folder in folders" class="item {{}}" ng-click="clickitem($index)">
       {{folder.name}} - {{$index}}
-    </a>
-    <a class="item {{active}}" ng-click="itemClicked($index)">
+    </a> -->
+    <!-- <a class="item {{active}}" ng-click="itemClicked($index)"> -->
     <a ng-repeat="folder in subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="clickitem($index)">
       {{folder.name}}
     </a>
-    <a class="item {{active}}" ng-click="itemClicked($index)">
+    <!-- <a class="item {{active}}" ng-click="itemClicked($index)"> -->
 
   </div>
   <div id="add" class="ui button" ng-click="makevisible()">Add
@@ -54,8 +54,6 @@
 
 <div id="mainlist" class="ui middle aligned divided list" >
   <!-- Site content !-->
-
-
   <div ng-repeat="article in articles" id="mainlist-item" class="item">
     <div class="right floated content">
       <i class="ui star icon"></i>

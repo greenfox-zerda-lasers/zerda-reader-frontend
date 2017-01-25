@@ -51,6 +51,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
       url: 'http://localhost:3000/feed/43673',
     }).then(function (data) {
       $scope.articles = (data.data);
+      console.log($scope.articles[0].description)
 
     }).catch(function (data) {
       console.log('error');
