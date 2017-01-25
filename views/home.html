@@ -29,7 +29,7 @@
     <a ng-repeat="folder in folders" class="item" ng-class="{{active}}" ng-click="clickitem($index)">
       {{folder.name}} - {{$index}}
     </a>
-    <!-- <a class="item {{active}}" ng-click="itemClicked($index)">
+    <a class="item {{active}}" ng-click="itemClicked($index)">
       All
     </a>
     <a class="{{active}} item" ng-click="itemClicked($index)">
@@ -38,9 +38,9 @@
     <a class="{{active}} item" ng-click="itemClicked($index)">
       Friends
     </a>
-    <a id="channels" class="{{active}} item" ng-click="itemClicked($index)">
-      {channel.name}
-    <a> -->
+    <a ng-repeat="subscription in subscriptions" id="channels" class="{{active}} item" ng-click="itemClicked($index)">
+      {{subscription}}
+    <a>
   </div>
   <div id="add" class="ui button" ng-click="makevisible()">Add
     <div id="addpopup" class="ui flowing popup top left transition {{visible}}" ng-click="makevisible()">
@@ -62,31 +62,15 @@
   <!-- Site content !-->
 
 
-  <div class="item">
+  <div ng-repeat="article in articles" id="mainlist-item" class="item">
     <div class="right floated content">
       <i class="ui star icon"></i>
     </div>
     <i class="ui user icon"></i>
     <div class="content">
-      Lena
+      {{article.title}}
     </div>
   </div>
-  <div id="mainlist-item" class="item">
-    <div class="right floated content">
-      <i class="ui star icon"></i>
-    </div>
-    <i class="ui user icon"></i>
-    <div class="content">
-      Lena
-    </div>
-  </div>
-  <div id="mainlist-item" class="item">
-    <div class="right floated content">
-      <i class="ui star icon"></i>
-    </div>
-    <i class="ui user icon"></i>
-    <div class="content">
-      Lena
-    </div>
-  </div>
+
+
 </div>

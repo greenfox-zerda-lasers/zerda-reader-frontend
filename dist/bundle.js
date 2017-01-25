@@ -49,7 +49,7 @@
 	__webpack_require__(3);
 	var LoginController = __webpack_require__(4);
 	var HomeController = __webpack_require__(5);
-	var SignUpController = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./home.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var SignUpController = __webpack_require__(6);
 	// require('../content/css/index.scss');
 	__webpack_require__(7);
 	__webpack_require__(17);
@@ -572,7 +572,99 @@
 
 
 /***/ },
-/* 6 */,
+/* 6 */
+/***/ function(module, exports) {
+
+	module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).controller('HomeController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+
+
+	  $scope.checkToken = function ($routeProvider){
+	    if (localStorage.length === 0) {
+	      $location.path('/login');
+	    };
+	  };
+
+	  $scope.checkToken();
+
+	  $scope.logout = function(){
+	    //console.log(localStorage);
+	    localStorage.clear();
+	    //console.log(localStorage);
+	    $location.path( "/login" );
+	  }
+	  // $scope.itemClicked = function ($index) {
+	  //   $scope.menu.child[$scope.current].active == '';
+	  //   console.log($index);
+	  //   $scope.current = $index;
+	  //   $scope.menu.child[$scope.current].active == 'active';
+	  // };
+	  //
+	  // $scope.changeactive = function () {
+	  //   $scope.menu[$scope.current].active == ''
+	  //   $scope.menu[$scope.current].active == 'active';
+	  // }
+	  //
+	  // console.log($scope.menu.length);
+	  // console.log($scope.menu[$scope.current]);
+
+	  $scope.makevisible = function(){
+	    if($scope.visible == "visible"){
+	      $scope.visible = "hidden";
+	    } else {
+	      $scope.visible = "visible";
+	    }
+	  }
+
+	  $scope.clickitem = function($index){
+	    $scope.selected = $index;
+	    //console.log($scope.selected);
+	  }
+
+
+	  $scope.menu = document.querySelectorAll('.ui.secondary.vertical.pointing.menu');
+	  //console.log($scope.menu)
+
+	  // $scope.current = 0;
+	  // console.log($scope.current);
+	  // console.log($scope.menu[0]);
+	  // console.log($scope.menu[0].children);
+	  //console.log($scope.menu[0].children[0]);
+	  //$scope.menu[0].children[$scope.current].active = "active";
+
+	  $scope.getSubscription = function () {
+	    console.log(localStorage)
+	    $http({
+	      method: 'GET',
+	      url: 'http://localhost:3000/subscriptions',
+	    }).then(function (data) {
+	      $scope.subscriptions = (data.data);
+
+	    }).catch(function (data) {
+	      console.log('error');
+	    });
+	  };
+
+	  $scope.getFeed = function () {
+	    $http({
+	      method: 'GET',
+	      url: 'http://localhost:3000/feed/43673',
+	    }).then(function (data) {
+	      $scope.articles = (data.data);
+
+	    }).catch(function (data) {
+	      console.log('error');
+	    });
+	  };
+
+	  $scope.getSubscription();
+	  $scope.getFeed();
+
+	}]);
+
+	//module.exports = HomeController;
+
+
+/***/ },
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1111,7 +1203,7 @@
 
 
 	// module
-	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-start;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%; }\n\n#mainlist > .item {\n  height: 40px;\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  #mainlist > .item i:before {\n    width: 40px; }\n  #mainlist > .item:hover {\n    font-size: 20px;\n    padding-top: 5px;\n    font-weight: bold;\n    background-color: rgba(0, 128, 128, 0.16); }\n  #mainlist > .item:active {\n    background-color: lightgrey; }\n", ""]);
+	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-start;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow: scroll;\n  white-space: nowrap; }\n\n#mainlist > .item {\n  height: 40px;\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  #mainlist > .item i:before {\n    width: 40px; }\n  #mainlist > .item:hover {\n    font-size: 20px;\n    padding-top: 5px;\n    font-weight: bold;\n    background-color: rgba(0, 128, 128, 0.16); }\n  #mainlist > .item:active {\n    background-color: lightgrey; }\n", ""]);
 
 	// exports
 
