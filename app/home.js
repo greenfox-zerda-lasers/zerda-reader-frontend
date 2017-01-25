@@ -2,7 +2,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
 
 
   $scope.checkToken = function ($routeProvider){
-    if (localStorage.length === 0){
+    if (localStorage.length === 0) {
       $location.path('/login');
     };
   };
@@ -32,14 +32,37 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
     $scope.folders[ $index ].active = true;
   }
 
-  $http.get("data/data.json").then(function(data){
-    $scope.folders = data.data;
-  }, function(data){
-    console.log("error");
-  });
 
 
 
+
+  $scope.getSubscription = function () {
+    console.log(localStorage)
+    $http({
+      method: 'GET',
+      url: 'http://localhost:3000/subscriptions',
+    }).then(function (data) {
+      $scope.subscriptions = (data.data);
+
+    }).catch(function (data) {
+      console.log('error');
+    });
+  };
+
+  $scope.getFeed = function () {
+    $http({
+      method: 'GET',
+      url: 'http://localhost:3000/feed/43673',
+    }).then(function (data) {
+      $scope.articles = (data.data);
+
+    }).catch(function (data) {
+      console.log('error');
+    });
+  };
+
+  $scope.getSubscription();
+  $scope.getFeed();
 
 }]);
 

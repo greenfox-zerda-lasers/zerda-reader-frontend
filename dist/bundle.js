@@ -519,10 +519,10 @@
 	      }).then(function (data) {
 	        var respond = (data.data);
 	        if (respond.result === 'success') {
-	          console.log(respond.token);
-	          console.log(respond);
+	          // console.log(respond.token);
+	          // console.log(respond);
 	          localStorage.setItem("token", respond.token);
-	          console.log(localStorage);
+	          // console.log(localStorage);
 	          $location.path('/home');
 	        }
 	      }).catch(function (data) {
@@ -557,8 +557,8 @@
 	      }).then(function (data) {
 	        let respond = (data.data);
 	        if (respond.result === 'success') {
-	          $location.path('/home');
-	          
+	          localStorage.setItem("token", respond.token);
+	          $location.path('/home');          
 	        } else {
 	          alert(respond.message);
 	        }
@@ -579,7 +579,7 @@
 
 
 	  $scope.checkToken = function ($routeProvider){
-	    if (localStorage.length === 0){
+	    if (localStorage.length === 0) {
 	      $location.path('/login');
 	    };
 	  };
@@ -609,14 +609,37 @@
 	    $scope.folders[ $index ].active = true;
 	  }
 
-	  $http.get("data/data.json").then(function(data){
-	    $scope.folders = data.data;
-	  }, function(data){
-	    console.log("error");
-	  });
 
 
 
+
+	  $scope.getSubscription = function () {
+	    console.log(localStorage)
+	    $http({
+	      method: 'GET',
+	      url: 'http://localhost:3000/subscriptions',
+	    }).then(function (data) {
+	      $scope.subscriptions = (data.data);
+
+	    }).catch(function (data) {
+	      console.log('error');
+	    });
+	  };
+
+	  $scope.getFeed = function () {
+	    $http({
+	      method: 'GET',
+	      url: 'http://localhost:3000/feed/43673',
+	    }).then(function (data) {
+	      $scope.articles = (data.data);
+
+	    }).catch(function (data) {
+	      console.log('error');
+	    });
+	  };
+
+	  $scope.getSubscription();
+	  $scope.getFeed();
 
 	}]);
 
@@ -1162,7 +1185,7 @@
 
 
 	// module
-	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-start;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%; }\n\n#mainlist > .item {\n  height: 40px;\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  #mainlist > .item i:before {\n    width: 40px; }\n  #mainlist > .item:hover {\n    font-size: 20px;\n    padding-top: 5px;\n    font-weight: bold;\n    background-color: rgba(0, 128, 128, 0.16); }\n  #mainlist > .item:active {\n    background-color: lightgrey; }\n", ""]);
+	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-start;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow: scroll;\n  white-space: nowrap; }\n\n#mainlist > .item {\n  height: 40px;\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  #mainlist > .item i:before {\n    width: 40px; }\n  #mainlist > .item:hover {\n    font-size: 20px;\n    padding-top: 5px;\n    font-weight: bold;\n    background-color: rgba(0, 128, 128, 0.16); }\n  #mainlist > .item:active {\n    background-color: lightgrey; }\n", ""]);
 
 	// exports
 

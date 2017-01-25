@@ -67,6 +67,8 @@ $mainlist-width: 78vw;
   top: $navbar-heigth;
   left: 20%;
   width: 80%;
+  overflow: scroll;
+  white-space: nowrap;
 }
 
 #mainlist > .item {
