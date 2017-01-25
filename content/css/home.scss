@@ -63,7 +63,7 @@ $mainlist-width: 78vw;
 }
 
 #mainlist {
-  position: fixed;
+  position: absolute;
   top: $navbar-heigth;
   left: 20%;
   width: 80%;
