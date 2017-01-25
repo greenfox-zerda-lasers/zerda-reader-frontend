@@ -26,23 +26,19 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   }
 
   $scope.clickitem = function($index){
-    $scope.folders.map( function ( folder ) {
+    $scope.subscriptions.map( function ( folder ) {
       folder.active = false;
     });
-    $scope.folders[ $index ].active = true;
+    $scope.subscriptions[ $index ].active = true;
   }
-
-
-
-
 
   $scope.getSubscription = function () {
     console.log(localStorage)
     $http({
       method: 'GET',
-      url: 'http://localhost:3000/subscriptions',
+      url: 'http://localhost:3000/subscription',
     }).then(function (data) {
-      $scope.subscriptions = (data.data);
+      $scope.subscriptions = data.data;
 
     }).catch(function (data) {
       console.log('error');
