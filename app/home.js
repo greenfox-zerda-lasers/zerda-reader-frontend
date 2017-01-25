@@ -17,21 +17,6 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   }
 
 
-  // $scope.itemClicked = function ($index) {
-  //   $scope.menu.child[$scope.current].active == '';
-  //   console.log($index);
-  //   $scope.current = $index;
-  //   $scope.menu.child[$scope.current].active == 'active';
-  // };
-  //
-  // $scope.changeactive = function () {
-  //   $scope.menu[$scope.current].active == ''
-  //   $scope.menu[$scope.current].active == 'active';
-  // }
-  //
-  // console.log($scope.menu.length);
-  // console.log($scope.menu[$scope.current]);
-
   $scope.makevisible = function(){
     if($scope.visible == "visible"){
       $scope.visible = "hidden";
@@ -41,20 +26,11 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   }
 
   $scope.clickitem = function($index){
-    $scope.selected = $index;
-    console.log($scope.selected);
+    $scope.subscriptions.map( function ( folder ) {
+      folder.active = false;
+    });
+    $scope.subscriptions[ $index ].active = true;
   }
-
-
-  $scope.menu = document.querySelectorAll('.ui.secondary.vertical.pointing.menu');
-  //console.log($scope.menu)
-
-  // $scope.current = 0;
-  // console.log($scope.current);
-  // console.log($scope.menu[0]);
-  // console.log($scope.menu[0].children);
-  //console.log($scope.menu[0].children[0]);
-  //$scope.menu[0].children[$scope.current].active = "active";
 
   $scope.getSubscription = function () {
     console.log(localStorage)
@@ -62,7 +38,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
       method: 'GET',
       url: 'http://localhost:3000/subscription',
     }).then(function (data) {
-      $scope.subscriptions = (data.data);
+      $scope.subscriptions = data.data;
 
     }).catch(function (data) {
       console.log('error');

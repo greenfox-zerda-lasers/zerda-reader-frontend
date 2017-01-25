@@ -1,8 +1,9 @@
 'use strict';
 
-var feed = require('./feed.json');
+var subscriptions = require('./subscriptions.json');
 
 function listChannel() {
+<<<<<<< HEAD
   var response = [];
   //console.log(feed);
 
@@ -29,6 +30,11 @@ function listChannel() {
 
   console.log(res);
   return res;
+=======
+  console.log(subscriptions);
+  var response = subscriptions;
+  return response;
+>>>>>>> 9ffc421b1dc0374e6853441224f6aabef2dab85b
 }
 
 module.exports = listChannel;
