@@ -43,11 +43,6 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
     //console.log($scope.selected);
   }
 
-  $http.get("data/data.json").then(function(data){
-    $scope.folders = data.data;
-  }, function(data){
-    console.log("error");
-  });
 
   $scope.menu = document.querySelectorAll('.ui.secondary.vertical.pointing.menu');
   //console.log($scope.menu)
@@ -58,6 +53,24 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   // console.log($scope.menu[0].children);
   //console.log($scope.menu[0].children[0]);
   //$scope.menu[0].children[$scope.current].active = "active";
+
+  $scope.getFeed = function (){
+    $http({
+      method: 'GET',
+      url: 'http://localhost:3000/feed/43673',
+    }).then(function (data) {
+      var respond = (data.data);
+      console.log(respond);
+      render.Articles(respond);
+      // if (respond.result === 'success') {
+      //   localStorage.setItem("token", respond.token);
+      //   $location.path('/home');
+      // }
+    }).catch(function (data) {
+      console.log('error');
+    });
+  });
+
 
 }]);
 
