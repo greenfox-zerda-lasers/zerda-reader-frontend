@@ -1,8 +1,9 @@
 <div id="navbar" class="ui secondary menu">
 
-  <a class="item">
-    <i class="item" style="padding: 0px">Zerda Reader</i>
-  </a>
+  <div id="logo" class="item">
+    <img src="img/logo.svg" style="width: 35px; padding-right: 5px"/>
+    Zerda Reader
+  </div>
 
   <!-- <a class="item">
     Messages
@@ -17,6 +18,9 @@
         <i class="search link icon"></i>
       </div>
     </div>
+    <div class="ui item">
+      <i class="ui settings icon"></i>
+    </div>
     <a class="ui item" ng-click="logout()">
       Logout
     </a>
@@ -26,14 +30,11 @@
 
 <div id="sidebar" class="ui left visible sidebar">
   <div class="ui secondary vertical pointing menu" style="width: auto">
-    <!-- <a ng-repeat="folder in folders" class="item {{}}" ng-click="clickitem($index)">
-      {{folder.name}} - {{$index}}
-    </a> -->
-    <!-- <a class="item {{active}}" ng-click="itemClicked($index)"> -->
+
     <a ng-repeat="folder in subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="clickitem($index)">
       {{folder.name}}
+      <i class="folder left icon"></i>
     </a>
-    <!-- <a class="item {{active}}" ng-click="itemClicked($index)"> -->
 
   </div>
   <div id="add" class="ui button" ng-click="makevisible()">Add
@@ -59,8 +60,11 @@
       <i class="ui star icon"></i>
     </div>
     <i class="ui user icon"></i>
-    <div class="content">
+    <div id="feed-title" class="content">
       {{article.title}}
+      <div id="feed-date" class="right floated content" style="display: inline-block">
+        {{article.created}}
+      </div>
     </div>
   </div>
 
