@@ -13,7 +13,7 @@ module.exports = angular.module('SignUpController', ['ngRoute', 'ngAnimate']).co
         let respond = (data.data);
         if (respond.result === 'success') {
           localStorage.setItem("token", respond.token);
-          $location.path('/home');          
+          $location.path('/home');
         } else {
           alert(respond.message);
         }
