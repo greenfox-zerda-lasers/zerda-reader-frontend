@@ -1,11 +1,17 @@
 [
   {
-    "name": "All"
+    "id": 12324,
+    "name": "All",
+    "active": true
   },
   {
-    "name": "Favorites"
+    "id": 12324,
+    "name": "Favorites",
+    "active": false
   },
   {
-    "name": "First channel"
+    "id": 12324,
+    "name": "First channel",
+    "active": false
   }
 ]

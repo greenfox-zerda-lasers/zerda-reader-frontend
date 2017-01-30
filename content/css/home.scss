@@ -23,6 +23,12 @@ $mainlist-width: 78vw;
   }
 }
 
+#logo {
+  font-family: 'Gloria Hallelujah', cursive;
+  padding-left: 0px;
+  font-size: 26px;
+}
+
 #sidebar {
   position: fixed;
   width: 20%;
@@ -63,14 +69,38 @@ $mainlist-width: 78vw;
 }
 
 #mainlist {
-  position: fixed;
+  position: absolute;
   top: $navbar-heigth;
   left: 20%;
   width: 80%;
+  overflow: scroll;
+  white-space: nowrap;
 }
 
-#mainlist-item {
+#mainlist > .item {
   height: 40px;
   width: auto;
-  vertical-align: middle;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  i:before {
+    width: 40px;
+  }
+  &:hover {
+    font-size: 20px;
+    padding-top: 5px;
+    font-weight: bold;
+    background-color: rgba(0, 128, 128, 0.16);
+  }
+  &:active {
+    background-color: lightgrey;
+  }
+}
+
+#feed-title {
+  padding-left: 50px;
+  #feed-date {
+    position: fixed;
+    right: 200px;
+  }
 }
