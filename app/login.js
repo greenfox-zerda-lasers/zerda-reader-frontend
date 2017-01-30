@@ -3,6 +3,10 @@ module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).con
   $scope.token={}
 
   $scope.login = function() {
+   //  if ($scope.user.email === '' && $scope.user.password === '') {
+   //      console.log("alert");
+   //      alert("Please add your email and password");
+   // }
     if ($scope.user.email !== '' && $scope.user.password !== '') {
       $http({
         method: 'POST',
@@ -19,7 +23,12 @@ module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).con
           localStorage.setItem("token", respond.token);
           // console.log(localStorage);
           $location.path('/home');
-        }
+      } else if (respond.result === 'fail') {
+          console.log(respond.message);
+          $scope.errorMessage = 'Wrong username or password. Try again.';
+          $scope.user.email = "";
+          $scope.user.password = "";
+      }
       }).catch(function (data) {
         console.log('error');
       });

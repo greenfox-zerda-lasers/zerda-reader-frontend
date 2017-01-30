@@ -14,7 +14,7 @@
   <div class="right menu">
     <div class="item">
       <div class="ui icon input">
-        <input type="text" placeholder="Search...">
+        <input type="text" ng-model="search.title" placeholder="Search...">
         <i class="search link icon"></i>
       </div>
     </div>
@@ -56,7 +56,7 @@
   <!-- Site content !-->
 
 
-  <div ng-repeat="article in articles" id="mainlist-item" class="item">
+  <div ng-repeat="article in articles | filter: search" id="mainlist-item" class="item">
     <div class="right floated content">
       <i class="ui star icon"></i>
     </div>
