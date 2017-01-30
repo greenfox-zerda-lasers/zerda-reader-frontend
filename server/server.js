@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  // res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
+  //res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
   next();
 });
 
@@ -34,16 +34,16 @@ app.post('/user/login', function (req, res) {
   var password = req.body.password;
   var checkResult = validator(email, password);
   if (checkResult.value) {
-      var response = {
-        result: 'success',
-        token: randomToken(),
-        id: checkResult.id,
-      };
+    var response = {
+      result: 'success',
+      token: randomToken(),
+      id: checkResult.id,
+    };
   } else {
-      var response = {
-        result: 'fail',
-        message: 'invalid username or password',
-      };
+    var response = {
+      result: 'fail',
+      message: 'invalid username or password',
+    };
   }
   res.send(response);
 });
