@@ -3923,6 +3923,7 @@
 	  $scope.token={}
 
 	  $scope.login = function() {
+
 	    if($scope.user.email == "" && $scope.user.password == ""){
 	      console.log('Both fields are empty');
 	    }else if($scope.user.email !== "" && $scope.user.password !== "") {
@@ -3932,18 +3933,22 @@
 	          email: $scope.user.email,
 	          password: $scope.user.password,
 	        },
-	        url: 'http://localhost:3000/user/login',
+	        url: 'https://zerda-reader-mockback.gomix.me/user/login',
 	      }).then(function (data) {
 	        console.log(data);
 	        var respond = (data.data);
 
 	        if(respond.result === 'success') {
 	          // console.log(respond.token);
-	          // console.log(respond);
 	          localStorage.setItem("token", respond.token);
 	          // console.log(localStorage);
 	          $location.path('/home');
-	        }
+	      } else if (respond.result === 'fail') {
+	          console.log(respond.message);
+	          $scope.errorMessage = 'Wrong username or password. Try again.';
+	          $scope.user.email = "";
+	          $scope.user.password = "";
+	      }
 	      }).catch(function (data) {
 	        console.log('error');
 	      });
@@ -3972,7 +3977,7 @@
 	          email: $scope.user.email,
 	          password: $scope.user.password,
 	        },
-	        url: 'http://localhost:3000/user/signup',
+	        url: 'https://zerda-reader-mockback.gomix.me/user/signup',
 	      }).then(function (data) {
 	        let respond = (data.data);
 	        if (respond.result === 'success') {
@@ -3996,7 +4001,6 @@
 
 	module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).controller('HomeController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
-
 	  $scope.checkToken = function ($routeProvider){
 	    if (localStorage.length === 0) {
 	      $location.path('/login');
@@ -4006,18 +4010,26 @@
 	  $scope.checkToken();
 
 	  $scope.logout = function(){
-	    //console.log(localStorage);
 	    localStorage.clear();
-	    //console.log(localStorage);
 	    $location.path( "/login" );
 	  }
-
 
 	  $scope.makevisible = function(){
 	    if($scope.visible == "visible"){
 	      $scope.visible = "hidden";
 	    } else {
 	      $scope.visible = "visible";
+	    }
+	  }
+
+	  $scope.makeActive = function($index) {
+	    if ($scope.articles[$index].active === true) {
+	      $scope.articles[$index].active = false;
+	    } else {
+	      $scope.articles.map( function (article){
+	        article.active = false
+	      });
+	      $scope.articles[$index].active = true;
 	    }
 	  }
 
@@ -4029,10 +4041,9 @@
 	  }
 
 	  $scope.getSubscription = function () {
-	    console.log(localStorage)
 	    $http({
 	      method: 'GET',
-	      url: 'http://localhost:3000/subscription',
+	      url: 'https://zerda-reader-mockback.gomix.me/subscription',
 	    }).then(function (data) {
 	      $scope.subscriptions = data.data;
 
@@ -4044,7 +4055,7 @@
 	  $scope.getFeed = function () {
 	    $http({
 	      method: 'GET',
-	      url: 'http://localhost:3000/feed/43673',
+	      url: 'https://zerda-reader-mockback.gomix.me/feed/43673',
 	    }).then(function (data) {
 	      $scope.articles = (data.data);
 
@@ -4560,7 +4571,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.signup {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  .signup:hover {\n    font-weight: bold;\n    color: white; }\n  .signup:active {\n    color: grey; }\n\n#lock-icon::before {\n  vertical-align: top;\n  margin-bottom: 10px; }\n", ""]);
+	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.signup {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  .signup:hover {\n    font-weight: bold;\n    color: white; }\n  .signup:active {\n    color: grey; }\n\n#lock-icon::before {\n  vertical-align: top;\n  margin-bottom: 10px; }\n\n#login-box input.ng-invalid.ng-touched {\n  border: 0.5px solid red; }\n", ""]);
 
 	// exports
 
@@ -4600,7 +4611,7 @@
 
 
 	// module
-	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 26px; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-start;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: absolute;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow: scroll;\n  white-space: nowrap; }\n\n#mainlist > .item {\n  height: 40px;\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  #mainlist > .item i:before {\n    width: 40px; }\n  #mainlist > .item:hover {\n    font-size: 20px;\n    padding-top: 5px;\n    font-weight: bold;\n    background-color: rgba(0, 128, 128, 0.16); }\n  #mainlist > .item:active {\n    background-color: lightgrey; }\n\n#feed-title {\n  padding-left: 50px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n", ""]);
+	exports.push([module.id, "#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 26px; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-start;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  margin: 0px;\n  bottom: 0; }\n\n#mainlist-item {\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  #mainlist-item i:before {\n    width: 40px; }\n  #mainlist-item:hover {\n    font-size: 20px;\n    padding-top: 5px;\n    font-weight: bold;\n    background-color: rgba(0, 128, 128, 0.16); }\n  #mainlist-item:active {\n    background-color: lightgrey; }\n\n#feed-title {\n  padding-left: 50px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n", ""]);
 
 	// exports
 

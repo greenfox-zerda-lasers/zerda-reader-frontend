@@ -40,3 +40,7 @@ body {
 //     text-transform: uppercase;
 //   }
 // }
+
+#login-box input.ng-invalid.ng-touched {
+    border: 0.5px solid red;
+}

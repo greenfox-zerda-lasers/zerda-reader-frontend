@@ -1,6 +1,5 @@
 module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).controller('HomeController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
-
   $scope.checkToken = function ($routeProvider){
     if (localStorage.length === 0) {
       $location.path('/login');
@@ -10,18 +9,26 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   $scope.checkToken();
 
   $scope.logout = function(){
-    //console.log(localStorage);
     localStorage.clear();
-    //console.log(localStorage);
     $location.path( "/login" );
   }
-
 
   $scope.makevisible = function(){
     if($scope.visible == "visible"){
       $scope.visible = "hidden";
     } else {
       $scope.visible = "visible";
+    }
+  }
+
+  $scope.makeActive = function($index) {
+    if ($scope.articles[$index].active === true) {
+      $scope.articles[$index].active = false;
+    } else {
+      $scope.articles.map( function (article){
+        article.active = false
+      });
+      $scope.articles[$index].active = true;
     }
   }
 
@@ -33,10 +40,9 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   }
 
   $scope.getSubscription = function () {
-    console.log(localStorage)
     $http({
       method: 'GET',
-      url: 'http://localhost:3000/subscription',
+      url: 'https://zerda-reader-mockback.gomix.me/subscription',
     }).then(function (data) {
       $scope.subscriptions = data.data;
 
@@ -48,7 +54,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   $scope.getFeed = function () {
     $http({
       method: 'GET',
-      url: 'http://localhost:3000/feed/43673',
+      url: 'https://zerda-reader-mockback.gomix.me/feed/43673',
     }).then(function (data) {
       $scope.articles = (data.data);
 
