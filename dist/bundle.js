@@ -3925,8 +3925,9 @@
 	  $scope.login = function () {
 	    if (!$scope.email && !$scope.password) {
 	        console.log('alert');
-	        alert('Please add your email and password');
+	        $scope.errorMessage = 'Wrong username or password. Try again.';
 	    } else if ($scope.email !== '' && $scope.password !== '') {
+
 	      $http({
 	        method: 'POST',
 	        data: {
@@ -3935,15 +3936,17 @@
 	        },
 	        url: 'https://zerda-reader-mockback.gomix.me/user/login',
 	      }).then(function (data) {
+	        console.log(data);
 	        var respond = (data.data);
 	        if (respond.result === 'success') {
 	          localStorage.setItem('token', respond.token);
 	          $location.path('/home');
 	      } else if (respond.result === 'fail') {
 	          $scope.errorMessage = 'Wrong username or password. Try again.';
+
 	          $scope.email = '';
 	          $scope.password = '';
-	      }
+	        }
 	      }).catch(function (data) {
 	        console.log(data);
 	      });
@@ -4028,12 +4031,6 @@
 	    }
 	  }
 
-	  $scope.clickitem = function($index){
-	    $scope.subscriptions.map( function ( folder ) {
-	      folder.active = false;
-	    });
-	    $scope.subscriptions[ $index ].active = true;
-	  }
 
 	  $scope.getSubscription = function () {
 	    $http({
@@ -4047,11 +4044,50 @@
 	    });
 	  };
 
-	  $scope.getFeed = function () {
+	  $scope.getAll = function () {
 	    $http({
 	      method: 'GET',
-	      url: 'https://zerda-reader-mockback.gomix.me/feed/43673',
+	      url: 'https://zerda-reader-mockback.gomix.me/feed',
 	    }).then(function (data) {
+	      console.log('igen')
+	      console.log(data)
+	      $scope.articles = data.data.feed;
+
+	    }).catch(function (data) {
+	      console.log('error');
+	    });
+	  };
+
+	  $scope.getFav = function () {
+	    $http({
+	      method: 'GET',
+	      url: 'https://zerda-reader-mockback.gomix.me/favorites',
+	    }).then(function (data) {
+	      console.log('igen')
+	      console.log(data)
+	      $scope.articles = data.data.feed;
+
+	    }).catch(function (data) {
+	      console.log('error');
+	    });
+	  };
+
+	  $scope.clickitem = function($index){
+	    $scope.subscriptions.map( function ( folder ) {
+	      folder.active = false;
+	    });
+	    $scope.subscriptions[ $index ].active = true;
+	  }
+
+	  $scope.getFeed = function ($index, id) {
+	    // $scope.clickitem($index)
+	    // var feed_id = 43675;
+	    // id = feed_id;
+	    $http({
+	      method: 'GET',
+	      url: 'https://zerda-reader-mockback.gomix.me/feed/43675'
+	    }).then(function (data) {
+	      console.log(data);
 	      $scope.articles = (data.data);
 
 	    }).catch(function (data) {
@@ -4060,7 +4096,7 @@
 	  };
 
 	  $scope.getSubscription();
-	  $scope.getFeed();
+	  //$scope.getFeed();
 
 	}]);
 
@@ -4566,7 +4602,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.signup {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  .signup:hover {\n    font-weight: bold;\n    color: white; }\n  .signup:active {\n    color: grey; }\n\n#lock-icon::before {\n  vertical-align: top;\n  margin-bottom: 10px; }\n\n#login-box input.ng-invalid.ng-touched {\n  border: 0.5px solid red; }\n", ""]);
+	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.signup {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  .signup:hover {\n    font-weight: bold;\n    color: white; }\n  .signup:active {\n    color: grey; }\n\n#lock-icon::before {\n  vertical-align: top;\n  margin-bottom: 10px; }\n\n#login-box input.ng-invalid.ng-touched {\n  border: 0.5px solid #DD4B39; }\n", ""]);
 
 	// exports
 
