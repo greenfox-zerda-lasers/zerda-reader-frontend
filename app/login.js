@@ -5,7 +5,7 @@ module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).con
   $scope.login = function () {
     if (!$scope.email && !$scope.password) {
         console.log('alert');
-        alert('Please add your email and password');
+        $scope.errorMessage = 'Wrong username or password. Try again.';
     } else if ($scope.email !== '' && $scope.password !== '') {
       $http({
         method: 'POST',

@@ -3925,7 +3925,7 @@
 	  $scope.login = function () {
 	    if (!$scope.email && !$scope.password) {
 	        console.log('alert');
-	        alert('Please add your email and password');
+	        $scope.errorMessage = 'Wrong username or password. Try again.';
 	    } else if ($scope.email !== '' && $scope.password !== '') {
 	      $http({
 	        method: 'POST',
@@ -3941,9 +3941,10 @@
 	          $location.path('/home');
 	      } else if (respond.result === 'fail') {
 	          $scope.errorMessage = 'Wrong username or password. Try again.';
+
 	          $scope.email = '';
 	          $scope.password = '';
-	      }
+	        }
 	      }).catch(function (data) {
 	        console.log(data);
 	      });
