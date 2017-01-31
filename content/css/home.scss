@@ -69,16 +69,18 @@ $mainlist-width: 78vw;
 }
 
 #mainlist {
-  position: absolute;
+  position: fixed;
   top: $navbar-heigth;
   left: 20%;
   width: 80%;
-  overflow: scroll;
-  white-space: nowrap;
+  overflow-y: scroll;
+  // white-space: nowrap;
+  margin: 0px;
+  bottom: 0;
 }
 
-#mainlist > .item {
-  height: 40px;
+#mainlist-item {
+  // height: 40px;
   width: auto;
   padding-left: 1rem;
   padding-right: 1rem;
