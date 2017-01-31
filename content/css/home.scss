@@ -8,6 +8,7 @@ $mainlist-width: 78vw;
   width: 100%;
   height: $navbar-heigth;
   position: fixed;
+  margin: 0px;
   top: 0px;
   left: 0px;
   padding-left: 20px;
@@ -79,8 +80,7 @@ $mainlist-width: 78vw;
   bottom: 0;
 }
 
-#mainlist-item {
-  // height: 40px;
+.mainlist-item {
   width: auto;
   padding-left: 1rem;
   padding-right: 1rem;

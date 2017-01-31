@@ -54,21 +54,23 @@
 
 
 <div class="ui accordion" id="mainlist">
-  <div id="mainlist" class="ui middle aligned divided list" >
+  <div class="ui middle aligned divided list" >
   <!-- Site content !-->
-    <div ng-repeat="article in articles" id="mainlist-item" class="item">
-      <div class="{{article.active ? 'active' : ''}} title" ng-click="makeActive($index)">
-        <i class="ui user icon"></i>
-          {{article.title}} {{active}}
-        <div class="right floated content" style="display: inline-block">
-          <i class="ui star icon"></i>
+    <div ng-repeat="article in articles" class="item">
+      <div class="mainlist-item">
+        <div class="{{article.active ? 'active' : ''}} title" ng-click="makeActive($index)">
+          <i class="ui user icon"></i>
+            {{article.title}} {{active}}
+          <div class="right floated content" style="display: inline-block">
+            <i class="ui star icon"></i>
+          </div>
+          <div id="feed-date" class="right floated content" style="display: inline-block">
+            {{article.created}}
+          </div>
         </div>
-        <div id="feed-date" class="right floated content" style="display: inline-block">
-          {{article.created}}
+        <div class="{{article.active ? 'active' : ''}} content">
+          {{article.description}}
         </div>
-      </div>
-      <div class="{{article.active ? 'active' : ''}} content">
-        {{article.description}}
       </div>
     </div>
   </div>
