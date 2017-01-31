@@ -1,35 +1,34 @@
 module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
-  $scope.token={}
-  $scope.login = function() {
+  $scope.token = {};
 
-    if($scope.user.email == "" && $scope.user.password == ""){
-      console.log('Both fields are empty');
-    }else if($scope.user.email !== "" && $scope.user.password !== "") {
+  $scope.login = function () {
+    if (!$scope.email && !$scope.password) {
+        console.log('alert');
+        $scope.errorMessage = 'Wrong username or password. Try again.';
+    } else if ($scope.email !== '' && $scope.password !== '') {
+
       $http({
         method: 'POST',
         data: {
-          email: $scope.user.email,
-          password: $scope.user.password,
+          email: $scope.email,
+          password: $scope.password,
         },
         url: 'https://zerda-reader-mockback.gomix.me/user/login',
       }).then(function (data) {
         console.log(data);
         var respond = (data.data);
-
-        if(respond.result === 'success') {
-          // console.log(respond.token);
-          localStorage.setItem("token", respond.token);
-          // console.log(localStorage);
+        if (respond.result === 'success') {
+          localStorage.setItem('token', respond.token);
           $location.path('/home');
       } else if (respond.result === 'fail') {
-          console.log(respond.message);
           $scope.errorMessage = 'Wrong username or password. Try again.';
-          $scope.user.email = "";
-          $scope.user.password = "";
-      }
+
+          $scope.email = '';
+          $scope.password = '';
+        }
       }).catch(function (data) {
-        console.log('error');
+        console.log(data);
       });
     }
   };
