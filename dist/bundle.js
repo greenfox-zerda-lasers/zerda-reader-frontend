@@ -3921,7 +3921,6 @@
 	module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
 	  $scope.token={}
-
 	  $scope.login = function() {
 
 	    if($scope.user.email == "" && $scope.user.password == ""){
@@ -4033,12 +4032,6 @@
 	    }
 	  }
 
-	  $scope.clickitem = function($index){
-	    $scope.subscriptions.map( function ( folder ) {
-	      folder.active = false;
-	    });
-	    $scope.subscriptions[ $index ].active = true;
-	  }
 
 	  $scope.getSubscription = function () {
 	    $http({
@@ -4052,11 +4045,50 @@
 	    });
 	  };
 
-	  $scope.getFeed = function () {
+	  $scope.getAll = function () {
 	    $http({
 	      method: 'GET',
-	      url: 'https://zerda-reader-mockback.gomix.me/feed/43673',
+	      url: 'https://zerda-reader-mockback.gomix.me/feed',
 	    }).then(function (data) {
+	      console.log('igen')
+	      console.log(data)
+	      $scope.articles = data.data.feed;
+
+	    }).catch(function (data) {
+	      console.log('error');
+	    });
+	  };
+
+	  $scope.getFav = function () {
+	    $http({
+	      method: 'GET',
+	      url: 'https://zerda-reader-mockback.gomix.me/favorites',
+	    }).then(function (data) {
+	      console.log('igen')
+	      console.log(data)
+	      $scope.articles = data.data.feed;
+
+	    }).catch(function (data) {
+	      console.log('error');
+	    });
+	  };
+
+	  $scope.clickitem = function($index){
+	    $scope.subscriptions.map( function ( folder ) {
+	      folder.active = false;
+	    });
+	    $scope.subscriptions[ $index ].active = true;
+	  }
+
+	  $scope.getFeed = function ($index, id) {
+	    // $scope.clickitem($index)
+	    // var feed_id = 43675;
+	    // id = feed_id;
+	    $http({
+	      method: 'GET',
+	      url: 'https://zerda-reader-mockback.gomix.me/feed/43675'
+	    }).then(function (data) {
+	      console.log(data);
 	      $scope.articles = (data.data);
 
 	    }).catch(function (data) {
@@ -4065,7 +4097,7 @@
 	  };
 
 	  $scope.getSubscription();
-	  $scope.getFeed();
+	  //$scope.getFeed();
 
 	}]);
 

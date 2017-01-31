@@ -1,7 +1,6 @@
 module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
   $scope.token={}
-
   $scope.login = function() {
 
     if($scope.user.email == "" && $scope.user.password == ""){
