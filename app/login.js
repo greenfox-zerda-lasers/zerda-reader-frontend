@@ -3,7 +3,9 @@ module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).con
   $scope.token={}
 
   $scope.login = function() {
-    if($scope.user.email !== "" && $scope.user.password !== "") {
+    if($scope.user.email == "" && $scope.user.password == ""){
+      console.log('Both fields are empty');
+    }else if($scope.user.email !== "" && $scope.user.password !== "") {
       $http({
         method: 'POST',
         data: {
@@ -12,7 +14,9 @@ module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).con
         },
         url: 'http://localhost:3000/user/login',
       }).then(function (data) {
+        console.log(data);
         var respond = (data.data);
+
         if(respond.result === 'success') {
           // console.log(respond.token);
           // console.log(respond);

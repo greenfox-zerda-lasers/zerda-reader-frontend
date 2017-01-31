@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    app: './app/proba.js',
+    app: './app/app.js',
     // vendor: ['angular']
   },
   output: {
