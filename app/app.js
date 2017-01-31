@@ -1,6 +1,7 @@
 require('./lib/angular.min.js');
 require('./lib/angular-route.min.js');
 require('./lib/angular-animate.min.js');
+require('./lib/angular-mocks.js');
 var LoginController = require('./login.js');
 var HomeController = require('./signup.js');
 var SignUpController = require('./home.js');
