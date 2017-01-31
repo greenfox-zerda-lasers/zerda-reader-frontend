@@ -10,12 +10,12 @@ module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).con
           email: $scope.user.email,
           password: $scope.user.password,
         },
-        url: 'http://localhost:3000/user/login',
+        url: 'https://zerda-reader-mockback.gomix.me/user/login',
       }).then(function (data) {
         var respond = (data.data);
+        console.log(data.data);
         if (respond.result === 'success') {
           // console.log(respond.token);
-          // console.log(respond);
           localStorage.setItem("token", respond.token);
           // console.log(localStorage);
           $location.path('/home');

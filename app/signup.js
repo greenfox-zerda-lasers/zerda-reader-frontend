@@ -8,12 +8,12 @@ module.exports = angular.module('SignUpController', ['ngRoute', 'ngAnimate']).co
           email: $scope.user.email,
           password: $scope.user.password,
         },
-        url: 'http://localhost:3000/user/signup',
+        url: 'https://zerda-reader-mockback.gomix.me/user/signup',
       }).then(function (data) {
         let respond = (data.data);
         if (respond.result === 'success') {
           localStorage.setItem("token", respond.token);
-          $location.path('/home');          
+          $location.path('/home');
         } else {
           alert(respond.message);
         }
