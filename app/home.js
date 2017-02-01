@@ -99,6 +99,21 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   $scope.getSubscription();
   //$scope.getFeed();
 
+  $scope.addSubscribe = function() {
+      if ($scope.newRss !== '') {
+        $http({
+          method: 'POST',
+          data: {
+            feed: $scope.newRss
+          },
+          url: 'https://zerda-reader-mockback.gomix.me/subscribe',
+        }).catch(function (data) {
+          console.log('error');
+        })
+      }
+      $scope.newRss = '';
+    //   location.reload();
+    };
 }]);
 
 //module.exports = HomeController;
