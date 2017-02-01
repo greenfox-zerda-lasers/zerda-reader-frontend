@@ -33,8 +33,8 @@
     <a class="item" ng-click="getAll()">All</a>
     <a class="item {{folder.active ? 'active' : ''}}" ng-click="getFav()">Favorites</a>
     <a ng-repeat="folder in subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="getFeed($index, id)">
+      <i class="folder left floated icon"></i>
       {{folder.name}}
-      <i class="folder left icon"></i>
     </a>
 
   </div>
@@ -57,7 +57,7 @@
 <div class="ui accordion" id="mainlist">
   <div class="ui middle aligned divided list" >
   <!-- Site content !-->
-    <div ng-repeat="article in articles" class="item">
+    <div ng-repeat="article in articles" class="item nomargin">
       <div class="mainlist-item">
         <div class="{{article.active ? 'active' : ''}} title" ng-click="makeActive($index)">
           <i class="ui user icon"></i>

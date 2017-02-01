@@ -36,6 +36,7 @@ $mainlist-width: 78vw;
   top: $navbar-heigth;
   padding-left: 10px;
   overflow-y: visible!important;
+  background-color: rgba(244, 194, 66, 0.7);
   a {
     &:hover {
       color: teal;
@@ -75,9 +76,18 @@ $mainlist-width: 78vw;
   left: 20%;
   width: 80%;
   overflow-y: scroll;
+  background-color: rgba(255, 255, 255, 0.5);
   // white-space: nowrap;
   margin: 0px;
   bottom: 0;
+}
+
+.nomargin {
+  margin: 0px!important;
+  padding: 0px!important;
+  .content {
+    padding-bottom: 8px!important;
+  }
 }
 
 .mainlist-item {
@@ -93,6 +103,7 @@ $mainlist-width: 78vw;
     padding-top: 5px;
     font-weight: bold;
     background-color: rgba(0, 128, 128, 0.16);
+    margin: 0px;
   }
   &:active {
     background-color: lightgrey;
