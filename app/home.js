@@ -100,7 +100,8 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   //$scope.getFeed();
 
   $scope.addSubscribe = function() {
-      if ($scope.newRss !== '') {
+      console.log($scope.newRss );
+      if ($scope.newRss) {
         $http({
           method: 'POST',
           data: {
