@@ -37,6 +37,8 @@ describe('Login controller', function() {
     it('should be defined', function() {
       expect(LoginController.login).toBeDefined();
     });
+
+    
   })
   //
   //   it('should send request', function() {
