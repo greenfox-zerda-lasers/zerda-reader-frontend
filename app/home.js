@@ -32,12 +32,12 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
     }
   }
 
-
   $scope.getSubscription = function () {
     $http({
       method: 'GET',
       url: 'https://zerda-reader-mockback.gomix.me/subscription',
     }).then(function (data) {
+      console.log(data.data)
       $scope.subscriptions = data.data;
 
     }).catch(function (data) {
@@ -50,10 +50,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
       method: 'GET',
       url: 'https://zerda-reader-mockback.gomix.me/feed',
     }).then(function (data) {
-      console.log('igen')
-      console.log(data)
       $scope.articles = data.data.feed;
-
     }).catch(function (data) {
       console.log('error');
     });
@@ -64,10 +61,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
       method: 'GET',
       url: 'https://zerda-reader-mockback.gomix.me/favorites',
     }).then(function (data) {
-      console.log('igen')
-      console.log(data)
-      $scope.articles = data.data.feed;
-
+      $scope.articles = data.data;
     }).catch(function (data) {
       console.log('error');
     });
@@ -81,25 +75,37 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   }
 
   $scope.getFeed = function ($index, id) {
-    // $scope.clickitem($index)
-    // var feed_id = 43675;
-    // id = feed_id;
     $http({
       method: 'GET',
       url: 'https://zerda-reader-mockback.gomix.me/feed/43675'
     }).then(function (data) {
-      console.log(data);
       $scope.articles = (data.data);
-
     }).catch(function (data) {
       console.log('error');
     });
   };
 
   $scope.getSubscription();
-  //$scope.getFeed();
+
+  $scope.favoriteHandling = function (id, favorite){
+    console.log(id)
+    $http({
+      method: 'PUT',
+      data: {
+        item_id: id
+      },
+      url: 'https://zerda-reader-mockback.gomix.me/favorites',
+    }).then(function (data) {
+      console.log(data.data)
+      // $scope.response = data.response;
+
+    }).catch(function (data) {
+      console.log('error');
+    });
+  };
 
   $scope.addSubscribe = function() {
+
     if ($scope.newRss !== '') {
       $http({
         method: 'POST',

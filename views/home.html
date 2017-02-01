@@ -44,7 +44,7 @@
         <h4 class="ui header">Add new RSS channel</h4>
         <div class="ui input" style="align-items: center">
           <input type="text" placeholder="URL..." name="newRss" ng-model="newRss"/>
-          <div class="ui small button" ng-click="addSubscribe()" style="width: 30px; align-items: center" ng-click="makevisible()">
+          <div class="ui small button" ng-click="addSubscribe(); makevisible()" style="width: 30px; align-items: center">
             <i class="plus icon"></i>
           </div>
         </div>
@@ -57,13 +57,14 @@
 <div class="ui accordion" id="mainlist">
   <div class="ui middle aligned divided list" >
   <!-- Site content !-->
+
     <div ng-repeat="article in articles" class="item nomargin">
       <div class="mainlist-item">
         <div class="{{article.active ? 'active' : ''}} title" ng-click="makeActive($index)">
           <i class="ui user icon"></i>
-            {{article.title}} {{active}}
+            {{article.title}}
           <div class="right floated content" style="display: inline-block">
-            <i class="ui star icon"></i>
+            <i class="ui star icon" ng-click="favoriteHandling(article.id, article.favorite)"></i>
           </div>
           <div id="feed-date" class="right floated content" style="display: inline-block">
             {{article.created}}
