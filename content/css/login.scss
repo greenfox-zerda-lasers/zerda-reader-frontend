@@ -1,4 +1,7 @@
 body {
+  background: url(../../img/fox2.jpg)  no-repeat center center fixed;
+  background-size: cover;
+  background-blend-mode: luminosity;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,6 +13,10 @@ body {
     margin-bottom: 10px;
   }
 
+}
+
+.ui.form .field {
+    margin: 0;
 }
 
 .signup {
