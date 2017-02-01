@@ -82,6 +82,14 @@ $mainlist-width: 78vw;
   bottom: 0;
 }
 
+.nomargin {
+  margin: 0px!important;
+  padding: 0px!important;
+  .content {
+    padding-bottom: 8px!important;
+  }
+}
+
 .mainlist-item {
   width: auto;
   padding-left: 1rem;
@@ -95,6 +103,7 @@ $mainlist-width: 78vw;
     padding-top: 5px;
     font-weight: bold;
     background-color: rgba(0, 128, 128, 0.16);
+    margin: 0px;
   }
   &:active {
     background-color: lightgrey;
