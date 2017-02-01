@@ -30,8 +30,9 @@
 
 <div id="sidebar" class="ui left visible sidebar">
   <div class="ui secondary vertical pointing menu" style="width: auto">
-
-    <a ng-repeat="folder in subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="clickitem($index)">
+    <a class="item" ng-click="getAll()">All</a>
+    <a class="item {{folder.active ? 'active' : ''}}" ng-click="getFav()">Favorites</a>
+    <a ng-repeat="folder in subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="getFeed($index, id)">
       {{folder.name}}
       <i class="folder left icon"></i>
     </a>
@@ -54,21 +55,23 @@
 
 
 <div class="ui accordion" id="mainlist">
-  <div id="mainlist" class="ui middle aligned divided list" >
+  <div class="ui middle aligned divided list" >
   <!-- Site content !-->
-    <div ng-repeat="article in articles | filter: search" id="mainlist-item" class="item">
-      <div class="{{article.active ? 'active' : ''}} title" ng-click="makeActive($index)">
-        <i class="ui user icon"></i>
-          {{article.title}} {{active}}
-        <div class="right floated content" style="display: inline-block">
-          <i class="ui star icon"></i>
+    <div ng-repeat="article in articles" class="item">
+      <div class="mainlist-item">
+        <div class="{{article.active ? 'active' : ''}} title" ng-click="makeActive($index)">
+          <i class="ui user icon"></i>
+            {{article.title}} {{active}}
+          <div class="right floated content" style="display: inline-block">
+            <i class="ui star icon"></i>
+          </div>
+          <div id="feed-date" class="right floated content" style="display: inline-block">
+            {{article.created}}
+          </div>
         </div>
-        <div id="feed-date" class="right floated content" style="display: inline-block">
-          {{article.created}}
+        <div class="{{article.active ? 'active' : ''}} content">
+          {{article.description}}
         </div>
-      </div>
-      <div class="{{article.active ? 'active' : ''}} content">
-        {{article.description}}
       </div>
     </div>
   </div>

@@ -7,6 +7,7 @@ module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).con
         console.log('alert');
         $scope.errorMessage = 'Wrong username or password. Try again.';
     } else if ($scope.email !== '' && $scope.password !== '') {
+
       $http({
         method: 'POST',
         data: {
@@ -15,6 +16,7 @@ module.exports = angular.module('LoginController', ['ngRoute', 'ngAnimate']).con
         },
         url: 'https://zerda-reader-mockback.gomix.me/user/login',
       }).then(function (data) {
+        console.log(data);
         var respond = (data.data);
         if (respond.result === 'success') {
           localStorage.setItem('token', respond.token);
