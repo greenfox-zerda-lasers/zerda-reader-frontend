@@ -7,12 +7,12 @@
 //   });
 // });
 //
-// describe('Sample tests', function () {
-//   it('has a dummy spec to test 2 + 2', function () {
-//     // An intentionally failing test. No code within expect() will never equal 4.
-//     expect (2 + 2).toEqual(4);
-//   });
-// });
+describe('Sample tests', function () {
+  it('has a dummy spec to test 2 + 2', function () {
+    // An intentionally failing test. No code within expect() will never equal 4.
+    expect (2 + 2).toEqual(4);
+  });
+});
 //
 //
 // var calculator = {
@@ -61,20 +61,20 @@ describe('Controller: LoginController', function() {
   var LoginController, $httpBackend, $rootScope, $location,  $scope;
   beforeEach(module('zerdaReader'));
   beforeEach(module('LoginController'));
-  // beforeEach(inject(function($injector) {
-  //   $httpBackend=$injector.get('$httpBackend');
-  //   $rootScope=$injector.get('$rootScope');
-  //   $controller=$injector.get('$controller');
-  //   $location=$injector.get('$location');
-  //   alert(1)
-  //   LoginController=function() {
-  //     return $controller('LoginController', {
-  //       '$scope': $rootScope,
-  //       '$cookie': $cookieStore,
-  //       '$location': $location
-  //     });
-  //   };
-  // }));
+  beforeEach(inject(function($injector) {
+    $httpBackend=$injector.get('$httpBackend');
+    $rootScope=$injector.get('$rootScope');
+    $controller=$injector.get('$controller');
+    $location=$injector.get('$location');
+    alert(1)
+    // LoginController=function() {
+    //   return $controller('LoginController', {
+    //     '$scope': $rootScope,
+    //     '$cookie': $cookieStore,
+    //     '$location': $location
+    //   });
+    // };
+  }));
   //
   // it('should logs a user in and redirect', function() {
   //   $httpBackend.whenPOST('/user/login').respond(200);

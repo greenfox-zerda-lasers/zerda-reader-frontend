@@ -33,7 +33,7 @@
     <a class="item" ng-click="getAll()">All</a>
     <a class="item {{folder.active ? 'active' : ''}}" ng-click="getFav()">Favorites</a>
     <a ng-repeat="folder in subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="getFeed($index, id)">
-      <i class="folder left floated icon"></i>
+      <i class="remove left floated icon" ng-click="deleteSubscribe(folder.id)"></i>
       {{folder.name}}
     </a>
 
@@ -57,13 +57,14 @@
 <div class="ui accordion" id="mainlist">
   <div class="ui middle aligned divided list" >
   <!-- Site content !-->
+
     <div ng-repeat="article in articles" class="item nomargin">
       <div class="mainlist-item">
         <div class="{{article.active ? 'active' : ''}} title" ng-click="makeActive($index)">
           <i class="ui user icon"></i>
-            {{article.title}} {{active}}
+            {{article.title}}
           <div class="right floated content" style="display: inline-block">
-            <i class="ui star icon"></i>
+            <i class="ui star icon" ng-click="favoriteHandling(article.id, article.favorite)"></i>
           </div>
           <div id="feed-date" class="right floated content" style="display: inline-block">
             {{article.created}}
