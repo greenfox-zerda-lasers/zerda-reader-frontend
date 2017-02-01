@@ -4032,6 +4032,7 @@
 	  }
 
 	  $scope.getSubscription = function () {
+	    $scope.subscriptions = '';
 	    $http({
 	      method: 'GET',
 	      url: 'https://zerda-reader-mockback.gomix.me/subscription',
@@ -4112,6 +4113,8 @@
 	          feed: $scope.newRss
 	        },
 	        url: 'https://zerda-reader-mockback.gomix.me/subscribe',
+	      }).then ( function(data){
+	        $scope.getSubscription();
 	      }).catch(function (data) {
 	        console.log('error');
 	      })
@@ -4126,10 +4129,11 @@
 	    $http({
 	      method: 'DELETE',
 	      url: 'https://zerda-reader-mockback.gomix.me/subscribe/'+feed_id
+	    }).then ( function(data){
+	      $scope.getSubscription();
 	    }).catch(function (data) {
 	      console.log('error');
 	    })
-
 	  }
 
 	}]);

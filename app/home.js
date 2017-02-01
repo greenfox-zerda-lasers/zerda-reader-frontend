@@ -33,6 +33,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   }
 
   $scope.getSubscription = function () {
+    $scope.subscriptions = '';
     $http({
       method: 'GET',
       url: 'https://zerda-reader-mockback.gomix.me/subscription',
@@ -113,6 +114,8 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
           feed: $scope.newRss
         },
         url: 'https://zerda-reader-mockback.gomix.me/subscribe',
+      }).then ( function(data){
+        $scope.getSubscription();
       }).catch(function (data) {
         console.log('error');
       })
@@ -127,10 +130,11 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
     $http({
       method: 'DELETE',
       url: 'https://zerda-reader-mockback.gomix.me/subscribe/'+feed_id
+    }).then ( function(data){
+      $scope.getSubscription();
     }).catch(function (data) {
       console.log('error');
     })
-
   }
 
 }]);
