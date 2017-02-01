@@ -9,7 +9,7 @@
           <i class="mail outline icon"></i>
 
           <!-- Email inputfield -->
-          <input class="field" type="email" placeholder="example@gmail.com" name="email" ng-model="email" ng-required="true"/>
+          <input class="field" type="email" placeholder="example@gmail.com" name="email" ng-model="loginCtrl.email" ng-required="true"/>
         </div>
         <div ng-show="signin.email.$touched && signin.email.$invalid">
           <small style="color: #DD4B39; display: block; text-align: center; margin-bottom: 8px">Invalid e-mail adress</small>
@@ -19,18 +19,18 @@
             <i id="lock-icon" class="lock icon"></i>
 
             <!-- Password inputfield -->
-            <input type="password" placeholder="password" name="password" ng-model="password" ng-required="true"/>
+            <input type="password" placeholder="password" name="password" ng-model="loginCtrl.password" ng-required="true"/>
           </div>
         </div>
         <div ng-show="signin.password.$touched && signin.password.$invalid">
           <small style="color: #DD4B39; display: block; text-align: center">Please enter your password.</small>
         </div>
-        <div ng-if="errorMessage">
-            <small style="color: #DD4B39; display: block; text-align: center">{{ errorMessage }}</small>
+        <div ng-if="loginCtrl.errorMessage">
+            <small style="color: #DD4B39; display: block; text-align: center">{{ loginCtrl.errorMessage }}</small>
         </div>
-        <input class="ui fluid large teal submit yellow button" type="submit" value="Send" ng-click="login()" style="margin-top: 10px"/>
+        <input class="ui fluid large teal submit yellow button" type="submit" value="Send" ng-click="loginCtrl.login()" style="margin-top: 10px"/>
       </form>
-      <button class="signup-button teal ui fluid message button" ng-click="signUpView()" style="padding: 2px>
+      <button class="signup-button teal ui fluid message button" ng-click="loginCtrl.signUpView()" style="padding: 2px>
         <a class="signup">New to Zerda Reader? Sign Up!</a>
       </button>
     </div>

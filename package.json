@@ -12,6 +12,7 @@
   "devDependencies": {
     "angular": "^1.6.1",
     "angular-mocks": "^1.6.1",
+    "angular-route": "^1.6.1",
     "css-loader": "^0.26.1",
     "eslint": "^3.13.1",
     "eslint-config-airbnb-base": "^11.0.1",
