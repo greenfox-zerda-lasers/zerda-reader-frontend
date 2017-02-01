@@ -100,20 +100,33 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   //$scope.getFeed();
 
   $scope.addSubscribe = function() {
-      if ($scope.newRss !== '') {
-        $http({
-          method: 'POST',
-          data: {
-            feed: $scope.newRss
-          },
-          url: 'https://zerda-reader-mockback.gomix.me/subscribe',
-        }).catch(function (data) {
-          console.log('error');
-        })
-      }
-      $scope.newRss = '';
-    //   location.reload();
-    };
+    if ($scope.newRss !== '') {
+      $http({
+        method: 'POST',
+        data: {
+          feed: $scope.newRss
+        },
+        url: 'https://zerda-reader-mockback.gomix.me/subscribe',
+      }).catch(function (data) {
+        console.log('error');
+      })
+    }
+    $scope.newRss = '';
+  //   location.reload();
+  };
+
+  $scope.deleteSubscribe = function(id) {
+    var feed_id = id;
+    console.log(feed_id);
+    $http({
+      method: 'DELETE',
+      url: 'https://zerda-reader-mockback.gomix.me/subscribe/'+feed_id
+    }).catch(function (data) {
+      console.log('error');
+    })
+
+  }
+
 }]);
 
 //module.exports = HomeController;

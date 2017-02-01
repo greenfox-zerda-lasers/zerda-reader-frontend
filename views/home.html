@@ -33,7 +33,7 @@
     <a class="item" ng-click="getAll()">All</a>
     <a class="item {{folder.active ? 'active' : ''}}" ng-click="getFav()">Favorites</a>
     <a ng-repeat="folder in subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="getFeed($index, id)">
-      <i class="folder left floated icon"></i>
+      <i class="remove left floated icon" ng-click="deleteSubscribe(folder.id)"></i>
       {{folder.name}}
     </a>
 
