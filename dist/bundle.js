@@ -4136,6 +4136,10 @@
 	    })
 	  }
 
+	  $scope.writeTime = function(time) {
+
+	  }
+
 	}]);
 
 	//module.exports = HomeController;
