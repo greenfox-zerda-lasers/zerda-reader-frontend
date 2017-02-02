@@ -13,13 +13,14 @@ require('../node_modules/semantic-ui/dist/components/popup.css');
 require('../content/css/login.scss');
 require('../content/css/home.scss');
 
-var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate', 'LoginController', 'HomeController', 'SignUpController']);
+var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate', 'loginModule', 'HomeController', 'SignUpController']);
 
 zerdaReader.config(['$routeProvider', function($routeProvider){
   $routeProvider
     .when('/login', {
       templateUrl: 'views/login.html',
       controller: 'LoginController',
+      controllerAs: 'loginCtrl'
     })
     .when('/signup', {
       templateUrl: 'views/registration.html',
