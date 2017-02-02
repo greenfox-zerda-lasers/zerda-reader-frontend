@@ -38,9 +38,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
       method: 'GET',
       url: 'https://zerda-reader-mockback.gomix.me/subscription',
     }).then(function (data) {
-      console.log(data.data)
       $scope.subscriptions = data.data;
-
     }).catch(function (data) {
       console.log('error');
     });
@@ -89,7 +87,6 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
   $scope.getSubscription();
 
   $scope.favoriteHandling = function (id, favorite){
-    console.log(id)
     $http({
       method: 'PUT',
       data: {
@@ -97,8 +94,6 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
       },
       url: 'https://zerda-reader-mockback.gomix.me/favorites',
     }).then(function (data) {
-      console.log(data.data)
-      // $scope.response = data.response;
 
     }).catch(function (data) {
       console.log('error');
