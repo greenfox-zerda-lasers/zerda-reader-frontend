@@ -3926,13 +3926,10 @@
 	  vm.token = {};
 
 	  vm.login = function () {
-	    console.log(vm.email)
 	    if (!vm.email && !vm.password) {
 	      console.log('alert');
 	      vm.errorMessage = 'Wrong username or password. Try again.';
-	      console.log(vm);
 	    } else if (vm.email !== '' && vm.password !== '') {
-
 	      $http({
 	        method: 'POST',
 	        data: {
@@ -3940,15 +3937,13 @@
 	          password: vm.password,
 	        },
 	        url: 'https://zerda-reader-mockback.gomix.me/user/login',
-	      }).then(function (data) {
-	        console.log(data);
-	        var respond = (data.data);
-	        if (respond.result === 'success') {
-	          localStorage.setItem('token', respond.token);
+	      }).then (function (data) {
+	        vm.respond = (data.data);
+	        if (vm.respond.result === 'success') {
+	          localStorage.setItem('token', vm.respond.token);
 	          $location.path('/home');
-	      } else if (respond.result === 'fail') {
+	        } else if (vm.respond.result === 'fail') {
 	          vm.errorMessage = 'Wrong username or password. Try again.';
-
 	          vm.email = '';
 	          vm.password = '';
 	        }
@@ -3963,8 +3958,6 @@
 	}]);
 
 	module.exports = loginModule
-
-	// LoginController;
 
 
 /***/ },
