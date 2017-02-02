@@ -132,6 +132,10 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
     })
   }
 
+  // $scope.writeTime = function(time) {
+  //
+  // }
+
 }]);
 
 //module.exports = HomeController;
