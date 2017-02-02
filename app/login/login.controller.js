@@ -2,6 +2,7 @@ const loginModule = angular.module('loginModule', ['ngRoute', 'ngAnimate'])
 
 loginModule.controller('LoginController', ['$http', '$location', function ($http, $location) {
   var vm = this;
+  console.log(vm)
   vm.token = {};
 
   vm.login = function () {

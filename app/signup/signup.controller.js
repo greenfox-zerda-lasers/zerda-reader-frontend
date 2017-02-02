@@ -1,4 +1,4 @@
-const signUpModule = angular.module('SignUpController', ['ngRoute', 'ngAnimate'])
+const signUpModule = angular.module('signUpModule', ['ngRoute', 'ngAnimate'])
 
 signUpModule.controller('SignUpController', ['$http', '$location', function ($http, $location) {
   var vm = this;
@@ -28,3 +28,5 @@ signUpModule.controller('SignUpController', ['$http', '$location', function ($ht
   }
 
 }]);
+
+module.exports = signUpModule;

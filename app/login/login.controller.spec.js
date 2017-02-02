@@ -19,7 +19,6 @@ describe('Login controller', function() {
     inject(function ($controller, $httpBackend) {
       httpBackend = $httpBackend;
       LoginController = $controller('LoginController');
-
     });
   });
 
