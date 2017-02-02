@@ -1,7 +1,6 @@
 body {
-  background: url(../../img/fox2.jpg)  no-repeat center center fixed;
-  background-size: cover;
-  background-blend-mode: luminosity;
+  background-image: none;
+  background-color: lightgrey;
   display: flex;
   justify-content: center;
   align-items: center;
