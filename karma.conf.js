@@ -17,7 +17,8 @@ module.exports = function(config) {
     files: [
       'dist/bundle.js',
       'node_modules/angular-route/angular-route.js',
-      'test/test.js',
+      'test/login.controller.spec.js',
+      'test/signup.controller.spec.js',
     ],
 
 

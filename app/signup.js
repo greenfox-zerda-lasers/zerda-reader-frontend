@@ -1,21 +1,25 @@
-module.exports = angular.module('SignUpController', ['ngRoute', 'ngAnimate']).controller('SignUpController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+const signUpModule = angular.module('SignUpController', ['ngRoute', 'ngAnimate'])
 
-  $scope.signUp = function() {
-    if ($scope.user.email !== '' && $scope.user.password !== '') {
+signUpModule.controller('SignUpController', ['$http', '$location', function ($http, $location) {
+  var vm = this;
+  vm.signUp = function() {
+    if (vm.email !== '' && vm.password !== '') {
       $http({
         method: 'POST',
         data: {
-          email: $scope.user.email,
-          password: $scope.user.password,
+          email: vm.email,
+          password: vm.password,
         },
         url: 'https://zerda-reader-mockback.gomix.me/user/signup',
       }).then(function (data) {
-        let respond = (data.data);
-        if (respond.result === 'success') {
-          localStorage.setItem("token", respond.token);
+        vm.respond = (data.data);
+        if (vm.respond.result === 'success') {
+          localStorage.setItem("token", vm.respond.token);
           $location.path('/home');
         } else {
-          alert(respond.message);
+          vm.errorMessage = vm.respond.message;
+          vm.email = '';
+          vm.password = '';
         }
       }).catch(function (data) {
         console.log('error');
