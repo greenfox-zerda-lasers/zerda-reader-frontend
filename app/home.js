@@ -1,4 +1,6 @@
-module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).controller('HomeController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate'])
+  .controller('HomeController', ['$scope', '$http', '$location',
+  function ($scope, $http, $location) {
 
   $scope.checkToken = function ($routeProvider){
     if (localStorage.length === 0) {
@@ -8,10 +10,10 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
 
   $scope.checkToken();
 
-  $scope.logout = function(){
-    localStorage.clear();
-    $location.path( "/login" );
-  }
+  // $scope.logout = function(){
+  //   localStorage.clear();
+  //   $location.path( "/login" );
+  // }
 
   $scope.makevisible = function(){
     if($scope.visible == "visible"){
