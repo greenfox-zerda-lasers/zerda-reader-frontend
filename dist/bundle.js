@@ -37101,7 +37101,7 @@
 /***/ function(module, exports) {
 
 	(function () {
-	  var zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate', 'loginModule', 'signUpModule', 'HomeController']);
+	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate', 'loginModule', 'signUpModule', 'HomeController']);
 
 	  zerdaReader.config(['$routeProvider', function ($routeProvider) {
 	    $routeProvider
@@ -37132,8 +37132,7 @@
 	const loginModule = angular.module('loginModule', ['ngRoute', 'ngAnimate'])
 
 	loginModule.controller('LoginController', ['$http', '$location', function ($http, $location) {
-	  var vm = this;
-	  console.log(vm)
+	  const vm = this;
 	  vm.token = {};
 
 	  vm.login = function () {
@@ -37148,7 +37147,7 @@
 	          password: vm.password,
 	        },
 	        url: 'https://zerda-reader-mockback.gomix.me/user/login',
-	      }).then (function (data) {
+	      }).then(function (data) {
 	        vm.respond = (data.data);
 	        if (vm.respond.result === 'success') {
 	          localStorage.setItem('token', vm.respond.token);
@@ -37168,7 +37167,7 @@
 	  };
 	}]);
 
-	module.exports = loginModule
+	module.exports = loginModule;
 
 
 /***/ },
@@ -37178,8 +37177,8 @@
 	const signUpModule = angular.module('signUpModule', ['ngRoute', 'ngAnimate'])
 
 	signUpModule.controller('SignUpController', ['$http', '$location', function ($http, $location) {
-	  var vm = this;
-	  vm.signUp = function() {
+	  const vm = this;
+	  vm.signUp = function () {
 	    if (vm.email !== '' && vm.password !== '') {
 	      $http({
 	        method: 'POST',
@@ -37200,10 +37199,9 @@
 	        }
 	      }).catch(function (data) {
 	        console.log('error');
-	      })
+	      });
 	    }
-	  }
-
+	  };
 	}]);
 
 	module.exports = signUpModule;
@@ -37213,7 +37211,7 @@
 /* 27 */
 /***/ function(module, exports) {
 
-	(function() {
+	(function () {
 	  angular
 	    .module('zerdaReader')
 	    .controller('NavbarController', NavbarController);
@@ -37221,12 +37219,12 @@
 	  NavbarController.$inject = ['$http', '$location', '$rootScope'];
 
 	  function NavbarController($http, $location, $rootScope) {
-	    var vm = this;
+	    let vm = this;
 	    vm.logout = logout;
 
-	    function logout (){
+	    function logout() {
 	      localStorage.clear();
-	      $location.path( "/login" );
+	      $location.path('/login');
 	    }
 	  }
 	})();

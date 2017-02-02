@@ -1,8 +1,7 @@
 const loginModule = angular.module('loginModule', ['ngRoute', 'ngAnimate'])
 
 loginModule.controller('LoginController', ['$http', '$location', function ($http, $location) {
-  var vm = this;
-  console.log(vm)
+  const vm = this;
   vm.token = {};
 
   vm.login = function () {
@@ -17,7 +16,7 @@ loginModule.controller('LoginController', ['$http', '$location', function ($http
           password: vm.password,
         },
         url: 'https://zerda-reader-mockback.gomix.me/user/login',
-      }).then (function (data) {
+      }).then(function (data) {
         vm.respond = (data.data);
         if (vm.respond.result === 'success') {
           localStorage.setItem('token', vm.respond.token);
@@ -37,4 +36,4 @@ loginModule.controller('LoginController', ['$http', '$location', function ($http
   };
 }]);
 
-module.exports = loginModule
+module.exports = loginModule;

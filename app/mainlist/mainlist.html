@@ -1,6 +1,5 @@
 <section class="ui accordion" id="mainlist">
   <div class="ui middle aligned divided list" >
-
     <div ng-repeat="article in articles | filter: search" class="item nomargin">
       <div class="mainlist-item">
         <div class="{{article.active ? 'active' : ''}} title" ng-click="makeActive($index)">

@@ -1,4 +1,4 @@
-(function() {
+(function () {
   angular
     .module('zerdaReader')
     .controller('NavbarController', NavbarController);
@@ -6,12 +6,12 @@
   NavbarController.$inject = ['$http', '$location', '$rootScope'];
 
   function NavbarController($http, $location, $rootScope) {
-    var vm = this;
+    let vm = this;
     vm.logout = logout;
 
-    function logout (){
+    function logout() {
       localStorage.clear();
-      $location.path( "/login" );
+      $location.path('/login');
     }
   }
 })();
