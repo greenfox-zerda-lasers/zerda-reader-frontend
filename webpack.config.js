@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    app: './app/app.js',
+    app: './app.js',
     // vendor: ['angular']
   },
   output: {

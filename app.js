@@ -1,0 +1,13 @@
+require('./lib/angular.min.js');
+require('./lib/angular-route.min.js');
+require('./lib/angular-animate.min.js');
+require('./lib/angular-mocks.js');
+require('./node_modules/semantic-ui/dist/semantic.min.css');
+require('./node_modules/semantic-ui/dist/components/accordion.css');
+require('./node_modules/semantic-ui/dist/components/popup.css');
+require('./style/login.scss');
+require('./style/home.scss');
+require('./router.js');
+require('./app/login/login.controller.js');
+require('./app/signup/signup.controller.js');
+require('./app/home.js');
