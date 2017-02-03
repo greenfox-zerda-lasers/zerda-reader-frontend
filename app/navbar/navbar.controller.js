@@ -3,9 +3,9 @@
     .module('zerdaReader')
     .controller('NavbarController', NavbarController);
 
-  NavbarController.$inject = ['$http', '$location', '$rootScope'];
+  NavbarController.$inject = ['$location', '$rootScope'];
 
-  function NavbarController($http, $location, $rootScope) {
+  function NavbarController($location, $rootScope) {
     let vm = this;
     vm.logout = logout;
 
