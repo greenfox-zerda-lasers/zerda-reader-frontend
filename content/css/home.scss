@@ -20,6 +20,7 @@ body {
   padding-right: 10px;
   background-color: teal;
   .item{
+    color: #C0E4E6;
     &:hover{
       color: white;
     }
@@ -41,7 +42,7 @@ body {
   top: $navbar-heigth;
   padding-left: 10px;
   overflow-y: visible!important;
-  background-color: rgba(244, 194, 66, 0.7);
+  background-color: white;
   a {
     &:hover {
       color: teal;

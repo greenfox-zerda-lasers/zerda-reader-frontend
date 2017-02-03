@@ -10,7 +10,9 @@ describe('Sample tests', function () {
 //--------------------------------------------------------------------------------------------------------------------------
 describe('Login controller', function() {
 
-  var httpBackend, LoginController;
+  var httpBackend
+  var LoginController
+
 
   beforeEach(function () {
     module('zerdaReader');
@@ -18,6 +20,7 @@ describe('Login controller', function() {
     inject(function ($controller, $httpBackend) {
       httpBackend = $httpBackend;
       LoginController = $controller('LoginController');
+
     })
   })
   //
@@ -33,11 +36,18 @@ describe('Login controller', function() {
   //   })
   // })
   //
+=======
+
+    });
+  });
+
+>>>>>>> c9e2936d8b291a80b561bcb2130cd23fa581ad49:test/login.controller.spec.js
   describe('login', function () {
     it('should be defined', function() {
       expect(LoginController.login).toBeDefined();
     });
 
+<<<<<<< HEAD:test/test.js
 
   })
   //
@@ -71,4 +81,39 @@ describe('Login controller', function() {
   //     expect(LoginController.loginData).toEqual({ foo: 'bar' });
   //   })
   // })
+=======
+    it('should send request', function () {
+      LoginController.email = 'gabor@reader.com';
+      LoginController.password = 'gabor';
+      httpBackend
+      .when('POST', 'https://zerda-reader-mockback.gomix.me/user/login')
+      .respond(200, { result: 'success', token: '0-9A-Z', id: 1 });
+      LoginController.login();
+      httpBackend.flush();
+      expect(LoginController.respond).toEqual({ result: 'success', token: '0-9A-Z', id: 1 });
+    });
+
+    it('should send request', function () {
+      LoginController.email = 'ga@reader.com';
+      LoginController.password = 'ga';
+      httpBackend
+      .when('POST', 'https://zerda-reader-mockback.gomix.me/user/login')
+      .respond(200, { result: 'fail', message: 'invalid username or password' });
+      LoginController.login();
+      httpBackend.flush();
+      expect(LoginController.respond).toEqual({ result: 'fail', message: 'invalid username or password'});
+    });
+
+    it('should send request', function () {
+      LoginController.email = 'ga@reader.com';
+      LoginController.password = 'ga';
+      httpBackend
+      .when('POST', 'https://zerda-reader-mockback.gomix.me/user/login')
+      .respond(200, { result: 'fail', message: 'invalid username or password' });
+      LoginController.login();
+      httpBackend.flush();
+      expect(LoginController.errorMessage).toEqual('Wrong username or password. Try again.');
+    });
+  });
+>>>>>>> c9e2936d8b291a80b561bcb2130cd23fa581ad49:test/login.controller.spec.js
 });

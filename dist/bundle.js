@@ -66,11 +66,12 @@
 	    .when('/login', {
 	      templateUrl: 'views/login.html',
 	      controller: 'LoginController',
-	      controllerAs: 'loginCtrl'
+	      controllerAs: 'loginCtrl',
 	    })
 	    .when('/signup', {
 	      templateUrl: 'views/registration.html',
 	      controller: 'SignUpController',
+	      controllerAs: 'signUpCtrl',
 	    })
 	    .when('/home', {
 	      templateUrl: 'views/home.html',
@@ -3971,24 +3972,28 @@
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = angular.module('SignUpController', ['ngRoute', 'ngAnimate']).controller('SignUpController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+	const signUpModule = angular.module('SignUpController', ['ngRoute', 'ngAnimate'])
 
-	  $scope.signUp = function() {
-	    if ($scope.user.email !== '' && $scope.user.password !== '') {
+	signUpModule.controller('SignUpController', ['$http', '$location', function ($http, $location) {
+	  var vm = this;
+	  vm.signUp = function() {
+	    if (vm.email !== '' && vm.password !== '') {
 	      $http({
 	        method: 'POST',
 	        data: {
-	          email: $scope.user.email,
-	          password: $scope.user.password,
+	          email: vm.email,
+	          password: vm.password,
 	        },
 	        url: 'https://zerda-reader-mockback.gomix.me/user/signup',
 	      }).then(function (data) {
-	        let respond = (data.data);
-	        if (respond.result === 'success') {
-	          localStorage.setItem("token", respond.token);
+	        vm.respond = (data.data);
+	        if (vm.respond.result === 'success') {
+	          localStorage.setItem("token", vm.respond.token);
 	          $location.path('/home');
 	        } else {
-	          alert(respond.message);
+	          vm.errorMessage = vm.respond.message;
+	          vm.email = '';
+	          vm.password = '';
 	        }
 	      }).catch(function (data) {
 	        console.log('error');
@@ -4685,7 +4690,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(26) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item:hover {\n    color: white; }\n  #navbar .item:active {\n    color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 26px; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important;\n  background-color: rgba(244, 194, 66, 0.7); }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-start;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n\n.mainlist-item {\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:hover {\n    font-size: 20px;\n    padding-top: 5px;\n    font-weight: bold;\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n\n#feed-title {\n  padding-left: 50px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n", ""]);
+	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(26) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: white; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 26px; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important;\n  background-color: white; }\n  #sidebar a:hover {\n    color: teal; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-start;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  bottom: 45px;\n  height: 45px;\n  width: 20vw; }\n\n#addpopup {\n  position: relative;\n  top: -80px;\n  left: -40px;\n  z-index: 100; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n\n.mainlist-item {\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:hover {\n    font-size: 20px;\n    padding-top: 5px;\n    font-weight: bold;\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n\n#feed-title {\n  padding-left: 50px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n", ""]);
 
 	// exports
 

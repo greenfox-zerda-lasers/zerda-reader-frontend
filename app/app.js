@@ -20,11 +20,12 @@ zerdaReader.config(['$routeProvider', function($routeProvider){
     .when('/login', {
       templateUrl: 'views/login.html',
       controller: 'LoginController',
-      controllerAs: 'loginCtrl'
+      controllerAs: 'loginCtrl',
     })
     .when('/signup', {
       templateUrl: 'views/registration.html',
       controller: 'SignUpController',
+      controllerAs: 'signUpCtrl',
     })
     .when('/home', {
       templateUrl: 'views/home.html',
