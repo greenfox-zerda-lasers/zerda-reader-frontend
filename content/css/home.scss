@@ -94,6 +94,10 @@ body {
   .content {
     padding-bottom: 8px!important;
   }
+  &:hover {
+    background-color: rgba(0, 128, 128, 0.16);
+    margin: 0px;
+  }
 }
 
 .mainlist-item {
@@ -104,13 +108,6 @@ body {
   i:before {
     width: 40px;
   }
-  &:hover {
-    font-size: 20px;
-    padding-top: 5px;
-    font-weight: bold;
-    background-color: rgba(0, 128, 128, 0.16);
-    margin: 0px;
-  }
   &:active {
     background-color: lightgrey;
   }
@@ -118,6 +115,7 @@ body {
 
 #feed-title {
   padding-left: 50px;
+  padding-bottom: 10px;
   #feed-date {
     position: fixed;
     right: 200px;
@@ -144,4 +142,12 @@ body {
   &:active {
     color: red;
   }
+}
+
+#description {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 30px;
+  padding-top: 20px;
+  line-height: 1.5;
 }

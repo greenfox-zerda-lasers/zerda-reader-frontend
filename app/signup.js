@@ -27,4 +27,8 @@ signUpModule.controller('SignUpController', ['$http', '$location', function ($ht
     }
   }
 
+  vm.backToLogin = function() {
+    $location.path('/login');
+  };
+
 }]);

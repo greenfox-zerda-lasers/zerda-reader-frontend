@@ -38,7 +38,7 @@
     </a>
 
   </div>
-  <div id="add" class="ui button" ng-click="makevisible()">Add subscription
+  <div id="add" class="ui button teal" ng-click="makevisible()">Add subscription
     <div id="addpopup" class="ui flowing popup top left transition {{visible}}" ng-click="makevisible()">
       <div class="column">
         <h4 class="ui header">Add new RSS channel</h4>
@@ -67,10 +67,11 @@
             <i class="ui star {{article.favorite ? 'checkedstar' : 'uncheckedstar'}} icon" ng-click="favoriteHandling(article.id); changeFavoriteIcon($index)"></i>
           </div>
           <div id="feed-date" class="right floated content" style="display: inline-block">
-            {{article.created}}
+            {{article.created | date: 'HH / dd / MMM'}}
           </div>
         </div>
-        <div class="{{article.active ? 'active' : ''}} content">
+        <div id="description" class="{{article.active ? 'active' : ''}} content">
+          <a>http://index.hu/</a></br>
           {{article.description}}
         </div>
       </div>

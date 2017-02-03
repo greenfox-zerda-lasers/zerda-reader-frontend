@@ -6,7 +6,6 @@ body {
   align-items: center;
 }
 
-
 #login-box, #reg-window {
   input {
     margin-bottom: 10px;
@@ -17,6 +16,11 @@ body {
 .ui.form .field {
     margin: 0;
 }
+
+#login-box > div.ui.left.icon.input > i, #lock-icon{
+    margin-top: -4px
+}
+
 
 .signup {
   text-align: center;
@@ -29,11 +33,6 @@ body {
   &:active {
     color: grey;
   }
-}
-
-#lock-icon::before {
-  vertical-align: top;
-  margin-bottom: 10px;
 }
 
 // .login-window {
