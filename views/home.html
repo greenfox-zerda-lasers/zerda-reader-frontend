@@ -1,7 +1,7 @@
 <div id="navbar" class="ui secondary menu">
 
   <div id="logo" class="item">
-    <img src="img/logo2-white.png" style="width: 35px; padding-right: 5px"/>
+    <img src="img/logo2_white.png" style="width: 35px; padding-right: 5px"/>
     Zerda Reader
   </div>
 
@@ -64,7 +64,7 @@
           <i class="ui user icon"></i>
             {{article.title}}
           <div class="right floated content" style="display: inline-block">
-            <i class="ui star icon" ng-click="favoriteHandling(article.id, article.favorite)"></i>
+            <i class="ui star checkedstar icon" ng-click="favoriteHandling(article.id, article.favorite)"></i>
           </div>
           <div id="feed-date" class="right floated content" style="display: inline-block">
             {{article.created}}
