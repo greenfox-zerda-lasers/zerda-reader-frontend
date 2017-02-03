@@ -122,3 +122,14 @@ body {
     right: 200px;
   }
 }
+
+.checkedstar {
+  color: yellow;
+  border-radius: 25%;
+  &:hover {
+    color: orange;
+  }
+  &:active {
+    color: red;
+  }
+}
