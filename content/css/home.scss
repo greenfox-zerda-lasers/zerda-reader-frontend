@@ -22,7 +22,7 @@ body {
   .item{
     color: #C0E4E6;
     &:hover{
-      color: white;
+      color: #ffffff;
     }
     &:active{
       color: grey;
@@ -42,10 +42,22 @@ body {
   top: $navbar-heigth;
   padding-left: 10px;
   overflow-y: visible!important;
-  background-color: white;
-  a {
-    &:hover {
+  background-color: #ffffff;
+  a{
+    i{
+      color: #ffffff;
+    }
+    &:hover{
       color: teal;
+      i{
+        color: teal;
+        &:hover{
+          color: #139797;
+        }
+        &:active{
+          color: #DD4B39;
+        }
+      }
     }
   }
 }
@@ -56,6 +68,8 @@ body {
 }
 
 #add {
+  background-color: #008080;
+  color: #C0E4E6;
   display: flex;
   flex-flow: row;
   justify-content: flex-start;
@@ -63,15 +77,20 @@ body {
   align-items: center;
   position: fixed;
   left: 0px;
+  border-radius: 0px;
   bottom: $add-heigth;
   height: $add-heigth;
   width: $addbutton-width;
+  &:hover {
+    background-color: #139797;
+    color: #ffffff;
+  }
 }
 
 #addpopup {
-  position: relative;
-  top: -80px;
-  left: -40px;
+  position: absolute;
+  top: -110px;
+  left: 10px;
   z-index: 100
 
 }
