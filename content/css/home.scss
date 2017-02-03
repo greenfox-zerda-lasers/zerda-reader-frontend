@@ -115,6 +115,7 @@ body {
 
 #feed-title {
   padding-left: 50px;
+  padding-bottom: 10px;
   #feed-date {
     position: fixed;
     right: 200px;
@@ -130,4 +131,12 @@ body {
   &:active {
     color: red;
   }
+}
+
+#description {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 30px;
+  padding-top: 20px;
+  line-height: 1.5;
 }
