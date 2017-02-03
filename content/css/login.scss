@@ -17,9 +17,10 @@ body {
     margin: 0;
 }
 
-// .ui.icon.input>i.icon:after, .ui.icon.input>i.icon:before {
-//     margin-top: -12px
-// }
+#login-box > div.ui.left.icon.input > i, #lock-icon{
+    margin-top: -4px
+}
+
 
 .signup {
   text-align: center;
@@ -32,11 +33,6 @@ body {
   &:active {
     color: grey;
   }
-}
-
-#lock-icon::before {
-  vertical-align: top;
-  margin-bottom: 10px;
 }
 
 // .login-window {
