@@ -6,7 +6,6 @@ body {
   align-items: center;
 }
 
-
 #login-box, #reg-window {
   input {
     margin-bottom: 10px;
@@ -17,6 +16,10 @@ body {
 .ui.form .field {
     margin: 0;
 }
+
+// .ui.icon.input>i.icon:after, .ui.icon.input>i.icon:before {
+//     margin-top: -12px
+// }
 
 .signup {
   text-align: center;
