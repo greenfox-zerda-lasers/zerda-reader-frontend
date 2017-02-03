@@ -86,7 +86,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
 
   $scope.getSubscription();
 
-  $scope.favoriteHandling = function (id, favorite){
+  $scope.favoriteHandling = function (id) {
     $http({
       method: 'PUT',
       data: {
@@ -94,11 +94,20 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate']).cont
       },
       url: 'https://zerda-reader-mockback.gomix.me/favorites',
     }).then(function (data) {
-
+      // console.log(favorite)
+      // $scope.changeFavoriteIcon(!favorite);
     }).catch(function (data) {
-      console.log('error');
+      console.log(data);
     });
   };
+
+  $scope.changeFavoriteIcon = function ($index){
+      if ($scope.class === 'uncheckedstar') {
+        $scope.class = 'checkedstar';
+      } else {
+        $scope.class = 'uncheckedstar';
+    };
+  }
 
   $scope.addSubscribe = function() {
 

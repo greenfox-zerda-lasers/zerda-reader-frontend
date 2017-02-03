@@ -134,3 +134,14 @@ body {
     color: red;
   }
 }
+
+.uncheckedstar {
+  color: black;
+  border-radius: 25%;
+  &:hover {
+    color: white;
+  }
+  &:active {
+    color: red;
+  }
+}

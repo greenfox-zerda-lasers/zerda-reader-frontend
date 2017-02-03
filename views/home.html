@@ -64,7 +64,7 @@
           <i class="ui user icon"></i>
             {{article.title}}
           <div class="right floated content" style="display: inline-block">
-            <i class="ui star checkedstar icon" ng-click="favoriteHandling(article.id, article.favorite)"></i>
+            <i class="ui star {{article.favorite ? 'checkedstar' : 'uncheckedstar'}} icon" ng-click="favoriteHandling(article.id); changeFavoriteIcon($index)"></i>
           </div>
           <div id="feed-date" class="right floated content" style="display: inline-block">
             {{article.created}}
