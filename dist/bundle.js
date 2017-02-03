@@ -4142,9 +4142,10 @@
 	    })
 	  }
 
-	  // $scope.writeTime = function(time) {
-	  //
-	  // }
+
+	  $scope.writeTime = function(time) {
+	    $scope.time = time.getDate();
+	  }
 
 	}]);
 
