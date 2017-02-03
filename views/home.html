@@ -67,7 +67,7 @@
             <i class="ui star checkedstar icon" ng-click="favoriteHandling(article.id, article.favorite)"></i>
           </div>
           <div id="feed-date" class="right floated content" style="display: inline-block">
-            {{article.created}}
+            {{article.created | date: 'HH / dd / MMM'}}
           </div>
         </div>
         <div class="{{article.active ? 'active' : ''}} content">
