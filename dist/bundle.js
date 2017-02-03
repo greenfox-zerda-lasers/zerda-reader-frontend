@@ -4001,6 +4001,10 @@
 	    }
 	  }
 
+	  vm.backToLogin = function() {
+	    $location.path('/login');
+	  };
+
 	}]);
 
 
