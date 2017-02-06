@@ -1,9 +1,9 @@
-<section id="sidebar" class="ui left visible sidebar">
-  <div class="ui secondary vertical pointing menu" style="width: auto">
-    <a class="item" ng-click="getAll()">All</a>
-    <a class="item {{folder.active ? 'active' : ''}}" ng-click="getFav()">Favorites</a>
-    <a ng-repeat="folder in subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="getFeed($index, id)">
-      <i class="remove left floated icon" ng-click="deleteSubscribe(folder.id)"></i>
+<section id="sidebar" class="ui left visible sidebar" ng-controller="SidebarController as sidebarCtrl">
+  <div class="ui secondary vertical pointing menu" style="width: auto" ng-init="sidebarCtrl.getSubscription()">
+    <a class="item" ng-click="sidebarCtrl.getAll()">All</a>
+    <a class="item {{folder.active ? 'active' : ''}}" ng-click="sidebarCtrl.getFav()">Favorites</a>
+    <a ng-repeat="folder in sidebarCtrl.subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="sidebarCtrl.getFeed($index, id)">
+      <i class="remove left floated icon" ng-click="sidebarCtrl.deleteSubscribe(folder.id)"></i>
       {{folder.name}}
     </a>
   </div>

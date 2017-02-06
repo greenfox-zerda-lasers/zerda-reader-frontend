@@ -1,12 +1,12 @@
-<section class="ui accordion" id="mainlist">
+<section class="ui accordion" id="mainlist" >
   <div class="ui middle aligned divided list" >
     <div ng-repeat="article in articles | filter: search" class="item nomargin">
       <div class="mainlist-item">
-        <div class="{{article.active ? 'active' : ''}} title" ng-click="makeActive($index)">
+        <div class="{{article.active ? 'active' : ''}} title" ng-click="mainCtrl.makeActive($index)">
           <i class="ui user icon"></i>
             {{article.title}}
           <div class="right floated content" style="display: inline-block">
-            <i class="ui star icon" ng-click="favoriteHandling(article.id, article.favorite)"></i>
+            <i class="ui star icon" ng-click="mainCtrl.favoriteHandling(article.id, article.favorite)"></i>
           </div>
           <div id="feed-date" class="right floated content" style="display: inline-block">
             {{article.created}}
