@@ -1,0 +1,22 @@
+<section id="navbar" class="ui secondary menu" ng-controller="NavbarController as navbarCtrl">
+
+  <div id="logo" class="item">
+    <img src="../../img/logo2.png" style="width: 35px; padding-right: 5px"/>
+    Zerda Reader
+  </div>
+
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" ng-model="search.title" placeholder="Search...">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+    <div class="ui item">
+      <i class="ui settings icon"></i>
+    </div>
+    <a class="ui item" ng-click="navbarCtrl.logout()">
+      Logout
+    </a>
+  </div>
+</section>

@@ -7,9 +7,8 @@ describe('Sample tests', function () {
   });
 });
 
-//--------------------------------------------------------------------------------------------------------------------------
-describe('Signup controller', function() {
-
+//----------------------------------------------------------------------------------------------
+describe('Signup controller', function () {
   var httpBackend
   var SignUpController
 
@@ -19,7 +18,6 @@ describe('Signup controller', function() {
     inject(function ($controller, $httpBackend) {
       httpBackend = $httpBackend;
       SignUpController = $controller('SignUpController');
-
     });
   });
 
@@ -47,7 +45,7 @@ describe('Signup controller', function() {
       .respond(200, { result: 'fail', message: 'Email address already exists' });
       SignUpController.signUp();
       httpBackend.flush();
-      expect(SignUpController.respond).toEqual({ result: 'fail', message: 'Email address already exists'});
+      expect(SignUpController.respond).toEqual({ result: 'fail', message: 'Email address already exists' });
     });
 
     it('should send request', function () {

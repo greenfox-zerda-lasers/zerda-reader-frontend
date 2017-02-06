@@ -1,8 +1,9 @@
-const signUpModule = angular.module('SignUpController', ['ngRoute', 'ngAnimate'])
+const signUpModule = angular.module('signUpModule', ['ngRoute', 'ngAnimate'])
 
 signUpModule.controller('SignUpController', ['$http', '$location', function ($http, $location) {
-  var vm = this;
-  vm.signUp = function() {
+  const vm = this;
+
+  vm.signUp = function () {
     if (vm.email !== '' && vm.password !== '') {
       $http({
         method: 'POST',
@@ -23,12 +24,18 @@ signUpModule.controller('SignUpController', ['$http', '$location', function ($ht
         }
       }).catch(function (data) {
         console.log('error');
-      })
+      });
     }
+<<<<<<< HEAD:app/signup/signup.controller.js
+  };
+=======
   }
 
   vm.backToLogin = function() {
     $location.path('/login');
   };
 
+>>>>>>> 42a4ff825dc00a74a947cfa6ac798e108cd96570:app/signup.js
 }]);
+
+module.exports = signUpModule;
