@@ -29,11 +29,9 @@ describe('Login controller', function () {
       expect(LoginController.login).toBeDefined();
     });
 
-<<<<<<< HEAD:test/login.controller.spec.js
-    it('should send request', function () {
-=======
+
     it('login with existed email', function () {
->>>>>>> 030bbae035d0c53788dc4f43ca4005452c87b31c:app/login/login.controller.spec.js
+
       LoginController.email = 'gabor@reader.com';
       LoginController.password = 'gabor';
       httpBackend
