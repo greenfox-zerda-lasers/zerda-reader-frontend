@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Thu Jan 19 2017 10:28:50 GMT+0100 (Közép-európai téli idő )
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -17,8 +17,8 @@ module.exports = function(config) {
     files: [
       'dist/bundle.js',
       'node_modules/angular-route/angular-route.js',
-      'test/login.controller.spec.js',
-      'test/signup.controller.spec.js',
+      'app/login/login.controller.spec.js',
+      'app/signup/signup.controller.spec.js',
     ],
 
 
@@ -67,6 +67,6 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
-  })
-}
+    concurrency: Infinity,
+  });
+};

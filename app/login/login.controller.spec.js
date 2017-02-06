@@ -7,9 +7,8 @@ describe('Sample tests', function () {
   });
 });
 
-//--------------------------------------------------------------------------------------------------------------------------
-describe('Login controller', function() {
-
+//----------------------------------------------------------------------------------------------
+describe('Login controller', function () {
   var httpBackend
   var LoginController
 
@@ -48,7 +47,7 @@ describe('Login controller', function() {
       .respond(200, { result: 'fail', message: 'invalid username or password' });
       LoginController.login();
       httpBackend.flush();
-      expect(LoginController.respond).toEqual({ result: 'fail', message: 'invalid username or password'});
+      expect(LoginController.respond).toEqual({ result: 'fail', message: 'invalid username or password' });
     });
 
     it('login with wrong email, check error message', function () {

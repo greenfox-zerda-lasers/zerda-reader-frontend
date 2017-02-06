@@ -1,0 +1,26 @@
+<header ng-include="'app/navbar/navbar.html'"></header>
+<aside ng-include="'app/sidebar/sidebar.html'"></aside>
+<main ng-include="'app/mainlist/mainlist.html'"></main>
+
+<!-- <div class="ui accordion" id="mainlist">
+  <div class="ui middle aligned divided list" >
+
+    <div ng-repeat="article in articles | filter: search" class="item nomargin">
+      <div class="mainlist-item">
+        <div class="{{article.active ? 'active' : ''}} title" ng-click="makeActive($index)">
+          <i class="ui user icon"></i>
+            {{article.title}}
+          <div class="right floated content" style="display: inline-block">
+            <i class="ui star icon" ng-click="favoriteHandling(article.id, article.favorite)"></i>
+          </div>
+          <div id="feed-date" class="right floated content" style="display: inline-block">
+            {{article.created}}
+          </div>
+        </div>
+        <div class="{{article.active ? 'active' : ''}} content">
+          {{article.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
