@@ -44,6 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	
 	__webpack_require__(1);
 	__webpack_require__(2);
 	__webpack_require__(3);
@@ -55,12 +56,14 @@
 	__webpack_require__(21);
 	// require('./node_modules/ngstorage/ngStorage.js');
 	__webpack_require__(24);
+
 	__webpack_require__(25);
 	__webpack_require__(26);
 	__webpack_require__(27);
 	__webpack_require__(28);
 	__webpack_require__(30);
 	__webpack_require__(31);
+
 	__webpack_require__(29);
 
 
@@ -37181,6 +37184,7 @@
 
 	signUpModule.controller('SignUpController', ['$http', '$location', function ($http, $location) {
 	  const vm = this;
+
 	  vm.signUp = function () {
 	    if (vm.email !== '' && vm.password !== '') {
 	      $http({
@@ -37246,11 +37250,11 @@
 
 	  function SidebarController($location, $rootScope, $http) {
 	    let vm = this;
-	    vm.getSubscription = getSubscription;
+	    vm.deleteSubscribe = deleteSubscribe;
 	    vm.getAll = getAll;
 	    vm.getFav = getFav;
 	    vm.getFeed = getFeed;
-	    vm.deleteSubscribe = deleteSubscribe;
+	    vm.getSubscription = getSubscription;
 
 	    function getSubscription() {
 	      vm.subscriptions = '';
@@ -37259,7 +37263,6 @@
 	        url: 'https://zerda-reader-mockback.gomix.me/subscription',
 	      }).then(function (data) {
 	        vm.subscriptions = data.data;
-	        console.log(vm.subscriptions)
 	      }).catch(function (data) {
 	        console.log('error');
 	      });
@@ -37271,6 +37274,7 @@
 	        url: 'https://zerda-reader-mockback.gomix.me/feed',
 	      }).then(function (data) {
 	        vm.articles = data.data.feed;
+	        $rootScope.$broadcast('feeditem', vm.articles);
 	      }).catch(function (data) {
 	        console.log('error');
 	      });
@@ -37282,6 +37286,7 @@
 	        url: 'https://zerda-reader-mockback.gomix.me/favorites',
 	      }).then(function (data) {
 	        vm.articles = data.data;
+	        $rootScope.$broadcast('feeditem', vm.articles);
 	      }).catch(function (data) {
 	        console.log('error');
 	      });
@@ -37293,6 +37298,7 @@
 	        url: 'https://zerda-reader-mockback.gomix.me/feed/43675'
 	      }).then(function (data) {
 	        vm.articles = (data.data);
+	        $rootScope.$broadcast('feeditem', vm.articles);
 	      }).catch(function (data) {
 	        console.log('error');
 	      });
@@ -37309,6 +37315,12 @@
 	        console.log('error');
 	      })
 	    }
+
+	    (function getSubs(){
+	      $rootScope.$on('getsubscription', function (event) {
+	        getSubscription();
+	      });
+	    })();
 	  }
 	})();
 	//
@@ -37485,6 +37497,7 @@
 
 	  function SubscribeController($location, $rootScope, $http) {
 	    let vm = this;
+	    vm.addSubscribe = addSubscribe;
 	    vm.makeVisible = makeVisible;
 
 
@@ -37495,28 +37508,25 @@
 	        vm.visible = "visible";
 	      }
 	    }
+	    function addSubscribe() {
+
+	      if (vm.newRss !== '') {
+	        $http({
+	          method: 'POST',
+	          data: {
+	            feed: vm.newRss
+	          },
+	          url: 'https://zerda-reader-mockback.gomix.me/subscribe',
+	        }).then ( function(data){
+	          $rootScope.$broadcast('getsubscription');
+	        }).catch(function (data) {
+	          console.log('error');
+	        })
+	      }
+	      vm.newRss = '';
+	    };
 	  }
 	})()
-
-	// $scope.addSubscribe = function() {
-	//
-	//   if ($scope.newRss !== '') {
-	//     $http({
-	//       method: 'POST',
-	//       data: {
-	//         feed: $scope.newRss
-	//       },
-	//       url: 'https://zerda-reader-mockback.gomix.me/subscribe',
-	//     }).then ( function(data){
-	//       $scope.getSubscription();
-	//     }).catch(function (data) {
-	//       console.log('error');
-	//     })
-	//   }
-	//   $scope.newRss = '';
-	// //   location.reload();
-	// };
-	//
 
 
 /***/ },
@@ -37534,6 +37544,10 @@
 	    let vm = this;
 	    vm.makeActive = makeActive;
 	    vm.favoriteHandling = favoriteHandling;
+	    // vm.getItem = getItem;
+	    // $rootScope.$on('feeditem', function (event, items) {
+	    //   vm.articles = items;
+	    // });
 
 	    function makeActive($index) {
 	      if (vm.articles[$index].active === true) {
@@ -37559,8 +37573,22 @@
 	        console.log('error');
 	      });
 	    };
+
+	    (function getItem(){
+	      $rootScope.$on('feeditem', function (event, items) {
+	        vm.articles = items;
+	      });
+	    })();
 	  }
 	})()
+
+	// $scope.changeFavoriteIcon = function ($index){
+	//       if ($scope.class === 'uncheckedstar') {
+	//         $scope.class = 'checkedstar';
+	//       } else {
+	//         $scope.class = 'uncheckedstar';
+	//     };
+	//   }
 
 
 /***/ }

@@ -9,6 +9,10 @@
     let vm = this;
     vm.makeActive = makeActive;
     vm.favoriteHandling = favoriteHandling;
+    // vm.getItem = getItem;
+    // $rootScope.$on('feeditem', function (event, items) {
+    //   vm.articles = items;
+    // });
 
     function makeActive($index) {
       if (vm.articles[$index].active === true) {
@@ -34,5 +38,19 @@
         console.log('error');
       });
     };
+
+    (function getItem(){
+      $rootScope.$on('feeditem', function (event, items) {
+        vm.articles = items;
+      });
+    })();
   }
 })()
+
+// $scope.changeFavoriteIcon = function ($index){
+//       if ($scope.class === 'uncheckedstar') {
+//         $scope.class = 'checkedstar';
+//       } else {
+//         $scope.class = 'uncheckedstar';
+//     };
+//   }

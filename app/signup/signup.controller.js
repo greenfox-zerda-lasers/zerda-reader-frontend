@@ -2,6 +2,7 @@ const signUpModule = angular.module('signUpModule', ['ngRoute', 'ngAnimate'])
 
 signUpModule.controller('SignUpController', ['$http', '$location', function ($http, $location) {
   const vm = this;
+
   vm.signUp = function () {
     if (vm.email !== '' && vm.password !== '') {
       $http({

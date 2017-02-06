@@ -27,9 +27,11 @@
         <div ng-show="signin.password.$touched && signin.password.$invalid">
           <small style="color: #DD4B39; display: block; text-align: center">Please enter your password.</small>
         </div>
+
         <div ng-if="loginCtrl.errorMessage">
             <small style="color: #DD4B39; display: block; text-align: center">{{ loginCtrl.errorMessage }}</small>
         </div>
+
         <input class="ui fluid large teal submit yellow button" type="submit" value="Send" ng-click="loginCtrl.login()" style="margin-top: 10px"/>
       </form>
       <button class="signup-button teal ui fluid message button" ng-click="loginCtrl.signUpView()" style="padding: 2px">

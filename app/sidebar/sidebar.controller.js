@@ -7,11 +7,11 @@
 
   function SidebarController($location, $rootScope, $http) {
     let vm = this;
-    vm.getSubscription = getSubscription;
+    vm.deleteSubscribe = deleteSubscribe;
     vm.getAll = getAll;
     vm.getFav = getFav;
     vm.getFeed = getFeed;
-    vm.deleteSubscribe = deleteSubscribe;
+    vm.getSubscription = getSubscription;
 
     function getSubscription() {
       vm.subscriptions = '';
@@ -20,7 +20,6 @@
         url: 'https://zerda-reader-mockback.gomix.me/subscription',
       }).then(function (data) {
         vm.subscriptions = data.data;
-        console.log(vm.subscriptions)
       }).catch(function (data) {
         console.log('error');
       });
@@ -32,6 +31,7 @@
         url: 'https://zerda-reader-mockback.gomix.me/feed',
       }).then(function (data) {
         vm.articles = data.data.feed;
+        $rootScope.$broadcast('feeditem', vm.articles);
       }).catch(function (data) {
         console.log('error');
       });
@@ -43,6 +43,7 @@
         url: 'https://zerda-reader-mockback.gomix.me/favorites',
       }).then(function (data) {
         vm.articles = data.data;
+        $rootScope.$broadcast('feeditem', vm.articles);
       }).catch(function (data) {
         console.log('error');
       });
@@ -54,6 +55,7 @@
         url: 'https://zerda-reader-mockback.gomix.me/feed/43675'
       }).then(function (data) {
         vm.articles = (data.data);
+        $rootScope.$broadcast('feeditem', vm.articles);
       }).catch(function (data) {
         console.log('error');
       });
@@ -70,6 +72,12 @@
         console.log('error');
       })
     }
+
+    (function getSubs(){
+      $rootScope.$on('getsubscription', function (event) {
+        getSubscription();
+      });
+    })();
   }
 })();
 //
