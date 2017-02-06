@@ -1,5 +1,5 @@
 (function () {
-  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate', 'loginModule', 'signUpModule', 'HomeController']);
+  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
 
   zerdaReader.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -16,6 +16,7 @@
       .when('/home', {
         templateUrl: 'app/home/home.html',
         controller: 'HomeController',
+        controllerAs: 'homeCtrl',
       }).otherwise({
         redirectTo: '/login',
       });
