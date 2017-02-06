@@ -20,16 +20,9 @@ loginModule.controller('LoginController', ['$http', '$location', function ($http
         },
         url: 'https://zerda-reader-mockback.gomix.me/user/login',
       }).then(function (data) {
-<<<<<<< HEAD:app/login/login.controller.js
         vm.respond = (data.data);
         if (vm.respond.result === 'success') {
           localStorage.setItem('token', vm.respond.token);
-=======
-        console.log(data);
-        var respond = (data.data);
-        if (respond.result === 'success') {
-          localStorage.setItem('token', respond.token);
->>>>>>> 42a4ff825dc00a74a947cfa6ac798e108cd96570:app/login.js
           $location.path('/home');
       } else if (respond.result === 'fail') {
           vm.errorMessage = 'Wrong username or password. Try again.';
@@ -46,11 +39,4 @@ loginModule.controller('LoginController', ['$http', '$location', function ($http
     $location.path('/signup');
   };
 }]);
-
-<<<<<<< HEAD:app/login/login.controller.js
 module.exports = loginModule;
-=======
-module.exports = loginModule
-
-// LoginController;
->>>>>>> 42a4ff825dc00a74a947cfa6ac798e108cd96570:app/login.js
