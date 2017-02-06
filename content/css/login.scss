@@ -21,18 +21,25 @@ body {
     margin-top: -4px
 }
 
+#signup-button {
+    text-align: center;
+    margin: 0px;
+    padding: 2px;
+    &:hover {
+        a {
+      font-weight: bold;
+      color: white;
+        }
+    }
+    &:active {
+        a {
+          color: grey;
+        }
+    }
+}
 
-.signup {
-  text-align: center;
-  margin: 0px;
-  padding: 2px;
-  &:hover {
-    font-weight: bold;
-    color: white;
-  }
-  &:active {
-    color: grey;
-  }
+#login-box input.ng-invalid.ng-touched {
+    border: 0.5px solid #DD4B39;
 }
 
 // .login-window {
@@ -45,7 +52,3 @@ body {
 //     text-transform: uppercase;
 //   }
 // }
-
-#login-box input.ng-invalid.ng-touched {
-    border: 0.5px solid #DD4B39;
-}
