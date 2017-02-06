@@ -16,6 +16,7 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate'])
   //   $location.path( "/login" );
   // }
 
+<<<<<<< HEAD
   // $scope.makevisible = function(){
   //   if($scope.visible == "visible"){
   //     $scope.visible = "hidden";
@@ -75,6 +76,32 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate'])
   //   });
   //   $scope.subscriptions[ $index ].active = true;
   // }
+=======
+  $scope.favoriteHandling = function (id) {
+    $http({
+      method: 'PUT',
+      data: {
+        item_id: id
+      },
+      url: 'https://zerda-reader-mockback.gomix.me/favorites',
+    }).then(function (data) {
+      // console.log(favorite)
+      // $scope.changeFavoriteIcon(!favorite);
+    }).catch(function (data) {
+      console.log(data);
+    });
+  };
+
+  $scope.changeFavoriteIcon = function ($index){
+      if ($scope.class === 'uncheckedstar') {
+        $scope.class = 'checkedstar';
+      } else {
+        $scope.class = 'uncheckedstar';
+    };
+  }
+
+  $scope.addSubscribe = function() {
+>>>>>>> 42a4ff825dc00a74a947cfa6ac798e108cd96570
 
   // $scope.getFeed = function ($index, id) {
   //   $http({
@@ -135,9 +162,10 @@ module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate'])
   //   })
   // }
 
-  // $scope.writeTime = function(time) {
-  //
-  // }
+
+  $scope.writeTime = function(time) {
+    $scope.time = time.getDate();
+  }
 
 
 // module.exports = HomeController;

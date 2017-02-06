@@ -3,7 +3,7 @@
 describe('Sample tests', function () {
   it('has a dummy spec to test 2 + 2', function () {
     // An intentionally failing test. No code within expect() will never equal 4.
-    expect(2 + 2).toEqual(4);
+    expect (2 + 2).toEqual(4);
   });
 });
 
@@ -11,6 +11,7 @@ describe('Sample tests', function () {
 describe('Login controller', function () {
   var httpBackend
   var LoginController
+
 
   beforeEach(function () {
     module('zerdaReader');
@@ -21,12 +22,13 @@ describe('Login controller', function () {
     });
   });
 
+
   describe('login', function () {
     it('should be defined', function() {
       expect(LoginController.login).toBeDefined();
     });
 
-    it('should send request', function () {
+    it('login with existed email', function () {
       LoginController.email = 'gabor@reader.com';
       LoginController.password = 'gabor';
       httpBackend
@@ -37,7 +39,7 @@ describe('Login controller', function () {
       expect(LoginController.respond).toEqual({ result: 'success', token: '0-9A-Z', id: 1 });
     });
 
-    it('should send request', function () {
+    it('login with wrong email', function () {
       LoginController.email = 'ga@reader.com';
       LoginController.password = 'ga';
       httpBackend
@@ -48,7 +50,7 @@ describe('Login controller', function () {
       expect(LoginController.respond).toEqual({ result: 'fail', message: 'invalid username or password' });
     });
 
-    it('should send request', function () {
+    it('login with wrong email, check error message', function () {
       LoginController.email = 'ga@reader.com';
       LoginController.password = 'ga';
       httpBackend

@@ -1,8 +1,9 @@
 $navbar-heigth: 40px;
-$add-heigth: 45px;
+$add-heigth: 40px;
 $sidebar-width: 22vw;
 $addbutton-width: 20vw;
 $mainlist-width: 78vw;
+$add-rss-input-and-button: 35px;
 
 body {
   background: url(../img/grey.jpg)  no-repeat center center fixed;
@@ -20,8 +21,9 @@ body {
   padding-right: 10px;
   background-color: teal;
   .item{
+    color: #C0E4E6;
     &:hover{
-      color: white;
+      color: #ffffff;
     }
     &:active{
       color: grey;
@@ -41,10 +43,22 @@ body {
   top: $navbar-heigth;
   padding-left: 10px;
   overflow-y: visible!important;
-  background-color: rgba(244, 194, 66, 0.7);
-  a {
-    &:hover {
+  background-color: #ffffff;
+  a{
+    i{
+      color: #ffffff;
+    }
+    &:hover{
       color: teal;
+      i{
+        color: teal;
+        &:hover{
+          color: #139797;
+        }
+        &:active{
+          color: #DD4B39;
+        }
+      }
     }
   }
 }
@@ -55,24 +69,45 @@ body {
 }
 
 #add {
+  background-color: #008080;
+  color: #C0E4E6;
   display: flex;
   flex-flow: row;
-  justify-content: flex-start;
   font-size: 14px;
   align-items: center;
   position: fixed;
   left: 0px;
+  border-radius: 0px;
   bottom: $add-heigth;
   height: $add-heigth;
   width: $addbutton-width;
+  &:hover {
+    background-color: #139797;
+    color: #ffffff;
+  }
 }
 
 #addpopup {
-  position: relative;
-  top: -80px;
-  left: -40px;
-  z-index: 100
+  position: absolute;
+  top: -110px;
+  left: 10px;
+  z-index: 100;
+}
 
+#addpopup > div > div > input {
+  border-radius: 0.285714rem 0  0 0.285714rem;
+  height: $add-rss-input-and-button;
+}
+
+
+#addpopup > div > div > div {
+    border-radius: 0 0.285714rem 0.285714rem 0;
+    width: 30px;
+    height: $add-rss-input-and-button;
+    i {
+        margin-top: 2px;
+        margin-left: -7px;
+    }
 }
 
 #mainlist {
@@ -93,6 +128,10 @@ body {
   .content {
     padding-bottom: 8px!important;
   }
+  &:hover {
+    background-color: rgba(0, 128, 128, 0.16);
+    margin: 0px;
+  }
 }
 
 .mainlist-item {
@@ -103,13 +142,6 @@ body {
   i:before {
     width: 40px;
   }
-  &:hover {
-    font-size: 20px;
-    padding-top: 5px;
-    font-weight: bold;
-    background-color: rgba(0, 128, 128, 0.16);
-    margin: 0px;
-  }
   &:active {
     background-color: lightgrey;
   }
@@ -117,8 +149,39 @@ body {
 
 #feed-title {
   padding-left: 50px;
+  padding-bottom: 10px;
   #feed-date {
     position: fixed;
     right: 200px;
   }
+}
+
+.checkedstar {
+  color: yellow;
+  border-radius: 25%;
+  &:hover {
+    color: orange;
+  }
+  &:active {
+    color: red;
+  }
+}
+
+.uncheckedstar {
+  color: black;
+  border-radius: 25%;
+  &:hover {
+    color: white;
+  }
+  &:active {
+    color: red;
+  }
+}
+
+#description {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 30px;
+  padding-top: 20px;
+  line-height: 1.5;
 }

@@ -6,7 +6,6 @@ body {
   align-items: center;
 }
 
-
 #login-box, #reg-window {
   input {
     margin-bottom: 10px;
@@ -18,22 +17,29 @@ body {
     margin: 0;
 }
 
-.signup {
-  text-align: center;
-  margin: 0px;
-  padding: 2px;
-  &:hover {
-    font-weight: bold;
-    color: white;
-  }
-  &:active {
-    color: grey;
-  }
+#login-box > div.ui.left.icon.input > i, #lock-icon{
+    margin-top: -4px
 }
 
-#lock-icon::before {
-  vertical-align: top;
-  margin-bottom: 10px;
+#signup-button {
+    text-align: center;
+    margin: 0px;
+    padding: 2px;
+    &:hover {
+        a {
+      font-weight: bold;
+      color: white;
+        }
+    }
+    &:active {
+        a {
+          color: grey;
+        }
+    }
+}
+
+#login-box input.ng-invalid.ng-touched {
+    border: 0.5px solid #DD4B39;
 }
 
 // .login-window {
@@ -46,7 +52,3 @@ body {
 //     text-transform: uppercase;
 //   }
 // }
-
-#login-box input.ng-invalid.ng-touched {
-    border: 0.5px solid #DD4B39;
-}
