@@ -26,16 +26,12 @@ signUpModule.controller('SignUpController', ['$http', '$location', function ($ht
         console.log('error');
       });
     }
-<<<<<<< HEAD:app/signup/signup.controller.js
-  };
-=======
   }
 
   vm.backToLogin = function() {
     $location.path('/login');
   };
 
->>>>>>> 42a4ff825dc00a74a947cfa6ac798e108cd96570:app/signup.js
 }]);
 
 module.exports = signUpModule;

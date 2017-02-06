@@ -57,14 +57,14 @@
 	// require('./node_modules/ngstorage/ngStorage.js');
 	__webpack_require__(24);
 
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./app/login/login.controller.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./app/signup/signup.controller.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	__webpack_require__(25);
+	__webpack_require__(26);
 	__webpack_require__(27);
 	__webpack_require__(28);
+	__webpack_require__(29);
 	__webpack_require__(30);
-	__webpack_require__(31);
 
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./app/home.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	__webpack_require__(31);
 
 
 /***/ },
@@ -37132,8 +37132,97 @@
 
 
 /***/ },
-/* 25 */,
-/* 26 */,
+/* 25 */
+/***/ function(module, exports) {
+
+	const loginModule = angular.module('loginModule', ['ngRoute', 'ngAnimate'])
+
+	loginModule.controller('LoginController', ['$http', '$location', function ($http, $location) {
+	  const vm = this;
+	  vm.token = {};
+
+	  vm.login = function () {
+	    console.log(vm.email)
+	    if (!vm.email && !vm.password) {
+	      console.log('alert');
+	      vm.errorMessage = 'Wrong username or password. Try again.';
+	      console.log(vm);
+	    } else if (vm.email !== '' && vm.password !== '') {
+
+	      $http({
+	        method: 'POST',
+	        data: {
+	          email: vm.email,
+	          password: vm.password,
+	        },
+	        url: 'https://zerda-reader-mockback.gomix.me/user/login',
+	      }).then(function (data) {
+	        vm.respond = (data.data);
+	        if (vm.respond.result === 'success') {
+	          localStorage.setItem('token', vm.respond.token);
+	          $location.path('/home');
+	      } else if (respond.result === 'fail') {
+	          vm.errorMessage = 'Wrong username or password. Try again.';
+
+	          vm.email = '';
+	          vm.password = '';
+	        }
+	      }).catch(function (data) {
+	        console.log(data);
+	      });
+	    }
+	  };
+	  vm.signUpView = function () {
+	    $location.path('/signup');
+	  };
+	}]);
+	module.exports = loginModule;
+
+
+/***/ },
+/* 26 */
+/***/ function(module, exports) {
+
+	const signUpModule = angular.module('signUpModule', ['ngRoute', 'ngAnimate'])
+
+	signUpModule.controller('SignUpController', ['$http', '$location', function ($http, $location) {
+	  const vm = this;
+
+	  vm.signUp = function () {
+	    if (vm.email !== '' && vm.password !== '') {
+	      $http({
+	        method: 'POST',
+	        data: {
+	          email: vm.email,
+	          password: vm.password,
+	        },
+	        url: 'https://zerda-reader-mockback.gomix.me/user/signup',
+	      }).then(function (data) {
+	        vm.respond = (data.data);
+	        if (vm.respond.result === 'success') {
+	          localStorage.setItem("token", vm.respond.token);
+	          $location.path('/home');
+	        } else {
+	          vm.errorMessage = vm.respond.message;
+	          vm.email = '';
+	          vm.password = '';
+	        }
+	      }).catch(function (data) {
+	        console.log('error');
+	      });
+	    }
+	  }
+
+	  vm.backToLogin = function() {
+	    $location.path('/login');
+	  };
+
+	}]);
+
+	module.exports = signUpModule;
+
+
+/***/ },
 /* 27 */
 /***/ function(module, exports) {
 
@@ -37255,8 +37344,7 @@
 
 
 /***/ },
-/* 29 */,
-/* 30 */
+/* 29 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -37301,7 +37389,7 @@
 
 
 /***/ },
-/* 31 */
+/* 30 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -37360,6 +37448,156 @@
 	//         $scope.class = 'uncheckedstar';
 	//     };
 	//   }
+
+
+/***/ },
+/* 31 */
+/***/ function(module, exports) {
+
+	module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate'])
+	  .controller('HomeController', ['$scope', '$http', '$location',
+	  function ($scope, $http, $location) {
+
+	  $scope.checkToken = function ($routeProvider){
+	    if (localStorage.length === 0) {
+	      $location.path('/login');
+	    };
+	  };
+
+	  $scope.checkToken();
+	}]);
+
+	  // $scope.logout = function(){
+	  //   localStorage.clear();
+	  //   $location.path( "/login" );
+	  // }
+
+	  // $scope.makevisible = function(){
+	  //   if($scope.visible == "visible"){
+	  //     $scope.visible = "hidden";
+	  //   } else {
+	  //     $scope.visible = "visible";
+	  //   }
+	  // }
+
+	  // $scope.makeActive = function($index) {
+	  //   if ($scope.articles[$index].active === true) {
+	  //     $scope.articles[$index].active = false;
+	  //   } else {
+	  //     $scope.articles.map( function (article){
+	  //       article.active = false
+	  //     });
+	  //     $scope.articles[$index].active = true;
+	  //   }
+	  // }
+
+	  // $scope.getSubscription = function () {
+	  //   $scope.subscriptions = '';
+	  //   $http({
+	  //     method: 'GET',
+	  //     url: 'https://zerda-reader-mockback.gomix.me/subscription',
+	  //   }).then(function (data) {
+	  //     $scope.subscriptions = data.data;
+	  //   }).catch(function (data) {
+	  //     console.log('error');
+	  //   });
+	  // };
+
+	  // $scope.getAll = function () {
+	  //   $http({
+	  //     method: 'GET',
+	  //     url: 'https://zerda-reader-mockback.gomix.me/feed',
+	  //   }).then(function (data) {
+	  //     $scope.articles = data.data.feed;
+	  //   }).catch(function (data) {
+	  //     console.log('error');
+	  //   });
+	  // };
+	  //
+	  // $scope.getFav = function () {
+	  //   $http({
+	  //     method: 'GET',
+	  //     url: 'https://zerda-reader-mockback.gomix.me/favorites',
+	  //   }).then(function (data) {
+	  //     $scope.articles = data.data;
+	  //   }).catch(function (data) {
+	  //     console.log('error');
+	  //   });
+	  // };
+	  //
+	  // $scope.clickitem = function($index){
+	  //   $scope.subscriptions.map( function ( folder ) {
+	  //     folder.active = false;
+	  //   });
+	  //   $scope.subscriptions[ $index ].active = true;
+	  // }
+
+	  // $scope.getFeed = function ($index, id) {
+	  //   $http({
+	  //     method: 'GET',
+	  //     url: 'https://zerda-reader-mockback.gomix.me/feed/43675'
+	  //   }).then(function (data) {
+	  //     $scope.articles = (data.data);
+	  //   }).catch(function (data) {
+	  //     console.log('error');
+	  //   });
+	  // };
+
+	  // $scope.getSubscription();
+
+	  // $scope.favoriteHandling = function (id, favorite){
+	  //   $http({
+	  //     method: 'PUT',
+	  //     data: {
+	  //       item_id: id
+	  //     },
+	  //     url: 'https://zerda-reader-mockback.gomix.me/favorites',
+	  //   }).then(function (data) {
+	  //
+	  //   }).catch(function (data) {
+	  //     console.log('error');
+	  //   });
+	  // };
+
+	  // $scope.addSubscribe = function() {
+	  //
+	  //   if ($scope.newRss !== '') {
+	  //     $http({
+	  //       method: 'POST',
+	  //       data: {
+	  //         feed: $scope.newRss
+	  //       },
+	  //       url: 'https://zerda-reader-mockback.gomix.me/subscribe',
+	  //     }).then ( function(data){
+	  //       $scope.getSubscription();
+	  //     }).catch(function (data) {
+	  //       console.log('error');
+	  //     })
+	  //   }
+	  //   $scope.newRss = '';
+	  // //   location.reload();
+	  // };
+
+	  // $scope.deleteSubscribe = function(id) {
+	  //   var feed_id = id;
+	  //   console.log(feed_id);
+	  //   $http({
+	  //     method: 'DELETE',
+	  //     url: 'https://zerda-reader-mockback.gomix.me/subscribe/'+feed_id
+	  //   }).then ( function(data){
+	  //     $scope.getSubscription();
+	  //   }).catch(function (data) {
+	  //     console.log('error');
+	  //   })
+	  // }
+
+
+	  // $scope.writeTime = function(time) {
+	  //   $scope.time = time.getDate();
+	  // }
+
+
+	// module.exports = HomeController;
 
 
 /***/ }
