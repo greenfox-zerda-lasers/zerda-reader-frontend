@@ -5,8 +5,8 @@
 
   NavbarController.$inject = ['$location', '$rootScope'];
 
-  function NavbarController($location, $rootScope) {
-    let vm = this;
+  function NavbarController($location) {
+    const vm = this;
     vm.logout = logout;
 
     function logout() {

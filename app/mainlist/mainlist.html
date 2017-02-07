@@ -9,10 +9,11 @@
             <i class="ui star icon" ng-click="mainCtrl.favoriteHandling(article.id, article.favorite)"></i>
           </div>
           <div id="feed-date" class="right floated content" style="display: inline-block">
-            {{article.created}}
+            {{article.created | date: 'HH / dd / MMM'}}
           </div>
         </div>
-        <div class="{{mainCtrl.article.active ? 'active' : ''}} content">
+        <div id="description" class="{{article.active ? 'active' : ''}} content">
+          <a>{{article.url}}</a></br>
           {{article.description}}
         </div>
       </div>

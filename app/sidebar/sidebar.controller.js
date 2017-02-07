@@ -6,7 +6,7 @@
   SidebarController.$inject = ['$location', '$rootScope', '$http'];
 
   function SidebarController($location, $rootScope, $http) {
-    let vm = this;
+    const vm = this;
     vm.deleteSubscribe = deleteSubscribe;
     vm.getAll = getAll;
     vm.getFav = getFav;
@@ -35,7 +35,7 @@
       }).catch(function (data) {
         console.log('error');
       });
-    };
+    }
 
     function getFav() {
       $http({
@@ -47,7 +47,7 @@
       }).catch(function (data) {
         console.log('error');
       });
-    };
+    }
 
     function getFeed($index, id) {
       $http({
@@ -61,19 +61,18 @@
       });
     };
     function deleteSubscribe(id) {
-      var feed_id = id;
-      console.log(feed_id);
+      let feedId = id;
       $http({
         method: 'DELETE',
-        url: 'https://zerda-reader-mockback.gomix.me/subscribe/'+feed_id
-      }).then ( function(data){
+        url: 'https://zerda-reader-mockback.gomix.me/subscribe/'+feedId
+      }).then(function (data) {
         vm.getSubscription();
       }).catch(function (data) {
         console.log('error');
       })
     }
 
-    (function getSubs(){
+    (function () {
       $rootScope.$on('getsubscription', function (event) {
         getSubscription();
       });

@@ -18,4 +18,4 @@ require('./app/sidebar/sidebar.controller.js');
 require('./app/addsubscription/addsubscription.controller.js');
 require('./app/mainlist/mainlist.controller.js');
 
-require('./app/home.js');
+require('./app/home/home.js');
