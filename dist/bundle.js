@@ -37379,9 +37379,9 @@
 	    .module('zerdaReader')
 	    .controller('SubscribeController', SubscribeController);
 
-	  SubscribeController.$inject = ['$location', '$rootScope', '$http'];
+	  SubscribeController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
 
-	  function SubscribeController($location, $rootScope, $http) {
+	  function SubscribeController($location, $rootScope, $http, APIFactory) {
 	    const vm = this;
 	    vm.addSubscribe = addSubscribe;
 	    vm.makeVisible = makeVisible;
@@ -37394,15 +37394,10 @@
 	        vm.visible = 'visible';
 	      }
 	    }
+
 	    function addSubscribe() {
 	      if (vm.newRss !== '') {
-	        $http({
-	          method: 'POST',
-	          data: {
-	            feed: vm.newRss,
-	          },
-	          url: 'https://zerda-reader-mockback.gomix.me/subscribe',
-	        }).then( function (data) {
+	        APIFactory.postRSS('subscribe', vm.newRss).then( function (data) {
 	          $rootScope.$broadcast('getsubscription');
 	        }).catch(function (data) {
 	          console.log('error');
@@ -37447,7 +37442,7 @@
 	    }
 
 	    function favoriteHandling(id) {
-	      APIFactory.putItem('favorites', id).then(function (data) {
+	      APIFactory.putFav('favorites', id).then(function (data) {
 	      }).catch(function (data) {
 	        console.log('error');
 	      });
@@ -38537,29 +38532,13 @@
 	    return $http.delete(url+endpoint);
 	  };
 
-	  APIFactory.putItem = function(endpoint, id){
+	  APIFactory.putFav = function(endpoint, id){
 	    return $http.put(url+endpoint, {item_id: id});
 	  }
 
-	  // dataFactory.getCustomer = function (id) {
-	  //     return $http.get(urlBase + '/' + id);
-	  // };
-	  //
-	  // dataFactory.insertCustomer = function (cust) {
-	  //     return $http.post(urlBase, cust);
-	  // };
-	  //
-	  // dataFactory.updateCustomer = function (cust) {
-	  //     return $http.put(urlBase + '/' + cust.ID, cust)
-	  // };
-	  //
-	  // dataFactory.deleteCustomer = function (id) {
-	  //     return $http.delete(urlBase + '/' + id);
-	  // };
-	  //
-	  // dataFactory.getOrders = function (id) {
-	  //     return $http.get(urlBase + '/' + id + '/orders');
-	  // };
+	  APIFactory.postRSS = function(endpoint, rss){
+	    return $http.post(url+endpoint, {feed: rss});
+	  }
 
 	  return APIFactory;
 	};

@@ -27,7 +27,7 @@
     }
 
     function favoriteHandling(id) {
-      APIFactory.putItem('favorites', id).then(function (data) {
+      APIFactory.putFav('favorites', id).then(function (data) {
       }).catch(function (data) {
         console.log('error');
       });

@@ -16,29 +16,13 @@ function APIFactory($resource, $http) {
     return $http.delete(url+endpoint);
   };
 
-  APIFactory.putItem = function(endpoint, id){
+  APIFactory.putFav = function(endpoint, id){
     return $http.put(url+endpoint, {item_id: id});
   }
 
-  // dataFactory.getCustomer = function (id) {
-  //     return $http.get(urlBase + '/' + id);
-  // };
-  //
-  // dataFactory.insertCustomer = function (cust) {
-  //     return $http.post(urlBase, cust);
-  // };
-  //
-  // dataFactory.updateCustomer = function (cust) {
-  //     return $http.put(urlBase + '/' + cust.ID, cust)
-  // };
-  //
-  // dataFactory.deleteCustomer = function (id) {
-  //     return $http.delete(urlBase + '/' + id);
-  // };
-  //
-  // dataFactory.getOrders = function (id) {
-  //     return $http.get(urlBase + '/' + id + '/orders');
-  // };
+  APIFactory.postRSS = function(endpoint, rss){
+    return $http.post(url+endpoint, {feed: rss});
+  }
 
   return APIFactory;
 };
