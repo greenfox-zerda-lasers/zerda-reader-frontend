@@ -1,5 +1,5 @@
 (function () {
-  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
+  const zerdaReader = angular.module('zerdaReader', ['ngRoute']);
 
   zerdaReader.config(['$routeProvider', function ($routeProvider) {
     $routeProvider

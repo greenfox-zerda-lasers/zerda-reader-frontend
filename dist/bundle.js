@@ -49,6 +49,7 @@
 	__webpack_require__(2);
 	__webpack_require__(3);
 	__webpack_require__(4);
+
 	__webpack_require__(5);
 	__webpack_require__(15);
 	__webpack_require__(17);
@@ -56,6 +57,7 @@
 	__webpack_require__(21);
 	// require('./node_modules/ngstorage/ngStorage.js');
 	__webpack_require__(24);
+	__webpack_require__(32);
 
 	__webpack_require__(25);
 	__webpack_require__(26);
@@ -63,6 +65,7 @@
 	__webpack_require__(28);
 	__webpack_require__(29);
 	__webpack_require__(30);
+
 
 	__webpack_require__(31);
 
@@ -37107,7 +37110,7 @@
 /***/ function(module, exports) {
 
 	(function () {
-	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
+	  const zerdaReader = angular.module('zerdaReader', ['ngRoute']);
 
 	  zerdaReader.config(['$routeProvider', function ($routeProvider) {
 	    $routeProvider
@@ -37408,13 +37411,13 @@
 	    const vm = this;
 	    vm.makeActive = makeActive;
 	    vm.favoriteHandling = favoriteHandling;
+	    // vm.changeFavoriteIcon =
 	    // vm.getItem = getItem;
 	    // $rootScope.$on('feeditem', function (event, items) {
 	    //   vm.articles = items;
 	    // });
 
 	    function makeActive($index) {
-	      console.log(vm.articles[$index].active);
 	      if (vm.articles[$index].active === true) {
 	        vm.articles[$index].active = false;
 	      } else {
@@ -37425,7 +37428,7 @@
 	      }
 	    }
 
-	    function favoriteHandling(id, favorite) {
+	    function favoriteHandling(id) {
 	      $http({
 	        method: 'PUT',
 	        data: {
@@ -37433,11 +37436,17 @@
 	        },
 	        url: 'https://zerda-reader-mockback.gomix.me/favorites',
 	      }).then(function (data) {
-
 	      }).catch(function (data) {
 	        console.log('error');
 	      });
 	    }
+	    // function changeFavoriteIcon($index){
+	    //       if ($scope.class === 'uncheckedstar') {
+	    //         $scope.class = 'checkedstar';
+	    //       } else {
+	    //         $scope.class = 'uncheckedstar';
+	    //     };
+	    //   }
 
 	    (function () {
 	      $rootScope.$on('feeditem', function (event, items) {
@@ -37446,14 +37455,6 @@
 	    })();
 	  }
 	})();
-
-	// $scope.changeFavoriteIcon = function ($index){
-	//       if ($scope.class === 'uncheckedstar') {
-	//         $scope.class = 'checkedstar';
-	//       } else {
-	//         $scope.class = 'uncheckedstar';
-	//     };
-	//   }
 
 
 /***/ },
@@ -37475,6 +37476,35 @@
 	        $location.path('/login');
 	      }
 	    })();
+	  }
+	})();
+
+
+/***/ },
+/* 32 */
+/***/ function(module, exports) {
+
+	(function () {
+	  'use strict';
+
+	  angular
+	    .module('zerdaReader')
+	    .directive('favoriteIcon', favoriteIcon);
+
+	  function favoriteIcon() {
+	    let directive = {
+	      restrict: "E",
+	      scope: {
+	        article: '=',
+	      },
+	      templateUrl: 'app/components/favorite.directive.html',
+	      link: function(scope) {
+	        scope.click = function(){
+	          console.log(scope.article);
+	        }
+	      }
+	    };
+	    return directive;
 	  }
 	})();
 
