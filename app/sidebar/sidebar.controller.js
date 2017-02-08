@@ -3,27 +3,39 @@
     .module('zerdaReader')
     .controller('SidebarController', SidebarController);
 
-  SidebarController.$inject = ['$location', '$rootScope', '$http'];
+  SidebarController.$inject = ['$location', '$rootScope', '$http', 'SidebarService'];
 
-  function SidebarController($location, $rootScope, $http) {
+  function SidebarController($location, $rootScope, $http, SidebarService) {
     const vm = this;
     vm.deleteSubscribe = deleteSubscribe;
     vm.getAll = getAll;
     vm.getFav = getFav;
     vm.getFeed = getFeed;
-    vm.getSubscription = getSubscription;
+    vm.url = 'https://zerda-reader-mockback.gomix.me/';
+    //vm.getSubscription = getSubscription;
 
-    function getSubscription() {
-      vm.subscriptions = '';
-      $http({
-        method: 'GET',
-        url: 'https://zerda-reader-mockback.gomix.me/subscription',
-      }).then(function (data) {
-        vm.subscriptions = data.data;
-      }).catch(function (data) {
-        console.log('error');
-      });
-    }
+    // function getSubscription() {
+    //   vm.subscriptions = '';
+    //   $http({
+    //     method: 'GET',
+    //     url: 'https://zerda-reader-mockback.gomix.me/subscription',
+    //   }).then(function (data) {
+    //     vm.subscriptions = data.data;
+    //   }).catch(function (data) {
+    //     console.log('error');
+    //   });
+    // }
+
+    // vm.subs = SidebarService.get();
+    // console.log(vm.subs);
+
+    SidebarService.query().$promise.then(function(data) {
+      vm.subscriptions = data;
+    }, function(errResponse) {
+     // fail
+    });
+
+
 
     function getAll() {
       $http({

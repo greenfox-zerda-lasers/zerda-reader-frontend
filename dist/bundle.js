@@ -65,6 +65,9 @@
 	// Router:
 	__webpack_require__(24);
 
+	// Services:
+	__webpack_require__(34)
+
 	// All the controllers:
 	__webpack_require__(25);
 	__webpack_require__(26);
@@ -37116,7 +37119,7 @@
 /***/ function(module, exports) {
 
 	(function () {
-	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
+	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate', 'ngResource']);
 
 	  zerdaReader.config(['$routeProvider', function ($routeProvider) {
 	    $routeProvider
@@ -37293,27 +37296,39 @@
 	    .module('zerdaReader')
 	    .controller('SidebarController', SidebarController);
 
-	  SidebarController.$inject = ['$location', '$rootScope', '$http'];
+	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'SidebarService'];
 
-	  function SidebarController($location, $rootScope, $http) {
+	  function SidebarController($location, $rootScope, $http, SidebarService) {
 	    const vm = this;
 	    vm.deleteSubscribe = deleteSubscribe;
 	    vm.getAll = getAll;
 	    vm.getFav = getFav;
 	    vm.getFeed = getFeed;
-	    vm.getSubscription = getSubscription;
+	    vm.url = 'https://zerda-reader-mockback.gomix.me/';
+	    //vm.getSubscription = getSubscription;
 
-	    function getSubscription() {
-	      vm.subscriptions = '';
-	      $http({
-	        method: 'GET',
-	        url: 'https://zerda-reader-mockback.gomix.me/subscription',
-	      }).then(function (data) {
-	        vm.subscriptions = data.data;
-	      }).catch(function (data) {
-	        console.log('error');
-	      });
-	    }
+	    // function getSubscription() {
+	    //   vm.subscriptions = '';
+	    //   $http({
+	    //     method: 'GET',
+	    //     url: 'https://zerda-reader-mockback.gomix.me/subscription',
+	    //   }).then(function (data) {
+	    //     vm.subscriptions = data.data;
+	    //   }).catch(function (data) {
+	    //     console.log('error');
+	    //   });
+	    // }
+
+	    // vm.subs = SidebarService.get();
+	    // console.log(vm.subs);
+
+	    SidebarService.query().$promise.then(function(data) {
+	      vm.subscriptions = data;
+	    }, function(errResponse) {
+	     // fail
+	    });
+
+
 
 	    function getAll() {
 	      $http({
@@ -38341,6 +38356,27 @@
 
 
 	})(window, window.angular);
+
+
+/***/ },
+/* 33 */,
+/* 34 */
+/***/ function(module, exports) {
+
+	'use strict'
+
+	angular
+	  .module('zerdaReader')
+	  .service('SidebarService', SidebarService);
+	  const url = 'https://zerda-reader-mockback.gomix.me/';
+
+	function SidebarService($resource) {
+	  //var endPoint = 'subscription';
+	  return $resource(url+'subscription', {}, {});
+	  //   favs: $resource(url+'favorites', {}, {}),
+	  //   all: $resource(url+'feed', {}, {})
+	  // }
+	};
 
 
 /***/ }

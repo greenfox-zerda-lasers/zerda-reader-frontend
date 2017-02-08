@@ -19,6 +19,9 @@ require('./style/home.scss');
 // Router:
 require('./router.js');
 
+// Services:
+require('./app/sidebar/sidebar.service.js')
+
 // All the controllers:
 require('./app/login/login.controller.js');
 require('./app/signup/signup.controller.js');
