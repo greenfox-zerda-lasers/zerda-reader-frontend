@@ -37423,9 +37423,9 @@
 	    .module('zerdaReader')
 	    .controller('MainlistController', MainlistController);
 
-	  MainlistController.$inject = ['$location', '$rootScope', '$http'];
+	  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
 
-	  function MainlistController($location, $rootScope, $http) {
+	  function MainlistController($location, $rootScope, $http, APIFactory) {
 	    const vm = this;
 	    vm.makeActive = makeActive;
 	    vm.favoriteHandling = favoriteHandling;
@@ -37446,15 +37446,8 @@
 	      }
 	    }
 
-	    function favoriteHandling(id, favorite) {
-	      $http({
-	        method: 'PUT',
-	        data: {
-	          item_id: id
-	        },
-	        url: 'https://zerda-reader-mockback.gomix.me/favorites',
-	      }).then(function (data) {
-
+	    function favoriteHandling(id) {
+	      APIFactory.putItem('favorites', id).then(function (data) {
 	      }).catch(function (data) {
 	        console.log('error');
 	      });
@@ -37467,14 +37460,6 @@
 	    })();
 	  }
 	})();
-
-	// $scope.changeFavoriteIcon = function ($index){
-	//       if ($scope.class === 'uncheckedstar') {
-	//         $scope.class = 'checkedstar';
-	//       } else {
-	//         $scope.class = 'uncheckedstar';
-	//     };
-	//   }
 
 
 /***/ },
@@ -38551,6 +38536,30 @@
 	  APIFactory.deleteItem = function (endpoint) {
 	    return $http.delete(url+endpoint);
 	  };
+
+	  APIFactory.putItem = function(endpoint, id){
+	    return $http.put(url+endpoint, {item_id: id});
+	  }
+
+	  // dataFactory.getCustomer = function (id) {
+	  //     return $http.get(urlBase + '/' + id);
+	  // };
+	  //
+	  // dataFactory.insertCustomer = function (cust) {
+	  //     return $http.post(urlBase, cust);
+	  // };
+	  //
+	  // dataFactory.updateCustomer = function (cust) {
+	  //     return $http.put(urlBase + '/' + cust.ID, cust)
+	  // };
+	  //
+	  // dataFactory.deleteCustomer = function (id) {
+	  //     return $http.delete(urlBase + '/' + id);
+	  // };
+	  //
+	  // dataFactory.getOrders = function (id) {
+	  //     return $http.get(urlBase + '/' + id + '/orders');
+	  // };
 
 	  return APIFactory;
 	};
