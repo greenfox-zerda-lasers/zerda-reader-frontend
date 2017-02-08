@@ -5,7 +5,8 @@ require('./lib/angular.js');
 require('./lib/angular-route.min.js');
 require('./lib/angular-animate.min.js');
 require('./lib/angular-mocks.js');
-require('./node_modules/angular-resource/angular-resource.js')
+require('./node_modules/angular-resource/angular-resource.js');
+require('./node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js');
 
 // Import Semantic UI modules (styles):
 require('./node_modules/semantic-ui/dist/semantic.min.css');
@@ -20,7 +21,7 @@ require('./style/home.scss');
 require('./router.js');
 
 // Services:
-require('./app/sidebar/sidebar.service.js')
+require('./app/sidebar/api.factory.js')
 
 // All the controllers:
 require('./app/login/login.controller.js');

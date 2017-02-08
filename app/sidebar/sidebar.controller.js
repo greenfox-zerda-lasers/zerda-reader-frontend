@@ -3,57 +3,35 @@
     .module('zerdaReader')
     .controller('SidebarController', SidebarController);
 
-  SidebarController.$inject = ['$location', '$rootScope', '$http', 'SidebarService'];
+  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
 
-  function SidebarController($location, $rootScope, $http, SidebarService) {
+  function SidebarController($location, $rootScope, $http, APIFactory) {
     const vm = this;
     vm.deleteSubscribe = deleteSubscribe;
+    vm.getSubs = getSubs;
     vm.getAll = getAll;
     vm.getFav = getFav;
     vm.getFeed = getFeed;
-    vm.url = 'https://zerda-reader-mockback.gomix.me/';
-    //vm.getSubscription = getSubscription;
 
-    // function getSubscription() {
-    //   vm.subscriptions = '';
-    //   $http({
-    //     method: 'GET',
-    //     url: 'https://zerda-reader-mockback.gomix.me/subscription',
-    //   }).then(function (data) {
-    //     vm.subscriptions = data.data;
-    //   }).catch(function (data) {
-    //     console.log('error');
-    //   });
-    // }
+    function getSubs(){
+      APIFactory.getData('subscription').then(function(data) {
+        vm.subscriptions = data.data;
+      }, function(errResponse) {
+        console.error('Error occurred')
+      });
+    }
 
-    // vm.subs = SidebarService.get();
-    // console.log(vm.subs);
-
-    SidebarService.query().$promise.then(function(data) {
-      vm.subscriptions = data;
-    }, function(errResponse) {
-     // fail
-    });
-
-
-
-    function getAll() {
-      $http({
-        method: 'GET',
-        url: 'https://zerda-reader-mockback.gomix.me/feed',
-      }).then(function (data) {
+    function getAll(){
+      APIFactory.getData('feed').then(function(data) {
         vm.articles = data.data.feed;
         $rootScope.$broadcast('feeditem', vm.articles);
-      }).catch(function (data) {
-        console.log('error');
+      }, function(errResponse) {
+        console.error('Error occurred');
       });
     }
 
     function getFav() {
-      $http({
-        method: 'GET',
-        url: 'https://zerda-reader-mockback.gomix.me/favorites',
-      }).then(function (data) {
+      APIFactory.getData('favorites').then(function (data) {
         vm.articles = data.data;
         $rootScope.$broadcast('feeditem', vm.articles);
       }).catch(function (data) {
@@ -62,23 +40,19 @@
     }
 
     function getFeed($index, id) {
-      $http({
-        method: 'GET',
-        url: 'https://zerda-reader-mockback.gomix.me/feed/43675'
-      }).then(function (data) {
+      vm.clickitem($index);
+      var id = 43673;
+      APIFactory.getData('feed/'+id).then(function (data) {
         vm.articles = (data.data);
         $rootScope.$broadcast('feeditem', vm.articles);
       }).catch(function (data) {
         console.log('error');
       });
     };
+
     function deleteSubscribe(id) {
-      let feedId = id;
-      $http({
-        method: 'DELETE',
-        url: 'https://zerda-reader-mockback.gomix.me/subscribe/'+feedId
-      }).then(function (data) {
-        vm.getSubscription();
+      APIFactory.deleteItem('subscribe/'+id).then(function (data) {
+        vm.getSubs();
       }).catch(function (data) {
         console.log('error');
       })
@@ -86,18 +60,17 @@
 
     (function () {
       $rootScope.$on('getsubscription', function (event) {
-        getSubscription();
+        getSubs();
       });
     })();
+
+    vm.clickitem = function($index){
+      vm.subscriptions.map( function ( folder ) {
+        folder.active = false;
+      });
+      vm.subscriptions[ $index ].active = true;
+    }
+
   }
+
 })();
-//
-//
-//   $scope.clickitem = function($index){
-//     $scope.subscriptions.map( function ( folder ) {
-//       folder.active = false;
-//     });
-//     $scope.subscriptions[ $index ].active = true;
-//   }
-//
-//

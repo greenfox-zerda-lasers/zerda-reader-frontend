@@ -40,7 +40,7 @@
       });
     }
 
-    (function () {
+    (function listenFeedItems() {
       $rootScope.$on('feeditem', function (event, items) {
         vm.articles = items;
       });
