@@ -7,6 +7,7 @@
     "test": "test"
   },
   "dependencies": {
+    "angular-resource": "^1.6.2",
     "semantic-ui": "^2.2.7"
   },
   "devDependencies": {
