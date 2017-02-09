@@ -5,10 +5,7 @@ angular
   .factory('APIFactory', APIFactory);
   const url = 'https://zerda-reader-mockback.gomix.me/';
 
-function APIFactory($resource, $http) {
-
-  // console.log('alma')
-  // return $resource('https://zerda-reader-mockback.gomix.me/:end', {end: '@end'});
+function APIFactory($http) {
 
   var APIFactory = {};
 

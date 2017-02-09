@@ -38206,10 +38206,7 @@
 	  .factory('APIFactory', APIFactory);
 	  const url = 'https://zerda-reader-mockback.gomix.me/';
 
-	function APIFactory($resource, $http) {
-
-	  // console.log('alma')
-	  // return $resource('https://zerda-reader-mockback.gomix.me/:end', {end: '@end'});
+	function APIFactory($http) {
 
 	  var APIFactory = {};
 
@@ -38394,7 +38391,7 @@
 	    vm.getAll = getAll;
 	    vm.getFav = getFav;
 	    vm.getFeed = getFeed;
-	    vm.allActivated = false;
+	    vm.allActivated = true;
 
 
 	    function getSubs(){
@@ -38421,6 +38418,8 @@
 	        console.error('Error occurred');
 	      });
 	    }
+
+	    vm.getAll();
 
 	    function getFav() {
 	      APIFactory.getData('favorites').then(function (data) {

@@ -12,7 +12,7 @@
     vm.getAll = getAll;
     vm.getFav = getFav;
     vm.getFeed = getFeed;
-    vm.allActivated = false;
+    vm.allActivated = true;
 
 
     function getSubs(){
@@ -39,6 +39,8 @@
         console.error('Error occurred');
       });
     }
+
+    vm.getAll();
 
     function getFav() {
       APIFactory.getData('favorites').then(function (data) {
