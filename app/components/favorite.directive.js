@@ -7,17 +7,34 @@
 
   function favoriteIcon() {
     let directive = {
-      restrict: "E",
+      restrict: 'E',
       scope: {
         article: '=',
+        color: '=?',
       },
       templateUrl: 'app/components/favorite.directive.html',
-      link: function(scope) {
-        scope.click = function(){
-          console.log(scope.article);
-        }
-      }
+      link: link,
     };
     return directive;
+
+    function link(scope, element, attrs) {
+      scope.color = scope.article.favorite
+      scope.favHandling = function () {
+        // scope.color = scope.article.favorite;
+        console.log('jhgj');
+        // console.log(scope.favoriteCtrl.article, scope.favoriteCtrl.color);
+      }
+    }
+
+    // FavoriteController.inject = ['$scope']
+
+    // function FavoriteController() {
+    //   let vm = this
+      // vm.color = true
+
+      // vm.color = vm.article.favorite;
+    // }
   }
+
+
 })();

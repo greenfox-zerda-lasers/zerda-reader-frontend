@@ -7,7 +7,7 @@
             {{article.title}}
           <div class="right floated content" style="display: inline-block">
             <favorite-icon article="article"></favorite-icon>
-            <!-- <i class="ui star icon" ng-class="{'yellow' : toggle || article.favorite ? 'yellow' : ''}" ng-click="mainCtrl.favoriteHandling(article.id); toggle = !toggle"></i> -->
+            <!-- <i class="ui star icon" ng-class="{'yellow' : toggle || article.favorite ? 'yellow' : ''}" ng-click="mainCtrl.favoriteHandling(article.id); toggle = !toggle">{{toggle}}</i> -->
           </div>
           <div id="feed-date" class="right floated content" style="display: inline-block">
             {{article.created | date: 'HH / dd / MMM'}}
