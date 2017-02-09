@@ -3,9 +3,9 @@
     .module('zerdaReader')
     .controller('MainlistController', MainlistController);
 
-  MainlistController.$inject = ['$location', '$rootScope', '$http'];
+  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
 
-  function MainlistController($location, $rootScope, $http) {
+  function MainlistController($location, $rootScope, $http, APIFactory) {
     const vm = this;
     vm.makeActive = makeActive;
     vm.favoriteHandling = favoriteHandling;
@@ -27,15 +27,9 @@
     }
 
     function favoriteHandling(id) {
-      $http({
-        method: 'PUT',
-        data: {
-          item_id: id
-        },
-        url: 'https://zerda-reader-mockback.gomix.me/favorites',
-      }).then(function (data) {
+      APIFactory.putFav(id).then(function (data) {
       }).catch(function (data) {
-        console.log('error');
+        console.errod('Change favorite status failed');
       });
     }
     // function changeFavoriteIcon($index){

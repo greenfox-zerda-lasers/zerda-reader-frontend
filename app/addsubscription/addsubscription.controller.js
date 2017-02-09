@@ -3,9 +3,9 @@
     .module('zerdaReader')
     .controller('SubscribeController', SubscribeController);
 
-  SubscribeController.$inject = ['$location', '$rootScope', '$http'];
+  SubscribeController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
 
-  function SubscribeController($location, $rootScope, $http) {
+  function SubscribeController($location, $rootScope, $http, APIFactory) {
     const vm = this;
     vm.addSubscribe = addSubscribe;
     vm.makeVisible = makeVisible;
@@ -18,18 +18,13 @@
         vm.visible = 'visible';
       }
     }
+
     function addSubscribe() {
       if (vm.newRss !== '') {
-        $http({
-          method: 'POST',
-          data: {
-            feed: vm.newRss,
-          },
-          url: 'https://zerda-reader-mockback.gomix.me/subscribe',
-        }).then( function (data) {
+        APIFactory.postRSS(vm.newRss).then( function (data) {
           $rootScope.$broadcast('getsubscription');
         }).catch(function (data) {
-          console.log('error');
+          console.error('Connection failed');
         });
       }
       vm.newRss = '';

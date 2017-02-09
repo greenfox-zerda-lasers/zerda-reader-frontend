@@ -30,7 +30,7 @@
             vm.password = '';
           }
         }).catch(function (data) {
-          console.log('error');
+          console.error('error occured');
         });
       }
     }

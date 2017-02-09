@@ -19,6 +19,7 @@ module.exports = function (config) {
       'node_modules/angular-route/angular-route.js',
       'app/login/login.controller.spec.js',
       'app/signup/signup.controller.spec.js',
+      'app/addsubscription/addsubscription.controller.spec.js',
     ],
 
 

@@ -7,54 +7,69 @@
 
   function SidebarController($location, $rootScope, $http, APIFactory) {
     const vm = this;
-    vm.deleteSubscribe = deleteSubscribe;
     vm.getSubs = getSubs;
+    vm.deleteSubscribe = deleteSubscribe;
     vm.getAll = getAll;
     vm.getFav = getFav;
     vm.getFeed = getFeed;
+    vm.allActivated = true;
+
 
     function getSubs(){
-      APIFactory.getData('subscription').then(function(data) {
+      APIFactory.getSubs().then(function(data) {
         vm.subscriptions = data.data;
+        vm.subs
       }, function(errResponse) {
-        console.error('Error occurred')
+        console.error('Failed to load subscriptions')
       });
     }
 
     function getAll(){
-      APIFactory.getData('feed').then(function(data) {
+      APIFactory.getAll().then(function(data) {
         vm.articles = data.data.feed;
         $rootScope.$broadcast('feeditem', vm.articles);
+        vm.allActivated = true;
+        vm.favActivated = false;
+        vm.subscriptions.forEach( function ( folder ) {
+          folder.active = false;
+        });
       }, function(errResponse) {
-        console.error('Error occurred');
+        console.error('Failed to load all feed items');
       });
     }
 
+    vm.getAll();
+
     function getFav() {
-      APIFactory.getData('favorites').then(function (data) {
+      APIFactory.getFav('favorites').then(function (data) {
         vm.articles = data.data;
         $rootScope.$broadcast('feeditem', vm.articles);
+        vm.allActivated = false;
+        vm.favActivated = true;
+        vm.subscriptions.forEach( function ( folder ) {
+          folder.active = false;
+        });
       }).catch(function (data) {
-        console.log('error');
+        console.error('Failed to load favorites');
       });
     }
 
     function getFeed($index, id) {
       vm.clickitem($index);
       var id = 43673;
-      APIFactory.getData('feed/'+id).then(function (data) {
+      APIFactory.getFeed(id).then(function (data) {
         vm.articles = (data.data);
         $rootScope.$broadcast('feeditem', vm.articles);
       }).catch(function (data) {
-        console.log('error');
+        console.error('Failed to load feed items');
       });
     };
 
     function deleteSubscribe(id) {
-      APIFactory.deleteItem('subscribe/'+id).then(function (data) {
+      APIFactory.deleteItem(id).then(function (data) {
         vm.getSubs();
       }).catch(function (data) {
-        console.log('error');
+        console.error('Failed to delete subscription');
       })
     }
 
@@ -69,6 +84,8 @@
         folder.active = false;
       });
       vm.subscriptions[ $index ].active = true;
+      vm.allActivated = false;
+      vm.favActivated = false;
     }
 
   }
