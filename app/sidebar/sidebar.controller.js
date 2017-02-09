@@ -22,8 +22,14 @@
       });
     }
 
+<<<<<<< HEAD
     function getAll() {
       APIFactory.getAll().then(function (data) {
+=======
+    function getAll(){
+      APIFactory.getAll().then(function(data) {
+        console.log(data)
+>>>>>>> f39b73e2448208e11547225fc8e58a3b67b7f763
         vm.articles = data.data.feed;
         $rootScope.$broadcast('feeditem', vm.articles);
         vm.allActivated = true;
