@@ -29,7 +29,7 @@
     function favoriteHandling(id) {
       APIFactory.putFav(id).then(function (data) {
       }).catch(function (data) {
-        console.log('error');
+        console.errod('Change favorite status failed');
       });
     }
 

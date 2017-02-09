@@ -38328,7 +38328,7 @@
 	            vm.password = '';
 	          }
 	        }).catch(function (data) {
-	          console.log('error');
+	          console.error('error occured');
 	        });
 	      }
 	    }
@@ -38351,10 +38351,9 @@
 	  HomeController.$inject = ['$location', '$rootScope'];
 
 	  function HomeController($location, $rootScope) {
-	    // const vm = this;
-	    // vm.checkToken = checkToken;
 	    (function () {
-	      if (localStorage.length === 0) {
+	      console.log(localStorage.token)
+	      if (localStorage.token.length === 0) {
 	        $location.path('/login');
 	      }
 	    })();
@@ -38411,12 +38410,11 @@
 	        vm.subscriptions = data.data;
 	        vm.subs
 	      }, function(errResponse) {
-	        console.error('Error occurred')
+	        console.error('Failed to load subscriptions')
 	      });
 	    }
 
 	    function getAll(){
-	      console.log(vm.allActivated);
 	      APIFactory.getAll().then(function(data) {
 	        vm.articles = data.data.feed;
 	        $rootScope.$broadcast('feeditem', vm.articles);
@@ -38425,9 +38423,8 @@
 	        vm.subscriptions.forEach( function ( folder ) {
 	          folder.active = false;
 	        });
-	        console.log(vm.allActivated);
 	      }, function(errResponse) {
-	        console.error('Error occurred');
+	        console.error('Failed to load all feed items');
 	      });
 	    }
 
@@ -38443,7 +38440,7 @@
 	          folder.active = false;
 	        });
 	      }).catch(function (data) {
-	        console.log('error');
+	        console.error('Failed to load favorites');
 	      });
 	    }
 
@@ -38454,7 +38451,7 @@
 	        vm.articles = (data.data);
 	        $rootScope.$broadcast('feeditem', vm.articles);
 	      }).catch(function (data) {
-	        console.log('error');
+	        console.error('Failed to load feed items');
 	      });
 	    };
 
@@ -38462,7 +38459,7 @@
 	      APIFactory.deleteItem(id).then(function (data) {
 	        vm.getSubs();
 	      }).catch(function (data) {
-	        console.log('error');
+	        console.error('Failed to delete subscription');
 	      })
 	    }
 
@@ -38516,7 +38513,7 @@
 	        APIFactory.postRSS(vm.newRss).then( function (data) {
 	          $rootScope.$broadcast('getsubscription');
 	        }).catch(function (data) {
-	          console.log('error');
+	          console.error('Connection failed');
 	        });
 	      }
 	      vm.newRss = '';
@@ -38560,7 +38557,7 @@
 	    function favoriteHandling(id) {
 	      APIFactory.putFav(id).then(function (data) {
 	      }).catch(function (data) {
-	        console.log('error');
+	        console.errod('Change favorite status failed');
 	      });
 	    }
 

@@ -24,7 +24,7 @@
         APIFactory.postRSS(vm.newRss).then( function (data) {
           $rootScope.$broadcast('getsubscription');
         }).catch(function (data) {
-          console.log('error');
+          console.error('Connection failed');
         });
       }
       vm.newRss = '';
