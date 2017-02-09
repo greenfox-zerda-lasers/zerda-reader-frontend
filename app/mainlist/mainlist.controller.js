@@ -10,7 +10,7 @@
     vm.makeActive = makeActive;
 
     function makeActive($index, event) {
-      if( event.target.classList.contains('star')){
+      if (event.target.classList.contains('star')) {
         return;
       }
       if (vm.articles[$index].active === true) {

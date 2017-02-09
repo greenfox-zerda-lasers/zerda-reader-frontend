@@ -20,8 +20,6 @@ describe('SubscribeController controller', function () {
       popup = angular.element('<div id="addpopup" class="ui flowing popup top left transition {{subsCtrl.visible}}" ng-click="subsCtrl.makeVisible()"></div>')
       compiled = $compile(element);
       compiledPopup = $compile(popup);
-      
-
     });
   });
 
