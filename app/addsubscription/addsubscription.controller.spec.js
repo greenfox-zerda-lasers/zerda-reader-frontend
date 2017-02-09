@@ -8,19 +8,18 @@ describe('SubscribeController controller', function () {
   var popup
   var compiled
   var compiledPopup
+  var compiledElement
+  var scope
 
   beforeEach(function () {
     module('zerdaReader');
 
-    inject(function ($controller, $httpBackend, $compile) {
+    inject(function ($controller, $httpBackend, $compile, $rootScope) {
       httpBackend = $httpBackend;
       SubscribeController = $controller('SubscribeController');
       compile = $compile;
-      element = angular.element('<div id="add" class="ui button" ng-click="subsCtrl.makeVisible()"Add subscription</div>');
-      popup = angular.element('<div id="addpopup" class="ui flowing popup top left transition {{subsCtrl.visible}}" ng-click="subsCtrl.makeVisible()"></div>')
-      compiled = $compile(element);
-      compiledPopup = $compile(popup);
-      
+      scope = $rootScope;
+
 
     });
   });
@@ -36,9 +35,15 @@ describe('SubscribeController controller', function () {
 
   describe('makeVisible', function () {
 
-    it('should toggle class visible by click', function() {
-      element.click();
-      expect(compiledPopup.hasClass('visible')).toBe(true);
+    it('should toggle class visible by click', function($compile, scope) {
+      element = angular.element('<div id="add" class="ui button" ng-click="subsCtrl.makeVisible()">Add subscription'+''+'</div>');
+      console.log(element);
+      compiledElement = $compile(element)(scope);
+      console.log(compiledElement);
+      var popup = element.find('popup');
+      console.log(popup);
+      popup.triggerHandler('click');
+      expect(popup.hasClass('visible')).toBe(true);
     });
 
   })

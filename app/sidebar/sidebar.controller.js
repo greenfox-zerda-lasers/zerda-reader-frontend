@@ -26,6 +26,7 @@
 
     function getAll(){
       APIFactory.getAll().then(function(data) {
+        console.log(data)
         vm.articles = data.data.feed;
         $rootScope.$broadcast('feeditem', vm.articles);
         vm.allActivated = true;

@@ -38205,6 +38205,7 @@
 	  .module('zerdaReader')
 	  .factory('APIFactory', APIFactory);
 	  const url = 'https://zerda-reader-mockback.gomix.me/';
+	  const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
 
 	function APIFactory($http) {
 
@@ -38416,6 +38417,7 @@
 
 	    function getAll(){
 	      APIFactory.getAll().then(function(data) {
+	        console.log(data)
 	        vm.articles = data.data.feed;
 	        $rootScope.$broadcast('feeditem', vm.articles);
 	        vm.allActivated = true;

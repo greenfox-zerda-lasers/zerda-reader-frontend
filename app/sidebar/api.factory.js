@@ -4,6 +4,7 @@ angular
   .module('zerdaReader')
   .factory('APIFactory', APIFactory);
   const url = 'https://zerda-reader-mockback.gomix.me/';
+  const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
 
 function APIFactory($http) {
 
