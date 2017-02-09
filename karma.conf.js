@@ -20,6 +20,7 @@ module.exports = function (config) {
       'app/addsubscription/addsubscription.html',
       'app/login/login.controller.spec.js',
       'app/signup/signup.controller.spec.js',
+      'app/addsubscription/addsubscription.controller.js',
       'app/addsubscription/addsubscription.controller.spec.js',
     ],
 

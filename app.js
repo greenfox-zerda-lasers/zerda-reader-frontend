@@ -21,7 +21,10 @@ require('./style/home.scss');
 require('./router.js');
 
 // Services:
-require('./app/sidebar/api.factory.js');
+require('./app/ajaxrequest/api.factory.js');
+
+// Directives:
+require('./app/components/favorite.directive.js');
 
 // All the controllers:
 require('./app/login/login.controller.js');

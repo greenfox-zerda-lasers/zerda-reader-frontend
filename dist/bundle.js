@@ -67,7 +67,10 @@
 	__webpack_require__(26);
 
 	// Services:
-	__webpack_require__(27);
+	__webpack_require__(35);
+
+	// Directives:
+	__webpack_require__(36);
 
 	// All the controllers:
 	__webpack_require__(28);
@@ -38170,7 +38173,7 @@
 /***/ function(module, exports) {
 
 	(function () {
-	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate', 'ngResource', 'infinite-scroll']);
+	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngResource', 'infinite-scroll']);
 
 	  zerdaReader.config(['$routeProvider', function ($routeProvider) {
 	    $routeProvider
@@ -38196,54 +38199,7 @@
 
 
 /***/ },
-/* 27 */
-/***/ function(module, exports) {
-
-	'use strict'
-
-	angular
-	  .module('zerdaReader')
-	  .factory('APIFactory', APIFactory);
-	  const url = 'https://zerda-reader-mockback.gomix.me/';
-	  const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
-
-	function APIFactory($http) {
-
-	  var APIFactory = {};
-
-	  APIFactory.getSubs = function () {
-	    return $http.get(url+'subscription');
-	  };
-
-	  APIFactory.getAll = function () {
-	    return $http.get(url+'feed');
-	  };
-
-	  APIFactory.getFav = function () {
-	    return $http.get(url+'favorites');
-	  };
-
-	  APIFactory.getFeed = function (id) {
-	    return $http.get(url+'feed/'+id);
-	  };
-
-	  APIFactory.deleteItem = function (id) {
-	    return $http.delete(url+'subscribe/'+id);
-	  };
-
-	  APIFactory.putFav = function(id){
-	    return $http.put(url+'favorites', {item_id: id});
-	  }
-
-	  APIFactory.postRSS = function(rss){
-	    return $http.post(url+'subscribe', {feed: rss});
-	  }
-
-	  return APIFactory;
-	};
-
-
-/***/ },
+/* 27 */,
 /* 28 */
 /***/ function(module, exports) {
 
@@ -38538,14 +38494,11 @@
 	  function MainlistController($location, $rootScope, $http, APIFactory) {
 	    const vm = this;
 	    vm.makeActive = makeActive;
-	    vm.favoriteHandling = favoriteHandling;
-	    // vm.getItem = getItem;
-	    // $rootScope.$on('feeditem', function (event, items) {
-	    //   vm.articles = items;
-	    // });
 
-	    function makeActive($index) {
-	      console.log(vm.articles[$index].active);
+	    function makeActive($index, event) {
+	      if( event.target.classList.contains('star')){
+	        return;
+	      }
 	      if (vm.articles[$index].active === true) {
 	        vm.articles[$index].active = false;
 	      } else {
@@ -38556,18 +38509,97 @@
 	      }
 	    }
 
-	    function favoriteHandling(id) {
-	      APIFactory.putFav(id).then(function (data) {
-	      }).catch(function (data) {
-	        console.errod('Change favorite status failed');
-	      });
-	    }
-
 	    (function listenFeedItems() {
 	      $rootScope.$on('feeditem', function (event, items) {
 	        vm.articles = items;
 	      });
 	    })();
+	  }
+	})();
+
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+	'use strict'
+
+	angular
+	  .module('zerdaReader')
+	  .factory('APIFactory', APIFactory);
+	  const url = 'https://zerda-reader-mockback.gomix.me/';
+	  const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
+
+	function APIFactory($http) {
+
+	  var APIFactory = {};
+
+	  APIFactory.getSubs = function () {
+	    return $http.get(url+'subscription');
+	  };
+
+	  APIFactory.getAll = function () {
+	    return $http.get(url+'feed');
+	  };
+
+	  APIFactory.getFav = function () {
+	    return $http.get(url+'favorites');
+	  };
+
+	  APIFactory.getFeed = function (id) {
+	    return $http.get(url+'feed/'+id);
+	  };
+
+	  APIFactory.deleteItem = function (id) {
+	    return $http.delete(url+'subscribe/'+id);
+	  };
+
+	  APIFactory.putFav = function(id){
+	    return $http.put(url+'favorites', {item_id: id});
+	  }
+
+	  APIFactory.postRSS = function(rss){
+	    return $http.post(url+'subscribe', {feed: rss});
+	  }
+
+	  return APIFactory;
+	};
+
+
+/***/ },
+/* 36 */
+/***/ function(module, exports) {
+
+	(function () {
+	  'use strict';
+
+	  angular
+	    .module('zerdaReader')
+	    .directive('favoriteIcon', favoriteIcon);
+
+	  function favoriteIcon(APIFactory) {
+	    let directive = {
+	      restrict: 'E',
+	      scope: {
+	        article: '=',
+	        color: '=?',
+	      },
+	      templateUrl: 'app/components/favorite.directive.html',
+	      link: link,
+	    };
+	    return directive;
+
+	    function link(scope, element, attrs) {
+	      scope.color = scope.article.favorite;
+
+	      scope.favHandling = function (id) {
+	        scope.color = !scope.color;
+	        APIFactory.putFav(id).then(function (data) {
+	        }).catch(function (data) {
+	          console.errod('Change favorite status failed');
+	        });
+	      };
+	    }
 	  }
 	})();
 
