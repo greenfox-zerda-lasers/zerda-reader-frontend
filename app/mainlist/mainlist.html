@@ -2,21 +2,24 @@
   <div class="ui middle aligned divided list" infinite-scroll="listenFeedItems()" infinite-scroll-container="'#mainlist'">
     <div ng-repeat="article in mainCtrl.articles | filter: search" class="item nomargin">
       <div class="mainlist-item">
-        <div class="{{mainCtrl.article.active ? 'active' : ''}} title" ng-click="mainCtrl.makeActive($index)">
+
+        <div class="{{mainCtrl.article.active ? 'active' : ''}} title" ng-click="mainCtrl.makeActive($index, $event)">
           <i class="ui user icon"></i>
             {{article.title}}
-          <div class="right floated content" style="display: inline-block">
-            <favorite-icon article="article"></favorite-icon>
-            <!-- <i class="ui star icon" ng-class="{'yellow' : toggle || article.favorite ? 'yellow' : ''}" ng-click="mainCtrl.favoriteHandling(article.id); toggle = !toggle">{{toggle}}</i> -->
-          </div>
           <div id="feed-date" class="right floated content" style="display: inline-block">
             {{article.created | date: 'HH / dd / MMM'}}
           </div>
+          <div class="right floated content" style="display: inline-block">
+            <favorite-icon article="article"></favorite-icon>
+          </div>
         </div>
+
+
         <div id="description" class="{{article.active ? 'active' : ''}} content">
           <a>{{article.url}}</a></br>
           {{article.description}}
         </div>
+
       </div>
     </div>
   </div>

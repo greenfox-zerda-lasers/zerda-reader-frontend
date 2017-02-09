@@ -5,7 +5,7 @@
     .module('zerdaReader')
     .directive('favoriteIcon', favoriteIcon);
 
-  function favoriteIcon() {
+  function favoriteIcon(APIFactory) {
     let directive = {
       restrict: 'E',
       scope: {
@@ -18,23 +18,15 @@
     return directive;
 
     function link(scope, element, attrs) {
-      scope.color = scope.article.favorite
-      scope.favHandling = function () {
-        // scope.color = scope.article.favorite;
-        console.log('jhgj');
-        // console.log(scope.favoriteCtrl.article, scope.favoriteCtrl.color);
-      }
+      scope.color = scope.article.favorite;
+
+      scope.favHandling = function (id) {
+        scope.color = !scope.color;
+        APIFactory.putFav(id).then(function (data) {
+        }).catch(function (data) {
+          console.errod('Change favorite status failed');
+        });
+      };
     }
-
-    // FavoriteController.inject = ['$scope']
-
-    // function FavoriteController() {
-    //   let vm = this
-      // vm.color = true
-
-      // vm.color = vm.article.favorite;
-    // }
   }
-
-
 })();
