@@ -21,7 +21,7 @@
 
     function addSubscribe() {
       if (vm.newRss !== '') {
-        APIFactory.postRSS('subscribe', vm.newRss).then( function (data) {
+        APIFactory.postRSS(vm.newRss).then( function (data) {
           $rootScope.$broadcast('getsubscription');
         }).catch(function (data) {
           console.log('error');

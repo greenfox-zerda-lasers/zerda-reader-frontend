@@ -38210,20 +38210,32 @@
 
 	  var APIFactory = {};
 
-	  APIFactory.getData = function (endpoint) {
-	    return $http.get(url+endpoint);
+	  APIFactory.getSubs = function () {
+	    return $http.get(url+'subscription');
 	  };
 
-	  APIFactory.deleteItem = function (endpoint) {
-	    return $http.delete(url+endpoint);
+	  APIFactory.getAll = function () {
+	    return $http.get(url+'feed');
 	  };
 
-	  APIFactory.putFav = function(endpoint, id){
-	    return $http.put(url+endpoint, {item_id: id});
+	  APIFactory.getFav = function () {
+	    return $http.get(url+'favorites');
+	  };
+
+	  APIFactory.getFeed = function (id) {
+	    return $http.get(url+'feed/'+id);
+	  };
+
+	  APIFactory.deleteItem = function (id) {
+	    return $http.delete(url+'subscribe/'+id);
+	  };
+
+	  APIFactory.putFav = function(id){
+	    return $http.put(url+'favorites', {item_id: id});
 	  }
 
-	  APIFactory.postRSS = function(endpoint, rss){
-	    return $http.post(url+endpoint, {feed: rss});
+	  APIFactory.postRSS = function(rss){
+	    return $http.post(url+'subscribe', {feed: rss});
 	  }
 
 	  return APIFactory;
@@ -38395,7 +38407,7 @@
 
 
 	    function getSubs(){
-	      APIFactory.getData('subscription').then(function(data) {
+	      APIFactory.getSubs().then(function(data) {
 	        vm.subscriptions = data.data;
 	        vm.subs
 	      }, function(errResponse) {
@@ -38405,7 +38417,7 @@
 
 	    function getAll(){
 	      console.log(vm.allActivated);
-	      APIFactory.getData('feed').then(function(data) {
+	      APIFactory.getAll().then(function(data) {
 	        vm.articles = data.data.feed;
 	        $rootScope.$broadcast('feeditem', vm.articles);
 	        vm.allActivated = true;
@@ -38422,7 +38434,7 @@
 	    vm.getAll();
 
 	    function getFav() {
-	      APIFactory.getData('favorites').then(function (data) {
+	      APIFactory.getFav('favorites').then(function (data) {
 	        vm.articles = data.data;
 	        $rootScope.$broadcast('feeditem', vm.articles);
 	        vm.allActivated = false;
@@ -38438,7 +38450,7 @@
 	    function getFeed($index, id) {
 	      vm.clickitem($index);
 	      var id = 43673;
-	      APIFactory.getData('feed/'+id).then(function (data) {
+	      APIFactory.getFeed(id).then(function (data) {
 	        vm.articles = (data.data);
 	        $rootScope.$broadcast('feeditem', vm.articles);
 	      }).catch(function (data) {
@@ -38447,7 +38459,7 @@
 	    };
 
 	    function deleteSubscribe(id) {
-	      APIFactory.deleteItem('subscribe/'+id).then(function (data) {
+	      APIFactory.deleteItem(id).then(function (data) {
 	        vm.getSubs();
 	      }).catch(function (data) {
 	        console.log('error');
@@ -38501,7 +38513,7 @@
 
 	    function addSubscribe() {
 	      if (vm.newRss !== '') {
-	        APIFactory.postRSS('subscribe', vm.newRss).then( function (data) {
+	        APIFactory.postRSS(vm.newRss).then( function (data) {
 	          $rootScope.$broadcast('getsubscription');
 	        }).catch(function (data) {
 	          console.log('error');
@@ -38546,7 +38558,7 @@
 	    }
 
 	    function favoriteHandling(id) {
-	      APIFactory.putFav('favorites', id).then(function (data) {
+	      APIFactory.putFav(id).then(function (data) {
 	      }).catch(function (data) {
 	        console.log('error');
 	      });

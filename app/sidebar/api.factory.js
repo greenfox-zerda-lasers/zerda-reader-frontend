@@ -9,20 +9,32 @@ function APIFactory($http) {
 
   var APIFactory = {};
 
-  APIFactory.getData = function (endpoint) {
-    return $http.get(url+endpoint);
+  APIFactory.getSubs = function () {
+    return $http.get(url+'subscription');
   };
 
-  APIFactory.deleteItem = function (endpoint) {
-    return $http.delete(url+endpoint);
+  APIFactory.getAll = function () {
+    return $http.get(url+'feed');
   };
 
-  APIFactory.putFav = function(endpoint, id){
-    return $http.put(url+endpoint, {item_id: id});
+  APIFactory.getFav = function () {
+    return $http.get(url+'favorites');
+  };
+
+  APIFactory.getFeed = function (id) {
+    return $http.get(url+'feed/'+id);
+  };
+
+  APIFactory.deleteItem = function (id) {
+    return $http.delete(url+'subscribe/'+id);
+  };
+
+  APIFactory.putFav = function(id){
+    return $http.put(url+'favorites', {item_id: id});
   }
 
-  APIFactory.postRSS = function(endpoint, rss){
-    return $http.post(url+endpoint, {feed: rss});
+  APIFactory.postRSS = function(rss){
+    return $http.post(url+'subscribe', {feed: rss});
   }
 
   return APIFactory;
