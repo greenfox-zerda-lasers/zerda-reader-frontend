@@ -3,89 +3,91 @@
     .module('zerdaReader')
     .controller('SidebarController', SidebarController);
 
-  SidebarController.$inject = ['$location', '$rootScope', '$http'];
+  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
 
-  function SidebarController($location, $rootScope, $http) {
+  function SidebarController($location, $rootScope, $http, APIFactory) {
     const vm = this;
+    vm.getSubs = getSubs;
     vm.deleteSubscribe = deleteSubscribe;
     vm.getAll = getAll;
     vm.getFav = getFav;
     vm.getFeed = getFeed;
-    vm.getSubscription = getSubscription;
+    vm.allActivated = true;
 
-    function getSubscription() {
-      vm.subscriptions = '';
-      $http({
-        method: 'GET',
-        url: 'https://zerda-reader-mockback.gomix.me/subscription',
-      }).then(function (data) {
+
+    function getSubs(){
+      APIFactory.getSubs().then(function(data) {
         vm.subscriptions = data.data;
-      }).catch(function (data) {
-        console.log('error');
+        vm.subs
+      }, function(errResponse) {
+        console.error('Failed to load subscriptions')
       });
     }
 
-    function getAll() {
-      $http({
-        method: 'GET',
-        url: 'https://zerda-reader-mockback.gomix.me/feed',
-      }).then(function (data) {
+    function getAll(){
+      APIFactory.getAll().then(function(data) {
         vm.articles = data.data.feed;
         $rootScope.$broadcast('feeditem', vm.articles);
-      }).catch(function (data) {
-        console.log('error');
+        vm.allActivated = true;
+        vm.favActivated = false;
+        vm.subscriptions.forEach( function ( folder ) {
+          folder.active = false;
+        });
+      }, function(errResponse) {
+        console.error('Failed to load all feed items');
       });
     }
 
+    vm.getAll();
+
     function getFav() {
-      $http({
-        method: 'GET',
-        url: 'https://zerda-reader-mockback.gomix.me/favorites',
-      }).then(function (data) {
+      APIFactory.getFav('favorites').then(function (data) {
         vm.articles = data.data;
         $rootScope.$broadcast('feeditem', vm.articles);
+        vm.allActivated = false;
+        vm.favActivated = true;
+        vm.subscriptions.forEach( function ( folder ) {
+          folder.active = false;
+        });
       }).catch(function (data) {
-        console.log('error');
+        console.error('Failed to load favorites');
       });
     }
 
     function getFeed($index, id) {
-      $http({
-        method: 'GET',
-        url: 'https://zerda-reader-mockback.gomix.me/feed/43675'
-      }).then(function (data) {
+      vm.clickitem($index);
+      var id = 43673;
+      APIFactory.getFeed(id).then(function (data) {
         vm.articles = (data.data);
         $rootScope.$broadcast('feeditem', vm.articles);
       }).catch(function (data) {
-        console.log('error');
+        console.error('Failed to load feed items');
       });
     };
+
     function deleteSubscribe(id) {
-      let feedId = id;
-      $http({
-        method: 'DELETE',
-        url: 'https://zerda-reader-mockback.gomix.me/subscribe/'+feedId
-      }).then(function (data) {
-        vm.getSubscription();
+      APIFactory.deleteItem(id).then(function (data) {
+        vm.getSubs();
       }).catch(function (data) {
-        console.log('error');
+        console.error('Failed to delete subscription');
       })
     }
 
     (function () {
       $rootScope.$on('getsubscription', function (event) {
-        getSubscription();
+        getSubs();
       });
     })();
+
+    vm.clickitem = function($index){
+      vm.subscriptions.map( function ( folder ) {
+        folder.active = false;
+      });
+      vm.subscriptions[ $index ].active = true;
+      vm.allActivated = false;
+      vm.favActivated = false;
+    }
+
   }
+
 })();
-//
-//
-//   $scope.clickitem = function($index){
-//     $scope.subscriptions.map( function ( folder ) {
-//       folder.active = false;
-//     });
-//     $scope.subscriptions[ $index ].active = true;
-//   }
-//
-//

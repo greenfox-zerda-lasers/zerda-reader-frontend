@@ -44,27 +44,43 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
+	// Let's require all files that need to be bundled
+
+	// Import angular modules:
 	__webpack_require__(1);
 	__webpack_require__(2);
 	__webpack_require__(3);
 	__webpack_require__(4);
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./node_modules/angular-resource/angular-resource.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	// Import Semantic UI modules (styles):
 	__webpack_require__(5);
 	__webpack_require__(15);
 	__webpack_require__(17);
+
+	// Import custom Sass styling:
 	__webpack_require__(19);
 	__webpack_require__(21);
-	// require('./node_modules/ngstorage/ngStorage.js');
+
+	// Router:
 	__webpack_require__(24);
 
+	// Services:
 	__webpack_require__(25);
+
+	//Directives:
 	__webpack_require__(26);
+
+	// All the controllers:
 	__webpack_require__(27);
 	__webpack_require__(28);
 	__webpack_require__(29);
-	__webpack_require__(30);
 
+	__webpack_require__(30);
 	__webpack_require__(31);
+	__webpack_require__(32);
+	__webpack_require__(33);
 
 
 /***/ },
@@ -37107,7 +37123,8 @@
 /***/ function(module, exports) {
 
 	(function () {
-	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
+	  
+	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngResource', 'infinite-scroll']);
 
 	  zerdaReader.config(['$routeProvider', function ($routeProvider) {
 	    $routeProvider
@@ -37134,6 +37151,99 @@
 
 /***/ },
 /* 25 */
+/***/ function(module, exports) {
+
+	'use strict'
+
+	angular
+	  .module('zerdaReader')
+	  .factory('APIFactory', APIFactory);
+	  const url = 'https://zerda-reader-mockback.gomix.me/';
+
+	function APIFactory($http) {
+
+	  var APIFactory = {};
+
+	  APIFactory.getSubs = function () {
+	    return $http.get(url+'subscription');
+	  };
+
+	  APIFactory.getAll = function () {
+	    return $http.get(url+'feed');
+	  };
+
+	  APIFactory.getFav = function () {
+	    return $http.get(url+'favorites');
+	  };
+
+	  APIFactory.getFeed = function (id) {
+	    return $http.get(url+'feed/'+id);
+	  };
+
+	  APIFactory.deleteItem = function (id) {
+	    return $http.delete(url+'subscribe/'+id);
+	  };
+
+	  APIFactory.putFav = function(id){
+	    return $http.put(url+'favorites', {item_id: id});
+	  }
+
+	  APIFactory.postRSS = function(rss){
+	    return $http.post(url+'subscribe', {feed: rss});
+	  }
+
+	  return APIFactory;
+	};
+
+
+/***/ },
+/* 26 */
+/***/ function(module, exports) {
+
+	(function () {
+	  'use strict';
+
+	  angular
+	    .module('zerdaReader')
+	    .directive('favoriteIcon', favoriteIcon);
+
+	  function favoriteIcon() {
+	    let directive = {
+	      restrict: 'E',
+	      scope: {
+	        article: '=',
+	        color: '=?',
+	      },
+	      templateUrl: 'app/components/favorite.directive.html',
+	      link: link,
+	    };
+	    return directive;
+
+	    function link(scope, element, attrs) {
+	      scope.color = scope.article.favorite
+	      scope.favHandling = function () {
+	        // scope.color = scope.article.favorite;
+	        console.log('jhgj');
+	        // console.log(scope.favoriteCtrl.article, scope.favoriteCtrl.color);
+	      }
+	    }
+
+	    // FavoriteController.inject = ['$scope']
+
+	    // function FavoriteController() {
+	    //   let vm = this
+	      // vm.color = true
+
+	      // vm.color = vm.article.favorite;
+	    // }
+	  }
+
+
+	})();
+
+
+/***/ },
+/* 27 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -37183,7 +37293,7 @@
 
 
 /***/ },
-/* 26 */
+/* 28 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -37218,7 +37328,7 @@
 	            vm.password = '';
 	          }
 	        }).catch(function (data) {
-	          console.log('error');
+	          console.error('error occured');
 	        });
 	      }
 	    }
@@ -37230,7 +37340,29 @@
 
 
 /***/ },
-/* 27 */
+/* 29 */
+/***/ function(module, exports) {
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('HomeController', HomeController);
+
+	  HomeController.$inject = ['$location', '$rootScope'];
+
+	  function HomeController($location, $rootScope) {
+	    (function () {
+	      console.log(localStorage.token)
+	      if (localStorage.token.length === 0) {
+	        $location.path('/login');
+	      }
+	    })();
+	  }
+	})();
+
+
+/***/ },
+/* 30 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -37253,7 +37385,7 @@
 
 
 /***/ },
-/* 28 */
+/* 31 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -37261,96 +37393,98 @@
 	    .module('zerdaReader')
 	    .controller('SidebarController', SidebarController);
 
-	  SidebarController.$inject = ['$location', '$rootScope', '$http'];
+	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
 
-	  function SidebarController($location, $rootScope, $http) {
+	  function SidebarController($location, $rootScope, $http, APIFactory) {
 	    const vm = this;
+	    vm.getSubs = getSubs;
 	    vm.deleteSubscribe = deleteSubscribe;
 	    vm.getAll = getAll;
 	    vm.getFav = getFav;
 	    vm.getFeed = getFeed;
-	    vm.getSubscription = getSubscription;
+	    vm.allActivated = true;
 
-	    function getSubscription() {
-	      vm.subscriptions = '';
-	      $http({
-	        method: 'GET',
-	        url: 'https://zerda-reader-mockback.gomix.me/subscription',
-	      }).then(function (data) {
+
+	    function getSubs(){
+	      APIFactory.getSubs().then(function(data) {
 	        vm.subscriptions = data.data;
-	      }).catch(function (data) {
-	        console.log('error');
+	        vm.subs
+	      }, function(errResponse) {
+	        console.error('Failed to load subscriptions')
 	      });
 	    }
 
-	    function getAll() {
-	      $http({
-	        method: 'GET',
-	        url: 'https://zerda-reader-mockback.gomix.me/feed',
-	      }).then(function (data) {
+	    function getAll(){
+	      APIFactory.getAll().then(function(data) {
 	        vm.articles = data.data.feed;
 	        $rootScope.$broadcast('feeditem', vm.articles);
-	      }).catch(function (data) {
-	        console.log('error');
+	        vm.allActivated = true;
+	        vm.favActivated = false;
+	        vm.subscriptions.forEach( function ( folder ) {
+	          folder.active = false;
+	        });
+	      }, function(errResponse) {
+	        console.error('Failed to load all feed items');
 	      });
 	    }
 
+	    vm.getAll();
+
 	    function getFav() {
-	      $http({
-	        method: 'GET',
-	        url: 'https://zerda-reader-mockback.gomix.me/favorites',
-	      }).then(function (data) {
+	      APIFactory.getFav('favorites').then(function (data) {
 	        vm.articles = data.data;
 	        $rootScope.$broadcast('feeditem', vm.articles);
+	        vm.allActivated = false;
+	        vm.favActivated = true;
+	        vm.subscriptions.forEach( function ( folder ) {
+	          folder.active = false;
+	        });
 	      }).catch(function (data) {
-	        console.log('error');
+	        console.error('Failed to load favorites');
 	      });
 	    }
 
 	    function getFeed($index, id) {
-	      $http({
-	        method: 'GET',
-	        url: 'https://zerda-reader-mockback.gomix.me/feed/43675'
-	      }).then(function (data) {
+	      vm.clickitem($index);
+	      var id = 43673;
+	      APIFactory.getFeed(id).then(function (data) {
 	        vm.articles = (data.data);
 	        $rootScope.$broadcast('feeditem', vm.articles);
 	      }).catch(function (data) {
-	        console.log('error');
+	        console.error('Failed to load feed items');
 	      });
 	    };
+
 	    function deleteSubscribe(id) {
-	      let feedId = id;
-	      $http({
-	        method: 'DELETE',
-	        url: 'https://zerda-reader-mockback.gomix.me/subscribe/'+feedId
-	      }).then(function (data) {
-	        vm.getSubscription();
+	      APIFactory.deleteItem(id).then(function (data) {
+	        vm.getSubs();
 	      }).catch(function (data) {
-	        console.log('error');
+	        console.error('Failed to delete subscription');
 	      })
 	    }
 
 	    (function () {
 	      $rootScope.$on('getsubscription', function (event) {
-	        getSubscription();
+	        getSubs();
 	      });
 	    })();
+
+	    vm.clickitem = function($index){
+	      vm.subscriptions.map( function ( folder ) {
+	        folder.active = false;
+	      });
+	      vm.subscriptions[ $index ].active = true;
+	      vm.allActivated = false;
+	      vm.favActivated = false;
+	    }
+
 	  }
+
 	})();
-	//
-	//
-	//   $scope.clickitem = function($index){
-	//     $scope.subscriptions.map( function ( folder ) {
-	//       folder.active = false;
-	//     });
-	//     $scope.subscriptions[ $index ].active = true;
-	//   }
-	//
-	//
 
 
 /***/ },
-/* 29 */
+/* 32 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -37358,9 +37492,9 @@
 	    .module('zerdaReader')
 	    .controller('SubscribeController', SubscribeController);
 
-	  SubscribeController.$inject = ['$location', '$rootScope', '$http'];
+	  SubscribeController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
 
-	  function SubscribeController($location, $rootScope, $http) {
+	  function SubscribeController($location, $rootScope, $http, APIFactory) {
 	    const vm = this;
 	    vm.addSubscribe = addSubscribe;
 	    vm.makeVisible = makeVisible;
@@ -37376,16 +37510,10 @@
 
 	    function addSubscribe() {
 	      if (vm.newRss !== '') {
-	        $http({
-	          method: 'POST',
-	          data: {
-	            feed: vm.newRss,
-	          },
-	          url: 'https://zerda-reader-mockback.gomix.me/subscribe',
-	        }).then( function (data) {
+	        APIFactory.postRSS(vm.newRss).then( function (data) {
 	          $rootScope.$broadcast('getsubscription');
 	        }).catch(function (data) {
-	          console.log('error');
+	          console.error('Connection failed');
 	        });
 	      }
 	      vm.newRss = '';
@@ -37406,7 +37534,7 @@
 
 
 /***/ },
-/* 30 */
+/* 33 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -37414,19 +37542,19 @@
 	    .module('zerdaReader')
 	    .controller('MainlistController', MainlistController);
 
-	  MainlistController.$inject = ['$location', '$rootScope', '$http'];
+	  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
 
-	  function MainlistController($location, $rootScope, $http) {
+	  function MainlistController($location, $rootScope, $http, APIFactory) {
 	    const vm = this;
 	    vm.makeActive = makeActive;
 	    vm.favoriteHandling = favoriteHandling;
+	    // vm.changeFavoriteIcon =
 	    // vm.getItem = getItem;
 	    // $rootScope.$on('feeditem', function (event, items) {
 	    //   vm.articles = items;
 	    // });
 
 	    function makeActive($index) {
-	      console.log(vm.articles[$index].active);
 	      if (vm.articles[$index].active === true) {
 	        vm.articles[$index].active = false;
 	      } else {
@@ -37437,55 +37565,24 @@
 	      }
 	    }
 
-	    function favoriteHandling(id, favorite) {
-	      $http({
-	        method: 'PUT',
-	        data: {
-	          item_id: id
-	        },
-	        url: 'https://zerda-reader-mockback.gomix.me/favorites',
-	      }).then(function (data) {
-
+	    function favoriteHandling(id) {
+	      APIFactory.putFav(id).then(function (data) {
 	      }).catch(function (data) {
-	        console.log('error');
+	        console.errod('Change favorite status failed');
 	      });
 	    }
+	    // function changeFavoriteIcon($index){
+	    //       if ($scope.class === 'uncheckedstar') {
+	    //         $scope.class = 'checkedstar';
+	    //       } else {
+	    //         $scope.class = 'uncheckedstar';
+	    //     };
+	    //   }
 
-	    (function () {
+	    (function listenFeedItems() {
 	      $rootScope.$on('feeditem', function (event, items) {
 	        vm.articles = items;
 	      });
-	    })();
-	  }
-	})();
-
-	// $scope.changeFavoriteIcon = function ($index){
-	//       if ($scope.class === 'uncheckedstar') {
-	//         $scope.class = 'checkedstar';
-	//       } else {
-	//         $scope.class = 'uncheckedstar';
-	//     };
-	//   }
-
-
-/***/ },
-/* 31 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('HomeController', HomeController);
-
-	  HomeController.$inject = ['$location', '$rootScope', '$http'];
-
-	  function HomeController($location, $rootScope) {
-	    // const vm = this;
-	    // vm.checkToken = checkToken;
-	    (function () {
-	      if (localStorage.length === 0) {
-	        $location.path('/login');
-	      }
 	    })();
 	  }
 	})();
