@@ -64,8 +64,5 @@ describe('Login controller', function () {
       expect(LoginController.errorMessage).toEqual('Wrong username or password. Try again.');
     });
   });
-<<<<<<< HEAD:test/login.controller.spec.js
 
-=======
->>>>>>> 030bbae035d0c53788dc4f43ca4005452c87b31c:app/login/login.controller.spec.js
 });

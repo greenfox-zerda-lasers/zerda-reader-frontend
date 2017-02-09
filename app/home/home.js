@@ -3,7 +3,7 @@
     .module('zerdaReader')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$location', '$rootScope', '$http'];
+  HomeController.$inject = ['$location', '$rootScope'];
 
   function HomeController($location, $rootScope) {
     // const vm = this;
