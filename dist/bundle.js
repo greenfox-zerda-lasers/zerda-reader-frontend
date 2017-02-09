@@ -37107,7 +37107,7 @@
 /***/ function(module, exports) {
 
 	(function () {
-	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate', 'loginModule', 'signUpModule', 'HomeController']);
+	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate']);
 
 	  zerdaReader.config(['$routeProvider', function ($routeProvider) {
 	    $routeProvider
@@ -37124,6 +37124,7 @@
 	      .when('/home', {
 	        templateUrl: 'app/home/home.html',
 	        controller: 'HomeController',
+	        controllerAs: 'homeCtrl',
 	      }).otherwise({
 	        redirectTo: '/login',
 	      });
@@ -37135,91 +37136,97 @@
 /* 25 */
 /***/ function(module, exports) {
 
-	const loginModule = angular.module('loginModule', ['ngRoute', 'ngAnimate'])
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('LoginController', LoginController);
 
-	loginModule.controller('LoginController', ['$http', '$location', function ($http, $location) {
-	  const vm = this;
-	  vm.token = {};
+	  LoginController.$inject = ['$location', '$rootScope', '$http'];
 
-	  vm.login = function () {
-	    console.log(vm.email)
-	    if (!vm.email && !vm.password) {
-	      console.log('alert');
-	      vm.errorMessage = 'Wrong username or password. Try again.';
-	      console.log(vm);
-	    } else if (vm.email !== '' && vm.password !== '') {
+	  function LoginController($location, $rootScope, $http) {
+	    const vm = this;
+	    vm.token = {};
+	    vm.login = login;
+	    vm.signUpView = signUpView;
 
-	      $http({
-	        method: 'POST',
-	        data: {
-	          email: vm.email,
-	          password: vm.password,
-	        },
-	        url: 'https://zerda-reader-mockback.gomix.me/user/login',
-	      }).then(function (data) {
-	        vm.respond = (data.data);
-	        if (vm.respond.result === 'success') {
-	          localStorage.setItem('token', vm.respond.token);
-	          $location.path('/home');
-	      } else if (respond.result === 'fail') {
-	          vm.errorMessage = 'Wrong username or password. Try again.';
-
-	          vm.email = '';
-	          vm.password = '';
-	        }
-	      }).catch(function (data) {
-	        console.log(data);
-	      });
+	    function login() {
+	      if (!vm.email && !vm.password) {
+	        vm.errorMessage = 'Wrong username or password. Try again.';
+	      } else if (vm.email !== '' && vm.password !== '') {
+	        $http({
+	          method: 'POST',
+	          data: {
+	            email: vm.email,
+	            password: vm.password,
+	          },
+	          url: 'https://zerda-reader-mockback.gomix.me/user/login',
+	        }).then(function (data) {
+	          vm.respond = (data.data);
+	          if (vm.respond.result === 'success') {
+	            localStorage.setItem('token', vm.respond.token);
+	            $location.path('/home');
+	          } else if (vm.respond.result === 'fail') {
+	            vm.errorMessage = 'Wrong username or password. Try again.';
+	            vm.email = '';
+	            vm.password = '';
+	          }
+	        }).catch(function (data) {
+	          console.log(data);
+	        });
+	      }
 	    }
-	  };
-	  vm.signUpView = function () {
-	    $location.path('/signup');
-	  };
-	}]);
-	module.exports = loginModule;
+	    function signUpView() {
+	      $location.path('/signup');
+	    }
+	  }
+	})();
 
 
 /***/ },
 /* 26 */
 /***/ function(module, exports) {
 
-	const signUpModule = angular.module('signUpModule', ['ngRoute', 'ngAnimate'])
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('SignUpController', SignUpController);
 
-	signUpModule.controller('SignUpController', ['$http', '$location', function ($http, $location) {
-	  const vm = this;
+	  SignUpController.$inject = ['$location', '$rootScope', '$http'];
 
-	  vm.signUp = function () {
-	    if (vm.email !== '' && vm.password !== '') {
-	      $http({
-	        method: 'POST',
-	        data: {
-	          email: vm.email,
-	          password: vm.password,
-	        },
-	        url: 'https://zerda-reader-mockback.gomix.me/user/signup',
-	      }).then(function (data) {
-	        vm.respond = (data.data);
-	        if (vm.respond.result === 'success') {
-	          localStorage.setItem("token", vm.respond.token);
-	          $location.path('/home');
-	        } else {
-	          vm.errorMessage = vm.respond.message;
-	          vm.email = '';
-	          vm.password = '';
-	        }
-	      }).catch(function (data) {
-	        console.log('error');
-	      });
+	  function SignUpController($location, $rootScope, $http) {
+	    const vm = this;
+	    vm.backToLogin = backToLogin;
+	    vm.signUp = signUp;
+
+	    function signUp() {
+	      if (vm.email !== '' && vm.password !== '') {
+	        $http({
+	          method: 'POST',
+	          data: {
+	            email: vm.email,
+	            password: vm.password,
+	          },
+	          url: 'https://zerda-reader-mockback.gomix.me/user/signup',
+	        }).then(function (data) {
+	          vm.respond = (data.data);
+	          if (vm.respond.result === 'success') {
+	            localStorage.setItem("token", vm.respond.token);
+	            $location.path('/home');
+	          } else {
+	            vm.errorMessage = vm.respond.message;
+	            vm.email = '';
+	            vm.password = '';
+	          }
+	        }).catch(function (data) {
+	          console.log('error');
+	        });
+	      }
+	    }
+	    function backToLogin() {
+	      $location.path('/login');
 	    }
 	  }
-
-	  vm.backToLogin = function() {
-	    $location.path('/login');
-	  };
-
-	}]);
-
-	module.exports = signUpModule;
+	})();
 
 
 /***/ },
@@ -37233,8 +37240,8 @@
 
 	  NavbarController.$inject = ['$location', '$rootScope'];
 
-	  function NavbarController($location, $rootScope) {
-	    let vm = this;
+	  function NavbarController($location) {
+	    const vm = this;
 	    vm.logout = logout;
 
 	    function logout() {
@@ -37257,7 +37264,7 @@
 	  SidebarController.$inject = ['$location', '$rootScope', '$http'];
 
 	  function SidebarController($location, $rootScope, $http) {
-	    let vm = this;
+	    const vm = this;
 	    vm.deleteSubscribe = deleteSubscribe;
 	    vm.getAll = getAll;
 	    vm.getFav = getFav;
@@ -37286,7 +37293,7 @@
 	      }).catch(function (data) {
 	        console.log('error');
 	      });
-	    };
+	    }
 
 	    function getFav() {
 	      $http({
@@ -37298,7 +37305,7 @@
 	      }).catch(function (data) {
 	        console.log('error');
 	      });
-	    };
+	    }
 
 	    function getFeed($index, id) {
 	      $http({
@@ -37312,19 +37319,18 @@
 	      });
 	    };
 	    function deleteSubscribe(id) {
-	      var feed_id = id;
-	      console.log(feed_id);
+	      let feedId = id;
 	      $http({
 	        method: 'DELETE',
-	        url: 'https://zerda-reader-mockback.gomix.me/subscribe/'+feed_id
-	      }).then ( function(data){
+	        url: 'https://zerda-reader-mockback.gomix.me/subscribe/'+feedId
+	      }).then(function (data) {
 	        vm.getSubscription();
 	      }).catch(function (data) {
 	        console.log('error');
 	      })
 	    }
 
-	    (function getSubs(){
+	    (function () {
 	      $rootScope.$on('getsubscription', function (event) {
 	        getSubscription();
 	      });
@@ -37355,37 +37361,48 @@
 	  SubscribeController.$inject = ['$location', '$rootScope', '$http'];
 
 	  function SubscribeController($location, $rootScope, $http) {
-	    let vm = this;
+	    const vm = this;
 	    vm.addSubscribe = addSubscribe;
 	    vm.makeVisible = makeVisible;
 
-
-	    function makeVisible(){
-	      if(vm.visible == "visible"){
-	        vm.visible = "hidden";
+	    function makeVisible() {
+	        console.log(window);
+	      if (vm.visible === 'visible') {
+	        vm.visible = 'hidden';
 	      } else {
-	        vm.visible = "visible";
+	        vm.visible = 'visible';
 	      }
 	    }
-	    function addSubscribe() {
 
+	    function addSubscribe() {
 	      if (vm.newRss !== '') {
 	        $http({
 	          method: 'POST',
 	          data: {
-	            feed: vm.newRss
+	            feed: vm.newRss,
 	          },
 	          url: 'https://zerda-reader-mockback.gomix.me/subscribe',
-	        }).then ( function(data){
+	        }).then( function (data) {
 	          $rootScope.$broadcast('getsubscription');
 	        }).catch(function (data) {
 	          console.log('error');
-	        })
+	        });
 	      }
 	      vm.newRss = '';
-	    };
+	    }
 	  }
-	})()
+	})();
+
+
+
+	  // window.addEventListener('click', function(event){
+	  //     console.log(event);
+	  // })
+
+	// http://stackoverflow.com/questions/14234560/javascript-how-to-get-parent-element-by-selector
+	// preventDefault
+	//
+	// preventDefault()
 
 
 /***/ },
@@ -37400,7 +37417,7 @@
 	  MainlistController.$inject = ['$location', '$rootScope', '$http'];
 
 	  function MainlistController($location, $rootScope, $http) {
-	    let vm = this;
+	    const vm = this;
 	    vm.makeActive = makeActive;
 	    vm.favoriteHandling = favoriteHandling;
 	    // vm.getItem = getItem;
@@ -37409,17 +37426,18 @@
 	    // });
 
 	    function makeActive($index) {
+	      console.log(vm.articles[$index].active);
 	      if (vm.articles[$index].active === true) {
 	        vm.articles[$index].active = false;
 	      } else {
-	        vm.articles.map( function (article){
-	          article.active = false
+	        vm.articles.map(function (article) {
+	          article.active = false;
 	        });
 	        vm.articles[$index].active = true;
 	      }
 	    }
 
-	    function favoriteHandling(id, favorite){
+	    function favoriteHandling(id, favorite) {
 	      $http({
 	        method: 'PUT',
 	        data: {
@@ -37431,15 +37449,15 @@
 	      }).catch(function (data) {
 	        console.log('error');
 	      });
-	    };
+	    }
 
-	    (function getItem(){
+	    (function () {
 	      $rootScope.$on('feeditem', function (event, items) {
 	        vm.articles = items;
 	      });
 	    })();
 	  }
-	})()
+	})();
 
 	// $scope.changeFavoriteIcon = function ($index){
 	//       if ($scope.class === 'uncheckedstar') {
@@ -37454,150 +37472,23 @@
 /* 31 */
 /***/ function(module, exports) {
 
-	module.exports = angular.module('HomeController', ['ngRoute', 'ngAnimate'])
-	  .controller('HomeController', ['$scope', '$http', '$location',
-	  function ($scope, $http, $location) {
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('HomeController', HomeController);
 
-	  $scope.checkToken = function ($routeProvider){
-	    if (localStorage.length === 0) {
-	      $location.path('/login');
-	    };
-	  };
+	  HomeController.$inject = ['$location', '$rootScope', '$http'];
 
-	  $scope.checkToken();
-	}]);
-
-	  // $scope.logout = function(){
-	  //   localStorage.clear();
-	  //   $location.path( "/login" );
-	  // }
-
-	  // $scope.makevisible = function(){
-	  //   if($scope.visible == "visible"){
-	  //     $scope.visible = "hidden";
-	  //   } else {
-	  //     $scope.visible = "visible";
-	  //   }
-	  // }
-
-	  // $scope.makeActive = function($index) {
-	  //   if ($scope.articles[$index].active === true) {
-	  //     $scope.articles[$index].active = false;
-	  //   } else {
-	  //     $scope.articles.map( function (article){
-	  //       article.active = false
-	  //     });
-	  //     $scope.articles[$index].active = true;
-	  //   }
-	  // }
-
-	  // $scope.getSubscription = function () {
-	  //   $scope.subscriptions = '';
-	  //   $http({
-	  //     method: 'GET',
-	  //     url: 'https://zerda-reader-mockback.gomix.me/subscription',
-	  //   }).then(function (data) {
-	  //     $scope.subscriptions = data.data;
-	  //   }).catch(function (data) {
-	  //     console.log('error');
-	  //   });
-	  // };
-
-	  // $scope.getAll = function () {
-	  //   $http({
-	  //     method: 'GET',
-	  //     url: 'https://zerda-reader-mockback.gomix.me/feed',
-	  //   }).then(function (data) {
-	  //     $scope.articles = data.data.feed;
-	  //   }).catch(function (data) {
-	  //     console.log('error');
-	  //   });
-	  // };
-	  //
-	  // $scope.getFav = function () {
-	  //   $http({
-	  //     method: 'GET',
-	  //     url: 'https://zerda-reader-mockback.gomix.me/favorites',
-	  //   }).then(function (data) {
-	  //     $scope.articles = data.data;
-	  //   }).catch(function (data) {
-	  //     console.log('error');
-	  //   });
-	  // };
-	  //
-	  // $scope.clickitem = function($index){
-	  //   $scope.subscriptions.map( function ( folder ) {
-	  //     folder.active = false;
-	  //   });
-	  //   $scope.subscriptions[ $index ].active = true;
-	  // }
-
-	  // $scope.getFeed = function ($index, id) {
-	  //   $http({
-	  //     method: 'GET',
-	  //     url: 'https://zerda-reader-mockback.gomix.me/feed/43675'
-	  //   }).then(function (data) {
-	  //     $scope.articles = (data.data);
-	  //   }).catch(function (data) {
-	  //     console.log('error');
-	  //   });
-	  // };
-
-	  // $scope.getSubscription();
-
-	  // $scope.favoriteHandling = function (id, favorite){
-	  //   $http({
-	  //     method: 'PUT',
-	  //     data: {
-	  //       item_id: id
-	  //     },
-	  //     url: 'https://zerda-reader-mockback.gomix.me/favorites',
-	  //   }).then(function (data) {
-	  //
-	  //   }).catch(function (data) {
-	  //     console.log('error');
-	  //   });
-	  // };
-
-	  // $scope.addSubscribe = function() {
-	  //
-	  //   if ($scope.newRss !== '') {
-	  //     $http({
-	  //       method: 'POST',
-	  //       data: {
-	  //         feed: $scope.newRss
-	  //       },
-	  //       url: 'https://zerda-reader-mockback.gomix.me/subscribe',
-	  //     }).then ( function(data){
-	  //       $scope.getSubscription();
-	  //     }).catch(function (data) {
-	  //       console.log('error');
-	  //     })
-	  //   }
-	  //   $scope.newRss = '';
-	  // //   location.reload();
-	  // };
-
-	  // $scope.deleteSubscribe = function(id) {
-	  //   var feed_id = id;
-	  //   console.log(feed_id);
-	  //   $http({
-	  //     method: 'DELETE',
-	  //     url: 'https://zerda-reader-mockback.gomix.me/subscribe/'+feed_id
-	  //   }).then ( function(data){
-	  //     $scope.getSubscription();
-	  //   }).catch(function (data) {
-	  //     console.log('error');
-	  //   })
-	  // }
-
-
-	  // $scope.writeTime = function(time) {
-	  //   $scope.time = time.getDate();
-	  // }
-
-
-	// module.exports = HomeController;
+	  function HomeController($location, $rootScope) {
+	    // const vm = this;
+	    // vm.checkToken = checkToken;
+	    (function () {
+	      if (localStorage.length === 0) {
+	        $location.path('/login');
+	      }
+	    })();
+	  }
+	})();
 
 
 /***/ }

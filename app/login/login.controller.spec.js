@@ -12,23 +12,26 @@ describe('Login controller', function () {
   var httpBackend
   var LoginController
 
-
   beforeEach(function () {
     module('zerdaReader');
 
     inject(function ($controller, $httpBackend) {
       httpBackend = $httpBackend;
       LoginController = $controller('LoginController');
+
     });
   });
 
 
   describe('login', function () {
+
     it('should be defined', function() {
       expect(LoginController.login).toBeDefined();
     });
 
+
     it('login with existed email', function () {
+
       LoginController.email = 'gabor@reader.com';
       LoginController.password = 'gabor';
       httpBackend
@@ -61,4 +64,8 @@ describe('Login controller', function () {
       expect(LoginController.errorMessage).toEqual('Wrong username or password. Try again.');
     });
   });
+<<<<<<< HEAD:test/login.controller.spec.js
+
+=======
+>>>>>>> 030bbae035d0c53788dc4f43ca4005452c87b31c:app/login/login.controller.spec.js
 });
