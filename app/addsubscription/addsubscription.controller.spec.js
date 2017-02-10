@@ -47,6 +47,7 @@ describe('SubscribeController controller', function () {
       // console.log(popup);
       // popup.triggerHandler('click');
       // expect(compiledElement.hasClass('visible')).toBe(true);
+
     });
 
   })
