@@ -6,7 +6,7 @@
     .directive('favoriteIcon', favoriteIcon);
 
   function favoriteIcon(APIFactory) {
-    let directive = {
+    const directive = {
       restrict: 'E',
       scope: {
         article: '=',
@@ -17,14 +17,14 @@
     };
     return directive;
 
-    function link(scope, element, attrs) {
+    function link(scope) {
       scope.color = scope.article.favorite;
 
       scope.favHandling = function (id) {
         scope.color = !scope.color;
         APIFactory.putFav(id).then(function (data) {
         }).catch(function (data) {
-          console.errod('Change favorite status failed');
+          console.error('Change favorite status failed');
         });
       };
     }

@@ -18,10 +18,18 @@ describe('SubscribeController controller', function () {
     inject(function ($controller, $httpBackend, _$compile_, _$rootScope_) {
       httpBackend = $httpBackend;
       SubscribeController = $controller('SubscribeController');
+<<<<<<< HEAD
+      compile = $compile;
+      element = angular.element('<div id="add" class="ui button" ng-click="subsCtrl.makeVisible()"Add subscription</div>');
+      popup = angular.element('<div id="addpopup" class="ui flowing popup top left transition {{subsCtrl.visible}}" ng-click="subsCtrl.makeVisible()"></div>')
+      compiled = $compile(element);
+      compiledPopup = $compile(popup);
+=======
       compile = _$compile_;
       rootscope = _$rootScope_;
 
 
+>>>>>>> f39b73e2448208e11547225fc8e58a3b67b7f763
     });
   });
 

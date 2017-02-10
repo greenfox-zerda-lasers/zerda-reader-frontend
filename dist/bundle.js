@@ -78,7 +78,7 @@
 	__webpack_require__(31);
 
 	__webpack_require__(32);
-	__webpack_require__(33);
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./app/sidebar/sidebar.controller.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	__webpack_require__(34);
 	__webpack_require__(35);
 
@@ -38202,7 +38202,8 @@
 /* 27 */
 /***/ function(module, exports) {
 
-	'use strict'
+	
+	'use strict';
 
 	angular
 	  .module('zerdaReader')
@@ -38215,35 +38216,35 @@
 	  var APIFactory = {};
 
 	  APIFactory.getSubs = function () {
-	    return $http.get(url+'subscription');
+	    return $http.get(url + 'subscription');
 	  };
 
 	  APIFactory.getAll = function () {
-	    return $http.get(url+'feed');
+	    return $http.get(url + 'feed');
 	  };
 
 	  APIFactory.getFav = function () {
-	    return $http.get(url+'favorites');
+	    return $http.get(url + 'favorites');
 	  };
 
 	  APIFactory.getFeed = function (id) {
-	    return $http.get(url+'feed/'+id);
+	    return $http.get(url + 'feed/' + id);
 	  };
 
 	  APIFactory.deleteItem = function (id) {
-	    return $http.delete(url+'subscribe/'+id);
+	    return $http.delete(url + 'subscribe/' + id);
 	  };
 
-	  APIFactory.putFav = function(id){
-	    return $http.put(url+'favorites', {item_id: id});
-	  }
+	  APIFactory.putFav = function (id) {
+	    return $http.put(url + 'favorites', { item_id: id });
+	  };
 
-	  APIFactory.postRSS = function(rss){
-	    return $http.post(url+'subscribe', {feed: rss});
-	  }
+	  APIFactory.postRSS = function (rss) {
+	    return $http.post(url + 'subscribe', { feed: rss });
+	  };
 
 	  return APIFactory;
-	};
+	}
 
 
 /***/ },
@@ -38258,7 +38259,7 @@
 	    .directive('favoriteIcon', favoriteIcon);
 
 	  function favoriteIcon(APIFactory) {
-	    let directive = {
+	    const directive = {
 	      restrict: 'E',
 	      scope: {
 	        article: '=',
@@ -38269,14 +38270,14 @@
 	    };
 	    return directive;
 
-	    function link(scope, element, attrs) {
+	    function link(scope) {
 	      scope.color = scope.article.favorite;
 
 	      scope.favHandling = function (id) {
 	        scope.color = !scope.color;
 	        APIFactory.putFav(id).then(function (data) {
 	        }).catch(function (data) {
-	          console.errod('Change favorite status failed');
+	          console.error('Change favorite status failed');
 	        });
 	      };
 	    }
@@ -38394,7 +38395,6 @@
 
 	  function HomeController($location, $rootScope) {
 	    (function () {
-	      console.log(localStorage.token)
 	      if (localStorage.token.length === 0) {
 	        $location.path('/login');
 	      }
@@ -38427,106 +38427,7 @@
 
 
 /***/ },
-/* 33 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('SidebarController', SidebarController);
-
-	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
-
-	  function SidebarController($location, $rootScope, $http, APIFactory) {
-	    const vm = this;
-	    vm.getSubs = getSubs;
-	    vm.deleteSubscribe = deleteSubscribe;
-	    vm.getAll = getAll;
-	    vm.getFav = getFav;
-	    vm.getFeed = getFeed;
-	    vm.allActivated = true;
-
-
-	    function getSubs(){
-	      APIFactory.getSubs().then(function(data) {
-	        vm.subscriptions = data.data;
-	        vm.subs
-	      }, function(errResponse) {
-	        console.error('Failed to load subscriptions')
-	      });
-	    }
-
-	    function getAll(){
-	      APIFactory.getAll().then(function(data) {
-	        console.log(data)
-	        vm.articles = data.data.feed;
-	        $rootScope.$broadcast('feeditem', vm.articles);
-	        vm.allActivated = true;
-	        vm.favActivated = false;
-	        vm.subscriptions.forEach( function ( folder ) {
-	          folder.active = false;
-	        });
-	      }, function(errResponse) {
-	        console.error('Failed to load all feed items');
-	      });
-	    }
-
-	    vm.getAll();
-
-	    function getFav() {
-	      APIFactory.getFav('favorites').then(function (data) {
-	        vm.articles = data.data;
-	        $rootScope.$broadcast('feeditem', vm.articles);
-	        vm.allActivated = false;
-	        vm.favActivated = true;
-	        vm.subscriptions.forEach( function ( folder ) {
-	          folder.active = false;
-	        });
-	      }).catch(function (data) {
-	        console.error('Failed to load favorites');
-	      });
-	    }
-
-	    function getFeed($index, id) {
-	      vm.clickitem($index);
-	      var id = 43673;
-	      APIFactory.getFeed(id).then(function (data) {
-	        vm.articles = (data.data);
-	        $rootScope.$broadcast('feeditem', vm.articles);
-	      }).catch(function (data) {
-	        console.error('Failed to load feed items');
-	      });
-	    };
-
-	    function deleteSubscribe(id) {
-	      APIFactory.deleteItem(id).then(function (data) {
-	        vm.getSubs();
-	      }).catch(function (data) {
-	        console.error('Failed to delete subscription');
-	      })
-	    }
-
-	    (function () {
-	      $rootScope.$on('getsubscription', function (event) {
-	        getSubs();
-	      });
-	    })();
-
-	    vm.clickitem = function($index){
-	      vm.subscriptions.map( function ( folder ) {
-	        folder.active = false;
-	      });
-	      vm.subscriptions[ $index ].active = true;
-	      vm.allActivated = false;
-	      vm.favActivated = false;
-	    }
-
-	  }
-
-	})();
-
-
-/***/ },
+/* 33 */,
 /* 34 */
 /***/ function(module, exports) {
 
@@ -38581,7 +38482,7 @@
 	    vm.makeActive = makeActive;
 
 	    function makeActive($index, event) {
-	      if( event.target.classList.contains('star')){
+	      if (event.target.classList.contains('star')) {
 	        return;
 	      }
 	      if (vm.articles[$index].active === true) {
