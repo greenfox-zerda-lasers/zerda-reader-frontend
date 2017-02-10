@@ -42,6 +42,7 @@ describe('SubscribeController controller', function () {
       //console.log(rootscope);
       compiledElement = compile(element)(rootscope);
       console.log(compiledElement);
+      rootscope.$apply();
       var popup = compiledElement.find('.popup');
       console.log(popup);
       popup.triggerHandler('click');

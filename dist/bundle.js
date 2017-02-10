@@ -67,20 +67,20 @@
 	__webpack_require__(26);
 
 	// Services:
-	__webpack_require__(35);
+	__webpack_require__(27);
 
 	// Directives:
-	__webpack_require__(36);
+	__webpack_require__(28);
 
 	// All the controllers:
-	__webpack_require__(28);
 	__webpack_require__(29);
 	__webpack_require__(30);
-
 	__webpack_require__(31);
+
 	__webpack_require__(32);
 	__webpack_require__(33);
 	__webpack_require__(34);
+	__webpack_require__(35);
 
 
 /***/ },
@@ -38199,8 +38199,93 @@
 
 
 /***/ },
-/* 27 */,
+/* 27 */
+/***/ function(module, exports) {
+
+	'use strict'
+
+	angular
+	  .module('zerdaReader')
+	  .factory('APIFactory', APIFactory);
+	  const url = 'https://zerda-reader-mockback.gomix.me/';
+	  const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
+
+	function APIFactory($http) {
+
+	  var APIFactory = {};
+
+	  APIFactory.getSubs = function () {
+	    return $http.get(url+'subscription');
+	  };
+
+	  APIFactory.getAll = function () {
+	    return $http.get(url+'feed');
+	  };
+
+	  APIFactory.getFav = function () {
+	    return $http.get(url+'favorites');
+	  };
+
+	  APIFactory.getFeed = function (id) {
+	    return $http.get(url+'feed/'+id);
+	  };
+
+	  APIFactory.deleteItem = function (id) {
+	    return $http.delete(url+'subscribe/'+id);
+	  };
+
+	  APIFactory.putFav = function(id){
+	    return $http.put(url+'favorites', {item_id: id});
+	  }
+
+	  APIFactory.postRSS = function(rss){
+	    return $http.post(url+'subscribe', {feed: rss});
+	  }
+
+	  return APIFactory;
+	};
+
+
+/***/ },
 /* 28 */
+/***/ function(module, exports) {
+
+	(function () {
+	  'use strict';
+
+	  angular
+	    .module('zerdaReader')
+	    .directive('favoriteIcon', favoriteIcon);
+
+	  function favoriteIcon(APIFactory) {
+	    let directive = {
+	      restrict: 'E',
+	      scope: {
+	        article: '=',
+	        color: '=?',
+	      },
+	      templateUrl: 'app/components/favorite.directive.html',
+	      link: link,
+	    };
+	    return directive;
+
+	    function link(scope, element, attrs) {
+	      scope.color = scope.article.favorite;
+
+	      scope.favHandling = function (id) {
+	        scope.color = !scope.color;
+	        APIFactory.putFav(id).then(function (data) {
+	        }).catch(function (data) {
+	          console.errod('Change favorite status failed');
+	        });
+	      };
+	    }
+	  }
+	})();
+
+
+/***/ },
+/* 29 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38250,7 +38335,7 @@
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38297,7 +38382,7 @@
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38319,7 +38404,7 @@
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38342,7 +38427,7 @@
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38442,7 +38527,7 @@
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38481,7 +38566,7 @@
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38514,92 +38599,6 @@
 	        vm.articles = items;
 	      });
 	    })();
-	  }
-	})();
-
-
-/***/ },
-/* 35 */
-/***/ function(module, exports) {
-
-	'use strict'
-
-	angular
-	  .module('zerdaReader')
-	  .factory('APIFactory', APIFactory);
-	  const url = 'https://zerda-reader-mockback.gomix.me/';
-	  const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
-
-	function APIFactory($http) {
-
-	  var APIFactory = {};
-
-	  APIFactory.getSubs = function () {
-	    return $http.get(url+'subscription');
-	  };
-
-	  APIFactory.getAll = function () {
-	    return $http.get(url+'feed');
-	  };
-
-	  APIFactory.getFav = function () {
-	    return $http.get(url+'favorites');
-	  };
-
-	  APIFactory.getFeed = function (id) {
-	    return $http.get(url+'feed/'+id);
-	  };
-
-	  APIFactory.deleteItem = function (id) {
-	    return $http.delete(url+'subscribe/'+id);
-	  };
-
-	  APIFactory.putFav = function(id){
-	    return $http.put(url+'favorites', {item_id: id});
-	  }
-
-	  APIFactory.postRSS = function(rss){
-	    return $http.post(url+'subscribe', {feed: rss});
-	  }
-
-	  return APIFactory;
-	};
-
-
-/***/ },
-/* 36 */
-/***/ function(module, exports) {
-
-	(function () {
-	  'use strict';
-
-	  angular
-	    .module('zerdaReader')
-	    .directive('favoriteIcon', favoriteIcon);
-
-	  function favoriteIcon(APIFactory) {
-	    let directive = {
-	      restrict: 'E',
-	      scope: {
-	        article: '=',
-	        color: '=?',
-	      },
-	      templateUrl: 'app/components/favorite.directive.html',
-	      link: link,
-	    };
-	    return directive;
-
-	    function link(scope, element, attrs) {
-	      scope.color = scope.article.favorite;
-
-	      scope.favHandling = function (id) {
-	        scope.color = !scope.color;
-	        APIFactory.putFav(id).then(function (data) {
-	        }).catch(function (data) {
-	          console.errod('Change favorite status failed');
-	        });
-	      };
-	    }
 	  }
 	})();
 
