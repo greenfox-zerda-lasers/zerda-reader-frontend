@@ -17,11 +17,16 @@ module.exports = function (config) {
     files: [
       'dist/bundle.js',
       'node_modules/angular-route/angular-route.js',
-      'app/addsubscription/addsubscription.html',
+      'app/**/*.html',
+
+      // 'app/addsubscription/addsubscription.html',
       'app/login/login.controller.spec.js',
       'app/signup/signup.controller.spec.js',
-      'app/addsubscription/addsubscription.controller.js',
+      // 'app/addsubscription/addsubscription.controller.js',
       'app/addsubscription/addsubscription.controller.spec.js',
+      'app/components/favorite.directive.spec.js',
+      // // 'app/components/favorite.directive.html',
+      // 'app/components/favorite.directive.js',
     ],
 
 
@@ -33,6 +38,11 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'app/**/*.html': ['ng-html2js'],
+    },
+
+    ngHtml2JsPreprocessor: {
+     'moduleName': 'templates',
     },
 
 
