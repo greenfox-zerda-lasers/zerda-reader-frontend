@@ -9,15 +9,37 @@
     const vm = this;
     vm.addSubscribe = addSubscribe;
     vm.makeVisible = makeVisible;
+    //vm.visible = 'hidden';
 
     function makeVisible() {
-        console.log(window);
       if (vm.visible === 'visible') {
         vm.visible = 'hidden';
       } else {
         vm.visible = 'visible';
       }
     }
+
+    window.addEventListener('click', function(event){
+        // console.log(event);
+        //console.log(event.target);
+
+        var el = event.target
+        //console.log(el.parentElement)
+
+        console.log(vm.visible);
+        if (closest(el, "#addpopup")) {
+          //console.log("match");
+          vm.visible = 'visible';
+          console.log(vm.visible);
+    //   } else if (closest(el, "#addpopup") && vm.visible == "visible"){
+    //       console.log(vm.visible);
+    //       vm.visible = 'hidden';
+    //       console.log(vm.visible);
+      }else {
+          //console.log("nomatch");
+          vm.visible = 'hidden';
+        }
+    })
 
     function addSubscribe() {
       if (vm.newRss !== '') {
@@ -30,15 +52,30 @@
       vm.newRss = '';
     }
   }
+
+  function closest(el, selector, stopSelector) {
+      var retval = null;
+      while (el) {
+          if (el.matches(selector)) {
+              retval = el;
+              break
+          } else if (stopSelector && el.matches(stopSelector)) {
+              break
+          }
+          el = el.parentElement;
+          //console.log(el);
+      }
+      return retval;
+  }
 })();
 
 
 
-  // window.addEventListener('click', function(event){
-  //     console.log(event);
-  // })
+
+
 
 // http://stackoverflow.com/questions/14234560/javascript-how-to-get-parent-element-by-selector
 // preventDefault
 //
 // preventDefault()
+// el event.target false
