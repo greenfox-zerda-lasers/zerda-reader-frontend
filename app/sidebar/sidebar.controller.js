@@ -14,23 +14,21 @@
     vm.getFeed = getFeed;
     vm.allActivated = true;
 
-
-    function getSubs(){
-      APIFactory.getSubs().then(function(data) {
+    function getSubs() {
+      APIFactory.getSubs().then(function (data) {
         vm.subscriptions = data.data;
-        vm.subs
       }, function(errResponse) {
         console.error('Failed to load subscriptions')
       });
     }
 
-    function getAll(){
-      APIFactory.getAll().then(function(data) {
+    function getAll() {
+      APIFactory.getAll().then(function (data) {
         vm.articles = data.data.feed;
         $rootScope.$broadcast('feeditem', vm.articles);
         vm.allActivated = true;
         vm.favActivated = false;
-        vm.subscriptions.forEach( function ( folder ) {
+        vm.subscriptions.forEach(function (folder) {
           folder.active = false;
         });
       }, function(errResponse) {
@@ -46,7 +44,7 @@
         $rootScope.$broadcast('feeditem', vm.articles);
         vm.allActivated = false;
         vm.favActivated = true;
-        vm.subscriptions.forEach( function ( folder ) {
+        vm.subscriptions.forEach(function (folder) {
           folder.active = false;
         });
       }).catch(function (data) {
@@ -54,9 +52,9 @@
       });
     }
 
-    function getFeed($index, id) {
+    function getFeed($index) {
       vm.clickitem($index);
-      var id = 43673;
+      let id = 43673;
       APIFactory.getFeed(id).then(function (data) {
         vm.articles = (data.data);
         $rootScope.$broadcast('feeditem', vm.articles);
@@ -79,15 +77,13 @@
       });
     })();
 
-    vm.clickitem = function($index){
-      vm.subscriptions.map( function ( folder ) {
+    vm.clickitem = function ($index) {
+      vm.subscriptions.map(function (folder) {
         folder.active = false;
       });
-      vm.subscriptions[ $index ].active = true;
+      vm.subscriptions[$index].active = true;
       vm.allActivated = false;
       vm.favActivated = false;
-    }
-
+    };
   }
-
 })();

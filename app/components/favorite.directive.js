@@ -5,8 +5,8 @@
     .module('zerdaReader')
     .directive('favoriteIcon', favoriteIcon);
 
-  function favoriteIcon() {
-    let directive = {
+  function favoriteIcon(APIFactory) {
+    const directive = {
       restrict: 'E',
       scope: {
         article: '=',
@@ -17,24 +17,16 @@
     };
     return directive;
 
-    function link(scope, element, attrs) {
-      scope.color = scope.article.favorite
-      scope.favHandling = function () {
-        // scope.color = scope.article.favorite;
-        console.log('jhgj');
-        // console.log(scope.favoriteCtrl.article, scope.favoriteCtrl.color);
-      }
+    function link(scope) {
+      scope.color = scope.article.favorite;
+
+      scope.favHandling = function (id) {
+        scope.color = !scope.color;
+        APIFactory.putFav(id).then(function (data) {
+        }).catch(function (data) {
+          console.error('Change favorite status failed');
+        });
+      };
     }
-
-    // FavoriteController.inject = ['$scope']
-
-    // function FavoriteController() {
-    //   let vm = this
-      // vm.color = true
-
-      // vm.color = vm.article.favorite;
-    // }
   }
-
-
 })();

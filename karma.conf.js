@@ -17,8 +17,10 @@ module.exports = function (config) {
     files: [
       'dist/bundle.js',
       'node_modules/angular-route/angular-route.js',
+      'app/addsubscription/addsubscription.html',
       'app/login/login.controller.spec.js',
       'app/signup/signup.controller.spec.js',
+      'app/addsubscription/addsubscription.controller.js',
       'app/addsubscription/addsubscription.controller.spec.js',
     ],
 
