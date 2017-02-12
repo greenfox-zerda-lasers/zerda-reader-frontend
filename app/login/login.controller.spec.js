@@ -18,20 +18,16 @@ describe('Login controller', function () {
     inject(function ($controller, $httpBackend) {
       httpBackend = $httpBackend;
       LoginController = $controller('LoginController');
-
     });
   });
 
 
   describe('login', function () {
-
-    it('should be defined', function() {
+    it('should be defined', function () {
       expect(LoginController.login).toBeDefined();
     });
 
-
     it('login with existed email', function () {
-
       LoginController.email = 'gabor@reader.com';
       LoginController.password = 'gabor';
       httpBackend
@@ -64,5 +60,4 @@ describe('Login controller', function () {
       expect(LoginController.errorMessage).toEqual('Wrong username or password. Try again.');
     });
   });
-
 });

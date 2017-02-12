@@ -1,4 +1,3 @@
-
 'use strict';
 
 angular
@@ -16,7 +15,8 @@ function APIFactory($http) {
   };
 
   APIFactory.getAll = function () {
-    return $http.get(urlReal + 'feed');
+    // return $http.get(urlReal + 'feed');
+    return $http.get(urlReal+'feed?token=188972D039D54C6BBE874D4D9E2AF0E3');
   };
 
   APIFactory.getFav = function () {
