@@ -19,7 +19,7 @@
       }
     }
 
-    window.addEventListener('click', function(event){
+    window.addEventListener('click', function (event) {
         // console.log(event);
         //console.log(event.target);
 
