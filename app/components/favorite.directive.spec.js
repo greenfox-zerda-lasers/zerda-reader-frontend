@@ -20,12 +20,11 @@ describe('Favorite directive', function () {
         description: 'Bacon',
         created: 1484756107,
         feed_name: 'Fox Crunch',
-        feed_id:43673,
-        favorite:false,
-        opened:true,
+        feed_id: 43673,
+        favorite: false,
+        opened: true,
         url: 'http://fox.com/moon',
       };
-
       directiveElem = getCompiledElement();
     });
   });
@@ -37,13 +36,13 @@ describe('Favorite directive', function () {
       return compiledElement;
     }
 
-  it('should add the item to the favorites and color the star yellow', function () {
-    var e = directiveElem.find('i')
+  it('should color the star yellow', function () {
+    const starIcon = directiveElem.find('i');
 
-    e.triggerHandler('click');
-    expect(e.hasClass('yellow')).toBe(true);
+    starIcon.triggerHandler('click');
+    expect(starIcon.hasClass('yellow')).toBe(true);
 
-    e.triggerHandler('click');
-    expect(e.hasClass('yellow')).toBe(false);
+    starIcon.triggerHandler('click');
+    expect(starIcon.hasClass('yellow')).toBe(false);
   });
 })
