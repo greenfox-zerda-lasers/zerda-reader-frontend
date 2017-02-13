@@ -22,11 +22,8 @@
         vm.articles[$index].active = true;
       }
     }
-
-    (function listenFeedItems() {
-      $rootScope.$on('feeditem', function (event, items) {
-        vm.articles = items;
-      });
-    })();
+    $rootScope.$on('feeditem', function (event, items) {
+      vm.articles = items;
+    });
   }
 })();

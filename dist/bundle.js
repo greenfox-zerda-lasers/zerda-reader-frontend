@@ -75,7 +75,7 @@
 	// All the controllers:
 	__webpack_require__(29);
 	__webpack_require__(30);
-	__webpack_require__(31);
+	__webpack_require__(36);
 
 	__webpack_require__(32);
 	__webpack_require__(33);
@@ -38383,36 +38383,7 @@
 
 
 /***/ },
-/* 31 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('HomeController', HomeController);
-
-	  HomeController.$inject = ['$location', '$rootScope'];
-
-	  function HomeController($location, $rootScope) {
-	    var vm = this;
-	    // vm.click = click;
-
-	    // function click() {
-	    //   console.log('sdf')
-	    //   $rootScope.$broadcast('click');
-	    // }
-
-	    (function () {
-	      if (localStorage.token.length === 0) {
-	        $location.path('/login');
-	      }
-	    })();
-	  }
-
-	})();
-
-
-/***/ },
+/* 31 */,
 /* 32 */
 /***/ function(module, exports) {
 
@@ -38458,7 +38429,7 @@
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
 	        vm.subscriptions = data.data;
-	      }, function(errResponse) {
+	      }, function (errResponse) {
 	        console.error('Failed to load subscriptions')
 	      });
 	    }
@@ -38466,6 +38437,7 @@
 	    function getAll() {
 	      APIFactory.getAll().then(function (data) {
 	        vm.articles = data.data.feed;
+	        console.log(vm.articles)
 	        $rootScope.$broadcast('feeditem', vm.articles);
 	        vm.allActivated = true;
 	        vm.favActivated = false;
@@ -38502,21 +38474,15 @@
 	      }).catch(function (data) {
 	        console.error('Failed to load feed items');
 	      });
-	    };
+	    }
 
 	    function deleteSubscribe(id) {
 	      APIFactory.deleteItem(id).then(function (data) {
 	        vm.getSubs();
 	      }).catch(function (data) {
 	        console.error('Failed to delete subscription');
-	      })
-	    }
-
-	    (function () {
-	      $rootScope.$on('getsubscription', function (event) {
-	        getSubs();
 	      });
-	    })();
+	    }
 
 	    vm.clickitem = function ($index) {
 	      vm.subscriptions.map(function (folder) {
@@ -38526,6 +38492,9 @@
 	      vm.allActivated = false;
 	      vm.favActivated = false;
 	    };
+	    $rootScope.$on('getsubscription', function (event) {
+	      getSubs();
+	    });
 	  }
 	})();
 
@@ -38546,10 +38515,10 @@
 	    vm.addSubscribe = addSubscribe;
 	    vm.makeVisible = makeVisible;
 	    vm.visible = 'hidden';
+	    vm.newRss = '';
 
 	    function makeVisible() {
-	      console.log('make visi');
-	      if (event.target.id === 'add'){
+	      if (event.target.id === 'add') {
 	        if (vm.visible === 'visible') {
 	          vm.visible = 'hidden';
 	        } else {
@@ -38559,18 +38528,18 @@
 	    }
 
 	    $window.addEventListener('click', function (event) {
-	      var el = event.target
+	      let el = event.target
 	      if (event.target.id !== 'add') {
-	        if (!closest(el, "#addpopup")) {
+	        if (!closest(el, '#addpopup')) {
 	          vm.visible = 'hidden';
 	        }
 	      }
-	      $scope.$apply()
-	    })
+	      $scope.$apply();
+	    });
 
 	    function addSubscribe() {
 	      if (vm.newRss !== '') {
-	        APIFactory.postRSS(vm.newRss).then( function (data) {
+	        APIFactory.postRSS(vm.newRss).then(function (data) {
 	          $rootScope.$broadcast('getsubscription');
 	          vm.visible = 'hidden';
 	        }).catch(function (data) {
@@ -38582,25 +38551,19 @@
 	  }
 
 	  function closest(el, selector, stopSelector) {
-	      var retval = null;
-	      while (el) {
-	          if (el.matches(selector)) {
-	              retval = el;
-	              break
-	          } else if (stopSelector && el.matches(stopSelector)) {
-	              break
-	          }
-	          el = el.parentElement;
+	    let retval = null;
+	    while (el) {
+	      if (el.matches(selector)) {
+	        retval = el;
+	        break;
+	      } else if (stopSelector && el.matches(stopSelector)) {
+	        break;
 	      }
-	      return retval;
+	      el = el.parentElement;
+	    }
+	    return retval;
 	  }
 	})();
-
-	// http://stackoverflow.com/questions/14234560/javascript-how-to-get-parent-element-by-selector
-	// preventDefault
-	//
-	// preventDefault()
-	// el event.target false
 
 
 /***/ },
@@ -38631,13 +38594,33 @@
 	        vm.articles[$index].active = true;
 	      }
 	    }
+	    $rootScope.$on('feeditem', function (event, items) {
+	      vm.articles = items;
+	    });
+	  }
+	})();
 
-	    (function listenFeedItems() {
-	      $rootScope.$on('feeditem', function (event, items) {
-	        vm.articles = items;
-	      });
+
+/***/ },
+/* 36 */
+/***/ function(module, exports) {
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('HomeController', HomeController);
+
+	  HomeController.$inject = ['$location', '$rootScope'];
+
+	  function HomeController($location, $rootScope) {
+	    const vm = this;
+	    (function () {
+	      if (localStorage.token.length === 0) {
+	        $location.path('/login');
+	      }
 	    })();
 	  }
+
 	})();
 
 

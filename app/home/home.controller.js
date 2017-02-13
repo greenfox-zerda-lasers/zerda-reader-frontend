@@ -6,14 +6,7 @@
   HomeController.$inject = ['$location', '$rootScope'];
 
   function HomeController($location, $rootScope) {
-    var vm = this;
-    // vm.click = click;
-
-    // function click() {
-    //   console.log('sdf')
-    //   $rootScope.$broadcast('click');
-    // }
-
+    const vm = this;
     (function () {
       if (localStorage.token.length === 0) {
         $location.path('/login');

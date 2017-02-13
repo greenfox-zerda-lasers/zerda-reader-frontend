@@ -29,7 +29,7 @@ require('./app/components/favorite.directive.js');
 // All the controllers:
 require('./app/login/login.controller.js');
 require('./app/signup/signup.controller.js');
-require('./app/home/home.js');
+require('./app/home/home.controller.js');
 
 require('./app/navbar/navbar.controller.js');
 require('./app/sidebar/sidebar.controller.js');
