@@ -38220,7 +38220,7 @@
 
 	  APIFactory.getAll = function () {
 	    // return $http.get(urlReal + 'feed');
-	    return $http.get(urlReal+'feed');
+	    return $http.get(url+'feed');
 	  };
 
 	  APIFactory.getFav = function () {
@@ -38444,9 +38444,10 @@
 	    vm.getAll = getAll;
 	    vm.getFav = getFav;
 	    vm.getFeed = getFeed;
+	    vm.displayFeed = displayFeed;
+	    vm.loadMore = loadMore;
 	    vm.allActivated = true;
 	    vm.offset = 0;
-	    vm.articles = [];
 
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
@@ -38457,9 +38458,11 @@
 	    }
 
 	    function getAll() {
+	      vm.articles = [];
 	      APIFactory.getAll().then(function (data) {
-	        vm.articles = data.data.feed;
-	        $rootScope.$broadcast('feeditem', vm.articles);
+	        vm.allArticles = data.data.feed;
+	        console.log(vm.allArticles)
+	        vm.displayFeed();
 	        vm.allActivated = true;
 	        vm.favActivated = false;
 	        vm.subscriptions.forEach(function (folder) {
@@ -38473,6 +38476,7 @@
 	    vm.getAll();
 
 	    function getFav() {
+	      vm.offset = 0;
 	      APIFactory.getFav('favorites').then(function (data) {
 	        vm.articles = data.data;
 	        $rootScope.$broadcast('feeditem', vm.articles);
@@ -38487,19 +38491,32 @@
 	    }
 
 	    function getFeed($index) {
+	      vm.offset = 0;
+	      vm.articles = [];
 	      vm.clickitem($index);
 	      let id = 43673;
-	      APIFactory.getFeed(id, vm.offset).then(function (data) {
-	        for ( var i = vm.offset*10; i < vm.offset + 10; i++){
-	          vm.articles.push(data.data[i]);
-	        }
-	        // vm.articles = (data.data);
-	        $rootScope.$broadcast('feeditem', vm.articles);
+	      APIFactory.getFeed(id).then(function (data) {
+	        vm.allArticle = (data.data);
+	        console.log(vm.allArticle);
+	        vm.displayFeed()
 	      }).catch(function (data) {
 	        console.error('Failed to load feed items');
 	      });
-
 	    };
+
+	    function displayFeed() {
+	      for (var i = vm.offset*10 ; i < vm.offset+10; i++){
+	        vm.articles.push(vm.allArticle[i]);
+	      }
+	      $rootScope.$broadcast('feeditem', vm.articles);
+	      console.log(vm.articles);
+	    }
+
+	    function loadMore() {
+	      vm.offset++;
+	      console.log(vm.offset)
+	      vm.displayFeed();
+	    }
 
 
 	    function deleteSubscribe(id) {

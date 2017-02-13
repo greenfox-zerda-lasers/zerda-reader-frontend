@@ -16,7 +16,7 @@ function APIFactory($http) {
 
   APIFactory.getAll = function () {
     // return $http.get(urlReal + 'feed');
-    return $http.get(urlReal+'feed');
+    return $http.get(url+'feed');
   };
 
   APIFactory.getFav = function () {
