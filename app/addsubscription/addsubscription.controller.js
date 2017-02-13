@@ -32,6 +32,7 @@
       $scope.$apply();
     });
 
+
     function addSubscribe() {
       if (vm.newRss !== '') {
         APIFactory.postRSS(vm.newRss).then(function (data) {
