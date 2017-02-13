@@ -19,14 +19,10 @@ module.exports = function (config) {
       'node_modules/angular-route/angular-route.js',
       'app/**/*.html',
 
-      // 'app/addsubscription/addsubscription.html',
       'app/login/login.controller.spec.js',
       'app/signup/signup.controller.spec.js',
-      // 'app/addsubscription/addsubscription.controller.js',
       'app/addsubscription/addsubscription.controller.spec.js',
       'app/components/favorite.directive.spec.js',
-      // // 'app/components/favorite.directive.html',
-      // 'app/components/favorite.directive.js',
     ],
 
 
@@ -42,7 +38,7 @@ module.exports = function (config) {
     },
 
     ngHtml2JsPreprocessor: {
-     'moduleName': 'templates',
+      moduleName: 'templates',
     },
 
 
