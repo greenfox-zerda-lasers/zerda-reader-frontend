@@ -38435,9 +38435,9 @@
 	    .module('zerdaReader')
 	    .controller('SidebarController', SidebarController);
 
-	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window'];
+	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document'];
 
-	  function SidebarController($location, $rootScope, $http, APIFactory, $window) {
+	  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document) {
 	    const vm = this;
 	    vm.getSubs = getSubs;
 	    vm.deleteSubscribe = deleteSubscribe;
@@ -38475,9 +38475,10 @@
 
 	    vm.getAll();
 
+
 	    function getFav() {
 	      vm.offset = 0;
-	      APIFactory.getFav('favorites').then(function (data) {
+	      APIFactory.getFav().then(function (data) {
 	        vm.articles = data.data;
 	        $rootScope.$broadcast('feeditem', vm.articles);
 	        vm.allActivated = false;
@@ -38505,7 +38506,7 @@
 	    };
 
 	    function displayFeed() {
-	      for (var i = vm.offset*10 ; i < vm.offset+10; i++){
+	      for (var i = vm.offset * 15; i < vm.offset + 15; i++) {
 	        vm.articles.push(vm.allArticle[i]);
 	      }
 	      $rootScope.$broadcast('feeditem', vm.articles);
@@ -38517,7 +38518,6 @@
 	      console.log(vm.offset)
 	      vm.displayFeed();
 	    }
-
 
 	    function deleteSubscribe(id) {
 	      APIFactory.deleteItem(id).then(function (data) {
@@ -38646,6 +38646,24 @@
 	  function MainlistController($location, $rootScope, $http, APIFactory) {
 	    const vm = this;
 	    vm.makeActive = makeActive;
+
+	    //console.log(angular.element(document.querySelector("#mainlist")));
+
+	    var main = angular.element(document.querySelector("#mainlist"));
+
+	    main.on('scroll', function(e){
+	      //console.log(e)
+	      //console.log(e.target.offsetHeight, e.target.scrollHeight, e.target.scrollTop)
+	      var id = 43673;
+	      if (e.target.scrollTop > 40) {
+	        APIFactory.getFeed(id).then(function (data) {
+	          vm.articles = (data.data);
+	          $rootScope.$broadcast('feeditem', vm.articles);
+	        }).catch(function (data) {
+	          console.error('Failed to load feed items');
+	        })
+	      }
+	    });
 
 	    function makeActive($index, event) {
 	      if (event.target.classList.contains('star')) {
