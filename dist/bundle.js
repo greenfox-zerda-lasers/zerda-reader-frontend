@@ -69,17 +69,13 @@
 	// Services:
 	__webpack_require__(27);
 
-<<<<<<< HEAD
-	//Directives:
-=======
 	// Directives:
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 	__webpack_require__(28);
 
 	// All the controllers:
 	__webpack_require__(29);
 	__webpack_require__(30);
-	__webpack_require__(31);
+	__webpack_require__(36);
 
 	__webpack_require__(32);
 	__webpack_require__(33);
@@ -38177,11 +38173,7 @@
 /***/ function(module, exports) {
 
 	(function () {
-<<<<<<< HEAD
-	  
-=======
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
-	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngResource', 'infinite-scroll']);
+	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngResource']);
 
 	  zerdaReader.config(['$routeProvider', function ($routeProvider) {
 	    $routeProvider
@@ -38210,58 +38202,20 @@
 /* 27 */
 /***/ function(module, exports) {
 
-<<<<<<< HEAD
-	'use strict'
-=======
 	
 	'use strict';
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 
 	angular
 	  .module('zerdaReader')
 	  .factory('APIFactory', APIFactory);
 	  const url = 'https://zerda-reader-mockback.gomix.me/';
-<<<<<<< HEAD
-=======
 	  const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 
 	function APIFactory($http) {
 
 	  var APIFactory = {};
 
 	  APIFactory.getSubs = function () {
-<<<<<<< HEAD
-	    return $http.get(url+'subscription');
-	  };
-
-	  APIFactory.getAll = function () {
-	    return $http.get(url+'feed');
-	  };
-
-	  APIFactory.getFav = function () {
-	    return $http.get(url+'favorites');
-	  };
-
-	  APIFactory.getFeed = function (id) {
-	    return $http.get(url+'feed/'+id);
-	  };
-
-	  APIFactory.deleteItem = function (id) {
-	    return $http.delete(url+'subscribe/'+id);
-	  };
-
-	  APIFactory.putFav = function(id){
-	    return $http.put(url+'favorites', {item_id: id});
-	  }
-
-	  APIFactory.postRSS = function(rss){
-	    return $http.post(url+'subscribe', {feed: rss});
-	  }
-
-	  return APIFactory;
-	};
-=======
 	    return $http.get(url + 'subscription');
 	  };
 
@@ -38291,7 +38245,6 @@
 
 	  return APIFactory;
 	}
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 
 
 /***/ },
@@ -38305,13 +38258,8 @@
 	    .module('zerdaReader')
 	    .directive('favoriteIcon', favoriteIcon);
 
-<<<<<<< HEAD
-	  function favoriteIcon() {
-	    let directive = {
-=======
 	  function favoriteIcon(APIFactory) {
 	    const directive = {
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 	      restrict: 'E',
 	      scope: {
 	        article: '=',
@@ -38322,28 +38270,6 @@
 	    };
 	    return directive;
 
-<<<<<<< HEAD
-	    function link(scope, element, attrs) {
-	      scope.color = scope.article.favorite
-	      scope.favHandling = function () {
-	        // scope.color = scope.article.favorite;
-	        console.log('jhgj');
-	        // console.log(scope.favoriteCtrl.article, scope.favoriteCtrl.color);
-	      }
-	    }
-
-	    // FavoriteController.inject = ['$scope']
-
-	    // function FavoriteController() {
-	    //   let vm = this
-	      // vm.color = true
-
-	      // vm.color = vm.article.favorite;
-	    // }
-	  }
-
-
-=======
 	    function link(scope) {
 	      scope.color = scope.article.favorite;
 
@@ -38356,7 +38282,6 @@
 	      };
 	    }
 	  }
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 	})();
 
 
@@ -38458,31 +38383,7 @@
 
 
 /***/ },
-/* 31 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('HomeController', HomeController);
-
-	  HomeController.$inject = ['$location', '$rootScope'];
-
-	  function HomeController($location, $rootScope) {
-	    (function () {
-<<<<<<< HEAD
-	      console.log(localStorage.token)
-=======
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
-	      if (localStorage.token.length === 0) {
-	        $location.path('/login');
-	      }
-	    })();
-	  }
-	})();
-
-
-/***/ },
+/* 31 */,
 /* 32 */
 /***/ function(module, exports) {
 
@@ -38525,38 +38426,21 @@
 	    vm.getFeed = getFeed;
 	    vm.allActivated = true;
 
-<<<<<<< HEAD
-
-	    function getSubs(){
-	      APIFactory.getSubs().then(function(data) {
-	        vm.subscriptions = data.data;
-	        vm.subs
-=======
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
 	        vm.subscriptions = data.data;
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 	      }, function(errResponse) {
 	        console.error('Failed to load subscriptions')
 	      });
 	    }
 
-<<<<<<< HEAD
-	    function getAll(){
-	      APIFactory.getAll().then(function(data) {
-=======
 	    function getAll() {
 	      APIFactory.getAll().then(function (data) {
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 	        vm.articles = data.data.feed;
 	        $rootScope.$broadcast('feeditem', vm.articles);
 	        vm.allActivated = true;
 	        vm.favActivated = false;
-<<<<<<< HEAD
-	        vm.subscriptions.forEach( function ( folder ) {
-=======
 	        vm.subscriptions.forEach(function (folder) {
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 	          folder.active = false;
 	        });
 	      }, function(errResponse) {
@@ -38572,11 +38456,7 @@
 	        $rootScope.$broadcast('feeditem', vm.articles);
 	        vm.allActivated = false;
 	        vm.favActivated = true;
-<<<<<<< HEAD
-	        vm.subscriptions.forEach( function ( folder ) {
-=======
 	        vm.subscriptions.forEach(function (folder) {
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 	          folder.active = false;
 	        });
 	      }).catch(function (data) {
@@ -38584,15 +38464,9 @@
 	      });
 	    }
 
-<<<<<<< HEAD
-	    function getFeed($index, id) {
-	      vm.clickitem($index);
-	      var id = 43673;
-=======
 	    function getFeed($index) {
 	      vm.clickitem($index);
 	      let id = 43673;
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 	      APIFactory.getFeed(id).then(function (data) {
 	        vm.articles = (data.data);
 	        $rootScope.$broadcast('feeditem', vm.articles);
@@ -38615,19 +38489,6 @@
 	      });
 	    })();
 
-<<<<<<< HEAD
-	    vm.clickitem = function($index){
-	      vm.subscriptions.map( function ( folder ) {
-	        folder.active = false;
-	      });
-	      vm.subscriptions[ $index ].active = true;
-	      vm.allActivated = false;
-	      vm.favActivated = false;
-	    }
-
-	  }
-
-=======
 	    vm.clickitem = function ($index) {
 	      vm.subscriptions.map(function (folder) {
 	        folder.active = false;
@@ -38637,7 +38498,6 @@
 	      vm.favActivated = false;
 	    };
 	  }
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 	})();
 
 
@@ -38656,45 +38516,33 @@
 	    const vm = this;
 	    vm.addSubscribe = addSubscribe;
 	    vm.makeVisible = makeVisible;
-<<<<<<< HEAD
-	    //vm.visible = 'hidden';
-=======
-
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
+	    vm.visible = 'hidden';
 
 	    function makeVisible() {
-	      if (vm.visible === 'visible') {
-	        vm.visible = 'hidden';
-	      } else {
+	      if (vm.visible === 'hidden') {
 	        vm.visible = 'visible';
+	      } else {
+	        vm.visible = 'hidden';
 	      }
 	    }
 
-<<<<<<< HEAD
 	    window.addEventListener('click', function(event){
 	        // console.log(event);
-	        //console.log(event.target);
-
+	        // console.log(event.target);
 	        var el = event.target
-	        //console.log(el.parentElement)
 
 	        console.log(vm.visible);
-	        if (closest(el, "#addpopup")) {
-	          //console.log("match");
+	        if (closest(el, '#addpopup')) {
+	          console.log("match");
 	          vm.visible = 'visible';
-	          console.log(vm.visible);
-	    //   } else if (closest(el, "#addpopup") && vm.visible == "visible"){
-	    //       console.log(vm.visible);
-	    //       vm.visible = 'hidden';
-	    //       console.log(vm.visible);
-	      }else {
-	          //console.log("nomatch");
-	          vm.visible = 'hidden';
-	        }
+	      } else {
+	          vm.visible = 'hide';
+	      }
+	        //   console.log(vm.visible);
+
+
 	    })
 
-=======
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 	    function addSubscribe() {
 	      if (vm.newRss !== '') {
 	        APIFactory.postRSS(vm.newRss).then( function (data) {
@@ -38706,7 +38554,6 @@
 	      vm.newRss = '';
 	    }
 	  }
-<<<<<<< HEAD
 
 	  function closest(el, selector, stopSelector) {
 	      var retval = null;
@@ -38730,13 +38577,6 @@
 
 
 	// http://stackoverflow.com/questions/14234560/javascript-how-to-get-parent-element-by-selector
-	// preventDefault
-	//
-	// preventDefault()
-	// el event.target false
-=======
-	})();
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 
 
 /***/ },
@@ -38753,22 +38593,11 @@
 	  function MainlistController($location, $rootScope, $http, APIFactory) {
 	    const vm = this;
 	    vm.makeActive = makeActive;
-<<<<<<< HEAD
-	    vm.favoriteHandling = favoriteHandling;
-	    // vm.changeFavoriteIcon =
-	    // vm.getItem = getItem;
-	    // $rootScope.$on('feeditem', function (event, items) {
-	    //   vm.articles = items;
-	    // });
-
-	    function makeActive($index) {
-=======
 
 	    function makeActive($index, event) {
 	      if (event.target.classList.contains('star')) {
 	        return;
 	      }
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 	      if (vm.articles[$index].active === true) {
 	        vm.articles[$index].active = false;
 	      } else {
@@ -38779,27 +38608,31 @@
 	      }
 	    }
 
-<<<<<<< HEAD
-	    function favoriteHandling(id) {
-	      APIFactory.putFav(id).then(function (data) {
-	      }).catch(function (data) {
-	        console.errod('Change favorite status failed');
-	      });
-	    }
-	    // function changeFavoriteIcon($index){
-	    //       if ($scope.class === 'uncheckedstar') {
-	    //         $scope.class = 'checkedstar';
-	    //       } else {
-	    //         $scope.class = 'uncheckedstar';
-	    //     };
-	    //   }
-
-=======
->>>>>>> 344d524010cb8a1daaa93ffbc49de86718658cd9
 	    (function listenFeedItems() {
 	      $rootScope.$on('feeditem', function (event, items) {
 	        vm.articles = items;
 	      });
+	    })();
+	  }
+	})();
+
+
+/***/ },
+/* 36 */
+/***/ function(module, exports) {
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('HomeController', HomeController);
+
+	  HomeController.$inject = ['$location', '$rootScope'];
+
+	  function HomeController($location, $rootScope) {
+	    (function () {
+	      if (localStorage.token.length === 0) {
+	        $location.path('/login');
+	      }
 	    })();
 	  }
 	})();

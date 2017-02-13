@@ -9,36 +9,31 @@
     const vm = this;
     vm.addSubscribe = addSubscribe;
     vm.makeVisible = makeVisible;
-    //vm.visible = 'hidden';
+    vm.visible = 'hidden';
 
     function makeVisible() {
-      if (vm.visible === 'visible') {
-        vm.visible = 'hidden';
-      } else {
+      if (vm.visible === 'hidden') {
         vm.visible = 'visible';
+      } else {
+        vm.visible = 'hidden';
       }
     }
 
     window.addEventListener('click', function(event){
         // console.log(event);
-        //console.log(event.target);
-
+        // console.log(event.target);
         var el = event.target
-        //console.log(el.parentElement)
 
         console.log(vm.visible);
-        if (closest(el, "#addpopup")) {
-          //console.log("match");
+        if (closest(el, '#addpopup')) {
+          console.log("match");
           vm.visible = 'visible';
-          console.log(vm.visible);
-    //   } else if (closest(el, "#addpopup") && vm.visible == "visible"){
-    //       console.log(vm.visible);
-    //       vm.visible = 'hidden';
-    //       console.log(vm.visible);
-      }else {
-          //console.log("nomatch");
-          vm.visible = 'hidden';
-        }
+      } else {
+          vm.visible = 'hide';
+      }
+        //   console.log(vm.visible);
+
+
     })
 
     function addSubscribe() {
@@ -75,7 +70,3 @@
 
 
 // http://stackoverflow.com/questions/14234560/javascript-how-to-get-parent-element-by-selector
-// preventDefault
-//
-// preventDefault()
-// el event.target false
