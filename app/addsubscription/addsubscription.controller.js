@@ -10,11 +10,10 @@
     vm.addSubscribe = addSubscribe;
     vm.makeVisible = makeVisible;
     vm.visible = 'hidden';
+    vm.newRss = '';
 
     function makeVisible() {
-
-      console.log('make visi');
-      if (event.target.id === 'add'){
+      if (event.target.id === 'add') {
         if (vm.visible === 'visible') {
           vm.visible = 'hidden';
         } else {
@@ -24,19 +23,19 @@
     }
 
     $window.addEventListener('click', function (event) {
-      var el = event.target
+      let el = event.target
       if (event.target.id !== 'add') {
-        if (!closest(el, "#addpopup")) {
+        if (!closest(el, '#addpopup')) {
           vm.visible = 'hidden';
         }
       }
-      $scope.$apply()
+      $scope.$apply();
+    });
 
-    })
 
     function addSubscribe() {
       if (vm.newRss !== '') {
-        APIFactory.postRSS(vm.newRss).then( function (data) {
+        APIFactory.postRSS(vm.newRss).then(function (data) {
           $rootScope.$broadcast('getsubscription');
           vm.visible = 'hidden';
         }).catch(function (data) {
@@ -48,16 +47,16 @@
   }
 
   function closest(el, selector, stopSelector) {
-      var retval = null;
-      while (el) {
-          if (el.matches(selector)) {
-              retval = el;
-              break
-          } else if (stopSelector && el.matches(stopSelector)) {
-              break
-          }
-          el = el.parentElement;
+    let retval = null;
+    while (el) {
+      if (el.matches(selector)) {
+        retval = el;
+        break;
+      } else if (stopSelector && el.matches(stopSelector)) {
+        break;
       }
-      return retval;
+      el = el.parentElement;
+    }
+    return retval;
   }
 })();

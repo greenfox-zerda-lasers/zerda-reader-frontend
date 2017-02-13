@@ -1,15 +1,9 @@
 'use strict'
 
 describe('SubscribeController controller', function () {
-  var httpBackend
   var SubscribeController
   var compile
   var element
-  var popup
-  var compiled
-  var compiledPopup
-  var compiledElement
-  var scope
   var rootscope
 
   beforeEach(function () {

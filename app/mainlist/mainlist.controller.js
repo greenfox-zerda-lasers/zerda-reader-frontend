@@ -35,11 +35,8 @@
       }
     }
 
-    (function listenFeedItems() {
-      $rootScope.$on('feeditem', function (event, items) {
-        vm.articles = items;
-        console.log(vm.articles);
-      });
-    })();
+    $rootScope.$on('feeditem', function (event, items) {
+      vm.articles = items;
+    });
   }
 })();
