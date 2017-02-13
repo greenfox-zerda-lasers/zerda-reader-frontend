@@ -3,7 +3,7 @@
     <div ng-repeat="article in mainCtrl.articles | filter: search" class="item nomargin">
       <div class="mainlist-item">
 
-        <div class="{{mainCtrl.article.active ? 'active' : ''}} title" ng-click="mainCtrl.makeActive($index, $event)">
+        <div class="{{mainCtrl.article.active ? 'active' : ''}} title" ng-click="mainCtrl.makeActive($index, $event)" style="font-weight: {{mainCtrl.opened}}">
           <i class="ui user icon"></i>
             {{article.title}}
 

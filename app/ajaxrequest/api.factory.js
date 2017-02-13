@@ -27,6 +27,11 @@ function APIFactory($http) {
     return $http.get(url + 'feed/' + id + '/?offset=0&items=5');
   };
 
+  APIFactory.openedArticle = function (id) {
+    console.log(id);
+    return $http.put(url + 'feed/' + id, { opened: true });
+  };
+
   APIFactory.deleteItem = function (id) {
     return $http.delete(url + 'subscribe/' + id);
   };
