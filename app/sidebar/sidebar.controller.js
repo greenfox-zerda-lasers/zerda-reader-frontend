@@ -3,9 +3,9 @@
     .module('zerdaReader')
     .controller('SidebarController', SidebarController);
 
-  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
+  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window'];
 
-  function SidebarController($location, $rootScope, $http, APIFactory) {
+  function SidebarController($location, $rootScope, $http, APIFactory, $window) {
     const vm = this;
     vm.getSubs = getSubs;
     vm.deleteSubscribe = deleteSubscribe;
@@ -13,6 +13,8 @@
     vm.getFav = getFav;
     vm.getFeed = getFeed;
     vm.allActivated = true;
+    vm.offset = 0;
+    vm.articles = [];
 
     function getSubs() {
       APIFactory.getSubs().then(function (data) {
@@ -55,13 +57,18 @@
     function getFeed($index) {
       vm.clickitem($index);
       let id = 43673;
-      APIFactory.getFeed(id).then(function (data) {
-        vm.articles = (data.data);
+      APIFactory.getFeed(id, vm.offset).then(function (data) {
+        for ( var i = vm.offset*10; i < vm.offset + 10; i++){
+          vm.articles.push(data.data[i]);
+        }
+        // vm.articles = (data.data);
         $rootScope.$broadcast('feeditem', vm.articles);
       }).catch(function (data) {
         console.error('Failed to load feed items');
       });
+
     };
+
 
     function deleteSubscribe(id) {
       APIFactory.deleteItem(id).then(function (data) {
