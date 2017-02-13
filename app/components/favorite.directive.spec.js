@@ -30,23 +30,13 @@ describe('Favorite directive', function () {
     });
   });
 
-    function getCompiledElement() {
-      element = angular.element('<favorite-icon article="article"></favorite-icon>');
-      compiledElement = $compile(element)(scope);
-      scope.$digest();
-      return compiledElement;
-    }
+  function getCompiledElement() {
+    element = angular.element('<favorite-icon article="article"></favorite-icon>');
+    compiledElement = $compile(element)(scope);
+    scope.$digest();
+    return compiledElement;
+  }
 
-<<<<<<< HEAD
-  it('should add the item to the favorites and color the star yellow', function () {
-    var e = directiveElem.find('i')
-
-    e.triggerHandler('click');
-    expect(e.hasClass('yellow')).toBe(true);
-
-    e.triggerHandler('click');
-    expect(e.hasClass('yellow')).toBe(false);
-=======
   it('should color the star yellow', function () {
     const starIcon = directiveElem.find('i');
 
@@ -55,6 +45,6 @@ describe('Favorite directive', function () {
 
     starIcon.triggerHandler('click');
     expect(starIcon.hasClass('yellow')).toBe(false);
->>>>>>> fb57b08b4aa7e066fcafb755f8a43ba4bd46f6d4
+
   });
 })

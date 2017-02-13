@@ -16,7 +16,7 @@ function APIFactory($http) {
 
   APIFactory.getAll = function () {
     // return $http.get(urlReal + 'feed');
-    return $http.get(urlReal+'feed?token=188972D039D54C6BBE874D4D9E2AF0E3');
+    return $http.get(url+'feed');
   };
 
   APIFactory.getFav = function () {
@@ -24,7 +24,7 @@ function APIFactory($http) {
   };
 
   APIFactory.getFeed = function (id) {
-    return $http.get(url + 'feed/' + id);
+    return $http.get(url + 'feed/' + id + '/?offset=0&items=5');
   };
 
   APIFactory.deleteItem = function (id) {
