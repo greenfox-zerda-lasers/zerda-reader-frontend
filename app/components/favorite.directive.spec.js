@@ -20,21 +20,22 @@ describe('Favorite directive', function () {
         description: 'Bacon',
         created: 1484756107,
         feed_name: 'Fox Crunch',
-        feed_id: 43673,
-        favorite: false,
-        opened: true,
+        feed_id:43673,
+        favorite:false,
+        opened:true,
         url: 'http://fox.com/moon',
       };
+
       directiveElem = getCompiledElement();
     });
   });
 
-    function getCompiledElement() {
-      element = angular.element('<favorite-icon article="article"></favorite-icon>');
-      compiledElement = $compile(element)(scope);
-      scope.$digest();
-      return compiledElement;
-    }
+  function getCompiledElement() {
+    element = angular.element('<favorite-icon article="article"></favorite-icon>');
+    compiledElement = $compile(element)(scope);
+    scope.$digest();
+    return compiledElement;
+  }
 
   it('should color the star yellow', function () {
     const starIcon = directiveElem.find('i');
@@ -44,5 +45,6 @@ describe('Favorite directive', function () {
 
     starIcon.triggerHandler('click');
     expect(starIcon.hasClass('yellow')).toBe(false);
+
   });
 })
