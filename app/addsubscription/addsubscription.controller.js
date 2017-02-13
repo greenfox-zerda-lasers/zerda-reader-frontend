@@ -3,15 +3,16 @@
     .module('zerdaReader')
     .controller('SubscribeController', SubscribeController);
 
-  SubscribeController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
+  SubscribeController.$inject = ['$scope', '$location', '$rootScope', '$http', '$window', 'APIFactory'];
 
-  function SubscribeController($location, $rootScope, $http, APIFactory) {
+  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory) {
     const vm = this;
     vm.addSubscribe = addSubscribe;
     vm.makeVisible = makeVisible;
     vm.visible = 'hidden';
 
     function makeVisible() {
+<<<<<<< HEAD
       if (vm.visible === 'hidden') {
         vm.visible = 'visible';
       } else {
@@ -34,12 +35,33 @@
         //   console.log(vm.visible);
 
 
+=======
+      console.log('make visi');
+      if (event.target.id === 'add'){
+        if (vm.visible === 'visible') {
+          vm.visible = 'hidden';
+        } else {
+          vm.visible = 'visible';
+        }
+      }
+    }
+
+    $window.addEventListener('click', function (event) {
+      var el = event.target
+      if (event.target.id !== 'add') {
+        if (!closest(el, "#addpopup")) {
+          vm.visible = 'hidden';
+        }
+      }
+      $scope.$apply()
+>>>>>>> 149023bdc24c56b1ec47e45f272e01d141d07d10
     })
 
     function addSubscribe() {
       if (vm.newRss !== '') {
         APIFactory.postRSS(vm.newRss).then( function (data) {
           $rootScope.$broadcast('getsubscription');
+          vm.visible = 'hidden';
         }).catch(function (data) {
           console.error('Connection failed');
         });
@@ -58,15 +80,9 @@
               break
           }
           el = el.parentElement;
-          //console.log(el);
       }
       return retval;
   }
 })();
-
-
-
-
-
 
 // http://stackoverflow.com/questions/14234560/javascript-how-to-get-parent-element-by-selector

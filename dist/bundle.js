@@ -44,6 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 	// Let's require all files that need to be bundled
 
 	// Import angular modules:
@@ -81,6 +82,45 @@
 	__webpack_require__(33);
 	__webpack_require__(34);
 	__webpack_require__(35);
+=======
+	// Let's require all files that need to be bundled
+
+	// Import angular modules:
+	__webpack_require__(1);
+	__webpack_require__(2);
+	__webpack_require__(3);
+	__webpack_require__(4);
+	__webpack_require__(5);
+	__webpack_require__(6);
+
+	// Import Semantic UI modules (styles):
+	__webpack_require__(7);
+	__webpack_require__(17);
+	__webpack_require__(19);
+
+	// Import custom Sass styling:
+	__webpack_require__(21);
+	__webpack_require__(23);
+
+	// Router:
+	__webpack_require__(26);
+
+	// Services:
+	__webpack_require__(27);
+
+	// Directives:
+	__webpack_require__(28);
+
+	// All the controllers:
+	__webpack_require__(29);
+	__webpack_require__(30);
+	__webpack_require__(31);
+
+	__webpack_require__(32);
+	__webpack_require__(33);
+	__webpack_require__(34);
+	__webpack_require__(35);
+>>>>>>> 149023bdc24c56b1ec47e45f272e01d141d07d10
 
 
 /***/ },
@@ -38157,7 +38197,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(25) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 26px; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal; }\n    #sidebar a:hover i {\n      color: teal; }\n      #sidebar a:hover i:hover {\n        color: #139797; }\n      #sidebar a:hover i:active {\n        color: #DD4B39; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#addpopup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#addpopup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#addpopup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #addpopup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 20px;\n  line-height: 1.5; }\n", ""]);
+	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(25) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 26px; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal; }\n    #sidebar a:hover i {\n      color: teal; }\n      #sidebar a:hover i:hover {\n        color: #139797; }\n      #sidebar a:hover i:active {\n        color: #DD4B39; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#addpopup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#addpopup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#addpopup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #addpopup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 20px;\n  line-height: 1.5; }\n\na.item.ng-leave {\n  transition: 0.5s linear all;\n  opacity: 1;\n  transform: translateX(0px); }\n\na.item.ng-leave.ng-leave-active {\n  transform: translateX(100%); }\n\na.item.ng-enter {\n  transition: 1s linear all;\n  background-color: black;\n  opacity: 0;\n  transform: translateY(-100%); }\n\na.item.ng-enter.ng-enter-active {\n  opacity: 1;\n  background-color: white;\n  transform: translateY(0px); }\n", ""]);
 
 	// exports
 
@@ -38172,6 +38212,7 @@
 /* 26 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	(function () {
 	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngResource']);
 
@@ -38196,12 +38237,39 @@
 	      });
 	  }]);
 	})();
+=======
+	(function () {
+	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate', 'ngResource', 'infinite-scroll']);
+
+	  zerdaReader.config(['$routeProvider', function ($routeProvider) {
+	    $routeProvider
+	      .when('/login', {
+	        templateUrl: 'app/login/login.html',
+	        controller: 'LoginController',
+	        controllerAs: 'loginCtrl',
+	      })
+	      .when('/signup', {
+	        templateUrl: 'app/signup/signup.html',
+	        controller: 'SignUpController',
+	        controllerAs: 'signUpCtrl',
+	      })
+	      .when('/home', {
+	        templateUrl: 'app/home/home.html',
+	        controller: 'HomeController',
+	        controllerAs: 'homeCtrl',
+	      }).otherwise({
+	        redirectTo: '/login',
+	      });
+	  }]);
+	})();
+>>>>>>> 149023bdc24c56b1ec47e45f272e01d141d07d10
 
 
 /***/ },
 /* 27 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	
 	'use strict';
 
@@ -38245,12 +38313,58 @@
 
 	  return APIFactory;
 	}
+=======
+	'use strict';
+
+	angular
+	  .module('zerdaReader')
+	  .factory('APIFactory', APIFactory);
+	  const url = 'https://zerda-reader-mockback.gomix.me/';
+	  const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
+
+	function APIFactory($http) {
+
+	  var APIFactory = {};
+
+	  APIFactory.getSubs = function () {
+	    return $http.get(url + 'subscription');
+	  };
+
+	  APIFactory.getAll = function () {
+	    // return $http.get(urlReal + 'feed');
+	    return $http.get(url+'feed');
+	  };
+
+	  APIFactory.getFav = function () {
+	    return $http.get(url + 'favorites');
+	  };
+
+	  APIFactory.getFeed = function (id) {
+	    return $http.get(url + 'feed/' + id + '/?offset=0&items=5');
+	  };
+
+	  APIFactory.deleteItem = function (id) {
+	    return $http.delete(url + 'subscribe/' + id);
+	  };
+
+	  APIFactory.putFav = function (id) {
+	    return $http.put(url + 'favorites', { item_id: id });
+	  };
+
+	  APIFactory.postRSS = function (rss) {
+	    return $http.post(url + 'subscribe', { feed: rss });
+	  };
+
+	  return APIFactory;
+	}
+>>>>>>> 149023bdc24c56b1ec47e45f272e01d141d07d10
 
 
 /***/ },
 /* 28 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	(function () {
 	  'use strict';
 
@@ -38283,6 +38397,40 @@
 	    }
 	  }
 	})();
+=======
+	(function () {
+	  'use strict';
+
+	  angular
+	    .module('zerdaReader')
+	    .directive('favoriteIcon', favoriteIcon);
+
+	  function favoriteIcon(APIFactory) {
+	    const directive = {
+	      restrict: 'E',
+	      scope: {
+	        article: '=',
+	        color: '=?',
+	      },
+	      templateUrl: 'app/components/favorite.directive.html',
+	      link: link,
+	    };
+	    return directive;
+
+	    function link(scope) {
+	      scope.color = scope.article.favorite;
+
+	      scope.favHandling = function (id) {
+	        scope.color = !scope.color;
+	        APIFactory.putFav(id).then(function (data) {
+	        }).catch(function (data) {
+	          console.error('Change favorite status failed');
+	        });
+	      };
+	    }
+	  }
+	})();
+>>>>>>> 149023bdc24c56b1ec47e45f272e01d141d07d10
 
 
 /***/ },
@@ -38383,7 +38531,40 @@
 
 
 /***/ },
+<<<<<<< HEAD
 /* 31 */,
+=======
+/* 31 */
+/***/ function(module, exports) {
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('HomeController', HomeController);
+
+	  HomeController.$inject = ['$location', '$rootScope'];
+
+	  function HomeController($location, $rootScope) {
+	    var vm = this;
+	    // vm.click = click;
+
+	    // function click() {
+	    //   console.log('sdf')
+	    //   $rootScope.$broadcast('click');
+	    // }
+
+	    (function () {
+	      if (localStorage.token.length === 0) {
+	        $location.path('/login');
+	      }
+	    })();
+	  }
+
+	})();
+
+
+/***/ },
+>>>>>>> 149023bdc24c56b1ec47e45f272e01d141d07d10
 /* 32 */
 /***/ function(module, exports) {
 
@@ -38410,6 +38591,7 @@
 /* 33 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	(function () {
 	  angular
 	    .module('zerdaReader')
@@ -38499,12 +38681,104 @@
 	    };
 	  }
 	})();
+=======
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('SidebarController', SidebarController);
+
+	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
+
+	  function SidebarController($location, $rootScope, $http, APIFactory) {
+	    const vm = this;
+	    vm.getSubs = getSubs;
+	    vm.deleteSubscribe = deleteSubscribe;
+	    vm.getAll = getAll;
+	    vm.getFav = getFav;
+	    vm.getFeed = getFeed;
+	    vm.allActivated = true;
+
+	    function getSubs() {
+	      APIFactory.getSubs().then(function (data) {
+	        vm.subscriptions = data.data;
+	      }, function(errResponse) {
+	        console.error('Failed to load subscriptions')
+	      });
+	    }
+
+	    function getAll() {
+	      APIFactory.getAll().then(function (data) {
+	        vm.articles = data.data.feed;
+	        $rootScope.$broadcast('feeditem', vm.articles);
+	        vm.allActivated = true;
+	        vm.favActivated = false;
+	        vm.subscriptions.forEach(function (folder) {
+	          folder.active = false;
+	        });
+	      }, function(errResponse) {
+	        console.error('Failed to load all feed items');
+	      });
+	    }
+
+	    vm.getAll();
+
+	    function getFav() {
+	      APIFactory.getFav('favorites').then(function (data) {
+	        vm.articles = data.data;
+	        $rootScope.$broadcast('feeditem', vm.articles);
+	        vm.allActivated = false;
+	        vm.favActivated = true;
+	        vm.subscriptions.forEach(function (folder) {
+	          folder.active = false;
+	        });
+	      }).catch(function (data) {
+	        console.error('Failed to load favorites');
+	      });
+	    }
+
+	    function getFeed($index) {
+	      vm.clickitem($index);
+	      let id = 43673;
+	      APIFactory.getFeed(id).then(function (data) {
+	        vm.articles = (data.data);
+	        $rootScope.$broadcast('feeditem', vm.articles);
+	      }).catch(function (data) {
+	        console.error('Failed to load feed items');
+	      });
+	    };
+
+	    function deleteSubscribe(id) {
+	      APIFactory.deleteItem(id).then(function (data) {
+	        vm.getSubs();
+	      }).catch(function (data) {
+	        console.error('Failed to delete subscription');
+	      })
+	    }
+
+	    (function () {
+	      $rootScope.$on('getsubscription', function (event) {
+	        getSubs();
+	      });
+	    })();
+
+	    vm.clickitem = function ($index) {
+	      vm.subscriptions.map(function (folder) {
+	        folder.active = false;
+	      });
+	      vm.subscriptions[$index].active = true;
+	      vm.allActivated = false;
+	      vm.favActivated = false;
+	    };
+	  }
+	})();
+>>>>>>> 149023bdc24c56b1ec47e45f272e01d141d07d10
 
 
 /***/ },
 /* 34 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	(function () {
 	  angular
 	    .module('zerdaReader')
@@ -38577,12 +38851,82 @@
 
 
 	// http://stackoverflow.com/questions/14234560/javascript-how-to-get-parent-element-by-selector
+=======
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('SubscribeController', SubscribeController);
+
+	  SubscribeController.$inject = ['$scope', '$location', '$rootScope', '$http', '$window', 'APIFactory'];
+
+	  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory) {
+	    const vm = this;
+	    vm.addSubscribe = addSubscribe;
+	    vm.makeVisible = makeVisible;
+	    vm.visible = 'hidden';
+
+	    function makeVisible() {
+	      console.log('make visi');
+	      if (event.target.id === 'add'){
+	        if (vm.visible === 'visible') {
+	          vm.visible = 'hidden';
+	        } else {
+	          vm.visible = 'visible';
+	        }
+	      }
+	    }
+
+	    $window.addEventListener('click', function (event) {
+	      var el = event.target
+	      if (event.target.id !== 'add') {
+	        if (!closest(el, "#addpopup")) {
+	          vm.visible = 'hidden';
+	        }
+	      }
+	      $scope.$apply()
+	    })
+
+	    function addSubscribe() {
+	      if (vm.newRss !== '') {
+	        APIFactory.postRSS(vm.newRss).then( function (data) {
+	          $rootScope.$broadcast('getsubscription');
+	          vm.visible = 'hidden';
+	        }).catch(function (data) {
+	          console.error('Connection failed');
+	        });
+	      }
+	      vm.newRss = '';
+	    }
+	  }
+
+	  function closest(el, selector, stopSelector) {
+	      var retval = null;
+	      while (el) {
+	          if (el.matches(selector)) {
+	              retval = el;
+	              break
+	          } else if (stopSelector && el.matches(stopSelector)) {
+	              break
+	          }
+	          el = el.parentElement;
+	      }
+	      return retval;
+	  }
+	})();
+
+	// http://stackoverflow.com/questions/14234560/javascript-how-to-get-parent-element-by-selector
+	// preventDefault
+	//
+	// preventDefault()
+	// el event.target false
+>>>>>>> 149023bdc24c56b1ec47e45f272e01d141d07d10
 
 
 /***/ },
 /* 35 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	(function () {
 	  angular
 	    .module('zerdaReader')
@@ -38615,6 +38959,40 @@
 	    })();
 	  }
 	})();
+=======
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('MainlistController', MainlistController);
+
+	  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
+
+	  function MainlistController($location, $rootScope, $http, APIFactory) {
+	    const vm = this;
+	    vm.makeActive = makeActive;
+
+	    function makeActive($index, event) {
+	      if (event.target.classList.contains('star')) {
+	        return;
+	      }
+	      if (vm.articles[$index].active === true) {
+	        vm.articles[$index].active = false;
+	      } else {
+	        vm.articles.map(function (article) {
+	          article.active = false;
+	        });
+	        vm.articles[$index].active = true;
+	      }
+	    }
+
+	    (function listenFeedItems() {
+	      $rootScope.$on('feeditem', function (event, items) {
+	        vm.articles = items;
+	      });
+	    })();
+	  }
+	})();
+>>>>>>> 149023bdc24c56b1ec47e45f272e01d141d07d10
 
 
 /***/ },
