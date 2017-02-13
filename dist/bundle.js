@@ -38646,6 +38646,8 @@
 	  function MainlistController($location, $rootScope, $http, APIFactory) {
 	    const vm = this;
 	    vm.makeActive = makeActive;
+	    vm.offset = 1;
+	    vm.articles = [];
 
 	    //console.log(angular.element(document.querySelector("#mainlist")));
 
@@ -38658,12 +38660,35 @@
 	      if (e.target.scrollTop > 40) {
 	        APIFactory.getFeed(id).then(function (data) {
 	          vm.articles = (data.data);
+	          //console.log(vm.allArticle)
+	          //vm.loadMore();
 	          $rootScope.$broadcast('feeditem', vm.articles);
 	        }).catch(function (data) {
 	          console.error('Failed to load feed items');
 	        })
 	      }
 	    });
+
+	    function displayFeed() {
+	      var ending
+	      if (vm.offset + 15 < vm.allArticle.length){
+	        ending = vm.offset + 15;
+	      } else {
+	        ending = vm.allArticle.length;
+	      }
+	      console.log(ending);
+	      for (var i = vm.offset * 15; i < ending; i++) {
+	        vm.articles.push(vm.allArticle[i]);
+	      }
+	      $rootScope.$broadcast('feeditem', vm.articles);
+	      console.log(vm.articles);
+	    }
+
+	    function loadMore() {
+	      vm.displayFeed();
+	      vm.offset++;
+	      console.log(vm.offset)
+	    }
 
 	    function makeActive($index, event) {
 	      if (event.target.classList.contains('star')) {
