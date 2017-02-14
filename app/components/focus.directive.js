@@ -5,18 +5,18 @@
     .module('zerdaReader')
     .directive('focusAdd', focusAdd);
 
-  function focusAdd($timeout, $parse) {
+  function focusAdd($timeout) {
     return {
       restrict: 'A',
       scope: {
         trigger: '@focusAdd',
       },
-      link: function( scope, element, attrs) {
+      link: function (scope, element, attrs) {
         scope.$watch('trigger', function (value) {
           if (value) {
-            $timeout(function() {
+            $timeout(function () {
               element[0].focus();
-              scope[attrs.focus] = false;
+              // scope[attrs.focus] = false;
             });
           }
         });

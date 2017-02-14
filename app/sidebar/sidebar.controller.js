@@ -28,10 +28,12 @@
         $rootScope.$broadcast('feeditem', vm.articles);
         vm.allActivated = true;
         vm.favActivated = false;
-        vm.subscriptions.forEach(function (folder) {
-          folder.active = false;
-        });
-      }, function(errResponse) {
+        if (vm.subscriptions){
+          vm.subscriptions.forEach(function (folder) {
+            folder.active = false;
+          });
+        }
+      }, function (errResponse) {
         console.error('Failed to load all feed items');
       });
     }
