@@ -71,6 +71,7 @@
 
 	// Directives:
 	__webpack_require__(28);
+	__webpack_require__(36);
 
 	// All the controllers:
 	__webpack_require__(29);
@@ -38400,14 +38401,7 @@
 	  HomeController.$inject = ['$location', '$rootScope'];
 
 	  function HomeController($location, $rootScope) {
-	    var vm = this;
-	    // vm.click = click;
-
-	    // function click() {
-	    //   console.log('sdf')
-	    //   $rootScope.$broadcast('click');
-	    // }
-
+	    const vm = this;
 	    (function () {
 	      if (localStorage.token.length === 0) {
 	        $location.path('/login');
@@ -38464,7 +38458,7 @@
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
 	        vm.subscriptions = data.data;
-	      }, function(errResponse) {
+	      }, function (errResponse) {
 	        console.error('Failed to load subscriptions')
 	      });
 	    }
@@ -38508,21 +38502,15 @@
 	      }).catch(function (data) {
 	        console.error('Failed to load feed items');
 	      });
-	    };
+	    }
 
 	    function deleteSubscribe(id) {
 	      APIFactory.deleteItem(id).then(function (data) {
 	        vm.getSubs();
 	      }).catch(function (data) {
 	        console.error('Failed to delete subscription');
-	      })
-	    }
-
-	    (function () {
-	      $rootScope.$on('getsubscription', function (event) {
-	        getSubs();
 	      });
-	    })();
+	    }
 
 	    vm.clickitem = function ($index) {
 	      vm.subscriptions.map(function (folder) {
@@ -38532,6 +38520,9 @@
 	      vm.allActivated = false;
 	      vm.favActivated = false;
 	    };
+	    $rootScope.$on('getsubscription', function (event) {
+	      getSubs();
+	    });
 	  }
 	})();
 
@@ -38552,11 +38543,12 @@
 	    vm.addSubscribe = addSubscribe;
 	    vm.makeVisible = makeVisible;
 	    vm.visible = 'hidden';
+	    vm.newRss = '';
+	    vm.open = false;
 
 	    function makeVisible() {
-
-	      console.log('make visi');
-	      if (event.target.id === 'add'){
+	      if (event.target.id === 'add') {
+	        vm.open = !vm.open;
 	        if (vm.visible === 'visible') {
 	          vm.visible = 'hidden';
 	        } else {
@@ -38566,19 +38558,18 @@
 	    }
 
 	    $window.addEventListener('click', function (event) {
-	      var el = event.target
+	      let el = event.target
 	      if (event.target.id !== 'add') {
-	        if (!closest(el, "#addpopup")) {
+	        if (!closest(el, '#addpopup')) {
 	          vm.visible = 'hidden';
 	        }
 	      }
-	      $scope.$apply()
-
-	    })
+	      $scope.$apply();
+	    });
 
 	    function addSubscribe() {
 	      if (vm.newRss !== '') {
-	        APIFactory.postRSS(vm.newRss).then( function (data) {
+	        APIFactory.postRSS(vm.newRss).then(function (data) {
 	          $rootScope.$broadcast('getsubscription');
 	          vm.visible = 'hidden';
 	        }).catch(function (data) {
@@ -38590,17 +38581,17 @@
 	  }
 
 	  function closest(el, selector, stopSelector) {
-	      var retval = null;
-	      while (el) {
-	          if (el.matches(selector)) {
-	              retval = el;
-	              break
-	          } else if (stopSelector && el.matches(stopSelector)) {
-	              break
-	          }
-	          el = el.parentElement;
+	    let retval = null;
+	    while (el) {
+	      if (el.matches(selector)) {
+	        retval = el;
+	        break;
+	      } else if (stopSelector && el.matches(stopSelector)) {
+	        break;
 	      }
-	      return retval;
+	      el = el.parentElement;
+	    }
+	    return retval;
 	  }
 	})();
 
@@ -38646,12 +38637,41 @@
 	      }
 	    }
 
-	    (function listenFeedItems() {
-	      $rootScope.$on('feeditem', function (event, items) {
-	        vm.articles = items;
-	        console.log(vm.articles);
-	      });
-	    })();
+	    $rootScope.$on('feeditem', function (event, items) {
+	      vm.articles = items;
+	    });
+	  }
+	})();
+
+
+/***/ },
+/* 36 */
+/***/ function(module, exports) {
+
+	(function () {
+	  'use strict';
+
+	  angular
+	    .module('zerdaReader')
+	    .directive('focusAdd', focusAdd);
+
+	  function focusAdd($timeout, $parse) {
+	    return {
+	      restrict: 'A',
+	      scope: {
+	        trigger: '@focusAdd',
+	      },
+	      link: function( scope, element, attrs) {
+	        scope.$watch('trigger', function (value) {
+	          if (value) {
+	            $timeout(function() {
+	              element[0].focus();
+	              scope[attrs.focus] = false;
+	            });
+	          }
+	        });
+	      },
+	    };
 	  }
 	})();
 
