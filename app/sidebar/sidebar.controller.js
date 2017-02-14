@@ -71,7 +71,7 @@
      //console.log(vm.allArticle)
     }
 
-    window.setInterval(generateData, 60000);
+    // window.setInterval(generateData, 10000);
 
     vm.clickitem = function ($index) {
       vm.subscriptions.map(function (folder) {
