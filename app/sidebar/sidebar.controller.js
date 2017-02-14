@@ -42,7 +42,6 @@
     function getFav() {
       APIFactory.getFav().then(function (data) {
         vm.allArticle = data.data;
-        console.log('favorites: ', vm.allArticle)
         $rootScope.$broadcast('feeditems', vm.allArticle);
         vm.allActivated = false;
         vm.favActivated = true;
@@ -72,7 +71,6 @@
       APIFactory.getFeed(vm.feed_id).then(function (data) {
         vm.allArticle = data.data;
         $rootScope.$broadcast('feeditems', vm.allArticle);
-        console.log('feeditem:', vm.allArticle)
       }).catch(function (data) {
         console.error('Failed to load feed');
       });

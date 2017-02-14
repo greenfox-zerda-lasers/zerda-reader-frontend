@@ -38474,7 +38474,6 @@
 	    function getFav() {
 	      APIFactory.getFav().then(function (data) {
 	        vm.allArticle = data.data;
-	        console.log('favorites: ', vm.allArticle)
 	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = false;
 	        vm.favActivated = true;
@@ -38504,7 +38503,6 @@
 	      APIFactory.getFeed(vm.feed_id).then(function (data) {
 	        vm.allArticle = data.data;
 	        $rootScope.$broadcast('feeditems', vm.allArticle);
-	        console.log('feeditem:', vm.allArticle)
 	      }).catch(function (data) {
 	        console.error('Failed to load feed');
 	      });
@@ -38634,35 +38632,25 @@
 	    vm.makeActive = makeActive;
 	    vm.displayFeed = displayFeed;
 	    vm.loadMore = loadMore;
-	    vm.offset = 0;
 	    vm.pack = 15;
 
 
 	    var main = angular.element(document.querySelector("#mainlist"));
 
 	    main.on('scroll', function(e){
-	      if (e.target.scrollTop > 60) {
+	      if (e.target.scrollTop + e.target.offsetHeight >= e.target.scrollHeight-1) {
 	        vm.loadMore();
 	        console.log(vm.offset)
-	        // APIFactory.getFeed(vm.feed_id).then(function (data) {
-	        //   vm.articles = (data.data);
-	        // }).catch(function (data) {
-	        //   console.error('Failed to load feed items');
-	        // })
 	      }
 	    });
 
 	    //window.setInterval(vm.getFeed, 6000);
 
 	    function displayFeed() {
-	      console.log(vm.articles);
-	      if (vm.offset + vm.pack <= vm.allArticle.length) {
-	        vm.ending = vm.offset + vm.pack;
+	      if (vm.offset * vm.pack + vm.pack <= vm.allArticle.length) {
+	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset+vm.pack));
 	      } else {
-	        vm.ending = vm.allArticle.length;
-	      }
-	      for (var i = vm.offset * vm.pack; i < vm.ending; i++) {
-	        vm.articles.push(vm.allArticle[i]);
+	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset*vm.pack, vm.allArticle.length));
 	      }
 	      console.log(vm.articles);
 	    }
@@ -38695,6 +38683,7 @@
 	    (function listenFeedItems() {
 	      $rootScope.$on('feeditems', function (event, items) {
 	        vm.articles = [];
+	        vm.offset = 0;
 	        vm.allArticle = items;
 	        vm.displayFeed();
 	      });
