@@ -38696,21 +38696,19 @@
 	      }
 	    }
 
-	    (function listenFeedId() {
-	      $rootScope.$on('feed_id', function (event, id) {
-	        vm.feed_id = id;
-	      });
-	    })();
 
-	    (function listenFeedItems() {
-	      $rootScope.$on('feeditems', function (event, items) {
-	        vm.articles = [];
-	        vm.offset = 0;
-	        vm.allArticle = items;
-	        console.log(items);
-	        vm.displayFeed();
-	      });
-	    })();
+	    $rootScope.$on('feed_id', function (event, id) {
+	      vm.feed_id = id;
+	    });
+
+	    $rootScope.$on('feeditems', function (event, items) {
+	      vm.articles = [];
+	      vm.offset = 0;
+	      vm.allArticle = items;
+	      console.log(items);
+	      vm.displayFeed();
+	    });
+
 	  }
 	})();
 
