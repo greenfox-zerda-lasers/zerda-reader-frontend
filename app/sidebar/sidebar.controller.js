@@ -73,6 +73,9 @@
     }
 
     function clickItem(index, id) {
+      if (event.target.classList.contains('delete')) {
+        return;
+      }
       vm.subscriptions.map(function (folder) {
         folder.active = false;
       });

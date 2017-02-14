@@ -3,7 +3,7 @@
     <a class="item {{sidebarCtrl.allActivated ? 'active' : ''}}" ng-click="sidebarCtrl.getAll()">All</a>
     <a class="item {{sidebarCtrl.favActivated ? 'active' : ''}}" ng-click="sidebarCtrl.getFav()">Favorites</a>
     <a class="item {{folder.active ? 'active' : ''}}" ng-repeat="folder in sidebarCtrl.subscriptions" ng-click="sidebarCtrl.clickItem($index, folder.id)">
-      <i class="remove left floated icon" ng-click="sidebarCtrl.deleteSubscribe(folder.id)"></i>
+      <i class="remove left floated icon delete" ng-click="sidebarCtrl.deleteSubscribe(folder.id)"></i>
       {{folder.name}}
     </a>
   </div>
