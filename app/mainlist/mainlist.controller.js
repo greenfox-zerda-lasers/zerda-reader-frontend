@@ -3,9 +3,9 @@
     .module('zerdaReader')
     .controller('MainlistController', MainlistController);
 
-  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
+  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$scope'];
 
-  function MainlistController($location, $rootScope, $http, APIFactory) {
+  function MainlistController($location, $rootScope, $http, APIFactory, $scope) {
     const vm = this;
     vm.makeActive = makeActive;
     vm.displayFeed = displayFeed;
@@ -29,8 +29,10 @@
         vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset+vm.pack));
       } else {
         vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset*vm.pack, vm.allArticle.length));
+
       }
-      console.log(vm.articles);
+      $scope.$apply()
+      console.log("disp",vm.articles);
     }
 
     function loadMore() {
@@ -63,6 +65,7 @@
         vm.articles = [];
         vm.offset = 0;
         vm.allArticle = items;
+        console.log(items);
         vm.displayFeed();
       });
     })();

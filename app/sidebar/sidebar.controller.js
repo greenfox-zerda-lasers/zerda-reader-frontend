@@ -13,6 +13,7 @@
     vm.getFav = getFav;
     vm.allActivated = true;
     vm.getFeed = getFeed;
+    vm.generateData = generateData;
 
     function getSubs() {
       APIFactory.getSubs().then(function (data) {
@@ -25,6 +26,7 @@
     function getAll() {
       APIFactory.getAll().then(function (data) {
         vm.allArticle = data.data.feed;
+        // console.log(vm.allArticle)
         $rootScope.$broadcast('feeditems', vm.allArticle);
         vm.allActivated = true;
         vm.favActivated = false;
@@ -52,6 +54,24 @@
         console.error('Failed to load favorites');
       });
     }
+
+    function generateData(){
+      vm.allArticle.unshift({
+       "id": 2345525,
+       "title": "Fox on the Moon!",
+       "description:" : "...",
+       "created": Date.now(),
+       "feed_name": "Fox Crunch",
+       "feed_id": 43673,
+       "favorite": false,
+       "opened": true,
+       "url": "http://fox.com/moon"
+     })
+     $rootScope.$broadcast('feeditems', vm.allArticle);
+     //console.log(vm.allArticle)
+    }
+
+    window.setInterval(generateData, 60000);
 
     vm.clickitem = function ($index) {
       vm.subscriptions.map(function (folder) {

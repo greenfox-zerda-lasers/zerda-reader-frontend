@@ -38445,6 +38445,7 @@
 	    vm.getFav = getFav;
 	    vm.allActivated = true;
 	    vm.getFeed = getFeed;
+	    vm.generateData = generateData;
 
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
@@ -38457,6 +38458,7 @@
 	    function getAll() {
 	      APIFactory.getAll().then(function (data) {
 	        vm.allArticle = data.data.feed;
+	        // console.log(vm.allArticle)
 	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = true;
 	        vm.favActivated = false;
@@ -38484,6 +38486,24 @@
 	        console.error('Failed to load favorites');
 	      });
 	    }
+
+	    function generateData(){
+	      vm.allArticle.unshift({
+	       "id": 2345525,
+	       "title": "Fox on the Moon!",
+	       "description:" : "...",
+	       "created": Date.now(),
+	       "feed_name": "Fox Crunch",
+	       "feed_id": 43673,
+	       "favorite": false,
+	       "opened": true,
+	       "url": "http://fox.com/moon"
+	     })
+	     $rootScope.$broadcast('feeditems', vm.allArticle);
+	     //console.log(vm.allArticle)
+	    }
+
+	    window.setInterval(generateData, 60000);
 
 	    vm.clickitem = function ($index) {
 	      vm.subscriptions.map(function (folder) {
@@ -38625,9 +38645,9 @@
 	    .module('zerdaReader')
 	    .controller('MainlistController', MainlistController);
 
-	  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
+	  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$scope'];
 
-	  function MainlistController($location, $rootScope, $http, APIFactory) {
+	  function MainlistController($location, $rootScope, $http, APIFactory, $scope) {
 	    const vm = this;
 	    vm.makeActive = makeActive;
 	    vm.displayFeed = displayFeed;
@@ -38651,8 +38671,10 @@
 	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset+vm.pack));
 	      } else {
 	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset*vm.pack, vm.allArticle.length));
+
 	      }
-	      console.log(vm.articles);
+	      $scope.$apply()
+	      console.log("disp",vm.articles);
 	    }
 
 	    function loadMore() {
@@ -38685,6 +38707,7 @@
 	        vm.articles = [];
 	        vm.offset = 0;
 	        vm.allArticle = items;
+	        console.log(items);
 	        vm.displayFeed();
 	      });
 	    })();
