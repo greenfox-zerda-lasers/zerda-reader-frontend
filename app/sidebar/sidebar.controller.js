@@ -85,5 +85,13 @@
       vm.allActivated = false;
       vm.favActivated = false;
     };
+
+    function makePopupVisible() {
+      if (vm.popupvisible === 'visible') {
+        vm.popupvisible = 'hidden';
+      } else {
+        vm.popupvisible = 'visible';
+      }
+    }
   }
 })();

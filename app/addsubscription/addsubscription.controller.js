@@ -68,14 +68,3 @@
       return retval;
   }
 })();
-
-
-
-
-
-
-// http://stackoverflow.com/questions/14234560/javascript-how-to-get-parent-element-by-selector
-// preventDefault
-//
-// preventDefault()
-// el event.target false

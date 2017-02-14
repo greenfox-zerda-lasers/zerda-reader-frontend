@@ -38435,17 +38435,16 @@
 	    .module('zerdaReader')
 	    .controller('SidebarController', SidebarController);
 
-	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document'];
+	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
 
-	  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document) {
+	  function SidebarController($location, $rootScope, $http, APIFactory) {
 	    const vm = this;
 	    vm.getSubs = getSubs;
 	    vm.deleteSubscribe = deleteSubscribe;
 	    vm.getAll = getAll;
 	    vm.getFav = getFav;
-	    vm.allActivated = true;
 	    vm.getFeed = getFeed;
-	    vm.generateData = generateData;
+	    vm.allActivated = true;
 
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
@@ -38457,9 +38456,8 @@
 
 	    function getAll() {
 	      APIFactory.getAll().then(function (data) {
-	        vm.allArticle = data.data.feed;
-	        // console.log(vm.allArticle)
-	        $rootScope.$broadcast('feeditems', vm.allArticle);
+	        vm.articles = data.data.feed;
+	        $rootScope.$broadcast('feeditem', vm.articles);
 	        vm.allActivated = true;
 	        vm.favActivated = false;
 	        vm.subscriptions.forEach(function (folder) {
@@ -38472,11 +38470,10 @@
 
 	    vm.getAll();
 
-
 	    function getFav() {
-	      APIFactory.getFav().then(function (data) {
-	        vm.allArticle = data.data;
-	        $rootScope.$broadcast('feeditems', vm.allArticle);
+	      APIFactory.getFav('favorites').then(function (data) {
+	        vm.articles = data.data;
+	        $rootScope.$broadcast('feeditem', vm.articles);
 	        vm.allActivated = false;
 	        vm.favActivated = true;
 	        vm.subscriptions.forEach(function (folder) {
@@ -38487,48 +38484,15 @@
 	      });
 	    }
 
-	    function generateData(){
-	      vm.allArticle.unshift({
-	       "id": 2345525,
-	       "title": "Fox on the Moon!",
-	       "description:" : "...",
-	       "created": Date.now(),
-	       "feed_name": "Fox Crunch",
-	       "feed_id": 43673,
-	       "favorite": false,
-	       "opened": true,
-	       "url": "http://fox.com/moon"
-	     })
-	     $rootScope.$broadcast('feeditems', vm.allArticle);
-	     //console.log(vm.allArticle)
-	    }
-
-	    // window.setInterval(generateData, 10000);
-
-	    vm.clickitem = function ($index) {
-	      vm.subscriptions.map(function (folder) {
-	        folder.active = false;
-	      });
-	      vm.subscriptions[$index].active = true;
-	      vm.allActivated = false;
-	      vm.favActivated = false;
-	    };
-
-	    function getFeed($index, id) {
-
-	      //Ez a függvény kell hogy kikérje, a kattintott feed id-ját és összes hozzá tartozó cikket és broadcastolja a mainlisthez
-	      vm.feed_id = id;
-
-	      $rootScope.$broadcast('feed_id', vm.feed_id);
-	      APIFactory.getFeed(vm.feed_id).then(function (data) {
-	        vm.allArticle = data.data;
-	        $rootScope.$broadcast('feeditems', vm.allArticle);
-	      }).catch(function (data) {
-	        console.error('Failed to load feed');
-	      });
-
-	      //És itt kell megtörténje a sidebar aktív státuszának cserélgetése is
+	    function getFeed($index) {
 	      vm.clickitem($index);
+	      let id = 43673;
+	      APIFactory.getFeed(id).then(function (data) {
+	        vm.articles = (data.data);
+	        $rootScope.$broadcast('feeditem', vm.articles);
+	      }).catch(function (data) {
+	        console.error('Failed to load feed items');
+	      });
 	    };
 
 	    function deleteSubscribe(id) {
@@ -38545,6 +38509,22 @@
 	      });
 	    })();
 
+	    vm.clickitem = function ($index) {
+	      vm.subscriptions.map(function (folder) {
+	        folder.active = false;
+	      });
+	      vm.subscriptions[$index].active = true;
+	      vm.allActivated = false;
+	      vm.favActivated = false;
+	    };
+
+	    function makePopupVisible() {
+	      if (vm.popupvisible === 'visible') {
+	        vm.popupvisible = 'hidden';
+	      } else {
+	        vm.popupvisible = 'visible';
+	      }
+	    }
 	  }
 	})();
 
@@ -38623,17 +38603,6 @@
 	      return retval;
 	  }
 	})();
-
-
-
-
-
-
-	// http://stackoverflow.com/questions/14234560/javascript-how-to-get-parent-element-by-selector
-	// preventDefault
-	//
-	// preventDefault()
-	// el event.target false
 
 
 /***/ },
