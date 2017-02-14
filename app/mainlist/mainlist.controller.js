@@ -8,48 +8,44 @@
   function MainlistController($location, $rootScope, $http, APIFactory) {
     const vm = this;
     vm.makeActive = makeActive;
-    vm.offset = 1;
-    vm.articles = [];
+    vm.displayFeed = displayFeed;
+    vm.loadMore = loadMore;
+    vm.offset = 0;
+    vm.pack = 15;
 
-    //console.log(angular.element(document.querySelector("#mainlist")));
 
     var main = angular.element(document.querySelector("#mainlist"));
 
     main.on('scroll', function(e){
-      //console.log(e)
-      //console.log(e.target.offsetHeight, e.target.scrollHeight, e.target.scrollTop)
-      var id = 43673;
-      if (e.target.scrollTop > 40) {
-        APIFactory.getFeed(id).then(function (data) {
-          vm.articles = (data.data);
-          //console.log(vm.allArticle)
-          //vm.loadMore();
-          $rootScope.$broadcast('feeditem', vm.articles);
-        }).catch(function (data) {
-          console.error('Failed to load feed items');
-        })
+      if (e.target.scrollTop > 60) {
+        vm.loadMore();
+        console.log(vm.offset)
+        // APIFactory.getFeed(vm.feed_id).then(function (data) {
+        //   vm.articles = (data.data);
+        // }).catch(function (data) {
+        //   console.error('Failed to load feed items');
+        // })
       }
     });
 
+    //window.setInterval(vm.getFeed, 6000);
+
     function displayFeed() {
-      var ending
-      if (vm.offset + 15 < vm.allArticle.length){
-        ending = vm.offset + 15;
+      console.log(vm.articles);
+      if (vm.offset + vm.pack <= vm.allArticle.length) {
+        vm.ending = vm.offset + vm.pack;
       } else {
-        ending = vm.allArticle.length;
+        vm.ending = vm.allArticle.length;
       }
-      console.log(ending);
-      for (var i = vm.offset * 15; i < ending; i++) {
+      for (var i = vm.offset * vm.pack; i < vm.ending; i++) {
         vm.articles.push(vm.allArticle[i]);
       }
-      $rootScope.$broadcast('feeditem', vm.articles);
       console.log(vm.articles);
     }
 
     function loadMore() {
-      vm.displayFeed();
       vm.offset++;
-      console.log(vm.offset)
+      displayFeed();
     }
 
     function makeActive($index, event) {
@@ -66,9 +62,17 @@
       }
     }
 
+    (function listenFeedId() {
+      $rootScope.$on('feed_id', function (event, id) {
+        vm.feed_id = id;
+      });
+    })();
+
     (function listenFeedItems() {
-      $rootScope.$on('feeditem', function (event, items) {
-        vm.articles = items;
+      $rootScope.$on('feeditems', function (event, items) {
+        vm.articles = [];
+        vm.allArticle = items;
+        vm.displayFeed();
       });
     })();
   }

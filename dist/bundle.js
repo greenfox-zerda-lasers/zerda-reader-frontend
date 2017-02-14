@@ -38443,11 +38443,8 @@
 	    vm.deleteSubscribe = deleteSubscribe;
 	    vm.getAll = getAll;
 	    vm.getFav = getFav;
-	    vm.getFeed = getFeed;
-	    vm.displayFeed = displayFeed;
-	    vm.loadMore = loadMore;
 	    vm.allActivated = true;
-	    vm.offset = 0;
+	    vm.getFeed = getFeed;
 
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
@@ -38458,11 +38455,9 @@
 	    }
 
 	    function getAll() {
-	      vm.articles = [];
 	      APIFactory.getAll().then(function (data) {
-	        vm.allArticles = data.data.feed;
-	        console.log(vm.allArticles)
-	        vm.displayFeed();
+	        vm.allArticle = data.data.feed;
+	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = true;
 	        vm.favActivated = false;
 	        vm.subscriptions.forEach(function (folder) {
@@ -38477,10 +38472,10 @@
 
 
 	    function getFav() {
-	      vm.offset = 0;
 	      APIFactory.getFav().then(function (data) {
-	        vm.articles = data.data;
-	        $rootScope.$broadcast('feeditem', vm.articles);
+	        vm.allArticle = data.data;
+	        console.log('favorites: ', vm.allArticle)
+	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = false;
 	        vm.favActivated = true;
 	        vm.subscriptions.forEach(function (folder) {
@@ -38491,33 +38486,32 @@
 	      });
 	    }
 
-	    function getFeed($index) {
-	      vm.offset = 0;
-	      vm.articles = [];
-	      vm.clickitem($index);
-	      let id = 43673;
-	      APIFactory.getFeed(id).then(function (data) {
-	        vm.allArticle = (data.data);
-	        console.log(vm.allArticle);
-	        vm.displayFeed()
-	      }).catch(function (data) {
-	        console.error('Failed to load feed items');
+	    vm.clickitem = function ($index) {
+	      vm.subscriptions.map(function (folder) {
+	        folder.active = false;
 	      });
+	      vm.subscriptions[$index].active = true;
+	      vm.allActivated = false;
+	      vm.favActivated = false;
 	    };
 
-	    function displayFeed() {
-	      for (var i = vm.offset * 15; i < vm.offset + 15; i++) {
-	        vm.articles.push(vm.allArticle[i]);
-	      }
-	      $rootScope.$broadcast('feeditem', vm.articles);
-	      console.log(vm.articles);
-	    }
+	    function getFeed($index, id) {
 
-	    function loadMore() {
-	      vm.offset++;
-	      console.log(vm.offset)
-	      vm.displayFeed();
-	    }
+	      //Ez a függvény kell hogy kikérje, a kattintott feed id-ját és összes hozzá tartozó cikket és broadcastolja a mainlisthez
+	      vm.feed_id = id;
+
+	      $rootScope.$broadcast('feed_id', vm.feed_id);
+	      APIFactory.getFeed(vm.feed_id).then(function (data) {
+	        vm.allArticle = data.data;
+	        $rootScope.$broadcast('feeditems', vm.allArticle);
+	        console.log('feeditem:', vm.allArticle)
+	      }).catch(function (data) {
+	        console.error('Failed to load feed');
+	      });
+
+	      //És itt kell megtörténje a sidebar aktív státuszának cserélgetése is
+	      vm.clickitem($index);
+	    };
 
 	    function deleteSubscribe(id) {
 	      APIFactory.deleteItem(id).then(function (data) {
@@ -38533,14 +38527,6 @@
 	      });
 	    })();
 
-	    vm.clickitem = function ($index) {
-	      vm.subscriptions.map(function (folder) {
-	        folder.active = false;
-	      });
-	      vm.subscriptions[$index].active = true;
-	      vm.allActivated = false;
-	      vm.favActivated = false;
-	    };
 	  }
 	})();
 
@@ -38646,48 +38632,44 @@
 	  function MainlistController($location, $rootScope, $http, APIFactory) {
 	    const vm = this;
 	    vm.makeActive = makeActive;
-	    vm.offset = 1;
-	    vm.articles = [];
+	    vm.displayFeed = displayFeed;
+	    vm.loadMore = loadMore;
+	    vm.offset = 0;
+	    vm.pack = 15;
 
-	    //console.log(angular.element(document.querySelector("#mainlist")));
 
 	    var main = angular.element(document.querySelector("#mainlist"));
 
 	    main.on('scroll', function(e){
-	      //console.log(e)
-	      //console.log(e.target.offsetHeight, e.target.scrollHeight, e.target.scrollTop)
-	      var id = 43673;
-	      if (e.target.scrollTop > 40) {
-	        APIFactory.getFeed(id).then(function (data) {
-	          vm.articles = (data.data);
-	          //console.log(vm.allArticle)
-	          //vm.loadMore();
-	          $rootScope.$broadcast('feeditem', vm.articles);
-	        }).catch(function (data) {
-	          console.error('Failed to load feed items');
-	        })
+	      if (e.target.scrollTop > 60) {
+	        vm.loadMore();
+	        console.log(vm.offset)
+	        // APIFactory.getFeed(vm.feed_id).then(function (data) {
+	        //   vm.articles = (data.data);
+	        // }).catch(function (data) {
+	        //   console.error('Failed to load feed items');
+	        // })
 	      }
 	    });
 
+	    //window.setInterval(vm.getFeed, 6000);
+
 	    function displayFeed() {
-	      var ending
-	      if (vm.offset + 15 < vm.allArticle.length){
-	        ending = vm.offset + 15;
+	      console.log(vm.articles);
+	      if (vm.offset + vm.pack <= vm.allArticle.length) {
+	        vm.ending = vm.offset + vm.pack;
 	      } else {
-	        ending = vm.allArticle.length;
+	        vm.ending = vm.allArticle.length;
 	      }
-	      console.log(ending);
-	      for (var i = vm.offset * 15; i < ending; i++) {
+	      for (var i = vm.offset * vm.pack; i < vm.ending; i++) {
 	        vm.articles.push(vm.allArticle[i]);
 	      }
-	      $rootScope.$broadcast('feeditem', vm.articles);
 	      console.log(vm.articles);
 	    }
 
 	    function loadMore() {
-	      vm.displayFeed();
 	      vm.offset++;
-	      console.log(vm.offset)
+	      displayFeed();
 	    }
 
 	    function makeActive($index, event) {
@@ -38704,9 +38686,17 @@
 	      }
 	    }
 
+	    (function listenFeedId() {
+	      $rootScope.$on('feed_id', function (event, id) {
+	        vm.feed_id = id;
+	      });
+	    })();
+
 	    (function listenFeedItems() {
-	      $rootScope.$on('feeditem', function (event, items) {
-	        vm.articles = items;
+	      $rootScope.$on('feeditems', function (event, items) {
+	        vm.articles = [];
+	        vm.allArticle = items;
+	        vm.displayFeed();
 	      });
 	    })();
 	  }
