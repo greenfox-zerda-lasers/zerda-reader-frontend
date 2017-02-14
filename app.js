@@ -24,7 +24,7 @@ require('./router.js');
 require('./app/ajaxrequest/api.factory.js');
 
 // Directives:
-require('./app/components/favorite.directive.js');
+require('./app/components/favorite.directive/favorite.directive.js');
 require('./app/components/focus.directive.js');
 
 // All the controllers:

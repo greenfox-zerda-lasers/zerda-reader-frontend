@@ -22,7 +22,7 @@ module.exports = function (config) {
       'app/login/login.controller.spec.js',
       'app/signup/signup.controller.spec.js',
       'app/addsubscription/addsubscription.controller.spec.js',
-      'app/components/favorite.directive.spec.js',
+      'app/components/favorite.directive/favorite.directive.spec.js',
     ],
 
 

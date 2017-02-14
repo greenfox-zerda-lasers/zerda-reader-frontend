@@ -12,6 +12,7 @@
     vm.getAll = getAll;
     vm.getFav = getFav;
     vm.getFeed = getFeed;
+    vm.clickItem = clickItem;
     vm.allActivated = true;
 
     function getSubs() {
@@ -28,13 +29,13 @@
         $rootScope.$broadcast('feeditem', vm.articles);
         vm.allActivated = true;
         vm.favActivated = false;
-        if (vm.subscriptions){
+        if (vm.subscriptions) {
           vm.subscriptions.forEach(function (folder) {
             folder.active = false;
           });
         }
       }, function (errResponse) {
-        console.error('Failed to load all feed items');
+        console.error(errResponse, 'Failed to load all feed items');
       });
     }
 
@@ -54,9 +55,7 @@
       });
     }
 
-    function getFeed($index) {
-      vm.clickitem($index);
-      let id = 43673;
+    function getFeed(id) {
       APIFactory.getFeed(id).then(function (data) {
         vm.articles = (data.data);
         $rootScope.$broadcast('feeditem', vm.articles);
@@ -65,7 +64,7 @@
       });
     }
 
-    function deleteSubscribe(id) {
+    function deleteSubscribe(id, event) {
       APIFactory.deleteItem(id).then(function (data) {
         vm.getSubs();
       }).catch(function (data) {
@@ -73,16 +72,17 @@
       });
     }
 
-    vm.clickitem = function ($index) {
+    function clickItem(index, id) {
       vm.subscriptions.map(function (folder) {
         folder.active = false;
       });
-      vm.subscriptions[$index].active = true;
+      vm.getFeed(id);
+      vm.subscriptions[index].active = true;
       vm.allActivated = false;
       vm.favActivated = false;
     };
     $rootScope.$on('getsubscription', function (event) {
-      getSubs();
+      vm.getSubs();
     });
   }
 })();
