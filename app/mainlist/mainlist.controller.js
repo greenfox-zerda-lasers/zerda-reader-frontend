@@ -8,6 +8,7 @@
   function MainlistController($location, $rootScope, $http, APIFactory) {
     const vm = this;
     vm.makeActive = makeActive;
+    vm.opened = 'bold';
 
     function makeActive($index, event) {
       if (event.target.classList.contains('star')) {
@@ -20,8 +21,20 @@
           article.active = false;
         });
         vm.articles[$index].active = true;
+        vm.articles[$index].opened = true;
+
+        if (vm.articles[$index].opened){
+            vm.articles[$index].opened = '';
+        }
+
+        APIFactory.openedArticle(vm.articles[$index].id).then(function (data)
+        { console.log(data);
+        }).catch(function (data) {
+          console.error('Change favorite status failed');
+        });
       }
     }
+
     $rootScope.$on('feeditem', function (event, items) {
       vm.articles = items;
     });
