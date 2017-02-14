@@ -5,7 +5,7 @@
         <div class="column">
           <h4 class="ui header">Add new RSS channel</h4>
           <div class="ui input" style="align-items: center">
-            <input type="text" placeholder="URL..." name="newRss" ng-model="subsCtrl.newRss"/>
+            <input type="text" placeholder="URL..." name="newRss" ng-model="subsCtrl.newRss" focus-add="{{subsCtrl.open}}"/>
             <div class="ui small button" ng-click="subsCtrl.addSubscribe()">
               <i class="plus icon"></i>
             </div>

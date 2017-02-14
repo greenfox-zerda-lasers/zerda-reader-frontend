@@ -12,7 +12,7 @@
         article: '=',
         color: '=?',
       },
-      templateUrl: 'app/components/favorite.directive.html',
+      templateUrl: 'app/components/favorite.directive/favorite.directive.html',
       link: link,
     };
     return directive;

@@ -11,9 +11,11 @@
     vm.makeVisible = makeVisible;
     vm.visible = 'hidden';
     vm.newRss = '';
+    vm.open = false;
 
     function makeVisible() {
       if (event.target.id === 'add') {
+        vm.open = !vm.open;
         if (vm.visible === 'visible') {
           vm.visible = 'hidden';
         } else {
@@ -31,7 +33,6 @@
       }
       $scope.$apply();
     });
-
 
     function addSubscribe() {
       if (vm.newRss !== '') {
