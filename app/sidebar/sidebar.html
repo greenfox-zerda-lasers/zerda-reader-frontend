@@ -3,7 +3,15 @@
     <a class="item {{sidebarCtrl.allActivated ? 'active' : ''}}" ng-click="sidebarCtrl.getAll()">All</a>
     <a class="item {{sidebarCtrl.favActivated ? 'active' : ''}}" ng-click="sidebarCtrl.getFav()">Favorites</a>
     <a ng-repeat="folder in sidebarCtrl.subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="sidebarCtrl.getFeed($index, id)">
-      <i class="remove left floated icon" ng-click="sidebarCtrl.deleteSubscribe(folder.id)"></i>
+      <i class="remove left floated icon" ng-click="sidebarCtrl.deleteSubscribe(folder.id)">
+        <div id="addpopup" class="ui flowing popup top left transition {{subsCtrl.popupvisible}}" >
+          <div class="column">
+            <h4 class="ui header">Do you really want to delete this subscription?</h4>
+
+            </div>
+          </div>
+        </div>
+      </i>
       {{folder.name}}
     </a>
   </div>
