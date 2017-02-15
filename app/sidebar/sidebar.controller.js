@@ -76,27 +76,18 @@
 
     window.setInterval(generateData, 60000);
 
-    vm.clickitem = function ($index) {
-      vm.subscriptions.map(function (folder) {
-        folder.active = false;
-      });
-      vm.subscriptions[$index].active = true;
-      vm.allActivated = false;
-      vm.favActivated = false;
-    };
-
     function getFeed(id) {
 
       //Ez a függvény kell hogy kikérje, a kattintott feed id-ját és összes hozzá tartozó cikket és broadcastolja a mainlisthez
       vm.feed_id = id;
 
       $rootScope.$broadcast('feed_id', vm.feed_id);
-      APIFactory.getFeed(vm.feed_id).then(function (data) {
-        vm.allArticle = data.data;
-        $rootScope.$broadcast('feeditems', vm.allArticle)
-      }).catch(function (data) {
-        console.error('Failed to load feed');
-      });
+      // APIFactory.getFeed(vm.feed_id).then(function (data) {
+      //   vm.allArticle = data.data;
+      //   $rootScope.$broadcast('feeditems', vm.allArticle)
+      // }).catch(function (data) {
+      //   console.error('Failed to load feed');
+      // });
     }
 
     function deleteSubscribe(id, event) {
@@ -114,10 +105,10 @@
       vm.subscriptions.map(function (folder) {
         folder.active = false;
       });
-      vm.getFeed(id);
       vm.subscriptions[index].active = true;
       vm.allActivated = false;
       vm.favActivated = false;
+      vm.getFeed(id);
     };
     $rootScope.$on('getsubscription', function (event) {
       vm.getSubs();
