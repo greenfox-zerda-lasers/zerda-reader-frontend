@@ -19,14 +19,21 @@
         vm.articles.map(function (article) {
           article.active = false;
         });
+        console.log(vm.articles[$index].opened);
         vm.articles[$index].active = true;
+        vm.articles[$index].opened = true;
+
+        APIFactory.openedArticle(vm.articles[$index].id).then(function (data)
+        { console.log(data);
+            console.log(vm.articles[$index].opened);
+        }).catch(function (data) {
+          console.error('Change opened status failed');
+        });
       }
     }
 
-    (function listenFeedItems() {
-      $rootScope.$on('feeditem', function (event, items) {
-        vm.articles = items;
-      });
-    })();
+    $rootScope.$on('feeditem', function (event, items) {
+      vm.articles = items;
+    });
   }
 })();

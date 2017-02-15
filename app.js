@@ -24,12 +24,13 @@ require('./router.js');
 require('./app/ajaxrequest/api.factory.js');
 
 // Directives:
-require('./app/components/favorite.directive.js');
+require('./app/components/favorite.directive/favorite.directive.js');
+require('./app/components/focus.directive.js');
 
 // All the controllers:
 require('./app/login/login.controller.js');
 require('./app/signup/signup.controller.js');
-require('./app/home/home.js');
+require('./app/home/home.controller.js');
 
 require('./app/navbar/navbar.controller.js');
 require('./app/sidebar/sidebar.controller.js');

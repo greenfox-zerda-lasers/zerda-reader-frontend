@@ -12,12 +12,13 @@
     vm.getAll = getAll;
     vm.getFav = getFav;
     vm.getFeed = getFeed;
+    vm.clickItem = clickItem;
     vm.allActivated = true;
 
     function getSubs() {
       APIFactory.getSubs().then(function (data) {
         vm.subscriptions = data.data;
-      }, function(errResponse) {
+      }, function (errResponse) {
         console.error('Failed to load subscriptions')
       });
     }
@@ -28,11 +29,13 @@
         $rootScope.$broadcast('feeditem', vm.articles);
         vm.allActivated = true;
         vm.favActivated = false;
-        vm.subscriptions.forEach(function (folder) {
-          folder.active = false;
-        });
-      }, function(errResponse) {
-        console.error('Failed to load all feed items');
+        if (vm.subscriptions) {
+          vm.subscriptions.forEach(function (folder) {
+            folder.active = false;
+          });
+        }
+      }, function (errResponse) {
+        console.error(errResponse, 'Failed to load all feed items');
       });
     }
 
@@ -52,39 +55,36 @@
       });
     }
 
-    function getFeed($index) {
-      vm.clickitem($index);
-      let id = 43673;
+    function getFeed(id) {
       APIFactory.getFeed(id).then(function (data) {
         vm.articles = (data.data);
         $rootScope.$broadcast('feeditem', vm.articles);
       }).catch(function (data) {
         console.error('Failed to load feed items');
       });
-    };
+    }
 
-    function deleteSubscribe(id) {
+    function deleteSubscribe(id, event) {
       APIFactory.deleteItem(id).then(function (data) {
         vm.getSubs();
       }).catch(function (data) {
         console.error('Failed to delete subscription');
-      })
+      });
     }
 
-    (function () {
-      $rootScope.$on('getsubscription', function (event) {
-        getSubs();
-      });
-    })();
-
-    vm.clickitem = function ($index) {
+    function clickItem(index, id) {
+      if (event.target.classList.contains('delete')) {
+        return;
+      }
       vm.subscriptions.map(function (folder) {
         folder.active = false;
       });
-      vm.subscriptions[$index].active = true;
+      vm.getFeed(id);
+      vm.subscriptions[index].active = true;
       vm.allActivated = false;
       vm.favActivated = false;
     };
+
 
     function makePopupVisible() {
       if (vm.popupvisible === 'visible') {
@@ -93,5 +93,10 @@
         vm.popupvisible = 'visible';
       }
     }
+
+    $rootScope.$on('getsubscription', function (event) {
+      vm.getSubs();
+    });
+
   }
 })();

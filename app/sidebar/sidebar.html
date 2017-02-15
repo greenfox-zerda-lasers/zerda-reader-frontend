@@ -2,6 +2,7 @@
   <div class="ui secondary vertical pointing menu" style="width: auto" ng-init="sidebarCtrl.getSubs()">
     <a class="item {{sidebarCtrl.allActivated ? 'active' : ''}}" ng-click="sidebarCtrl.getAll()">All</a>
     <a class="item {{sidebarCtrl.favActivated ? 'active' : ''}}" ng-click="sidebarCtrl.getFav()">Favorites</a>
+
     <a ng-repeat="folder in sidebarCtrl.subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="sidebarCtrl.getFeed($index, id)">
       <div>
         <div id="delpopup" class="ui flowing popup top left transition {{subsCtrl.popupvisible}}" >
@@ -15,6 +16,7 @@
         <i class="remove left floated icon" ng-click="makePopupVisible()">
         </i>
       </div>
+
     </a>
   </div>
   <div ng-include="'app/addsubscription/addsubscription.html'"></div>
