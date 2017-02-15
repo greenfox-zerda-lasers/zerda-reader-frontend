@@ -70,11 +70,7 @@
 	__webpack_require__(27);
 
 	// Directives:
-<<<<<<< HEAD
 	__webpack_require__(28);
-=======
-	__webpack_require__(37);
->>>>>>> e921a4b2dd68019bd7a0547843aeb34dcb33f32a
 	__webpack_require__(29);
 
 	// All the controllers:
@@ -37667,7 +37663,6 @@
 /* 9 */
 /***/ function(module, exports) {
 
-<<<<<<< HEAD
 	/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
 		Author Tobias Koppers @sokra
@@ -37718,58 +37713,6 @@
 		};
 		return list;
 	};
-=======
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	// css base code, injected by the css-loader
-	module.exports = function() {
-		var list = [];
-
-		// return the list of modules as css string
-		list.toString = function toString() {
-			var result = [];
-			for(var i = 0; i < this.length; i++) {
-				var item = this[i];
-				if(item[2]) {
-					result.push("@media " + item[2] + "{" + item[1] + "}");
-				} else {
-					result.push(item[1]);
-				}
-			}
-			return result.join("");
-		};
-
-		// import a list of modules into the list
-		list.i = function(modules, mediaQuery) {
-			if(typeof modules === "string")
-				modules = [[null, modules, ""]];
-			var alreadyImportedModules = {};
-			for(var i = 0; i < this.length; i++) {
-				var id = this[i][0];
-				if(typeof id === "number")
-					alreadyImportedModules[id] = true;
-			}
-			for(i = 0; i < modules.length; i++) {
-				var item = modules[i];
-				// skip already imported module
-				// this implementation is not 100% perfect for weird media query combinations
-				//  when a module is imported multiple times with different media queries.
-				//  I hope this will never occur (Hey this way we have smaller bundles)
-				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-					if(mediaQuery && !item[2]) {
-						item[2] = mediaQuery;
-					} else if(mediaQuery) {
-						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-					}
-					list.push(item);
-				}
-			}
-		};
-		return list;
-	};
->>>>>>> e921a4b2dd68019bd7a0547843aeb34dcb33f32a
 
 
 /***/ },
@@ -37812,7 +37755,6 @@
 /* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 	/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
 		Author Tobias Koppers @sokra
@@ -38059,254 +38001,6 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
-=======
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	var stylesInDom = {},
-		memoize = function(fn) {
-			var memo;
-			return function () {
-				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-				return memo;
-			};
-		},
-		isOldIE = memoize(function() {
-			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
-		}),
-		getHeadElement = memoize(function () {
-			return document.head || document.getElementsByTagName("head")[0];
-		}),
-		singletonElement = null,
-		singletonCounter = 0,
-		styleElementsInsertedAtTop = [];
-
-	module.exports = function(list, options) {
-		if(false) {
-			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-		}
-
-		options = options || {};
-		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-		// tags it will allow on a page
-		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
-
-		// By default, add <style> tags to the bottom of <head>.
-		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
-
-		var styles = listToStyles(list);
-		addStylesToDom(styles, options);
-
-		return function update(newList) {
-			var mayRemove = [];
-			for(var i = 0; i < styles.length; i++) {
-				var item = styles[i];
-				var domStyle = stylesInDom[item.id];
-				domStyle.refs--;
-				mayRemove.push(domStyle);
-			}
-			if(newList) {
-				var newStyles = listToStyles(newList);
-				addStylesToDom(newStyles, options);
-			}
-			for(var i = 0; i < mayRemove.length; i++) {
-				var domStyle = mayRemove[i];
-				if(domStyle.refs === 0) {
-					for(var j = 0; j < domStyle.parts.length; j++)
-						domStyle.parts[j]();
-					delete stylesInDom[domStyle.id];
-				}
-			}
-		};
-	}
-
-	function addStylesToDom(styles, options) {
-		for(var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-			if(domStyle) {
-				domStyle.refs++;
-				for(var j = 0; j < domStyle.parts.length; j++) {
-					domStyle.parts[j](item.parts[j]);
-				}
-				for(; j < item.parts.length; j++) {
-					domStyle.parts.push(addStyle(item.parts[j], options));
-				}
-			} else {
-				var parts = [];
-				for(var j = 0; j < item.parts.length; j++) {
-					parts.push(addStyle(item.parts[j], options));
-				}
-				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-			}
-		}
-	}
-
-	function listToStyles(list) {
-		var styles = [];
-		var newStyles = {};
-		for(var i = 0; i < list.length; i++) {
-			var item = list[i];
-			var id = item[0];
-			var css = item[1];
-			var media = item[2];
-			var sourceMap = item[3];
-			var part = {css: css, media: media, sourceMap: sourceMap};
-			if(!newStyles[id])
-				styles.push(newStyles[id] = {id: id, parts: [part]});
-			else
-				newStyles[id].parts.push(part);
-		}
-		return styles;
-	}
-
-	function insertStyleElement(options, styleElement) {
-		var head = getHeadElement();
-		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
-		if (options.insertAt === "top") {
-			if(!lastStyleElementInsertedAtTop) {
-				head.insertBefore(styleElement, head.firstChild);
-			} else if(lastStyleElementInsertedAtTop.nextSibling) {
-				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
-			} else {
-				head.appendChild(styleElement);
-			}
-			styleElementsInsertedAtTop.push(styleElement);
-		} else if (options.insertAt === "bottom") {
-			head.appendChild(styleElement);
-		} else {
-			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-		}
-	}
-
-	function removeStyleElement(styleElement) {
-		styleElement.parentNode.removeChild(styleElement);
-		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
-		if(idx >= 0) {
-			styleElementsInsertedAtTop.splice(idx, 1);
-		}
-	}
-
-	function createStyleElement(options) {
-		var styleElement = document.createElement("style");
-		styleElement.type = "text/css";
-		insertStyleElement(options, styleElement);
-		return styleElement;
-	}
-
-	function createLinkElement(options) {
-		var linkElement = document.createElement("link");
-		linkElement.rel = "stylesheet";
-		insertStyleElement(options, linkElement);
-		return linkElement;
-	}
-
-	function addStyle(obj, options) {
-		var styleElement, update, remove;
-
-		if (options.singleton) {
-			var styleIndex = singletonCounter++;
-			styleElement = singletonElement || (singletonElement = createStyleElement(options));
-			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
-			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-		} else if(obj.sourceMap &&
-			typeof URL === "function" &&
-			typeof URL.createObjectURL === "function" &&
-			typeof URL.revokeObjectURL === "function" &&
-			typeof Blob === "function" &&
-			typeof btoa === "function") {
-			styleElement = createLinkElement(options);
-			update = updateLink.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-				if(styleElement.href)
-					URL.revokeObjectURL(styleElement.href);
-			};
-		} else {
-			styleElement = createStyleElement(options);
-			update = applyToTag.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-			};
-		}
-
-		update(obj);
-
-		return function updateStyle(newObj) {
-			if(newObj) {
-				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
-					return;
-				update(obj = newObj);
-			} else {
-				remove();
-			}
-		};
-	}
-
-	var replaceText = (function () {
-		var textStore = [];
-
-		return function (index, replacement) {
-			textStore[index] = replacement;
-			return textStore.filter(Boolean).join('\n');
-		};
-	})();
-
-	function applyToSingletonTag(styleElement, index, remove, obj) {
-		var css = remove ? "" : obj.css;
-
-		if (styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = replaceText(index, css);
-		} else {
-			var cssNode = document.createTextNode(css);
-			var childNodes = styleElement.childNodes;
-			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
-			if (childNodes.length) {
-				styleElement.insertBefore(cssNode, childNodes[index]);
-			} else {
-				styleElement.appendChild(cssNode);
-			}
-		}
-	}
-
-	function applyToTag(styleElement, obj) {
-		var css = obj.css;
-		var media = obj.media;
-
-		if(media) {
-			styleElement.setAttribute("media", media)
-		}
-
-		if(styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = css;
-		} else {
-			while(styleElement.firstChild) {
-				styleElement.removeChild(styleElement.firstChild);
-			}
-			styleElement.appendChild(document.createTextNode(css));
-		}
-	}
-
-	function updateLink(linkElement, obj) {
-		var css = obj.css;
-		var sourceMap = obj.sourceMap;
-
-		if(sourceMap) {
-			// http://stackoverflow.com/a/26603875
-			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-		}
-
-		var blob = new Blob([css], { type: "text/css" });
-
-		var oldSrc = linkElement.href;
-
-		linkElement.href = URL.createObjectURL(blob);
-
-		if(oldSrc)
-			URL.revokeObjectURL(oldSrc);
-	}
->>>>>>> e921a4b2dd68019bd7a0547843aeb34dcb33f32a
 
 
 /***/ },
@@ -38561,7 +38255,6 @@
 
 
 /***/ },
-<<<<<<< HEAD
 /* 28 */
 /***/ function(module, exports) {
 
@@ -38600,9 +38293,6 @@
 
 
 /***/ },
-=======
-/* 28 */,
->>>>>>> e921a4b2dd68019bd7a0547843aeb34dcb33f32a
 /* 29 */
 /***/ function(module, exports) {
 
@@ -38797,16 +38487,10 @@
 	    vm.getFeed = getFeed;
 	    vm.clickItem = clickItem;
 	    vm.allActivated = true;
-<<<<<<< HEAD
 	    vm.makePopupVisible = makePopupVisible;
 	    vm.generateData = generateData;
 
 
-=======
-	    vm.getFeed = getFeed;
-	    vm.generateData = generateData;
-
->>>>>>> e921a4b2dd68019bd7a0547843aeb34dcb33f32a
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
 	        vm.subscriptions = data.data;
@@ -38851,11 +38535,7 @@
 	    function generateData(){
 	      vm.allArticle.unshift({
 	       "id": 2345525,
-<<<<<<< HEAD
-	       "title": "Fox on the Moon!",
-=======
 	       "title": "Fox on the Moon! " + Math.floor(Math.random()*100),
->>>>>>> e921a4b2dd68019bd7a0547843aeb34dcb33f32a
 	       "description:" : "...",
 	       "created": Date.now(),
 	       "feed_name": "Fox Crunch",
@@ -38865,45 +38545,20 @@
 	       "url": "http://fox.com/moon"
 	     })
 	     $rootScope.$broadcast('feeditems', vm.allArticle);
-	     //console.log(vm.allArticle)
+
 	    }
 
-<<<<<<< HEAD
-	    window.setInterval(generateData, 60000);
-=======
 	    // window.setInterval(generateData, 10000);
->>>>>>> e921a4b2dd68019bd7a0547843aeb34dcb33f32a
-
-	    vm.clickitem = function ($index) {
-	      vm.subscriptions.map(function (folder) {
-	        folder.active = false;
-	      });
-	      vm.subscriptions[$index].active = true;
-	      vm.allActivated = false;
-	      vm.favActivated = false;
-	    };
 
 	    function getFeed(id) {
-
-	      //Ez a függvény kell hogy kikérje, a kattintott feed id-ját és összes hozzá tartozó cikket és broadcastolja a mainlisthez
 	      vm.feed_id = id;
 
+	      console.log(id)
 	      $rootScope.$broadcast('feed_id', vm.feed_id);
-	      APIFactory.getFeed(vm.feed_id).then(function (data) {
-	        vm.allArticle = data.data;
-	        $rootScope.$broadcast('feeditems', vm.allArticle)
-	      }).catch(function (data) {
-	        console.error('Failed to load feed');
-	      });
-	    }
-<<<<<<< HEAD
 
-	    function deleteSubscribe(id, event) {
-=======
-	      //És itt kell megtörténje a sidebar aktív státuszának cserélgetése is
+	    }
 
 	    function deleteSubscribe(id) {
->>>>>>> e921a4b2dd68019bd7a0547843aeb34dcb33f32a
 	      APIFactory.deleteItem(id).then(function (data) {
 	        vm.getSubs();
 	      }).catch(function (data) {
@@ -38912,18 +38567,20 @@
 	    }
 
 	    function clickItem(index, id) {
+
 	      if (event.target.classList.contains('delete')) {
 	        return;
 	      }
 	      vm.subscriptions.map(function (folder) {
 	        folder.active = false;
 	      });
-	      vm.getFeed(id);
 	      vm.subscriptions[index].active = true;
 	      vm.allActivated = false;
 	      vm.favActivated = false;
+
+	      vm.getFeed(id);
+
 	    };
-<<<<<<< HEAD
 
 
 	    function makePopupVisible() {
@@ -38935,8 +38592,6 @@
 	      }
 	    }
 
-=======
->>>>>>> e921a4b2dd68019bd7a0547843aeb34dcb33f32a
 	    $rootScope.$on('getsubscription', function (event) {
 	      vm.getSubs();
 	    });
@@ -39042,8 +38697,6 @@
 	      }
 	    });
 
-	    //window.setInterval(vm.getFeed, 6000);
-
 	    function displayFeed() {
 	      if (vm.offset * vm.pack + vm.pack <= vm.allArticle.length) {
 	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset+vm.pack));
@@ -39087,62 +38740,21 @@
 	      console.log(items);
 	      vm.displayFeed();
 	    });
-<<<<<<< HEAD
-=======
 
 	    $rootScope.$on('feed_id', function (event, id) {
-	      vm.feed_id = id;
-	      APIFactory.getFeed(vm.feed_id).then(function (data) {
+	      //vm.feed_id = id;
+	      console.log(id)
+	      APIFactory.getFeed(id).then(function (data) {
 	        vm.allArticle = data.data;
 	        //$rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.articles = [];
 	        vm.offset = 0;
-	        vm.allArticle = items;
 	        //console.log(items);
 	        vm.displayFeed();
 	      }).catch(function (data) {
 	        console.error('Failed to load feed');
 	      });
 	    });
-	  }
-	})();
-
-
-/***/ },
-/* 37 */
-/***/ function(module, exports) {
-
-	(function () {
-	  'use strict';
-
-	  angular
-	    .module('zerdaReader')
-	    .directive('favoriteIcon', favoriteIcon);
-
-	  function favoriteIcon(APIFactory) {
-	    const directive = {
-	      restrict: 'E',
-	      scope: {
-	        article: '=',
-	        color: '=?',
-	      },
-	      templateUrl: 'app/components/favorite.directive/favorite.directive.html',
-	      link: link,
-	    };
-	    return directive;
-
-	    function link(scope) {
-	      scope.color = scope.article.favorite;
-
-	      scope.favHandling = function (id) {
-	        scope.color = !scope.color;
-	        APIFactory.putFav(id).then(function (data) {
-	        }).catch(function (data) {
-	          console.error('Change favorite status failed');
-	        });
-	      };
-	    }
->>>>>>> e921a4b2dd68019bd7a0547843aeb34dcb33f32a
 	  }
 	})();
 
