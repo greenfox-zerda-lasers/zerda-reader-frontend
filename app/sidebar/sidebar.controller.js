@@ -61,7 +61,7 @@
     function generateData(){
       vm.allArticle.unshift({
        "id": 2345525,
-       "title": "Fox on the Moon!",
+       "title": "Fox on the Moon! " + Math.floor(Math.random()*100),
        "description:" : "...",
        "created": Date.now(),
        "feed_name": "Fox Crunch",
@@ -74,7 +74,7 @@
      //console.log(vm.allArticle)
     }
 
-    window.setInterval(generateData, 60000);
+    // window.setInterval(generateData, 10000);
 
     vm.clickitem = function ($index) {
       vm.subscriptions.map(function (folder) {
@@ -98,8 +98,9 @@
         console.error('Failed to load feed');
       });
     }
+      //És itt kell megtörténje a sidebar aktív státuszának cserélgetése is
 
-    function deleteSubscribe(id, event) {
+    function deleteSubscribe(id) {
       APIFactory.deleteItem(id).then(function (data) {
         vm.getSubs();
       }).catch(function (data) {
