@@ -1,4 +1,4 @@
-<section id="sidebar" class="ui left visible sidebar" ng-controller="SidebarController as sidebarCtrl">
+<section id="sidebar" class="ui left visible sidebar" ng-controller="SidebarController as sidebarCtrl" >
   <div class="ui secondary vertical pointing menu" style="width: auto" ng-init="sidebarCtrl.getSubs()">
     <a class="item {{sidebarCtrl.allActivated ? 'active' : ''}}" ng-click="sidebarCtrl.getAll()">All</a>
     <a class="item {{sidebarCtrl.favActivated ? 'active' : ''}}" ng-click="sidebarCtrl.getFav()">Favorites</a>
