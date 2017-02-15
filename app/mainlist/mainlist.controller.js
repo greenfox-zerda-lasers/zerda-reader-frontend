@@ -57,15 +57,26 @@
 
     $rootScope.$on('feed_id', function (event, id) {
       vm.feed_id = id;
+      APIFactory.getFeed(vm.feed_id).then(function (data) {
+        vm.allArticle = data.data;
+        //$rootScope.$broadcast('feeditems', vm.allArticle);
+        vm.articles = [];
+        vm.offset = 0;
+        vm.allArticle = items;
+        //console.log(items);
+        vm.displayFeed();
+      }).catch(function (data) {
+        console.error('Failed to load feed');
+      });
     });
 
-    $rootScope.$on('feeditems', function (event, items) {
-      vm.articles = [];
-      vm.offset = 0;
-      vm.allArticle = items;
-      console.log(items);
-      vm.displayFeed();
-    });
+    // $rootScope.$on('feeditems', function (event, items) {
+    //   vm.articles = [];
+    //   vm.offset = 0;
+    //   vm.allArticle = items;
+    //   console.log(items);
+    //   vm.displayFeed();
+    // });
 
   }
 })();
