@@ -88,13 +88,7 @@
       vm.feed_id = id;
 
       $rootScope.$broadcast('feed_id', vm.feed_id);
-      // APIFactory.getFeed(vm.feed_id).then(function (data) {
-      //   vm.allArticle = data.data;
-      //   $rootScope.$broadcast('feeditems', vm.allArticle);
-      // }).catch(function (data) {
-      //   console.error('Failed to load feed');
-      // });
-
+    
       //És itt kell megtörténje a sidebar aktív státuszának cserélgetése is
       vm.clickitem($index);
     };

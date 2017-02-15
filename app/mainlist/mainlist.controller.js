@@ -69,14 +69,5 @@
         console.error('Failed to load feed');
       });
     });
-
-    // $rootScope.$on('feeditems', function (event, items) {
-    //   vm.articles = [];
-    //   vm.offset = 0;
-    //   vm.allArticle = items;
-    //   console.log(items);
-    //   vm.displayFeed();
-    // });
-
   }
 })();
