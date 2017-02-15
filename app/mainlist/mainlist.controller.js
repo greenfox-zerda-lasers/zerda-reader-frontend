@@ -22,8 +22,6 @@
       }
     });
 
-    //window.setInterval(vm.getFeed, 6000);
-
     function displayFeed() {
       if (vm.offset * vm.pack + vm.pack <= vm.allArticle.length) {
         vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset+vm.pack));
@@ -66,6 +64,21 @@
       vm.allArticle = items;
       console.log(items);
       vm.displayFeed();
+    });
+
+    $rootScope.$on('feed_id', function (event, id) {
+      //vm.feed_id = id;
+      console.log(id)
+      APIFactory.getFeed(id).then(function (data) {
+        vm.allArticle = data.data;
+        //$rootScope.$broadcast('feeditems', vm.allArticle);
+        vm.articles = [];
+        vm.offset = 0;
+        //console.log(items);
+        vm.displayFeed();
+      }).catch(function (data) {
+        console.error('Failed to load feed');
+      });
     });
   }
 })();

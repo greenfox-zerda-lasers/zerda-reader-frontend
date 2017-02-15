@@ -14,8 +14,9 @@
     vm.getFeed = getFeed;
     vm.clickItem = clickItem;
     vm.allActivated = true;
-    vm.getFeed = getFeed;
+    vm.makePopupVisible = makePopupVisible;
     vm.generateData = generateData;
+
 
     function getSubs() {
       APIFactory.getSubs().then(function (data) {
@@ -61,7 +62,7 @@
     function generateData(){
       vm.allArticle.unshift({
        "id": 2345525,
-       "title": "Fox on the Moon!",
+       "title": "Fox on the Moon! " + Math.floor(Math.random()*100),
        "description:" : "...",
        "created": Date.now(),
        "feed_name": "Fox Crunch",
@@ -71,26 +72,20 @@
        "url": "http://fox.com/moon"
      })
      $rootScope.$broadcast('feeditems', vm.allArticle);
-     //console.log(vm.allArticle)
+
     }
 
     window.setInterval(generateData, 60000);
 
     function getFeed(id) {
-
-      //Ez a függvény kell hogy kikérje, a kattintott feed id-ját és összes hozzá tartozó cikket és broadcastolja a mainlisthez
       vm.feed_id = id;
 
+      console.log(id)
       $rootScope.$broadcast('feed_id', vm.feed_id);
-      // APIFactory.getFeed(vm.feed_id).then(function (data) {
-      //   vm.allArticle = data.data;
-      //   $rootScope.$broadcast('feeditems', vm.allArticle)
-      // }).catch(function (data) {
-      //   console.error('Failed to load feed');
-      // });
+
     }
 
-    function deleteSubscribe(id, event) {
+    function deleteSubscribe(id) {
       APIFactory.deleteItem(id).then(function (data) {
         vm.getSubs();
       }).catch(function (data) {
@@ -99,6 +94,7 @@
     }
 
     function clickItem(index, id) {
+
       if (event.target.classList.contains('delete')) {
         return;
       }
@@ -108,8 +104,21 @@
       vm.subscriptions[index].active = true;
       vm.allActivated = false;
       vm.favActivated = false;
+
       vm.getFeed(id);
+
     };
+
+
+    function makePopupVisible() {
+      console.log('mukodik')
+      if (vm.popupvisible === 'visible') {
+        vm.popupvisible = 'hidden';
+      } else {
+        vm.popupvisible = 'visible';
+      }
+    }
+
     $rootScope.$on('getsubscription', function (event) {
       vm.getSubs();
     });
