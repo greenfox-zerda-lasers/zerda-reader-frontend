@@ -73,14 +73,14 @@
 	__webpack_require__(28);
 
 	// All the controllers:
-	__webpack_require__(29);
 	__webpack_require__(30);
 	__webpack_require__(31);
+	__webpack_require__(38);
 
-	__webpack_require__(32);
 	__webpack_require__(33);
 	__webpack_require__(34);
 	__webpack_require__(35);
+	__webpack_require__(36);
 
 
 /***/ },
@@ -38286,7 +38286,8 @@
 
 
 /***/ },
-/* 29 */
+/* 29 */,
+/* 30 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38336,7 +38337,7 @@
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38383,28 +38384,8 @@
 
 
 /***/ },
-/* 31 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('HomeController', HomeController);
-
-	  HomeController.$inject = ['$location', '$rootScope'];
-
-	  function HomeController($location, $rootScope) {
-	    (function () {
-	      if (localStorage.token.length === 0) {
-	        $location.path('/login');
-	      }
-	    })();
-	  }
-	})();
-
-
-/***/ },
-/* 32 */
+/* 32 */,
+/* 33 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38427,7 +38408,7 @@
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38550,7 +38531,7 @@
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38637,7 +38618,7 @@
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38710,6 +38691,28 @@
 	        console.log(items);
 	        vm.displayFeed();
 	      });
+	    })();
+	  }
+	})();
+
+
+/***/ },
+/* 37 */,
+/* 38 */
+/***/ function(module, exports) {
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('HomeController', HomeController);
+
+	  HomeController.$inject = ['$location', '$rootScope'];
+
+	  function HomeController($location, $rootScope) {
+	    (function () {
+	      if (localStorage.token.length === 0) {
+	        $location.path('/login');
+	      }
 	    })();
 	  }
 	})();
