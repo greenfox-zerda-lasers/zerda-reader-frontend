@@ -14,6 +14,7 @@
     vm.getFeed = getFeed;
     vm.clickItem = clickItem;
     vm.allActivated = true;
+    vm.makePopupVisible = makePopupVisible;
 
     function getSubs() {
       APIFactory.getSubs().then(function (data) {
@@ -87,6 +88,7 @@
 
 
     function makePopupVisible() {
+      console.log('mukodik')
       if (vm.popupvisible === 'visible') {
         vm.popupvisible = 'hidden';
       } else {

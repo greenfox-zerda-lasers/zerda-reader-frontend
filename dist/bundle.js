@@ -71,16 +71,17 @@
 
 	// Directives:
 	__webpack_require__(28);
+	__webpack_require__(29);
 
 	// All the controllers:
-	__webpack_require__(29);
 	__webpack_require__(30);
 	__webpack_require__(31);
-
 	__webpack_require__(32);
+
 	__webpack_require__(33);
 	__webpack_require__(34);
 	__webpack_require__(35);
+	__webpack_require__(36);
 
 
 /***/ },
@@ -38157,7 +38158,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(25) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 26px; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal; }\n    #sidebar a:hover i {\n      color: teal; }\n      #sidebar a:hover i:hover {\n        color: #139797; }\n      #sidebar a:hover i:active {\n        color: #DD4B39; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#addpopup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#addpopup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#addpopup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #addpopup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n  .mainlist-item .bold {\n    font-weight: bold; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 20px;\n  line-height: 1.5; }\n\na.item.ng-leave {\n  transition: 0.5s linear all;\n  opacity: 1;\n  transform: translateX(0px); }\n\na.item.ng-leave.ng-leave-active {\n  transform: translateX(100%); }\n\na.item.ng-enter {\n  transition: 1s linear all;\n  background-color: black;\n  opacity: 0;\n  transform: translateY(-100%); }\n\na.item.ng-enter.ng-enter-active {\n  opacity: 1;\n  background-color: white;\n  transform: translateY(0px); }\n", ""]);
+	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(25) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 26px; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal; }\n    #sidebar a:hover i {\n      color: teal; }\n      #sidebar a:hover i:hover {\n        color: #139797; }\n      #sidebar a:hover i:active {\n        color: #DD4B39; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#addpopup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#addpopup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#addpopup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #addpopup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n  .mainlist-item .bold {\n    font-weight: bold; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 20px;\n  line-height: 1.5; }\n", ""]);
 
 	// exports
 
@@ -38174,7 +38175,7 @@
 
 	(function () {
 
-	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngAnimate', 'ngResource', 'infinite-scroll']);
+	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngResource', 'infinite-scroll']);
 
 	  zerdaReader.config(['$routeProvider', function ($routeProvider) {
 	    $routeProvider
@@ -38271,7 +38272,7 @@
 	        article: '=',
 	        color: '=?',
 	      },
-	      templateUrl: 'app/components/favorite.directive.html',
+	      templateUrl: 'app/components/favorite.directive/favorite.directive.html',
 	      link: link,
 	    };
 	    return directive;
@@ -38293,6 +38294,38 @@
 
 /***/ },
 /* 29 */
+/***/ function(module, exports) {
+
+	(function () {
+	  'use strict';
+
+	  angular
+	    .module('zerdaReader')
+	    .directive('focusAdd', focusAdd);
+
+	  function focusAdd($timeout) {
+	    return {
+	      restrict: 'A',
+	      scope: {
+	        trigger: '@focusAdd',
+	      },
+	      link: function (scope, element, attrs) {
+	        scope.$watch('trigger', function (value) {
+	          if (value) {
+	            $timeout(function () {
+	              element[0].focus();
+	              // scope[attrs.focus] = false;
+	            });
+	          }
+	        });
+	      },
+	    };
+	  }
+	})();
+
+
+/***/ },
+/* 30 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38342,7 +38375,7 @@
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38389,7 +38422,7 @@
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38412,7 +38445,7 @@
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38435,10 +38468,9 @@
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
-<<<<<<< HEAD
 	(function () {
 	  angular
 	    .module('zerdaReader')
@@ -38453,105 +38485,9 @@
 	    vm.getAll = getAll;
 	    vm.getFav = getFav;
 	    vm.getFeed = getFeed;
+	    vm.clickItem = clickItem;
 	    vm.allActivated = true;
-
-	    function getSubs() {
-	      APIFactory.getSubs().then(function (data) {
-	        vm.subscriptions = data.data;
-	      }, function(errResponse) {
-	        console.error('Failed to load subscriptions')
-	      });
-	    }
-
-	    function getAll() {
-	      APIFactory.getAll().then(function (data) {
-	        vm.articles = data.data.feed;
-	        $rootScope.$broadcast('feeditem', vm.articles);
-	        vm.allActivated = true;
-	        vm.favActivated = false;
-	        vm.subscriptions.forEach(function (folder) {
-	          folder.active = false;
-	        });
-	      }, function(errResponse) {
-	        console.error('Failed to load all feed items');
-	      });
-	    }
-
-	    vm.getAll();
-
-	    function getFav() {
-	      APIFactory.getFav('favorites').then(function (data) {
-	        vm.articles = data.data;
-	        $rootScope.$broadcast('feeditem', vm.articles);
-	        vm.allActivated = false;
-	        vm.favActivated = true;
-	        vm.subscriptions.forEach(function (folder) {
-	          folder.active = false;
-	        });
-	      }).catch(function (data) {
-	        console.error('Failed to load favorites');
-	      });
-	    }
-
-	    function getFeed($index) {
-	      vm.clickitem($index);
-	      let id = 43673;
-	      APIFactory.getFeed(id).then(function (data) {
-	        vm.articles = (data.data);
-	        $rootScope.$broadcast('feeditem', vm.articles);
-	      }).catch(function (data) {
-	        console.error('Failed to load feed items');
-	      });
-	    };
-
-	    function deleteSubscribe(id) {
-	      APIFactory.deleteItem(id).then(function (data) {
-	        vm.getSubs();
-	      }).catch(function (data) {
-	        console.error('Failed to delete subscription');
-	      })
-	    }
-
-	    (function () {
-	      $rootScope.$on('getsubscription', function (event) {
-	        getSubs();
-	      });
-	    })();
-
-	    vm.clickitem = function ($index) {
-	      vm.subscriptions.map(function (folder) {
-	        folder.active = false;
-	      });
-	      vm.subscriptions[$index].active = true;
-	      vm.allActivated = false;
-	      vm.favActivated = false;
-	    };
-
-	    function makePopupVisible() {
-	      if (vm.popupvisible === 'visible') {
-	        vm.popupvisible = 'hidden';
-	      } else {
-	        vm.popupvisible = 'visible';
-	      }
-	    }
-	  }
-	})();
-=======
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('SidebarController', SidebarController);
-
-	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
-
-	  function SidebarController($location, $rootScope, $http, APIFactory) {
-	    const vm = this;
-	    vm.getSubs = getSubs;
-	    vm.deleteSubscribe = deleteSubscribe;
-	    vm.getAll = getAll;
-	    vm.getFav = getFav;
-	    vm.getFeed = getFeed;
-	    vm.allActivated = true;
+	    vm.makePopupVisible = makePopupVisible;
 
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
@@ -38564,15 +38500,16 @@
 	    function getAll() {
 	      APIFactory.getAll().then(function (data) {
 	        vm.articles = data.data.feed;
-	        console.log(vm.articles)
 	        $rootScope.$broadcast('feeditem', vm.articles);
 	        vm.allActivated = true;
 	        vm.favActivated = false;
-	        vm.subscriptions.forEach(function (folder) {
-	          folder.active = false;
-	        });
-	      }, function(errResponse) {
-	        console.error('Failed to load all feed items');
+	        if (vm.subscriptions) {
+	          vm.subscriptions.forEach(function (folder) {
+	            folder.active = false;
+	          });
+	        }
+	      }, function (errResponse) {
+	        console.error(errResponse, 'Failed to load all feed items');
 	      });
 	    }
 
@@ -38592,9 +38529,7 @@
 	      });
 	    }
 
-	    function getFeed($index) {
-	      vm.clickitem($index);
-	      let id = 43673;
+	    function getFeed(id) {
 	      APIFactory.getFeed(id).then(function (data) {
 	        vm.articles = (data.data);
 	        $rootScope.$broadcast('feeditem', vm.articles);
@@ -38603,7 +38538,7 @@
 	      });
 	    }
 
-	    function deleteSubscribe(id) {
+	    function deleteSubscribe(id, event) {
 	      APIFactory.deleteItem(id).then(function (data) {
 	        vm.getSubs();
 	      }).catch(function (data) {
@@ -38611,98 +38546,41 @@
 	      });
 	    }
 
-	    vm.clickitem = function ($index) {
+	    function clickItem(index, id) {
+	      if (event.target.classList.contains('delete')) {
+	        return;
+	      }
 	      vm.subscriptions.map(function (folder) {
 	        folder.active = false;
 	      });
-	      vm.subscriptions[$index].active = true;
+	      vm.getFeed(id);
+	      vm.subscriptions[index].active = true;
 	      vm.allActivated = false;
 	      vm.favActivated = false;
 	    };
+
+
+	    function makePopupVisible() {
+	      console.log('mukodik')
+	      if (vm.popupvisible === 'visible') {
+	        vm.popupvisible = 'hidden';
+	      } else {
+	        vm.popupvisible = 'visible';
+	      }
+	    }
+
 	    $rootScope.$on('getsubscription', function (event) {
-	      getSubs();
+	      vm.getSubs();
 	    });
+
 	  }
 	})();
->>>>>>> 1d7685bc2727dac14d5b4f39485cb444dfbfe7b1
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports) {
 
-<<<<<<< HEAD
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('SubscribeController', SubscribeController);
-
-	  SubscribeController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
-
-	  function SubscribeController($location, $rootScope, $http, APIFactory) {
-	    const vm = this;
-	    vm.addSubscribe = addSubscribe;
-	    vm.makeVisible = makeVisible;
-	    //vm.visible = 'hidden';
-
-	    function makeVisible() {
-	      if (vm.visible === 'visible') {
-	        vm.visible = 'hidden';
-	      } else {
-	        vm.visible = 'visible';
-	      }
-	    }
-
-	    window.addEventListener('click', function (event) {
-	        // console.log(event);
-	        //console.log(event.target);
-
-	        var el = event.target
-	        //console.log(el.parentElement)
-
-	        console.log(vm.visible);
-	        if (closest(el, "#addpopup")) {
-	          //console.log("match");
-	          vm.visible = 'visible';
-	          console.log(vm.visible);
-	    //   } else if (closest(el, "#addpopup") && vm.visible == "visible"){
-	    //       console.log(vm.visible);
-	    //       vm.visible = 'hidden';
-	    //       console.log(vm.visible);
-	      }else {
-	          //console.log("nomatch");
-	          vm.visible = 'hidden';
-	        }
-	    })
-
-	    function addSubscribe() {
-	      if (vm.newRss !== '') {
-	        APIFactory.postRSS(vm.newRss).then( function (data) {
-	          $rootScope.$broadcast('getsubscription');
-	        }).catch(function (data) {
-	          console.error('Connection failed');
-	        });
-	      }
-	      vm.newRss = '';
-	    }
-	  }
-
-	  function closest(el, selector, stopSelector) {
-	      var retval = null;
-	      while (el) {
-	          if (el.matches(selector)) {
-	              retval = el;
-	              break
-	          } else if (stopSelector && el.matches(stopSelector)) {
-	              break
-	          }
-	          el = el.parentElement;
-	          //console.log(el);
-	      }
-	      return retval;
-	  }
-	})();
-=======
 	(function () {
 	  angular
 	    .module('zerdaReader')
@@ -38716,9 +38594,11 @@
 	    vm.makeVisible = makeVisible;
 	    vm.visible = 'hidden';
 	    vm.newRss = '';
+	    vm.open = false;
 
 	    function makeVisible() {
 	      if (event.target.id === 'add') {
+	        vm.open = !vm.open;
 	        if (vm.visible === 'visible') {
 	          vm.visible = 'hidden';
 	        } else {
@@ -38736,7 +38616,6 @@
 	      }
 	      $scope.$apply();
 	    });
-
 
 	    function addSubscribe() {
 	      if (vm.newRss !== '') {
@@ -38765,11 +38644,10 @@
 	    return retval;
 	  }
 	})();
->>>>>>> 1d7685bc2727dac14d5b4f39485cb444dfbfe7b1
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
 	(function () {
