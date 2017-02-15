@@ -58,7 +58,7 @@
     function generateData(){
       vm.allArticle.unshift({
        "id": 2345525,
-       "title": "Fox on the Moon!",
+       "title": "Fox on the Moon! " + Math.floor(Math.random()*100),
        "description:" : "...",
        "created": Date.now(),
        "feed_name": "Fox Crunch",
