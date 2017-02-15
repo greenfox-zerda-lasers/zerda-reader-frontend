@@ -5,7 +5,7 @@
 
     <a ng-repeat="folder in sidebarCtrl.subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="sidebarCtrl.clickItem($index, folder.id)">
 
-      <i class="remove left floated icon" ng-click="makePopupVisible()">
+      <i class="remove left floated icon" ng-click="sidebarCtrl.deleteSubscribe(folder.id)">
       </i>
       {{folder.name}}
       <div id="delpopup" class="ui flowing popup right transition {{sidebarCtrl.popupvisible}}" >
