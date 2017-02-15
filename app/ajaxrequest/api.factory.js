@@ -17,6 +17,7 @@ function APIFactory($http) {
   APIFactory.getAll = function () {
     // return $http.get(urlReal + 'feed');
     return $http.get(url+'feed');
+
   };
 
   APIFactory.getFav = function () {
@@ -24,11 +25,10 @@ function APIFactory($http) {
   };
 
   APIFactory.getFeed = function (id) {
-    return $http.get(url + 'feed/' + id + '/?offset=0&items=5');
+    return $http.get(url + 'feed/' + id);
   };
 
   APIFactory.openedArticle = function (id) {
-    console.log(id);
     return $http.put(url + 'feed/' + id, { opened: true });
   };
 
