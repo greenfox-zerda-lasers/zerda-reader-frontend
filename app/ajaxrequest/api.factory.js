@@ -25,7 +25,7 @@ function APIFactory($http) {
   };
 
   APIFactory.getFeed = function (id) {
-    return $http.get(url + 'feed/' + id + '/?offset=0&items=5');
+    return $http.get(url + 'feed/' + id);
   };
 
   APIFactory.openedArticle = function (id) {

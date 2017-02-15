@@ -38231,7 +38231,7 @@
 	  };
 
 	  APIFactory.getFeed = function (id) {
-	    return $http.get(url + 'feed/' + id + '/?offset=0&items=5');
+	    return $http.get(url + 'feed/' + id);
 	  };
 
 	  APIFactory.openedArticle = function (id) {
@@ -38439,9 +38439,9 @@
 	    .module('zerdaReader')
 	    .controller('SidebarController', SidebarController);
 
-	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
+	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document'];
 
-	  function SidebarController($location, $rootScope, $http, APIFactory) {
+	  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document) {
 	    const vm = this;
 	    vm.getSubs = getSubs;
 	    vm.deleteSubscribe = deleteSubscribe;
@@ -38450,6 +38450,8 @@
 	    vm.getFeed = getFeed;
 	    vm.clickItem = clickItem;
 	    vm.allActivated = true;
+	    vm.getFeed = getFeed;
+	    vm.generateData = generateData;
 
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
@@ -38461,8 +38463,9 @@
 
 	    function getAll() {
 	      APIFactory.getAll().then(function (data) {
-	        vm.articles = data.data.feed;
-	        $rootScope.$broadcast('feeditem', vm.articles);
+	        vm.allArticle = data.data.feed;
+	        // console.log(vm.allArticle)
+	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = true;
 	        vm.favActivated = false;
 	        if (vm.subscriptions) {
@@ -38478,9 +38481,9 @@
 	    vm.getAll();
 
 	    function getFav() {
-	      APIFactory.getFav('favorites').then(function (data) {
-	        vm.articles = data.data;
-	        $rootScope.$broadcast('feeditem', vm.articles);
+	      APIFactory.getFav().then(function (data) {
+	        vm.allArticle = data.data;
+	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = false;
 	        vm.favActivated = true;
 	        vm.subscriptions.forEach(function (folder) {
@@ -38491,12 +38494,44 @@
 	      });
 	    }
 
+	    function generateData(){
+	      vm.allArticle.unshift({
+	       "id": 2345525,
+	       "title": "Fox on the Moon!",
+	       "description:" : "...",
+	       "created": Date.now(),
+	       "feed_name": "Fox Crunch",
+	       "feed_id": 43673,
+	       "favorite": false,
+	       "opened": false,
+	       "url": "http://fox.com/moon"
+	     })
+	     $rootScope.$broadcast('feeditems', vm.allArticle);
+	     //console.log(vm.allArticle)
+	    }
+
+	    window.setInterval(generateData, 60000);
+
+	    vm.clickitem = function ($index) {
+	      vm.subscriptions.map(function (folder) {
+	        folder.active = false;
+	      });
+	      vm.subscriptions[$index].active = true;
+	      vm.allActivated = false;
+	      vm.favActivated = false;
+	    };
+
 	    function getFeed(id) {
-	      APIFactory.getFeed(id).then(function (data) {
-	        vm.articles = (data.data);
-	        $rootScope.$broadcast('feeditem', vm.articles);
+
+	      //Ez a függvény kell hogy kikérje, a kattintott feed id-ját és összes hozzá tartozó cikket és broadcastolja a mainlisthez
+	      vm.feed_id = id;
+
+	      $rootScope.$broadcast('feed_id', vm.feed_id);
+	      APIFactory.getFeed(vm.feed_id).then(function (data) {
+	        vm.allArticle = data.data;
+	        $rootScope.$broadcast('feeditems', vm.allArticle)
 	      }).catch(function (data) {
-	        console.error('Failed to load feed items');
+	        console.error('Failed to load feed');
 	      });
 	    }
 
@@ -38523,6 +38558,7 @@
 	    $rootScope.$on('getsubscription', function (event) {
 	      vm.getSubs();
 	    });
+
 	  }
 	})();
 
@@ -38605,11 +38641,42 @@
 	    .module('zerdaReader')
 	    .controller('MainlistController', MainlistController);
 
-	  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
+	  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$scope'];
 
-	  function MainlistController($location, $rootScope, $http, APIFactory) {
+	  function MainlistController($location, $rootScope, $http, APIFactory, $scope) {
 	    const vm = this;
 	    vm.makeActive = makeActive;
+	    vm.displayFeed = displayFeed;
+	    vm.loadMore = loadMore;
+	    vm.pack = 15;
+
+
+	    var main = angular.element(document.querySelector("#mainlist"));
+
+	    main.on('scroll', function(e){
+	      if (e.target.scrollTop + e.target.offsetHeight >= e.target.scrollHeight-1) {
+	        vm.loadMore();
+	        console.log(vm.offset)
+	      }
+	    });
+
+	    //window.setInterval(vm.getFeed, 6000);
+
+	    function displayFeed() {
+	      if (vm.offset * vm.pack + vm.pack <= vm.allArticle.length) {
+	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset+vm.pack));
+	      } else {
+	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset*vm.pack, vm.allArticle.length));
+
+	      }
+	      $scope.$apply()
+	      console.log("disp",vm.articles);
+	    }
+
+	    function loadMore() {
+	      vm.offset++;
+	      displayFeed();
+	    }
 
 	    function makeActive($index, event) {
 	      if (event.target.classList.contains('star')) {
@@ -38631,8 +38698,12 @@
 	      }
 	    }
 
-	    $rootScope.$on('feeditem', function (event, items) {
-	      vm.articles = items;
+	    $rootScope.$on('feeditems', function (event, items) {
+	      vm.articles = [];
+	      vm.offset = 0;
+	      vm.allArticle = items;
+	      console.log(items);
+	      vm.displayFeed();
 	    });
 	  }
 	})();
