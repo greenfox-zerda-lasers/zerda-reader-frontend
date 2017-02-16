@@ -38584,10 +38584,7 @@
 	       "url": "http://fox.com/moon"
 	     })
 	     $rootScope.$broadcast('feeditems', vm.allArticle);
-<<<<<<< HEAD
-	     //console.log(vm.allArticle)
-=======
->>>>>>> f9d371cf9d2df29ff2b7e4435bce9ade9466db4e
+
 	    }
 
 	    window.setInterval(generateData, 60000);
@@ -38657,7 +38654,7 @@
 	    .module('zerdaReader')
 	    .controller('SubscribeController', SubscribeController);
 
-	  SubscribeController.$inject = ['$scope', '$location', '$rootScope', '$http', '$window', 'APIFactory'];
+	  SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory'];
 
 	  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory) {
 	    const vm = this;

@@ -23,10 +23,10 @@ describe('Navbar controller', function () {
       //console.log('cache',$templateCache.get('app/navbar/navbar.html'));
       element = $templateCache.get('app/navbar/navbar.html');
       compiledElement = compile(element)(rootscope);
-      console.log(compiledElement);
+      // console.log(compiledElement);
       scope.$digest();
       localStorage = window.localStorage;
-      console.log(localStorage)
+      // console.log(localStorage)
     });
   });
 
@@ -38,9 +38,9 @@ describe('Navbar controller', function () {
 
     it('should delete token', function() {
       logoutButton = compiledElement.find('a');
-      console.log(logoutButton, 'button');
+      // console.log(logoutButton, 'button');
       logoutButton.triggerHandler('click');
-      console.log(localStorage)
+      // console.log(localStorage)
       expect(localStorage.token).toBe(undefined);
     })
 
@@ -48,7 +48,7 @@ describe('Navbar controller', function () {
       logoutButton = compiledElement.find('a');
       logoutButton.triggerHandler('click');
       expect(location.$$path).toBe('/login');
-      console.log(location.$$path)
+      // console.log(location.$$path)
     })
   })
 
