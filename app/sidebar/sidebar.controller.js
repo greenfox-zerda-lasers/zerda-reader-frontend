@@ -7,15 +7,15 @@
 
   function SidebarController($location, $rootScope, $http, APIFactory, $window, $document) {
     const vm = this;
+    vm.allActivated = true;
     vm.getSubs = getSubs;
     vm.deleteSubscribe = deleteSubscribe;
     vm.getAll = getAll;
     vm.getFav = getFav;
     vm.getFeed = getFeed;
     vm.clickItem = clickItem;
-    vm.allActivated = true;
     vm.makePopupVisible = makePopupVisible;
-    vm.generateData = generateData;
+    // vm.generateData = generateData;
 
 
     function getSubs() {
@@ -29,13 +29,12 @@
     function getAll() {
       APIFactory.getAll().then(function (data) {
         vm.allArticle = data.data.feed;
-        // console.log(vm.allArticle)
         $rootScope.$broadcast('feeditems', vm.allArticle);
         vm.allActivated = true;
         vm.favActivated = false;
         if (vm.subscriptions) {
-          vm.subscriptions.forEach(function (folder) {
-            folder.active = false;
+          vm.subscriptions.forEach(function (feed) {
+            feed.active = false;
           });
         }
       }, function (errResponse) {
@@ -51,8 +50,8 @@
         $rootScope.$broadcast('feeditems', vm.allArticle);
         vm.allActivated = false;
         vm.favActivated = true;
-        vm.subscriptions.forEach(function (folder) {
-          folder.active = false;
+        vm.subscriptions.forEach(function (feed) {
+          feed.active = false;
         });
       }).catch(function (data) {
         console.error('Failed to load favorites');
@@ -72,17 +71,13 @@
        "url": "http://fox.com/moon"
      })
      $rootScope.$broadcast('feeditems', vm.allArticle);
-
     }
 
     window.setInterval(generateData, 60000);
 
     function getFeed(id) {
       vm.feed_id = id;
-
-      console.log(id)
       $rootScope.$broadcast('feed_id', vm.feed_id);
-
     }
 
     function deleteSubscribe(id) {
@@ -98,25 +93,34 @@
       if (event.target.classList.contains('delete')) {
         return;
       }
-      vm.subscriptions.map(function (folder) {
-        folder.active = false;
+      vm.subscriptions.map(function (feed) {
+        feed.active = false;
       });
       vm.subscriptions[index].active = true;
       vm.allActivated = false;
       vm.favActivated = false;
 
       vm.getFeed(id);
+    }
 
-    };
-
-
-    function makePopupVisible() {
-      console.log('mukodik')
-      if (vm.popupvisible === 'visible') {
-        vm.popupvisible = 'hidden';
-      } else {
-        vm.popupvisible = 'visible';
-      }
+    function makePopupVisible(index) {
+      vm.subscriptions.map(function (feed) {
+        if (feed.active){
+          feed.popupVisible = 'visible';
+        } else {
+          feed.popupVisible = 'hidden';
+        }
+      });
+      // console.log(feed.popupVisible);
+      // console.log(vm.subscriptions[index]);
+      // if (vm.subscriptions[index].popupVisible === 'visible') {
+      //   console.log('Mi;rt?');
+      //   feed.popupVisible = 'hidden';
+      //   vm.subscriptions[index].popupVisible = 'hidden';
+      // } else {
+      //   vm.subscriptions[index].popupVisible = 'visible';
+      //   feed.popupVisible = 'visible';
+      // }
     }
 
     $rootScope.$on('getsubscription', function (event) {

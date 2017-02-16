@@ -18,19 +18,19 @@
     main.on('scroll', function(e){
       if (e.target.scrollTop + e.target.offsetHeight >= e.target.scrollHeight-1) {
         vm.loadMore();
-        console.log(vm.offset)
+        // console.log(vm.offset)
       }
     });
 
     function displayFeed() {
       if (vm.offset * vm.pack + vm.pack <= vm.allArticle.length) {
-        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset+vm.pack));
+        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset + vm.pack));
       } else {
         vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset*vm.pack, vm.allArticle.length));
 
       }
       $scope.$apply()
-      console.log("disp",vm.articles);
+      console.log("disp", vm.articles);
     }
 
     function loadMore() {
@@ -62,13 +62,13 @@
       vm.articles = [];
       vm.offset = 0;
       vm.allArticle = items;
-      console.log(items);
+      // console.log(items);
       vm.displayFeed();
     });
 
     $rootScope.$on('feed_id', function (event, id) {
       //vm.feed_id = id;
-      console.log(id)
+      // console.log(id)
       APIFactory.getFeed(id).then(function (data) {
         vm.allArticle = data.data;
         //$rootScope.$broadcast('feeditems', vm.allArticle);
