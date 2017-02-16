@@ -26,6 +26,7 @@ require('./app/ajaxrequest/api.factory.js');
 // Directives:
 require('./app/components/favorite.directive/favorite.directive.js');
 require('./app/components/focus.directive.js');
+require('./app/components/popup.directive.js');
 
 // All the controllers:
 require('./app/login/login.controller.js');

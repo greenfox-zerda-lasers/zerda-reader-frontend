@@ -3,22 +3,25 @@
     <a class="item {{sidebarCtrl.allActivated ? 'active' : ''}}" ng-click="sidebarCtrl.getAll()">All</a>
     <a class="item {{sidebarCtrl.favActivated ? 'active' : ''}}" ng-click="sidebarCtrl.getFav()">Favorites</a>
 
-    <a ng-repeat="folder in sidebarCtrl.subscriptions" class="item {{folder.active ? 'active' : ''}}" ng-click="sidebarCtrl.clickItem($index, folder.id)">
+    <a ng-repeat="feed in sidebarCtrl.subscriptions" class="item {{feed.active ? 'active' : ''}}" ng-click="sidebarCtrl.clickItem($index, feed.id)">
 
-      <i class="remove left floated icon" ng-click="sidebarCtrl.deleteSubscribe(folder.id)">
+      <i class="remove left floated icon" ng-click="sidebarCtrl.makePopupVisible($index)">
       </i>
-      {{folder.name}}
-      <div id="delpopup" class="ui flowing popup right transition {{sidebarCtrl.popupvisible}}" >
+      {{feed.name}}
+      <div id="delpopup" class="ui flowing popup right transition {{feed.popupVisible}}">
         <div class="column">
           <h4 class="ui header">Do you really want to delete this subscription?</h4>
-          <div class="ui green button" ng-click="sidebarCtrl.deleteSubscribe(folder.id); makePopupVisible()">Delete</div>
-          <div class="ui red button"  ng-click="makePopupVisible()">Cancel</div>
+          <div class="ui green button" ng-click="sidebarCtrl.deleteSubscribe(feed.id); sidebarCtrl.makePopupVisible($index)">Delete</div>
+          <div class="ui red button"  ng-click="sidebarCtrl.makePopupVisible($index)">Cancel</div>
         </div>
       </div>
 
-
-
     </a>
+  </div>
+  <div ng-if="sidebarCtrl.feedError" class="ui negative message">
+    <i class="close icon"></i>
+    <div class="header">{{ sidebarCtrl.feedError }}</div>
+    <p>Maybe occured a server error</p>
   </div>
   <div ng-include="'app/addsubscription/addsubscription.html'"></div>
 </section>
