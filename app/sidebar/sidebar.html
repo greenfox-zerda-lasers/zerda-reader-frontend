@@ -7,5 +7,10 @@
       {{folder.name}}
     </a>
   </div>
+  <div ng-if="sidebarCtrl.feedError" class="ui negative message">
+    <i class="close icon"></i>
+    <div class="header">{{ sidebarCtrl.feedError }}</div>
+    <p>Maybe occured a server error</p>
+  </div>
   <div ng-include="'app/addsubscription/addsubscription.html'"></div>
 </section>

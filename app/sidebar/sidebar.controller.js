@@ -38,6 +38,8 @@
           });
         }
       }, function (errResponse) {
+        vm.feedError = "We're sorry we can't access feeds";
+        // vm.feedError = "Maybe occured a server error";
         console.error(errResponse, 'Failed to load all feed items');
       });
     }
