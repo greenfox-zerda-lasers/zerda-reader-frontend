@@ -72,16 +72,17 @@
 	// Directives:
 	__webpack_require__(28);
 	__webpack_require__(29);
+	__webpack_require__(30);
 
 	// All the controllers:
-	__webpack_require__(30);
 	__webpack_require__(31);
 	__webpack_require__(32);
-
 	__webpack_require__(33);
+
 	__webpack_require__(34);
 	__webpack_require__(35);
 	__webpack_require__(36);
+	__webpack_require__(37);
 
 
 /***/ },
@@ -38329,6 +38330,42 @@
 /***/ function(module, exports) {
 
 	(function () {
+	  'use strict';
+
+	  angular
+	    .module('zerdaReader')
+	    .directive('popupOpen', popupOpen);
+
+	  function popupOpen() {
+	    return {
+	      restrict: 'C',
+	      scope: {
+	        trigger: '@popupOpen',
+	      },
+	      link: function (scope, element, attrs) {
+	        var visible = false;
+	        var hidden = true;
+	        scope.$watch('trigger', function (value) {
+	          console.log(value);
+
+	          // if (value) {
+	          //   $timeout(function () {
+	          //     element[0].focus();
+	          //     // scope[attrs.focus] = false;
+	          //   });
+	          // }
+	        });
+	      },
+	    };
+	  }
+	})();
+
+
+/***/ },
+/* 31 */
+/***/ function(module, exports) {
+
+	(function () {
 	  angular
 	    .module('zerdaReader')
 	    .controller('LoginController', LoginController);
@@ -38375,7 +38412,7 @@
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38422,7 +38459,7 @@
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38445,7 +38482,7 @@
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38468,7 +38505,7 @@
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38480,15 +38517,16 @@
 
 	  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document) {
 	    const vm = this;
+	    vm.allActivated = true;
 	    vm.getSubs = getSubs;
 	    vm.deleteSubscribe = deleteSubscribe;
 	    vm.getAll = getAll;
 	    vm.getFav = getFav;
 	    vm.getFeed = getFeed;
 	    vm.clickItem = clickItem;
-	    vm.allActivated = true;
-	    vm.getFeed = getFeed;
-	    vm.generateData = generateData;
+	    vm.makePopupVisible = makePopupVisible;
+	    // vm.generateData = generateData;
+
 
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
@@ -38501,13 +38539,12 @@
 	    function getAll() {
 	      APIFactory.getAll().then(function (data) {
 	        vm.allArticle = data.data.feed;
-	        // console.log(vm.allArticle)
 	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = true;
 	        vm.favActivated = false;
 	        if (vm.subscriptions) {
-	          vm.subscriptions.forEach(function (folder) {
-	            folder.active = false;
+	          vm.subscriptions.forEach(function (feed) {
+	            feed.active = false;
 	          });
 	        }
 	      }, function (errResponse) {
@@ -38525,8 +38562,8 @@
 	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = false;
 	        vm.favActivated = true;
-	        vm.subscriptions.forEach(function (folder) {
-	          folder.active = false;
+	        vm.subscriptions.forEach(function (feed) {
+	          feed.active = false;
 	        });
 	      }).catch(function (data) {
 	        console.error('Failed to load favorites');
@@ -38536,7 +38573,7 @@
 	    function generateData(){
 	      vm.allArticle.unshift({
 	       "id": 2345525,
-	       "title": "Fox on the Moon! " + Math.floor(Math.random()*100),
+	       "title": "Fox on the Moon! " + Math.floor(Math.random() * 100),
 	       "description:" : "...",
 	       "created": Date.now(),
 	       "feed_name": "Fox Crunch",
@@ -38546,34 +38583,14 @@
 	       "url": "http://fox.com/moon"
 	     })
 	     $rootScope.$broadcast('feeditems', vm.allArticle);
-	     //console.log(vm.allArticle)
 	    }
 
-	    // window.setInterval(generateData, 10000);
-
-	    vm.clickitem = function ($index) {
-	      vm.subscriptions.map(function (folder) {
-	        folder.active = false;
-	      });
-	      vm.subscriptions[$index].active = true;
-	      vm.allActivated = false;
-	      vm.favActivated = false;
-	    };
+	    window.setInterval(generateData, 60000);
 
 	    function getFeed(id) {
-
-	      //Ez a függvény kell hogy kikérje, a kattintott feed id-ját és összes hozzá tartozó cikket és broadcastolja a mainlisthez
 	      vm.feed_id = id;
-
 	      $rootScope.$broadcast('feed_id', vm.feed_id);
-	      APIFactory.getFeed(vm.feed_id).then(function (data) {
-	        vm.allArticle = data.data;
-	        $rootScope.$broadcast('feeditems', vm.allArticle)
-	      }).catch(function (data) {
-	        console.error('Failed to load feed');
-	      });
 	    }
-	      //És itt kell megtörténje a sidebar aktív státuszának cserélgetése is
 
 	    function deleteSubscribe(id) {
 	      APIFactory.deleteItem(id).then(function (data) {
@@ -38584,17 +38601,40 @@
 	    }
 
 	    function clickItem(index, id) {
+
 	      if (event.target.classList.contains('delete')) {
 	        return;
 	      }
-	      vm.subscriptions.map(function (folder) {
-	        folder.active = false;
+	      vm.subscriptions.map(function (feed) {
+	        feed.active = false;
 	      });
-	      vm.getFeed(id);
 	      vm.subscriptions[index].active = true;
 	      vm.allActivated = false;
 	      vm.favActivated = false;
-	    };
+
+	      vm.getFeed(id);
+	    }
+
+	    function makePopupVisible(index) {
+	      vm.subscriptions.map(function (feed) {
+	        if (feed.active){
+	          feed.popupVisible = 'visible';
+	        } else {
+	          feed.popupVisible = 'hidden';
+	        }
+	      });
+	      // console.log(feed.popupVisible);
+	      // console.log(vm.subscriptions[index]);
+	      // if (vm.subscriptions[index].popupVisible === 'visible') {
+	      //   console.log('Mi;rt?');
+	      //   feed.popupVisible = 'hidden';
+	      //   vm.subscriptions[index].popupVisible = 'hidden';
+	      // } else {
+	      //   vm.subscriptions[index].popupVisible = 'visible';
+	      //   feed.popupVisible = 'visible';
+	      // }
+	    }
+
 	    $rootScope.$on('getsubscription', function (event) {
 	      vm.getSubs();
 	    });
@@ -38604,7 +38644,7 @@
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38673,7 +38713,7 @@
 
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38696,21 +38736,19 @@
 	    main.on('scroll', function(e){
 	      if (e.target.scrollTop + e.target.offsetHeight >= e.target.scrollHeight-1) {
 	        vm.loadMore();
-	        console.log(vm.offset)
+	        // console.log(vm.offset)
 	      }
 	    });
 
-	    //window.setInterval(vm.getFeed, 6000);
-
 	    function displayFeed() {
 	      if (vm.offset * vm.pack + vm.pack <= vm.allArticle.length) {
-	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset+vm.pack));
+	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset + vm.pack));
 	      } else {
 	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset*vm.pack, vm.allArticle.length));
 
 	      }
 	      $scope.$apply()
-	      console.log("disp",vm.articles);
+	      console.log("disp", vm.articles);
 	    }
 
 	    function loadMore() {
@@ -38742,18 +38780,18 @@
 	      vm.articles = [];
 	      vm.offset = 0;
 	      vm.allArticle = items;
-	      console.log(items);
+	      // console.log(items);
 	      vm.displayFeed();
 	    });
 
 	    $rootScope.$on('feed_id', function (event, id) {
-	      vm.feed_id = id;
-	      APIFactory.getFeed(vm.feed_id).then(function (data) {
+	      //vm.feed_id = id;
+	      // console.log(id)
+	      APIFactory.getFeed(id).then(function (data) {
 	        vm.allArticle = data.data;
 	        //$rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.articles = [];
 	        vm.offset = 0;
-	        vm.allArticle = items;
 	        //console.log(items);
 	        vm.displayFeed();
 	      }).catch(function (data) {
