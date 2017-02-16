@@ -51,8 +51,8 @@
         vm.articles[$index].active = true;
         vm.articles[$index].opened = true;
 
-        APIFactory.openedArticle(vm.articles[$index].id).then(function (data) {
-        }).catch(function (data) {
+        APIFactory.openedArticle(vm.articles[$index].id).then(function (data){}).catch(function (data) {
+
           console.error('Change opened status failed');
         });
       }
