@@ -16,7 +16,7 @@
           if (value) {
             $timeout(function () {
               element[0].focus();
-              // scope[attrs.focus] = false;
+              scope[attrs.focus] = false;
             });
           }
         });

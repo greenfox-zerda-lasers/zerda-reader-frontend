@@ -7,11 +7,14 @@
 
   function HomeController($location, $rootScope) {
     const vm = this;
-    (function () {
-      if (localStorage.token.length === 0) {
+    vm.checkLocalStorage = checkLocalStorage;
+
+    function checkLocalStorage() {
+      if (!localStorage.token) {
         $location.path('/login');
       }
-    })();
+    }
+    vm.checkLocalStorage();
   }
 
 })();

@@ -3,9 +3,9 @@
     .module('zerdaReader')
     .controller('SidebarController', SidebarController);
 
-  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document'];
+  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document', 'errorMessage'];
 
-  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document) {
+  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage) {
     const vm = this;
     vm.allActivated = true;
     vm.getSubs = getSubs;
@@ -16,7 +16,6 @@
     vm.clickItem = clickItem;
     vm.makePopupVisible = makePopupVisible;
     // vm.generateData = generateData;
-
 
     function getSubs() {
       APIFactory.getSubs().then(function (data) {
@@ -37,11 +36,9 @@
             feed.active = false;
           });
         }
-      }, function (errResponse) {
-        vm.feedError = "We're sorry we can't access feeds";
-        // vm.feedError = "Maybe occured a server error";
-        console.error(errResponse, 'Failed to load all feed items');
-      });
+      }).catch(function (errResponse) {
+        errorMessage.show(errResponse.status);
+      })
     }
 
     vm.getAll();

@@ -1,0 +1,14 @@
+<section class="ui dimmer" ng-class="{'active' : errorCtrl.visibility}">
+    <form ng-submit="errorCtrl.close()" class="ui standard modal transition" ng-class="{'visible active' : errorCtrl.visibility}">
+      <div>
+        <div class="column">
+          <h4 class="ui header">{{errorCtrl.error}}</h4>
+            <div class="ui input" style="align-items: center">
+              <button class="ui small button" focus-add="true" ng-click="errorCtrl.close()">
+                OK
+              </button>
+            </div>
+        </div>
+      </div>
+    </form>
+</section>
