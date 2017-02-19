@@ -23,7 +23,7 @@ require('./router.js');
 
 // Services:
 require('./app/ajaxrequest/api.factory.js');
-require('./app/errormessage/error.service.js');
+require('./app/components/errormessage/error.service.js');
 
 // Directives:
 require('./app/components/favorite.directive/favorite.directive.js');
