@@ -3,9 +3,9 @@
     .module('zerdaReader')
     .controller('MainlistController', MainlistController);
 
-  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$scope'];
+  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$scope', '$timeout'];
 
-  function MainlistController($location, $rootScope, $http, APIFactory, $scope) {
+  function MainlistController($location, $rootScope, $http, APIFactory, $scope, $timeout) {
     const vm = this;
     vm.makeActive = makeActive;
     vm.displayFeed = displayFeed;
@@ -29,7 +29,8 @@
         vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset*vm.pack, vm.allArticle.length));
 
       }
-      $scope.$apply()
+      // $scope.$apply()
+      $timeout()
       console.log("disp", vm.articles);
     }
 
