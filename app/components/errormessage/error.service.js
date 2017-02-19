@@ -16,23 +16,25 @@
 
       return service;
 
-
       function show(error) {
+        let displayMessage;
 
-        let displayMessage = messages.filter(function (item) {
+        messages.forEach(function (item) {
           if (item.status === error) {
-            console.log(item);
-            console.log(item.message);
-            return item.message;
+            displayMessage = item.message;
+            return
+          } else {
+            displayMessage = 'Something went wrong'
           }
         });
+
         console.log(displayMessage);
         ModalService.showModal({
-          templateUrl: 'app/errormessage/errormessage.html',
+          templateUrl: 'app/components/errormessage/errormessage.html',
           controller: 'ErrorController',
           controllerAs: 'errorCtrl',
           inputs: {
-            error: displayMessage[0].message,
+            error: displayMessage + error,
           }
         })
         // .then(function (modal) {
