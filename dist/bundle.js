@@ -38222,9 +38222,9 @@
 	  };
 
 	  APIFactory.getAll = function () {
-	    // return $http.get(urlReal + 'feed');
+	    return $http.get(urlReal + 'feed?token=' + localStorage.token);
 	    // return $http.get(url+'feed');
-	    return $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=E6F1CEE5407B499D989065AA0D0B7836');
+	    // return $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=35FAD9C65F4547A19263C54992D0CDE8');
 
 	  };
 
@@ -38436,9 +38436,10 @@
 	            email: vm.email,
 	            password: vm.password,
 	          },
-	          url: 'https://zerda-reader-mockback.gomix.me/user/signup',
+	          url: 'https://murmuring-everglades-41117.herokuapp.com/user/signup',
 	        }).then(function (data) {
 	          vm.respond = (data.data);
+	          console.log(vm.respond)
 	          if (vm.respond.result === 'success') {
 	            localStorage.setItem("token", vm.respond.token);
 	            $location.path('/home');
@@ -38496,6 +38497,8 @@
 	  function NavbarController($location) {
 	    const vm = this;
 	    vm.logout = logout;
+	    // vm.search
+	    // console.log(vm.search)
 
 	    function logout() {
 	      localStorage.clear();
