@@ -3,7 +3,7 @@
     .module('zerdaReader')
     .controller('SubscribeController', SubscribeController);
 
-  SubscribeController.$inject = ['$scope', '$location', '$rootScope', '$http', '$window', 'APIFactory'];
+  SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory'];
 
   function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory) {
     const vm = this;

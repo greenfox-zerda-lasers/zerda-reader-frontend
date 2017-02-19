@@ -87,7 +87,7 @@ body {
   }
 }
 
-#addpopup {
+#addpopup, #delpopup {
   position: absolute;
   top: -110px;
   left: 10px;
@@ -190,16 +190,17 @@ body {
 // a.item.ng-leave {
 //   transition: 0.5s linear all;
 //   opacity: 1;
+//   color: blue;
 //   transform: translateX(0px);
 // }
 //
 // a.item.ng-leave.ng-leave-active {
-//   transform: translateX(100%);
+//   transform: translateX(100px);
 // }
 //
 // a.item.ng-enter {
 //   transition: 1s linear all;
-//   background-color: rgba(0,0,0,1);
+//   background-color: red;
 //   opacity: 0;
 //   transform: translateY(-100%);
 // }

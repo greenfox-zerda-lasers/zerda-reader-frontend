@@ -70,6 +70,7 @@
        "url": "http://fox.com/moon"
      })
      $rootScope.$broadcast('feeditems', vm.allArticle);
+
     }
 
     window.setInterval(generateData, 60000);
