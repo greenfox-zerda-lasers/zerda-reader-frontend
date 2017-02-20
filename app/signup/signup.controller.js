@@ -18,9 +18,10 @@
             email: vm.email,
             password: vm.password,
           },
-          url: 'https://zerda-reader-mockback.gomix.me/user/signup',
+          url: 'https://murmuring-everglades-41117.herokuapp.com/user/signup',
         }).then(function (data) {
           vm.respond = (data.data);
+          console.log(vm.respond)
           if (vm.respond.result === 'success') {
             localStorage.setItem("token", vm.respond.token);
             $location.path('/home');
