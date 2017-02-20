@@ -69,22 +69,22 @@
 
 	// Services:
 	__webpack_require__(28);
-	__webpack_require__(41);
+	__webpack_require__(29);
 
 	// Directives:
 	__webpack_require__(30);
 	__webpack_require__(31);
 
 	// All the controllers:
+	__webpack_require__(32);
 	__webpack_require__(33);
 	__webpack_require__(34);
-	__webpack_require__(35);
 
+	__webpack_require__(35);
 	__webpack_require__(36);
 	__webpack_require__(37);
 	__webpack_require__(38);
 	__webpack_require__(39);
-	__webpack_require__(40);
 
 
 /***/ },
@@ -38266,7 +38266,56 @@
 
 
 /***/ },
-/* 29 */,
+/* 29 */
+/***/ function(module, exports) {
+
+	(function(){
+	  angular
+	    .module('zerdaReader')
+	    .service('errorMessage', errorMessage);
+
+	    errorMessage.$inject = ['ModalService'];
+
+	    function errorMessage(ModalService) {
+	      const messages = [
+	        { status: 404, message: 'The server doesn\'t respond.' },
+	        { status: 500, message: 'Internal server error.' },
+	      ]
+	      const service = {
+	        show: show,
+	      };
+
+	      return service;
+
+	      function show(error) {
+	        let displayMessage;
+
+	        messages.forEach(function (item) {
+	          if (item.status === error) {
+	            displayMessage = item.message;
+	            return
+	          } else {
+	            displayMessage = 'Something went wrong'
+	          }
+	        });
+
+	        console.log(displayMessage);
+	        ModalService.showModal({
+	          templateUrl: 'app/components/errormessage/errormessage.html',
+	          controller: 'ErrorController',
+	          controllerAs: 'errorCtrl',
+	          inputs: {
+	            error: displayMessage + error,
+	          }
+	        })
+	        // .then(function (modal) {
+	        // });
+	      }
+	    }
+	})();
+
+
+/***/ },
 /* 30 */
 /***/ function(module, exports) {
 
@@ -38337,8 +38386,7 @@
 
 
 /***/ },
-/* 32 */,
-/* 33 */
+/* 32 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38388,7 +38436,7 @@
 
 
 /***/ },
-/* 34 */
+/* 33 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38435,7 +38483,7 @@
 
 
 /***/ },
-/* 35 */
+/* 34 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38461,7 +38509,7 @@
 
 
 /***/ },
-/* 36 */
+/* 35 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38484,7 +38532,7 @@
 
 
 /***/ },
-/* 37 */
+/* 36 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38621,7 +38669,7 @@
 
 
 /***/ },
-/* 38 */
+/* 37 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38629,9 +38677,9 @@
 	    .module('zerdaReader')
 	    .controller('SubscribeController', SubscribeController);
 
-	  SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory'];
+	  SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory', '$timeout'];
 
-	  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory) {
+	  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory, $timeout) {
 	    const vm = this;
 	    vm.addSubscribe = addSubscribe;
 	    vm.makeVisible = makeVisible;
@@ -38657,7 +38705,8 @@
 	          vm.visible = 'hidden';
 	        }
 	      }
-	      $scope.$apply();
+	      // $scope.$apply();
+	      $timeout();
 	    });
 
 	    function addSubscribe() {
@@ -38690,7 +38739,7 @@
 
 
 /***/ },
-/* 39 */
+/* 38 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38781,7 +38830,7 @@
 
 
 /***/ },
-/* 40 */
+/* 39 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38802,56 +38851,6 @@
 	      console.log('fdsf');
 	   }
 	  }
-	})();
-
-
-/***/ },
-/* 41 */
-/***/ function(module, exports) {
-
-	(function(){
-	  angular
-	    .module('zerdaReader')
-	    .service('errorMessage', errorMessage);
-
-	    errorMessage.$inject = ['ModalService'];
-
-	    function errorMessage(ModalService) {
-	      const messages = [
-	        { status: 404, message: 'The server doesn\'t respond.' },
-	        { status: 500, message: 'Internal server error.' },
-	      ]
-	      const service = {
-	        show: show,
-	      };
-
-	      return service;
-
-	      function show(error) {
-	        let displayMessage;
-
-	        messages.forEach(function (item) {
-	          if (item.status === error) {
-	            displayMessage = item.message;
-	            return
-	          } else {
-	            displayMessage = 'Something went wrong'
-	          }
-	        });
-
-	        console.log(displayMessage);
-	        ModalService.showModal({
-	          templateUrl: 'app/components/errormessage/errormessage.html',
-	          controller: 'ErrorController',
-	          controllerAs: 'errorCtrl',
-	          inputs: {
-	            error: displayMessage + error,
-	          }
-	        })
-	        // .then(function (modal) {
-	        // });
-	      }
-	    }
 	})();
 
 
