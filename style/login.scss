@@ -6,11 +6,14 @@ body {
   align-items: center;
 }
 
+#column{
+  width: 260px;
+}
+
 #login-box, #reg-window {
   input {
     margin-bottom: 10px;
   }
-
 }
 
 .ui.form .field {
