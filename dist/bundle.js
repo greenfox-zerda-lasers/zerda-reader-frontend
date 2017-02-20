@@ -69,22 +69,22 @@
 
 	// Services:
 	__webpack_require__(28);
-	__webpack_require__(41);
+	__webpack_require__(29);
 
 	// Directives:
 	__webpack_require__(30);
 	__webpack_require__(31);
 
 	// All the controllers:
+	__webpack_require__(32);
 	__webpack_require__(33);
 	__webpack_require__(34);
-	__webpack_require__(35);
 
+	__webpack_require__(35);
 	__webpack_require__(36);
 	__webpack_require__(37);
 	__webpack_require__(38);
 	__webpack_require__(39);
-	__webpack_require__(40);
 
 
 /***/ },
@@ -38168,7 +38168,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(26) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 26px; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal; }\n    #sidebar a:hover i {\n      color: teal; }\n      #sidebar a:hover i:hover {\n        color: #139797; }\n      #sidebar a:hover i:active {\n        color: #DD4B39; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#addpopup, #delpopup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#addpopup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#addpopup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #addpopup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n  .mainlist-item .bold {\n    font-weight: bold; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 20px;\n  line-height: 1.5; }\n", ""]);
+	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(26) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 26px; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal; }\n    #sidebar a:hover i {\n      color: teal; }\n      #sidebar a:hover i:hover {\n        color: #139797; }\n      #sidebar a:hover i:active {\n        color: #DD4B39; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#addpopup, #delpopup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#addpopup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#addpopup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #addpopup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n  .mainlist-item .bold {\n    font-weight: bold; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 20px;\n  line-height: 1.5; }\n\n#error {\n  width: 50%;\n  z-index: 200;\n  text-align: center; }\n  #error h4 {\n    font-size: 20px;\n    font-weight: lighter; }\n  #error #gomb {\n    margin-top: 10px;\n    height: 50px; }\n  #error button {\n    height: 40px;\n    width: 100px; }\n", ""]);
 
 	// exports
 
@@ -38231,15 +38231,11 @@
 	  };
 
 	  APIFactory.getAll = function () {
-<<<<<<< HEAD
-	    return $http.get(urlReal + 'feed?token=' + localStorage.token);
-	    // return $http.get(url+'feed');
-	    // return $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=35FAD9C65F4547A19263C54992D0CDE8');
-=======
+
 	    // return $http.get(urlReal + 'feed');
-	    return $http.get(url+'feed');
-	    // return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=E6F1CEE5407B499D989065AA0D0B7836');
->>>>>>> d6eec5cfbbf7366e2c9ec3f74d36015e7d45d34f
+	    // return $http.get(url+'feed');
+	    return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=E6F1CEE5407B499D989065AA0D0B7836');
+
 
 	  };
 
@@ -38272,7 +38268,56 @@
 
 
 /***/ },
-/* 29 */,
+/* 29 */
+/***/ function(module, exports) {
+
+	(function(){
+	  angular
+	    .module('zerdaReader')
+	    .service('errorMessage', errorMessage);
+
+	    errorMessage.$inject = ['ModalService'];
+
+	    function errorMessage(ModalService) {
+	      const messages = [
+	        { status: 404, message: 'The server doesn\'t respond.' },
+	        { status: 500, message: 'Internal server error.' },
+	      ]
+	      const service = {
+	        show: show,
+	      };
+
+	      return service;
+
+	      function show(error) {
+	        let displayMessage;
+
+	        messages.forEach(function (item) {
+	          if (item.status === error) {
+	            displayMessage = item.message;
+	            return
+	          } else {
+	            displayMessage = 'Something went wrong'
+	          }
+	        });
+
+	        console.log(displayMessage);
+	        ModalService.showModal({
+	          templateUrl: 'app/components/errormessage/errormessage.html',
+	          controller: 'ErrorController',
+	          controllerAs: 'errorCtrl',
+	          inputs: {
+	            error: displayMessage + error,
+	          }
+	        })
+	        // .then(function (modal) {
+	        // });
+	      }
+	    }
+	})();
+
+
+/***/ },
 /* 30 */
 /***/ function(module, exports) {
 
@@ -38343,8 +38388,7 @@
 
 
 /***/ },
-/* 32 */,
-/* 33 */
+/* 32 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38394,7 +38438,7 @@
 
 
 /***/ },
-/* 34 */
+/* 33 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38442,7 +38486,7 @@
 
 
 /***/ },
-/* 35 */
+/* 34 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38468,7 +38512,7 @@
 
 
 /***/ },
-/* 36 */
+/* 35 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38493,7 +38537,7 @@
 
 
 /***/ },
-/* 37 */
+/* 36 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38630,7 +38674,7 @@
 
 
 /***/ },
-/* 38 */
+/* 37 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38699,7 +38743,7 @@
 
 
 /***/ },
-/* 39 */
+/* 38 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38790,7 +38834,7 @@
 
 
 /***/ },
-/* 40 */
+/* 39 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38811,56 +38855,6 @@
 	      console.log('fdsf');
 	   }
 	  }
-	})();
-
-
-/***/ },
-/* 41 */
-/***/ function(module, exports) {
-
-	(function(){
-	  angular
-	    .module('zerdaReader')
-	    .service('errorMessage', errorMessage);
-
-	    errorMessage.$inject = ['ModalService'];
-
-	    function errorMessage(ModalService) {
-	      const messages = [
-	        { status: 404, message: 'The server doesn\'t respond.' },
-	        { status: 500, message: 'Internal server error.' },
-	      ]
-	      const service = {
-	        show: show,
-	      };
-
-	      return service;
-
-	      function show(error) {
-	        let displayMessage;
-
-	        messages.forEach(function (item) {
-	          if (item.status === error) {
-	            displayMessage = item.message;
-	            return
-	          } else {
-	            displayMessage = 'Something went wrong'
-	          }
-	        });
-
-	        console.log(displayMessage);
-	        ModalService.showModal({
-	          templateUrl: 'app/components/errormessage/errormessage.html',
-	          controller: 'ErrorController',
-	          controllerAs: 'errorCtrl',
-	          inputs: {
-	            error: displayMessage + error,
-	          }
-	        })
-	        // .then(function (modal) {
-	        // });
-	      }
-	    }
 	})();
 
 
