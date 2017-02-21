@@ -21,9 +21,6 @@ require('./style/home.scss');
 // Router:
 require('./router.js');
 
-// Run Block:
-require('./app/home/home.checktoken.js')
-
 // Services:
 require('./app/ajaxrequest/api.factory.js');
 require('./app/components/errormessage/error.service.js');
@@ -36,6 +33,7 @@ require('./app/components/focus.directive.js');
 // All the controllers:
 require('./app/login/login.controller.js');
 require('./app/signup/signup.controller.js');
+require('./app/home/home.controller.js');
 
 require('./app/navbar/navbar.controller.js');
 require('./app/sidebar/sidebar.controller.js');
