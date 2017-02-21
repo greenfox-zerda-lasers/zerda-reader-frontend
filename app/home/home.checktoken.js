@@ -1,11 +1,11 @@
 (function () {
   angular
     .module('zerdaReader')
-    .controller('HomeController', HomeController);
+    .run(checkToken);
 
-  HomeController.$inject = ['$location', '$rootScope'];
+  checkToken.$inject = ['$location', '$rootScope'];
 
-  function HomeController($location, $rootScope) {
+  function checkToken($location, $rootScope) {
     const vm = this;
     vm.checkLocalStorage = checkLocalStorage;
 

@@ -21,9 +21,13 @@ require('./style/home.scss');
 // Router:
 require('./router.js');
 
+// Run Block:
+require('./app/home/home.checktoken.js')
+
 // Services:
 require('./app/ajaxrequest/api.factory.js');
 require('./app/components/errormessage/error.service.js');
+require('./app/components/deletevalidation/deletevalidation.service.js');
 
 // Directives:
 require('./app/components/favorite.directive/favorite.directive.js');
@@ -32,10 +36,10 @@ require('./app/components/focus.directive.js');
 // All the controllers:
 require('./app/login/login.controller.js');
 require('./app/signup/signup.controller.js');
-require('./app/home/home.controller.js');
 
 require('./app/navbar/navbar.controller.js');
 require('./app/sidebar/sidebar.controller.js');
 require('./app/addsubscription/addsubscription.controller.js');
 require('./app/mainlist/mainlist.controller.js');
 require('./app/components/errormessage/error.controller.js');
+require('./app/components/deletevalidation/deletevalidation.controller.js');
