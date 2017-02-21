@@ -3,9 +3,9 @@
     .module('zerdaReader')
     .controller('SubscribeController', SubscribeController);
 
-  SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory'];
+  SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory', '$timeout'];
 
-  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory) {
+  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory, $timeout) {
     const vm = this;
     vm.addSubscribe = addSubscribe;
     vm.makeVisible = makeVisible;
@@ -31,7 +31,8 @@
           vm.visible = 'hidden';
         }
       }
-      $scope.$apply();
+      // $scope.$apply();
+      $timeout();
     });
 
     function addSubscribe() {

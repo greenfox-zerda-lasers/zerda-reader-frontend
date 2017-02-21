@@ -3,13 +3,13 @@
     .module('zerdaReader')
     .controller('SidebarController', SidebarController);
 
-  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document', 'errorMessage'];
+  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document', 'errorMessage', 'deleteValidation'];
 
-  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage) {
+  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
     const vm = this;
     vm.allActivated = true;
     vm.getSubs = getSubs;
-    vm.deleteSubscribe = deleteSubscribe;
+    vm.deleteFeed = deleteFeed;
     vm.getAll = getAll;
     vm.getFav = getFav;
     vm.getFeed = getFeed;
@@ -80,11 +80,14 @@
       $rootScope.$broadcast('feed_id', vm.feed_id);
     }
 
-    function deleteSubscribe(id) {
-      APIFactory.deleteItem(id).then(function (data) {
-        vm.getSubs();
-      }).catch(function (data) {
-        console.error('Failed to delete subscription');
+    function deleteFeed(id) {
+      deleteValidation.show().then(function (x) {
+        // console.log(response)
+        // APIFactory.deleteItem(id).then(function (data) {
+        //   vm.getSubs();
+        // }).catch(function (data) {
+        //   console.error('Failed to delete subscription');
+        // });
       });
     }
 
@@ -111,16 +114,6 @@
           feed.popupVisible = 'hidden';
         }
       });
-      // console.log(feed.popupVisible);
-      // console.log(vm.subscriptions[index]);
-      // if (vm.subscriptions[index].popupVisible === 'visible') {
-      //   console.log('Mi;rt?');
-      //   feed.popupVisible = 'hidden';
-      //   vm.subscriptions[index].popupVisible = 'hidden';
-      // } else {
-      //   vm.subscriptions[index].popupVisible = 'visible';
-      //   feed.popupVisible = 'visible';
-      // }
     }
 
     $rootScope.$on('getsubscription', function (event) {

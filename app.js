@@ -24,6 +24,7 @@ require('./router.js');
 // Services:
 require('./app/ajaxrequest/api.factory.js');
 require('./app/components/errormessage/error.service.js');
+require('./app/components/deletevalidation/deletevalidation.service.js');
 
 // Directives:
 require('./app/components/favorite.directive/favorite.directive.js');
@@ -39,3 +40,4 @@ require('./app/sidebar/sidebar.controller.js');
 require('./app/addsubscription/addsubscription.controller.js');
 require('./app/mainlist/mainlist.controller.js');
 require('./app/components/errormessage/error.controller.js');
+require('./app/components/deletevalidation/deletevalidation.controller.js');
