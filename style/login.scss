@@ -1,6 +1,4 @@
 body {
-  background-image: none;
-  background-color: lightgrey;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,7 +6,16 @@ body {
 
 #column{
   width: 260px;
+  text-align: center;
+  h2 {
+    color: #2E2E2E;
+    text-align: -webkit-center;
+    img {
+      margin: 0px;
+    }
+  }
 }
+
 
 #login-box, #reg-window {
   input {

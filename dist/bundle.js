@@ -38128,7 +38128,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-image: none;\n  background-color: lightgrey;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#column {\n  width: 260px; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.ui.form .field {\n  margin: 0; }\n\n#login-box > div.ui.left.icon.input > i, #mail-outline-icon {\n  margin-top: -4px; }\n\n#login-box > div.ui.left.icon.input > i, #lock-icon {\n  margin-top: -4px; }\n\n#signup-button {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  #signup-button:hover a {\n    font-weight: bold;\n    color: white; }\n  #signup-button:active a {\n    color: grey; }\n\n#login-box input.ng-invalid.ng-touched {\n  border: 0.5px solid #DD4B39; }\n", ""]);
+	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#column {\n  width: 260px;\n  text-align: center; }\n  #column h2 {\n    color: #2E2E2E;\n    text-align: -webkit-center; }\n    #column h2 img {\n      margin: 0px; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.ui.form .field {\n  margin: 0; }\n\n#login-box > div.ui.left.icon.input > i, #mail-outline-icon {\n  margin-top: -4px; }\n\n#login-box > div.ui.left.icon.input > i, #lock-icon {\n  margin-top: -4px; }\n\n#signup-button {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  #signup-button:hover a {\n    font-weight: bold;\n    color: white; }\n  #signup-button:active a {\n    color: grey; }\n\n#login-box input.ng-invalid.ng-touched {\n  border: 0.5px solid #DD4B39; }\n", ""]);
 
 	// exports
 
