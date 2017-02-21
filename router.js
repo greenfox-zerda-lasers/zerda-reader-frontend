@@ -16,6 +16,8 @@
       })
       .when('/home', {
         templateUrl: 'app/home/home.html',
+        controller: 'HomeController',
+        controllerAs: 'homeCtrl',
       }).otherwise({
         redirectTo: '/login',
       });
