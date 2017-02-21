@@ -70,21 +70,23 @@
 	// Services:
 	__webpack_require__(28);
 	__webpack_require__(29);
+	__webpack_require__(30);
 
 	// Directives:
-	__webpack_require__(30);
 	__webpack_require__(31);
+	__webpack_require__(32);
 
 	// All the controllers:
-	__webpack_require__(32);
 	__webpack_require__(33);
 	__webpack_require__(34);
-
 	__webpack_require__(35);
+
 	__webpack_require__(36);
 	__webpack_require__(37);
 	__webpack_require__(38);
 	__webpack_require__(39);
+	__webpack_require__(40);
+	__webpack_require__(41);
 
 
 /***/ },
@@ -38128,7 +38130,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n#column {\n  width: 260px;\n  text-align: center; }\n  #column h2 {\n    color: #2E2E2E;\n    text-align: -webkit-center; }\n    #column h2 img {\n      margin: 0px; }\n\n#login-box input, #reg-window input {\n  margin-bottom: 10px; }\n\n.ui.form .field {\n  margin: 0; }\n\n#login-box > div.ui.left.icon.input > i, #mail-outline-icon {\n  margin-top: -4px; }\n\n#login-box > div.ui.left.icon.input > i, #lock-icon {\n  margin-top: -4px; }\n\n#signup-button {\n  text-align: center;\n  margin: 0px;\n  padding: 2px; }\n  #signup-button:hover a {\n    font-weight: bold;\n    color: white; }\n  #signup-button:active a {\n    color: grey; }\n\n#login-box input.ng-invalid.ng-touched {\n  border: 0.5px solid #DD4B39; }\n", ""]);
+	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n  body #column {\n    width: 260px;\n    text-align: center; }\n    body #column h2 {\n      color: #2E2E2E;\n      text-align: -webkit-center; }\n      body #column h2 img {\n        margin: 0px; }\n    body #column #login-box div, body #column #reg-window div {\n      margin: 0px; }\n    body #column #login-box input, body #column #reg-window input {\n      margin-bottom: 10px; }\n    body #column #login-box div.ui.left.icon.input > i, body #column #login-box #mail-outline-icon, body #column #login-box #lock-icon, body #column #reg-window div.ui.left.icon.input > i, body #column #reg-window #mail-outline-icon, body #column #reg-window #lock-icon {\n      margin-top: -4px; }\n    body #column #login-box input.ng-invalid.ng-touched, body #column #reg-window input.ng-invalid.ng-touched {\n      border: 0.5px solid #DD4B39; }\n    body #column #login-box div > small, body #column #login-box div > div > small, body #column #reg-window div > small, body #column #reg-window div > div > small {\n      color: #DD4B39;\n      display: block;\n      text-align: center;\n      margin-bottom: 8px; }\n    body #column #login-box #button, body #column #reg-window #button {\n      margin: 10px 0px; }\n    body #column #go-to-signup-button, body #column #go-to-login-button {\n      text-align: center;\n      margin: 0px;\n      padding: 2px; }\n      body #column #go-to-signup-button:hover a, body #column #go-to-login-button:hover a {\n        font-weight: bold;\n        color: #FFFFFF; }\n      body #column #go-to-signup-button:active a, body #column #go-to-login-button:active a {\n        color: #808080; }\n", ""]);
 
 	// exports
 
@@ -38233,8 +38235,8 @@
 	  APIFactory.getAll = function () {
 
 	    // return $http.get(urlReal + 'feed');
-	    // return $http.get(url+'feed');
-	    return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=E6F1CEE5407B499D989065AA0D0B7836');
+	    return $http.get(url+'feed');
+	    // return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=E6F1CEE5407B499D989065AA0D0B7836');
 
 
 	  };
@@ -38321,6 +38323,40 @@
 /* 30 */
 /***/ function(module, exports) {
 
+	(function(){
+	  angular
+	    .module('zerdaReader')
+	    .service('deleteValidation', deleteValidation);
+
+	    deleteValidation.$inject = ['ModalService'];
+
+	    function deleteValidation(ModalService) {
+	      const service = {
+	        show: show,
+	      };
+
+	      return service;
+
+	      function show() {
+	        ModalService.showModal({
+	          templateUrl: 'app/components/deletevalidation/deletevalidation.html',
+	          controller: 'DeleteValidationController',
+	          controllerAs: 'deleteValidationCtrl',
+	        }).then(function(modal) {
+	          modal.element.modal();
+	          modal.close().then(function (result) {
+	            console.log(result);
+	          });
+	        });
+	      }
+	    }
+	})();
+
+
+/***/ },
+/* 31 */
+/***/ function(module, exports) {
+
 	(function () {
 	  'use strict';
 
@@ -38356,7 +38392,7 @@
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38388,7 +38424,7 @@
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38438,7 +38474,7 @@
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38486,7 +38522,7 @@
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38512,7 +38548,7 @@
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38537,7 +38573,7 @@
 
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38545,13 +38581,13 @@
 	    .module('zerdaReader')
 	    .controller('SidebarController', SidebarController);
 
-	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document', 'errorMessage'];
+	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document', 'errorMessage', 'deleteValidation'];
 
-	  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage) {
+	  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
 	    const vm = this;
 	    vm.allActivated = true;
 	    vm.getSubs = getSubs;
-	    vm.deleteSubscribe = deleteSubscribe;
+	    vm.deleteFeed = deleteFeed;
 	    vm.getAll = getAll;
 	    vm.getFav = getFav;
 	    vm.getFeed = getFeed;
@@ -38622,11 +38658,14 @@
 	      $rootScope.$broadcast('feed_id', vm.feed_id);
 	    }
 
-	    function deleteSubscribe(id) {
-	      APIFactory.deleteItem(id).then(function (data) {
-	        vm.getSubs();
-	      }).catch(function (data) {
-	        console.error('Failed to delete subscription');
+	    function deleteFeed(id) {
+	      deleteValidation.show().then(function (x) {
+	        // console.log(response)
+	        // APIFactory.deleteItem(id).then(function (data) {
+	        //   vm.getSubs();
+	        // }).catch(function (data) {
+	        //   console.error('Failed to delete subscription');
+	        // });
 	      });
 	    }
 
@@ -38653,16 +38692,6 @@
 	          feed.popupVisible = 'hidden';
 	        }
 	      });
-	      // console.log(feed.popupVisible);
-	      // console.log(vm.subscriptions[index]);
-	      // if (vm.subscriptions[index].popupVisible === 'visible') {
-	      //   console.log('Mi;rt?');
-	      //   feed.popupVisible = 'hidden';
-	      //   vm.subscriptions[index].popupVisible = 'hidden';
-	      // } else {
-	      //   vm.subscriptions[index].popupVisible = 'visible';
-	      //   feed.popupVisible = 'visible';
-	      // }
 	    }
 
 	    $rootScope.$on('getsubscription', function (event) {
@@ -38674,7 +38703,7 @@
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38682,9 +38711,9 @@
 	    .module('zerdaReader')
 	    .controller('SubscribeController', SubscribeController);
 
-	  SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory'];
+	  SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory', '$timeout'];
 
-	  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory) {
+	  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory, $timeout) {
 	    const vm = this;
 	    vm.addSubscribe = addSubscribe;
 	    vm.makeVisible = makeVisible;
@@ -38710,7 +38739,8 @@
 	          vm.visible = 'hidden';
 	        }
 	      }
-	      $scope.$apply();
+	      // $scope.$apply();
+	      $timeout();
 	    });
 
 	    function addSubscribe() {
@@ -38743,7 +38773,7 @@
 
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38766,7 +38796,6 @@
 	    main.on('scroll', function(e){
 	      if (e.target.scrollTop + e.target.offsetHeight >= e.target.scrollHeight-1) {
 	        vm.loadMore();
-	        // console.log(vm.offset)
 	      }
 	    });
 
@@ -38775,11 +38804,8 @@
 	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset + vm.pack));
 	      } else {
 	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset*vm.pack, vm.allArticle.length));
-
 	      }
-	      // $scope.$apply()
 	      $timeout()
-	      console.log("disp", vm.articles);
 	    }
 
 	    function loadMore() {
@@ -38811,19 +38837,14 @@
 	      vm.articles = [];
 	      vm.offset = 0;
 	      vm.allArticle = items;
-	      // console.log(items);
 	      vm.displayFeed();
 	    });
 
 	    $rootScope.$on('feed_id', function (event, id) {
-	      //vm.feed_id = id;
-	      // console.log(id)
 	      APIFactory.getFeed(id).then(function (data) {
 	        vm.allArticle = data.data;
-	        //$rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.articles = [];
 	        vm.offset = 0;
-	        //console.log(items);
 	        vm.displayFeed();
 	      }).catch(function (data) {
 	        console.error('Failed to load feed');
@@ -38834,7 +38855,7 @@
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38852,8 +38873,31 @@
 
 	    function close() {
 	      vm.visibility = false;
-	      console.log('fdsf');
 	   }
+	  }
+	})();
+
+
+/***/ },
+/* 41 */
+/***/ function(module, exports) {
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('DeleteValidationController', DeleteValidationController);
+
+	  DeleteValidationController.$inject = ['$scope', 'close'];
+
+	  function DeleteValidationController($scope, close) {
+	    const vm = this;
+	    vm.visibility = true;
+	    // vm.response = response;
+	    vm.close = close;
+
+	    function close(result) {
+	      // console.log(result);
+	    }
 	  }
 	})();
 
