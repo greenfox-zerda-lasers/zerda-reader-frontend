@@ -13,7 +13,6 @@
 
     function close() {
       vm.visibility = false;
-      console.log('fdsf');
    }
   }
 })();
