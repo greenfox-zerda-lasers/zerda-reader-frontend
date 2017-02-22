@@ -1,12 +1,9 @@
-<section id="error" class="ui negative message modal" ng-class="{'active' : errorCtrl.visibility}">
-  <form ng-submit="errorCtrl.close()" class="ui form" ng-class="{'visible active' : errorCtrl.visibility}">
-    <div class="fluid column">
-      <h4 class="ui header image">{{errorCtrl.error}}</h4>
-      <div id="gomb" class="ui input" style="align-items: center">
-        <button class="ui small message button" focus-add="true" ng-click="errorCtrl.close()">
-          OK
-        </button>
-      </div>
+<section class="ui small modal" ng-class="{'active' : errorCtrl.visibility}">
+  <div class="header">{{errorCtrl.error}}</div>
+    <div class="actions">
+      <button class="ui teal button" focus-add="true" ng-click="errorCtrl.close()">
+        OK
+      </button>
     </div>
-  </form>
+  </div>
 </section>
