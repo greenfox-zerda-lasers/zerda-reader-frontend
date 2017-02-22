@@ -1,61 +1,55 @@
 body {
-  background-image: none;
-  background-color: lightgrey;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-#column{
-  width: 260px;
-}
-
-#login-box, #reg-window {
-  input {
-    margin-bottom: 10px;
+  #column {
+    width: 260px;
+    text-align: center;
+    h2 {
+      color: #2E2E2E;
+      text-align: -webkit-center;
+      img {
+        margin: 0px;
+      }
+    }
+    #login-box, #reg-window {
+      div {
+          margin: 0px;
+      }
+      input {
+        margin-bottom: 10px;
+      }
+      div.ui.left.icon.input > i, #mail-outline-icon, #lock-icon {
+          margin-top: -4px;
+      }
+      input.ng-invalid.ng-touched {
+        border: 0.5px solid #DD4B39;
+      }
+      div > small, div > div > small {
+        color: #DD4B39;
+        display: block;
+        text-align: center;
+        margin-bottom: 8px;
+      }
+      #button {
+        margin: 10px 0px;
+      }
+    }
+    #go-to-signup-button, #go-to-login-button {
+      text-align: center;
+      margin: 0px;
+      padding: 2px;
+      &:hover {
+        a {
+          font-weight: bold;
+          color: #FFFFFF;
+        }
+      }
+      &:active {
+        a {
+          color: #808080;
+        }
+      }
+    }
   }
 }
-
-.ui.form .field {
-    margin: 0;
-}
-
-#login-box > div.ui.left.icon.input > i, #mail-outline-icon{
-    margin-top: -4px
-}
-
-#login-box > div.ui.left.icon.input > i, #lock-icon{
-    margin-top: -4px
-}
-
-#signup-button {
-    text-align: center;
-    margin: 0px;
-    padding: 2px;
-    &:hover {
-        a {
-      font-weight: bold;
-      color: white;
-        }
-    }
-    &:active {
-        a {
-          color: grey;
-        }
-    }
-}
-
-#login-box input.ng-invalid.ng-touched {
-    border: 0.5px solid #DD4B39;
-}
-
-// .login-window {
-//   width: 40%;
-//   align-items: center;
-//   padding: 30px;
-//   float: right;
-//
-//   h2 {
-//     text-transform: uppercase;
-//   }
-// }

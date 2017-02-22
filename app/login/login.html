@@ -1,41 +1,40 @@
-<!-- <div class="ui middle aligned center aligned grid"> -->
+<div class="column" id="column">
+  <h2 class="ui image header">
+    <img src="./img/logo2.png"/>Log In
+  </h2>
 
-  <div class="column" id="column" style="text-align: center">
-    <h2 class="ui image header" style="color: #2E2E2E; text-align:-webkit-center">
-      <img src="./img/logo2.png"/>Log In</h2>
+  <form class="ui large form" id="login-box" method="post" name="signin" novalidate>
+    <div class="field">
+      <div class="ui left icon input">
+        <i id="mail-outline-icon" class="mail outline icon"></i>
 
-    <form class="ui large form" id="login-box" method="post" name="signin" novalidate>
-      <div class="field">
-        <div class="ui left icon input">
-          <i id="mail-outline-icon" class="mail outline icon"></i>
-
-          <!-- Email inputfield -->
-          <input class="field" type="email" placeholder="example@gmail.com" name="email" ng-model="loginCtrl.email" ng-required="true"/>
-        </div>
-        <div ng-show="signin.email.$touched && signin.email.$invalid">
-          <small style="color: #DD4B39; display: block; text-align: center; margin-bottom: 8px">Invalid e-mail adress</small>
-        </div>
+        <!-- Email inputfield -->
+        <input class="field" type="email" placeholder="example@gmail.com" name="email" ng-model="loginCtrl.email" ng-required="true"/>
       </div>
-      <div class="field">
-        <div class="ui left icon input">
-          <i id="lock-icon" class="lock icon"></i>
-
-          <!-- Password inputfield -->
-          <input type="password" placeholder="password" name="password" ng-model="loginCtrl.password" ng-required="true"/>
-        </div>
+      <div ng-show="signin.email.$touched && signin.email.$invalid">
+        <small>Invalid e-mail adress</small>
       </div>
-      <div ng-show="signin.password.$touched && signin.password.$invalid">
-        <small style="color: #DD4B39; display: block; text-align: center">Please enter your password.</small>
-      </div>
+    </div>
+    <div class="field">
+      <div class="ui left icon input">
+        <i id="lock-icon" class="lock icon"></i>
 
-      <div ng-if="loginCtrl.errorMessage">
-          <small style="color: #DD4B39; display: block; text-align: center">{{ loginCtrl.errorMessage }}</small>
+        <!-- Password inputfield -->
+        <input type="password" placeholder="password" name="password" ng-model="loginCtrl.password" ng-required="true"/>
       </div>
+    </div>
+    <div ng-show="signin.password.$touched && signin.password.$invalid">
+      <small>Please enter your password.</small>
+    </div>
 
-      <input class="ui fluid large teal submit yellow button" type="submit" value="Send" ng-click="loginCtrl.login()" style="margin: 10px 0px"/>
-    </form>
-    <button class="signup-button teal ui fluid message button" id="signup-button" ng-click="loginCtrl.signUpView()" style="padding: 2px">
-      <a class="signup">New to Zerda Reader? Sign Up!</a>
-    </button>
-  </div>
-<!-- </div> -->
+    <div ng-if="loginCtrl.errorMessage">
+        <small>{{ loginCtrl.errorMessage }}</small>
+    </div>
+
+    <!-- Buttons -->
+    <input class="ui fluid large teal submit yellow button" id="button" type="submit" value="Send" ng-click="loginCtrl.login()"/>
+  </form>
+  <button class="signup-button teal ui fluid message button" id="go-to-signup-button" ng-click="loginCtrl.signUpView()">
+    <a class="signup">New to Zerda Reader? Sign Up!</a>
+  </button>
+</div>
