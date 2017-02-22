@@ -1,11 +1,10 @@
-<section id="error" class="ui negative message modal" ng-class="{'active' : deleteValidationCtrl.visibility}">
-  <div class="fluid column">
-    <h4 class="ui header image">Are you sure you want to delete this subscription</h4>
-    <div id="gomb" class="ui input" style="align-items: center">
-      <button class="ui small message button" focus-add="true" ng-click="deleteValidationCtrl.closeModal(true)">
+<section class="ui small modal" ng-class="{'active' : deleteValidationCtrl.visibility}">
+  <h3 class="header">Are you sure you want to delete this subscription?</h3>
+    <div class="actions">
+      <button class="ui teal button" focus-add="true" ng-click="deleteValidationCtrl.closeModal(true)">
         Yes
       </button>
-      <button class="ui small message button" focus-add="true" ng-click="deleteValidationCtrl.closeModal(false)">
+      <button class="ui button" ng-click="deleteValidationCtrl.closeModal(false)">
         No
       </button>
     </div>

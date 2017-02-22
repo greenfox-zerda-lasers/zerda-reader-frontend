@@ -38233,7 +38233,14 @@
 	  };
 
 	  APIFactory.getAll = function () {
+<<<<<<< HEAD
 	    return $http.get(urlReal + 'feed?token=' + localStorage.token);
+=======
+
+	    // return $http.get(urlReal + 'feed');
+	    return $http.get(url+'fed');
+	    // return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=55A28683E68C465A9E9B3B1456277399');
+>>>>>>> c4533d945599a800e70780afc8f0c9a5a283b9be
 	  };
 
 	  APIFactory.getFav = function () {
@@ -38289,24 +38296,20 @@
 	      return service;
 
 	      function show(error) {
-	        let displayMessage;
+	        let displayMessage = 'Something went wrong';
 
 	        messages.forEach(function (item) {
 	          if (item.status === error) {
 	            displayMessage = item.message;
-	            return
-	          } else {
-	            displayMessage = 'Something went wrong'
 	          }
 	        });
 
-	        console.log(displayMessage);
 	        ModalService.showModal({
 	          templateUrl: 'app/components/errormessage/errormessage.html',
 	          controller: 'ErrorController',
 	          controllerAs: 'errorCtrl',
 	          inputs: {
-	            error: displayMessage + error,
+	            error: error + ': ' + displayMessage,
 	          }
 	        })
 	        // .then(function (modal) {
@@ -38603,7 +38606,11 @@
 
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
+<<<<<<< HEAD
 	        vm.subscriptions = data.data.subscriptions;
+=======
+	        vm.subscriptions = data.data;
+>>>>>>> c4533d945599a800e70780afc8f0c9a5a283b9be
 	      }).catch(function (errResponse) {
 	        errorMessage.show(errResponse.status);
 	      });
