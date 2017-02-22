@@ -3,45 +3,44 @@
 angular
   .module('zerdaReader')
   .factory('APIFactory', APIFactory);
-  const url = 'https://zerda-reader-mockback.gomix.me/';
-  const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
+const url = 'https://zerda-reader-mockback.gomix.me/';
+const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
+const token = localStorage.token;
 
 function APIFactory($http) {
 
   var APIFactory = {};
 
   APIFactory.getSubs = function () {
-    return $http.get(urlReal + 'subscriptions?token=' + localStorage.token);
+    return $http.get(urlReal + 'subscriptions?token=' + token);
   };
 
   APIFactory.getAll = function () {
-    return $http.get(urlReal + 'feed?token=' + localStorage.token);
+    return $http.get(urlReal + 'feed?token=' + token);
   };
 
   APIFactory.getFav = function () {
-    return $http.get(urlReal + 'favorites?token=' + localStorage.token);
+    return $http.get(urlReal + 'favorites?token=' + token);
   };
 
   APIFactory.getFeed = function (id) {
-    return $http.get(urlReal + 'feed/' + id + '?token=' + localStorage.token);
+    return $http.get(urlReal + 'feed/' + id + '?token=' + token);
   };
 
   APIFactory.openedArticle = function (id) {
-    return $http.put(urlReal + 'feed/' + id + '?token=' + localStorage.token, { opened: 1 });
+    return $http.put(urlReal + 'feed/' + id + '?token=' + token, { opened: 1 });
   };
 
   APIFactory.deleteItem = function (id) {
-    return $http.delete(urlReal + 'subscribe/' + id + '?token=' + localStorage.token);
+    return $http.delete(urlReal + 'subscribe/' + id + '?token=' + token);
   };
 
   APIFactory.putFav = function (id) {
-    console.log(id)
-    return $http.put(urlReal + 'favorites?token=' + localStorage.token, { item_id: id });
+    return $http.put(urlReal + 'favorites?token=' + token, { item_id: id });
   };
 
-  APIFactory.postRSS = function (url) {
-    console.log(url)
-    return $http.post(urlReal + 'subscribe?token=' + localStorage.token, { feed: url});
+  APIFactory.postNewFeed = function (link) {
+    return $http.post(urlReal + 'subscribe?token=' + token, { feed: link });
   };
 
   return APIFactory;

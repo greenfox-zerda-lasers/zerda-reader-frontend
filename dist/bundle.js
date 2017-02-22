@@ -38170,7 +38170,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(26) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 26px; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal; }\n    #sidebar a:hover i {\n      color: teal; }\n      #sidebar a:hover i:hover {\n        color: #139797; }\n      #sidebar a:hover i:active {\n        color: #DD4B39; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#add-popup, #delpopup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#add-popup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#add-popup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #add-popup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n  .mainlist-item .bold {\n    font-weight: bold; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 20px;\n  line-height: 1.5; }\n\n#error {\n  width: 50%;\n  z-index: 200;\n  text-align: center;\n  margin-left: -20%; }\n  #error h4 {\n    font-size: 20px;\n    font-weight: lighter; }\n  #error #gomb {\n    margin-top: 10px;\n    height: 50px; }\n  #error button {\n    height: 40px;\n    width: 100px; }\n", ""]);
+	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(26) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 18px; }\n  #logo img {\n    width: 35px;\n    padding-right: 5px;\n    margin-right: 10px; }\n\n#sidebar {\n  margin-top: 40px;\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar div.ui.secondary.vertical.pointing.menu > a.item.active {\n    padding-top: 20px; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal; }\n    #sidebar a:hover i {\n      color: teal; }\n      #sidebar a:hover i:hover {\n        color: #139797; }\n      #sidebar a:hover i:active {\n        color: #DD4B39; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add-subscription-button {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add-subscription-button:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#add-subscription-popup, #delpopup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#add-subscription-popup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#add-subscription-popup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #add-subscription-popup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding: 0.5rem 1rem 0.5rem 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n  .mainlist-item .bold {\n    font-weight: bold; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 20px;\n  line-height: 1.5; }\n\n#error {\n  width: 50%;\n  z-index: 200;\n  text-align: center;\n  margin-left: -20%; }\n  #error h4 {\n    font-size: 20px;\n    font-weight: lighter; }\n  #error #gomb {\n    margin-top: 10px;\n    height: 50px; }\n  #error button {\n    height: 40px;\n    width: 100px; }\n", ""]);
 
 	// exports
 
@@ -38226,52 +38226,44 @@
 	angular
 	  .module('zerdaReader')
 	  .factory('APIFactory', APIFactory);
-	  const url = 'https://zerda-reader-mockback.gomix.me/';
-	  const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
+	const url = 'https://zerda-reader-mockback.gomix.me/';
+	const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
+	const token = localStorage.token;
 
 	function APIFactory($http) {
 
 	  var APIFactory = {};
 
 	  APIFactory.getSubs = function () {
-	    return $http.get(urlReal + 'subscriptions?token=' + localStorage.token);
+	    return $http.get(urlReal + 'subscriptions?token=' + token);
 	  };
 
 	  APIFactory.getAll = function () {
-<<<<<<< HEAD
-	    return $http.get(urlReal + 'feed?token=' + localStorage.token);
-=======
-
-	    // return $http.get(urlReal + 'feed');
-	    return $http.get(url+'fed');
-	    // return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=55A28683E68C465A9E9B3B1456277399');
->>>>>>> c4533d945599a800e70780afc8f0c9a5a283b9be
+	    return $http.get(urlReal + 'feed?token=' + token);
 	  };
 
 	  APIFactory.getFav = function () {
-	    return $http.get(urlReal + 'favorites?token=' + localStorage.token);
+	    return $http.get(urlReal + 'favorites?token=' + token);
 	  };
 
 	  APIFactory.getFeed = function (id) {
-	    return $http.get(urlReal + 'feed/' + id + '?token=' + localStorage.token);
+	    return $http.get(urlReal + 'feed/' + id + '?token=' + token);
 	  };
 
 	  APIFactory.openedArticle = function (id) {
-	    return $http.put(urlReal + 'feed/' + id + '?token=' + localStorage.token, { opened: 1 });
+	    return $http.put(urlReal + 'feed/' + id + '?token=' + token, { opened: 1 });
 	  };
 
 	  APIFactory.deleteItem = function (id) {
-	    return $http.delete(urlReal + 'subscribe/' + id + '?token=' + localStorage.token);
+	    return $http.delete(urlReal + 'subscribe/' + id + '?token=' + token);
 	  };
 
 	  APIFactory.putFav = function (id) {
-	    console.log(id)
-	    return $http.put(urlReal + 'favorites?token=' + localStorage.token, { item_id: id });
+	    return $http.put(urlReal + 'favorites?token=' + token, { item_id: id });
 	  };
 
-	  APIFactory.postRSS = function (url) {
-	    console.log(url)
-	    return $http.post(urlReal + 'subscribe?token=' + localStorage.token, { feed: url});
+	  APIFactory.postNewFeed = function (link) {
+	    return $http.post(urlReal + 'subscribe?token=' + token, { feed: link });
 	  };
 
 	  return APIFactory;
@@ -38607,15 +38599,10 @@
 	    vm.getFeed = getFeed;
 	    vm.clickItem = clickItem;
 	    vm.makePopupVisible = makePopupVisible;
-	    // vm.generateData = generateData;
 
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
-<<<<<<< HEAD
 	        vm.subscriptions = data.data.subscriptions;
-=======
-	        vm.subscriptions = data.data;
->>>>>>> c4533d945599a800e70780afc8f0c9a5a283b9be
 	      }).catch(function (errResponse) {
 	        errorMessage.show(errResponse.status);
 	      });
@@ -38652,24 +38639,6 @@
 	        errorMessage.show(errResponse.status);
 	      });
 	    }
-
-	    // function generateData(){
-	    //   vm.allArticle.unshift({
-	    //    "id": 2345525,
-	    //    "title": "Fox on the Moon! " + Math.floor(Math.random() * 100),
-	    //    "description:" : "...",
-	    //    "created": Date.now(),
-	    //    "feed_name": "Fox Crunch",
-	    //    "feed_id": 43673,
-	    //    "favorite": false,
-	    //    "opened": false,
-	    //    "url": "http://fox.com/moon"
-	    //  })
-	    //  $rootScope.$broadcast('feeditems', vm.allArticle);
-	    //
-	    // }
-	    //
-	    // window.setInterval(generateData, 60000);
 
 	    function getFeed(id) {
 	      vm.feed_id = id;
@@ -38715,10 +38684,10 @@
 	      });
 	    }
 
-	    $rootScope.$on('getsubscription', function (event) {
+	    $rootScope.$on('getSubscription', function (event) {
+	      console.log('megj0tt');
 	      vm.getSubs();
 	    });
-
 	  }
 	})();
 
@@ -38737,59 +38706,59 @@
 	  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory, $timeout) {
 	    const vm = this;
 	    vm.addSubscribe = addSubscribe;
-	    vm.makeVisible = makeVisible;
-	    vm.visible = 'hidden';
-	    vm.newRss = '';
+	    vm.makePopupVisible = makePopupVisible;
+	    vm.popupVisible = 'hidden';
+	    vm.newFeed = '';
 	    vm.open = false;
 
-	    function makeVisible() {
-	      if (event.target.id === 'add') {
+	    function addSubscribe() {
+	      if (vm.newFeed !== '') {
+	        APIFactory.postNewFeed(vm.newFeed).then(function (data) {
+	          $rootScope.$broadcast('getSubscription');
+	          vm.popupVisible = 'hidden';
+	        }).catch(function (errResponse) {
+	          errorMessage.show(errResponse.status);
+	        });
+	      }
+	      vm.newFeed = '';
+	    }
+	    function makePopupVisible() {
+	      if (event.target.id === 'add-subscription-button') {
 	        vm.open = !vm.open;
-	        if (vm.visible === 'visible') {
-	          vm.visible = 'hidden';
+	        if (vm.popupVisible === 'visible') {
+	          vm.popupVisible = 'hidden';
 	        } else {
-	          vm.visible = 'visible';
+	          vm.popupVisible = 'visible';
 	        }
 	      }
 	    }
 
 	    $window.addEventListener('click', function (event) {
 	      let el = event.target
-	      if (event.target.id !== 'add') {
-	        if (!closest(el, '#addpopup')) {
-	          vm.visible = 'hidden';
-	        }
+	      if (event.target.id !== 'add-subscription-button') {
+	        vm.popupVisible = 'hidden';
+	        // if (!closest(el, '#add-subscription-popup')) {
+	        //   vm.popupVisible = 'hidden';
+	        // }
 	      }
-	      // $scope.$apply();
 	      $timeout();
 	    });
-
-	    function addSubscribe() {
-	      if (vm.newRss !== '') {
-	        APIFactory.postRSS(vm.newRss).then(function (data) {
-	          $rootScope.$broadcast('getsubscription');
-	          vm.visible = 'hidden';
-	        }).catch(function (data) {
-	          console.error('Connection failed');
-	        });
-	      }
-	      vm.newRss = '';
-	    }
 	  }
 
-	  function closest(el, selector, stopSelector) {
-	    let retval = null;
-	    while (el) {
-	      if (el.matches(selector)) {
-	        retval = el;
-	        break;
-	      } else if (stopSelector && el.matches(stopSelector)) {
-	        break;
-	      }
-	      el = el.parentElement;
-	    }
-	    return retval;
-	  }
+	  // function closest(el, selector, stopSelector) {
+	  //   console.log(el, selector);
+	  //   let retval = null;
+	  //   while (el) {
+	  //     if (el.matches(selector)) {
+	  //       retval = el;
+	  //       break;
+	  //     } else if (stopSelector && el.matches(stopSelector)) {
+	  //       break;
+	  //     }
+	  //     el = el.parentElement;
+	  //   }
+	  //   return retval;
+	  // }
 	})();
 
 
@@ -38851,7 +38820,9 @@
 	        vm.articles[$index].active = true;
 	        vm.articles[$index].opened = true;
 
-	        APIFactory.openedArticle(vm.articles[$index].id).then(function (data){}).catch(function (errResponse) {
+	        APIFactory.openedArticle(vm.articles[$index].id)
+	        .then(function (data){})
+	        .catch(function (errResponse) {
 	          errorMessage.show(errResponse.status);
 	        });
 	      }
@@ -38865,9 +38836,7 @@
 	    });
 
 	    $rootScope.$on('feed_id', function (event, id) {
-	      console.log(id)
 	      APIFactory.getFeed(id).then(function (data) {
-	        console.log(data)
 	        vm.allArticle = data.data.feed;
 	        vm.articles = [];
 	        vm.offset = 0;
