@@ -38525,30 +38525,6 @@
 /* 35 */
 /***/ function(module, exports) {
 
-<<<<<<< HEAD
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('NavbarController', NavbarController);
-
-	  NavbarController.$inject = ['$location', '$rootScope'];
-
-	  function NavbarController($location) {
-	    const vm = this;
-	    vm.logout = logout;
-	    // vm.search
-	    console.log(vm.search)
-
-	    function logout() {
-	      localStorage.clear();
-	      $location.path('/login');
-	    }
-
-
-	    
-	  }
-	})();
-=======
 	(function () {
 	  angular
 	    .module('zerdaReader')
@@ -38569,7 +38545,6 @@
 	  }
 
 	})();
->>>>>>> 13394bf5fd53aab4eac5e025b7fa74a7ad8ad183
 
 
 /***/ },
@@ -38587,12 +38562,15 @@
 	    const vm = this;
 	    vm.logout = logout;
 	    // vm.search
-	    // console.log(vm.search)
+	    console.log(vm.search)
 
 	    function logout() {
 	      localStorage.clear();
 	      $location.path('/login');
 	    }
+
+
+	    
 	  }
 	})();
 
