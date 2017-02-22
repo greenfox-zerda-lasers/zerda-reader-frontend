@@ -1,8 +1,13 @@
 (function () {
+  angular
+    .module('zerdaReader', [
+      'ngRoute',
+      'ngResource',
+      'infinite-scroll',
+      'angularModalService'])
+    .config(config);
 
-  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngResource', 'infinite-scroll', 'angularModalService']);
-
-  zerdaReader.config(['$routeProvider', function ($routeProvider) {
+  function config($routeProvider) {
     $routeProvider
       .when('/login', {
         templateUrl: 'app/login/login.html',
@@ -21,5 +26,5 @@
       }).otherwise({
         redirectTo: '/login',
       });
-  }]);
+  }
 })();

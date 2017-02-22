@@ -87,19 +87,19 @@ body {
   }
 }
 
-#addpopup, #delpopup {
+#add-popup, #delpopup {
   position: absolute;
   top: -110px;
   left: 10px;
   z-index: 100;
 }
 
-#addpopup > div > div > input {
+#add-popup > div > div > input {
   border-radius: 0.285714rem 0  0 0.285714rem;
   height: $add-rss-input-and-button;
 }
 
-#addpopup > div > div > div {
+#add-popup > div > div > div {
     border-radius: 0 0.285714rem 0.285714rem 0;
     width: 30px;
     height: $add-rss-input-and-button;

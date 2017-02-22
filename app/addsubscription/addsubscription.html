@@ -1,7 +1,7 @@
 <section ng-controller="SubscribeController as subsCtrl">
   <div id="add" class="ui button" ng-click="subsCtrl.makeVisible()">Add subscription
     <form ng-submit="subsCtrl.addSubscribe()">
-      <div id="addpopup" class="ui flowing popup top left transition {{subsCtrl.visible}}" >
+      <div id="add-popup" class="ui flowing popup top left transition {{subsCtrl.visible}}" >
         <div class="column">
           <h4 class="ui header">Add new RSS channel</h4>
           <div class="ui input" style="align-items: center">
