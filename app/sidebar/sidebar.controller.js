@@ -19,7 +19,7 @@
 
     function getSubs() {
       APIFactory.getSubs().then(function (data) {
-        vm.subscriptions = data.data;
+        vm.subscriptions = data.data.subscriptions;
       }).catch(function (errResponse) {
         errorMessage.show(errResponse.status);
       });
@@ -45,7 +45,7 @@
 
     function getFav() {
       APIFactory.getFav().then(function (data) {
-        vm.allArticle = data.data;
+        vm.allArticle = data.data.feed;
         $rootScope.$broadcast('feeditems', vm.allArticle);
         vm.allActivated = false;
         vm.favActivated = true;
@@ -57,23 +57,23 @@
       });
     }
 
-    function generateData(){
-      vm.allArticle.unshift({
-       "id": 2345525,
-       "title": "Fox on the Moon! " + Math.floor(Math.random() * 100),
-       "description:" : "...",
-       "created": Date.now(),
-       "feed_name": "Fox Crunch",
-       "feed_id": 43673,
-       "favorite": false,
-       "opened": false,
-       "url": "http://fox.com/moon"
-     })
-     $rootScope.$broadcast('feeditems', vm.allArticle);
-
-    }
-
-    window.setInterval(generateData, 60000);
+    // function generateData(){
+    //   vm.allArticle.unshift({
+    //    "id": 2345525,
+    //    "title": "Fox on the Moon! " + Math.floor(Math.random() * 100),
+    //    "description:" : "...",
+    //    "created": Date.now(),
+    //    "feed_name": "Fox Crunch",
+    //    "feed_id": 43673,
+    //    "favorite": false,
+    //    "opened": false,
+    //    "url": "http://fox.com/moon"
+    //  })
+    //  $rootScope.$broadcast('feeditems', vm.allArticle);
+    //
+    // }
+    //
+    // window.setInterval(generateData, 60000);
 
     function getFeed(id) {
       vm.feed_id = id;

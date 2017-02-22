@@ -6,7 +6,7 @@ $mainlist-width: 78vw;
 $add-rss-input-and-button: 35px;
 
 body {
-  background: url(../img/grey.jpg)  no-repeat center center fixed;
+  background: url(../img/grey.jpg) no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -34,17 +34,26 @@ body {
 #logo {
   font-family: 'Gloria Hallelujah', cursive;
   padding-left: 0px;
-  font-size: 26px;
+  font-size: 18px;
+  img {
+    width: 35px;
+    padding-right: 5px;
+    margin-right: 10px;
+  }
 }
 
 #sidebar {
+  div.ui.secondary.vertical.pointing.menu > a.item.active {
+    padding-top: 20px;
+  }
+  margin-top: 40px;
   position: fixed;
   width: 20%;
   top: $navbar-heigth;
-  padding-left: 10px;
   overflow-y: visible!important;
   background-color: #ffffff;
   a{
+    
     i{
       color: #ffffff;
     }
@@ -134,9 +143,9 @@ body {
 
 .mainlist-item {
   width: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
+  // padding-left: 1rem;
+  // padding-right: 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   i:before {
     width: 40px;
   }
@@ -186,31 +195,6 @@ body {
   padding-top: 20px;
   line-height: 1.5;
 }
-
-// a.item.ng-leave {
-//   transition: 0.5s linear all;
-//   opacity: 1;
-//   color: blue;
-//   transform: translateX(0px);
-// }
-//
-// a.item.ng-leave.ng-leave-active {
-//   transform: translateX(100px);
-// }
-//
-// a.item.ng-enter {
-//   transition: 1s linear all;
-//   background-color: red;
-//   opacity: 0;
-//   transform: translateY(-100%);
-// }
-//
-// a.item.ng-enter.ng-enter-active {
-//   opacity: 1;
-//   background-color: rgba(255,255,255,1);
-//   transform: translateY(0px);
-// }
-
 
 #error {
   width: 50%;

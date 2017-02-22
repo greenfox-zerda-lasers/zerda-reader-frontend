@@ -38234,38 +38234,44 @@
 	  var APIFactory = {};
 
 	  APIFactory.getSubs = function () {
-	    return $http.get(url + 'subscription');
+	    return $http.get(urlReal + 'subscriptions?token=' + localStorage.token);
 	  };
 
 	  APIFactory.getAll = function () {
+<<<<<<< HEAD
+	    return $http.get(urlReal + 'feed?token=' + localStorage.token);
+=======
 
 	    // return $http.get(urlReal + 'feed');
 	    return $http.get(url+'fed');
 	    // return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=55A28683E68C465A9E9B3B1456277399');
+>>>>>>> c4533d945599a800e70780afc8f0c9a5a283b9be
 	  };
 
 	  APIFactory.getFav = function () {
-	    return $http.get(url + 'favorites');
+	    return $http.get(urlReal + 'favorites?token=' + localStorage.token);
 	  };
 
 	  APIFactory.getFeed = function (id) {
-	    return $http.get(url + 'feed/' + id);
+	    return $http.get(urlReal + 'feed/' + id + '?token=' + localStorage.token);
 	  };
 
 	  APIFactory.openedArticle = function (id) {
-	    return $http.put(url + 'feed/' + id, { opened: true });
+	    return $http.put(urlReal + 'feed/' + id + '?token=' + localStorage.token, { opened: 1 });
 	  };
 
 	  APIFactory.deleteItem = function (id) {
-	    return $http.delete(url + 'subscribe/' + id);
+	    return $http.delete(urlReal + 'subscribe/' + id + '?token=' + localStorage.token);
 	  };
 
 	  APIFactory.putFav = function (id) {
-	    return $http.put(url + 'favorites', { item_id: id });
+	    console.log(id)
+	    return $http.put(urlReal + 'favorites?token=' + localStorage.token, { item_id: id });
 	  };
 
-	  APIFactory.postRSS = function (rss) {
-	    return $http.post(url + 'subscribe', { feed: rss });
+	  APIFactory.postRSS = function (url) {
+	    console.log(url)
+	    return $http.post(urlReal + 'subscribe?token=' + localStorage.token, { feed: url});
 	  };
 
 	  return APIFactory;
@@ -38450,7 +38456,7 @@
 	            email: vm.email,
 	            password: vm.password,
 	          },
-	          url: 'https://zerda-reader-mockback.gomix.me/user/login',
+	          url: 'https://murmuring-everglades-41117.herokuapp.com/user/login',
 	        }).then(function (data) {
 	          vm.respond = (data.data);
 	          if (vm.respond.result === 'success') {
@@ -38605,7 +38611,11 @@
 
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
+<<<<<<< HEAD
+	        vm.subscriptions = data.data.subscriptions;
+=======
 	        vm.subscriptions = data.data;
+>>>>>>> c4533d945599a800e70780afc8f0c9a5a283b9be
 	      }).catch(function (errResponse) {
 	        errorMessage.show(errResponse.status);
 	      });
@@ -38631,7 +38641,7 @@
 
 	    function getFav() {
 	      APIFactory.getFav().then(function (data) {
-	        vm.allArticle = data.data;
+	        vm.allArticle = data.data.feed;
 	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = false;
 	        vm.favActivated = true;
@@ -38643,23 +38653,23 @@
 	      });
 	    }
 
-	    function generateData(){
-	      vm.allArticle.unshift({
-	       "id": 2345525,
-	       "title": "Fox on the Moon! " + Math.floor(Math.random() * 100),
-	       "description:" : "...",
-	       "created": Date.now(),
-	       "feed_name": "Fox Crunch",
-	       "feed_id": 43673,
-	       "favorite": false,
-	       "opened": false,
-	       "url": "http://fox.com/moon"
-	     })
-	     $rootScope.$broadcast('feeditems', vm.allArticle);
-
-	    }
-
-	    window.setInterval(generateData, 60000);
+	    // function generateData(){
+	    //   vm.allArticle.unshift({
+	    //    "id": 2345525,
+	    //    "title": "Fox on the Moon! " + Math.floor(Math.random() * 100),
+	    //    "description:" : "...",
+	    //    "created": Date.now(),
+	    //    "feed_name": "Fox Crunch",
+	    //    "feed_id": 43673,
+	    //    "favorite": false,
+	    //    "opened": false,
+	    //    "url": "http://fox.com/moon"
+	    //  })
+	    //  $rootScope.$broadcast('feeditems', vm.allArticle);
+	    //
+	    // }
+	    //
+	    // window.setInterval(generateData, 60000);
 
 	    function getFeed(id) {
 	      vm.feed_id = id;
@@ -38855,8 +38865,10 @@
 	    });
 
 	    $rootScope.$on('feed_id', function (event, id) {
+	      console.log(id)
 	      APIFactory.getFeed(id).then(function (data) {
-	        vm.allArticle = data.data;
+	        console.log(data)
+	        vm.allArticle = data.data.feed;
 	        vm.articles = [];
 	        vm.offset = 0;
 	        vm.displayFeed();

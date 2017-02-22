@@ -11,38 +11,37 @@ function APIFactory($http) {
   var APIFactory = {};
 
   APIFactory.getSubs = function () {
-    return $http.get(url + 'subscription');
+    return $http.get(urlReal + 'subscriptions?token=' + localStorage.token);
   };
 
   APIFactory.getAll = function () {
-
-    // return $http.get(urlReal + 'feed');
-    return $http.get(url+'fed');
-    // return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=55A28683E68C465A9E9B3B1456277399');
+    return $http.get(urlReal + 'feed?token=' + localStorage.token);
   };
 
   APIFactory.getFav = function () {
-    return $http.get(url + 'favorites');
+    return $http.get(urlReal + 'favorites?token=' + localStorage.token);
   };
 
   APIFactory.getFeed = function (id) {
-    return $http.get(url + 'feed/' + id);
+    return $http.get(urlReal + 'feed/' + id + '?token=' + localStorage.token);
   };
 
   APIFactory.openedArticle = function (id) {
-    return $http.put(url + 'feed/' + id, { opened: true });
+    return $http.put(urlReal + 'feed/' + id + '?token=' + localStorage.token, { opened: 1 });
   };
 
   APIFactory.deleteItem = function (id) {
-    return $http.delete(url + 'subscribe/' + id);
+    return $http.delete(urlReal + 'subscribe/' + id + '?token=' + localStorage.token);
   };
 
   APIFactory.putFav = function (id) {
-    return $http.put(url + 'favorites', { item_id: id });
+    console.log(id)
+    return $http.put(urlReal + 'favorites?token=' + localStorage.token, { item_id: id });
   };
 
-  APIFactory.postRSS = function (rss) {
-    return $http.post(url + 'subscribe', { feed: rss });
+  APIFactory.postRSS = function (url) {
+    console.log(url)
+    return $http.post(urlReal + 'subscribe?token=' + localStorage.token, { feed: url});
   };
 
   return APIFactory;
