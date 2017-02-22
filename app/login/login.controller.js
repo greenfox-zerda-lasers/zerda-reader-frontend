@@ -21,7 +21,7 @@
             email: vm.email,
             password: vm.password,
           },
-          url: 'https://zerda-reader-mockback.gomix.me/user/login',
+          url: 'https://murmuring-everglades-41117.herokuapp.com/user/login',
         }).then(function (data) {
           vm.respond = (data.data);
           if (vm.respond.result === 'success') {

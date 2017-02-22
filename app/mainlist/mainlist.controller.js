@@ -66,8 +66,10 @@
     });
 
     $rootScope.$on('feed_id', function (event, id) {
+      console.log(id)
       APIFactory.getFeed(id).then(function (data) {
-        vm.allArticle = data.data;
+        console.log(data)
+        vm.allArticle = data.data.feed;
         vm.articles = [];
         vm.offset = 0;
         vm.displayFeed();
