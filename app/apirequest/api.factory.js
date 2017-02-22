@@ -9,6 +9,7 @@
     const url = 'https://murmuring-everglades-41117.herokuapp.com/';
     const token = localStorage.token;
     const service = {
+      postLogin: postLogin,
       getAllFeedItems: getAllFeedItems,
       getFavoriteItems: getFavoriteItems,
       getSubscritions: getSubscritions,
@@ -18,6 +19,11 @@
       openArticle: openArticle,
       putFavorite: putFavorite,
     };
+
+    function postLogin(em, pass) {
+      console.log(em, pass);
+      return $http.post(url + 'user/login', { email: em, password: pass });
+    }
 
     function getAllFeedItems() {
       return $http.get(url + 'feed?token=' + token);

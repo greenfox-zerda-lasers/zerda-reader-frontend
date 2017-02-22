@@ -38235,40 +38235,42 @@
 	    .module('zerdaReader')
 	    .controller('LoginController', LoginController);
 
-	  LoginController.$inject = ['$location', '$rootScope', '$http'];
+	  LoginController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
 
-	  function LoginController($location, $rootScope, $http) {
+	  function LoginController($location, $rootScope, $http, APIFactory) {
 	    const vm = this;
 	    vm.token = {};
+	    vm.respond = '';
 	    vm.login = login;
+	    vm.userValidation = userValidation;
 	    vm.signUpView = signUpView;
 
 	    function login() {
 	      if (!vm.email && !vm.password) {
 	        vm.errorMessage = 'Wrong username or password. Try again.';
 	      } else if (vm.email !== '' && vm.password !== '') {
-	        $http({
-	          method: 'POST',
-	          data: {
-	            email: vm.email,
-	            password: vm.password,
-	          },
-	          url: 'https://murmuring-everglades-41117.herokuapp.com/user/login',
-	        }).then(function (data) {
-	          vm.respond = (data.data);
-	          if (vm.respond.result === 'success') {
-	            localStorage.setItem('token', vm.respond.token);
-	            $location.path('/home');
-	          } else if (vm.respond.result === 'fail') {
-	            vm.errorMessage = 'Wrong username or password. Try again.';
-	            vm.email = '';
-	            vm.password = '';
-	          }
-	        }).catch(function (errResponse) {
+	        APIFactory.postLogin(vm.email, vm.password)
+	        .then(function (data) {
+	          vm.userValidation(data);
+	        })
+	        .catch(function (errResponse) {
 	          errorMessage.showErrorModal(errResponse.status);
 	        });
 	      }
 	    }
+
+	    function userValidation(data) {
+	      vm.respond = (data.data);
+	      if (vm.respond.result === 'success') {
+	        localStorage.setItem('token', vm.respond.token);
+	        $location.path('/home');
+	      } else if (vm.respond.result === 'fail') {
+	        vm.errorMessage = 'Wrong username or password. Try again.';
+	        vm.email = '';
+	        vm.password = '';
+	      }
+	    }
+
 	    function signUpView() {
 	      $location.path('/signup');
 	    }
@@ -38676,6 +38678,7 @@
 	    const url = 'https://murmuring-everglades-41117.herokuapp.com/';
 	    const token = localStorage.token;
 	    const service = {
+	      postLogin: postLogin,
 	      getAllFeedItems: getAllFeedItems,
 	      getFavoriteItems: getFavoriteItems,
 	      getSubscritions: getSubscritions,
@@ -38685,6 +38688,11 @@
 	      openArticle: openArticle,
 	      putFavorite: putFavorite,
 	    };
+
+	    function postLogin(em, pass) {
+	      console.log(em, pass);
+	      return $http.post(url + 'user/login', { email: em, password: pass });
+	    }
 
 	    function getAllFeedItems() {
 	      return $http.get(url + 'feed?token=' + token);
@@ -38751,7 +38759,7 @@
 	        }
 	      });
 	      ModalService.showModal({
-	        templateUrl: 'app/components/errormessage/errormessage.html',
+	        templateUrl: 'app/components/dialogs/errormessage/errormessage.html',
 	        controller: 'ErrorController',
 	        controllerAs: 'errorCtrl',
 	        inputs: {

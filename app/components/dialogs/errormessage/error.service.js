@@ -22,7 +22,7 @@
         }
       });
       ModalService.showModal({
-        templateUrl: 'app/components/errormessage/errormessage.html',
+        templateUrl: 'app/components/dialogs/errormessage/errormessage.html',
         controller: 'ErrorController',
         controllerAs: 'errorCtrl',
         inputs: {
