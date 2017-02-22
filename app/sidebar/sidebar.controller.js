@@ -20,8 +20,8 @@
     function getSubs() {
       APIFactory.getSubs().then(function (data) {
         vm.subscriptions = data.data;
-      }, function (errResponse) {
-        console.error('Failed to load subscriptions')
+      }).catch(function (errResponse) {
+        errorMessage.show(errResponse.status);
       });
     }
 
@@ -52,8 +52,8 @@
         vm.subscriptions.forEach(function (feed) {
           feed.active = false;
         });
-      }).catch(function (data) {
-        console.error('Failed to load favorites');
+      }).catch(function (errResponse) {
+        errorMessage.show(errResponse.status);
       });
     }
 
@@ -81,13 +81,16 @@
     }
 
     function deleteFeed(id) {
-      deleteValidation.show().then(function (x) {
-        // console.log(response)
-        // APIFactory.deleteItem(id).then(function (data) {
-        //   vm.getSubs();
-        // }).catch(function (data) {
-        //   console.error('Failed to delete subscription');
-        // });
+      deleteValidation.show().then(function (response) {
+        if (response === true) {
+          APIFactory.deleteItem(id).then(function (data) {
+            vm.getSubs();
+          }).catch(function (errResponse) {
+            errorMessage.show(errResponse.status);
+          });
+        }
+      }).catch(function (response) {
+        console.log(response);
       });
     }
 

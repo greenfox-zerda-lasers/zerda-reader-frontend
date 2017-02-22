@@ -3,9 +3,9 @@
     .module('zerdaReader')
     .service('deleteValidation', deleteValidation);
 
-    deleteValidation.$inject = ['ModalService'];
+    deleteValidation.$inject = ['$rootScope', 'ModalService', '$q'];
 
-    function deleteValidation(ModalService) {
+    function deleteValidation($rootScope, ModalService, $q) {
       const service = {
         show: show,
       };
@@ -13,14 +13,15 @@
       return service;
 
       function show() {
-        ModalService.showModal({
-          templateUrl: 'app/components/deletevalidation/deletevalidation.html',
-          controller: 'DeleteValidationController',
-          controllerAs: 'deleteValidationCtrl',
-        }).then(function(modal) {
-          modal.element.modal();
-          modal.close().then(function (result) {
-            console.log(result);
+        return $q(function (resolve, reject) {
+          ModalService.showModal({
+            templateUrl: 'app/components/deletevalidation/deletevalidation.html',
+            controller: 'DeleteValidationController',
+            controllerAs: 'deleteValidationCtrl',
+          }).then(function (modal) {
+            modal.close.then(function (result) {
+              resolve(result)
+            });
           });
         });
       }
