@@ -70,7 +70,6 @@
 	// Services:
 	__webpack_require__(28);
 	__webpack_require__(29);
-	__webpack_require__(30);
 
 	// Directives:
 	__webpack_require__(31);
@@ -86,7 +85,6 @@
 	__webpack_require__(38);
 	__webpack_require__(39);
 	__webpack_require__(40);
-	__webpack_require__(41);
 
 
 /***/ },
@@ -38320,40 +38318,7 @@
 
 
 /***/ },
-/* 30 */
-/***/ function(module, exports) {
-
-	(function(){
-	  angular
-	    .module('zerdaReader')
-	    .service('deleteValidation', deleteValidation);
-
-	    deleteValidation.$inject = ['ModalService'];
-
-	    function deleteValidation(ModalService) {
-	      const service = {
-	        show: show,
-	      };
-
-	      return service;
-
-	      function show() {
-	        ModalService.showModal({
-	          templateUrl: 'app/components/deletevalidation/deletevalidation.html',
-	          controller: 'DeleteValidationController',
-	          controllerAs: 'deleteValidationCtrl',
-	        }).then(function(modal) {
-	          modal.element.modal();
-	          modal.close().then(function (result) {
-	            console.log(result);
-	          });
-	        });
-	      }
-	    }
-	})();
-
-
-/***/ },
+/* 30 */,
 /* 31 */
 /***/ function(module, exports) {
 
@@ -38877,30 +38842,6 @@
 	    function close() {
 	      vm.visibility = false;
 	   }
-	  }
-	})();
-
-
-/***/ },
-/* 41 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('DeleteValidationController', DeleteValidationController);
-
-	  DeleteValidationController.$inject = ['$scope', 'close'];
-
-	  function DeleteValidationController($scope, close) {
-	    const vm = this;
-	    vm.visibility = true;
-	    // vm.response = response;
-	    vm.close = close;
-
-	    function close(result) {
-	      // console.log(result);
-	    }
 	  }
 	})();
 
