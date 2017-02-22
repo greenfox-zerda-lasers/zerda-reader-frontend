@@ -9,10 +9,11 @@
     const vm = this;
     vm.visibility = true;
     // vm.response = response;
-    vm.close = close;
+    vm.closeModal = closeModal;
 
-    function close(result) {
-      // console.log(result);
+    function closeModal(result) {
+      vm.visibility = !vm.visibility;
+      close(result)
     }
   }
 })();

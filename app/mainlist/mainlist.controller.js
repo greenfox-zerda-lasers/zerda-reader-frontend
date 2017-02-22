@@ -48,9 +48,8 @@
         vm.articles[$index].active = true;
         vm.articles[$index].opened = true;
 
-        APIFactory.openedArticle(vm.articles[$index].id).then(function (data){}).catch(function (data) {
-
-          console.error('Change opened status failed');
+        APIFactory.openedArticle(vm.articles[$index].id).then(function (data){}).catch(function (errResponse) {
+          errorMessage.show(errResponse.status);
         });
       }
     }
@@ -68,8 +67,8 @@
         vm.articles = [];
         vm.offset = 0;
         vm.displayFeed();
-      }).catch(function (data) {
-        console.error('Failed to load feed');
+      }).catch(function (errResponse) {
+        errorMessage.show(errResponse.status);
       });
     });
   }

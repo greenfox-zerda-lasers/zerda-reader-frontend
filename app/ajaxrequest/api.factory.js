@@ -17,8 +17,8 @@ function APIFactory($http) {
   APIFactory.getAll = function () {
 
     // return $http.get(urlReal + 'feed');
-    return $http.get(url+'feed');
-    // return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=E6F1CEE5407B499D989065AA0D0B7836');
+    return $http.get(url+'fed');
+    // return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=55A28683E68C465A9E9B3B1456277399');
 
 
   };
