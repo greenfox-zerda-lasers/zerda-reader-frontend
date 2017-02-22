@@ -52,7 +52,9 @@
         vm.articles[$index].active = true;
         vm.articles[$index].opened = true;
 
-        APIFactory.openedArticle(vm.articles[$index].id).then(function (data){}).catch(function (errResponse) {
+        APIFactory.openedArticle(vm.articles[$index].id)
+        .then(function (data){})
+        .catch(function (errResponse) {
           errorMessage.show(errResponse.status);
         });
       }
@@ -66,9 +68,7 @@
     });
 
     $rootScope.$on('feed_id', function (event, id) {
-      console.log(id)
       APIFactory.getFeed(id).then(function (data) {
-        console.log(data)
         vm.allArticle = data.data.feed;
         vm.articles = [];
         vm.offset = 0;

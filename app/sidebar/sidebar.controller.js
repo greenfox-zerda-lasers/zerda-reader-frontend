@@ -15,7 +15,6 @@
     vm.getFeed = getFeed;
     vm.clickItem = clickItem;
     vm.makePopupVisible = makePopupVisible;
-    // vm.generateData = generateData;
 
     function getSubs() {
       APIFactory.getSubs().then(function (data) {
@@ -56,24 +55,6 @@
         errorMessage.show(errResponse.status);
       });
     }
-
-    // function generateData(){
-    //   vm.allArticle.unshift({
-    //    "id": 2345525,
-    //    "title": "Fox on the Moon! " + Math.floor(Math.random() * 100),
-    //    "description:" : "...",
-    //    "created": Date.now(),
-    //    "feed_name": "Fox Crunch",
-    //    "feed_id": 43673,
-    //    "favorite": false,
-    //    "opened": false,
-    //    "url": "http://fox.com/moon"
-    //  })
-    //  $rootScope.$broadcast('feeditems', vm.allArticle);
-    //
-    // }
-    //
-    // window.setInterval(generateData, 60000);
 
     function getFeed(id) {
       vm.feed_id = id;
@@ -119,9 +100,9 @@
       });
     }
 
-    $rootScope.$on('getsubscription', function (event) {
+    $rootScope.$on('getSubscription', function (event) {
+      console.log('megj0tt');
       vm.getSubs();
     });
-
   }
 })();
