@@ -72,19 +72,19 @@
 	__webpack_require__(29);
 
 	// Directives:
-	__webpack_require__(30);
 	__webpack_require__(31);
+	__webpack_require__(32);
 
 	// All the controllers:
-	__webpack_require__(32);
 	__webpack_require__(33);
 	__webpack_require__(34);
-
 	__webpack_require__(35);
+
 	__webpack_require__(36);
 	__webpack_require__(37);
 	__webpack_require__(38);
 	__webpack_require__(39);
+	__webpack_require__(40);
 
 
 /***/ },
@@ -38318,7 +38318,8 @@
 
 
 /***/ },
-/* 30 */
+/* 30 */,
+/* 31 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38356,7 +38357,7 @@
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38388,7 +38389,7 @@
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38438,7 +38439,7 @@
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38486,7 +38487,7 @@
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38512,7 +38513,7 @@
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38520,13 +38521,19 @@
 	    .module('zerdaReader')
 	    .controller('NavbarController', NavbarController);
 
-	  NavbarController.$inject = ['$location', '$rootScope'];
+	  NavbarController.$inject = ['$location', '$scope', '$rootScope'];
 
-	  function NavbarController($location) {
+	  function NavbarController($location, $scope, $rootScope) {
 	    const vm = this;
 	    vm.logout = logout;
-	    // vm.search
-	    // console.log(vm.search)
+	    vm.search = ''
+	    console.log("search", vm.search);
+
+	    $scope.$watch('navbarCtrl.search', function(value) {
+	      console.log('Name change to ' + value);
+	      $rootScope.$broadcast('searchEvent', value);
+	    });
+
 
 	    function logout() {
 	      localStorage.clear();
@@ -38537,7 +38544,7 @@
 
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38674,7 +38681,7 @@
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38743,7 +38750,7 @@
 
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38760,6 +38767,10 @@
 	    vm.loadMore = loadMore;
 	    vm.pack = 15;
 
+	    $rootScope.$on('searchEvent', function(event, data){
+	      console.log(data);
+	      vm.search = data;
+	    })
 
 	    var main = angular.element(document.querySelector("#mainlist"));
 
@@ -38834,7 +38845,7 @@
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports) {
 
 	(function () {

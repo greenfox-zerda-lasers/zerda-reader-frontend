@@ -12,6 +12,10 @@
     vm.loadMore = loadMore;
     vm.pack = 15;
 
+    $rootScope.$on('searchEvent', function(event, data){
+      console.log(data);
+      vm.search = data;
+    })
 
     var main = angular.element(document.querySelector("#mainlist"));
 
