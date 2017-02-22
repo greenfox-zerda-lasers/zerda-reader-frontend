@@ -70,6 +70,7 @@
 	// Services:
 	__webpack_require__(28);
 	__webpack_require__(29);
+	__webpack_require__(30);
 
 	// Directives:
 	__webpack_require__(31);
@@ -85,6 +86,7 @@
 	__webpack_require__(38);
 	__webpack_require__(39);
 	__webpack_require__(40);
+	__webpack_require__(41);
 
 
 /***/ },
@@ -38227,40 +38229,37 @@
 	  var APIFactory = {};
 
 	  APIFactory.getSubs = function () {
-	    return $http.get(url + 'subscription');
+	    return $http.get(urlReal + 'subscriptions?token=' + localStorage.token);
 	  };
 
 	  APIFactory.getAll = function () {
-
-	    // return $http.get(urlReal + 'feed');
-	    return $http.get(url+'feed');
-	    // return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=E6F1CEE5407B499D989065AA0D0B7836');
-
-
+	    return $http.get(urlReal + 'feed?token=' + localStorage.token);
 	  };
 
 	  APIFactory.getFav = function () {
-	    return $http.get(url + 'favorites');
+	    return $http.get(urlReal + 'favorites?token=' + localStorage.token);
 	  };
 
 	  APIFactory.getFeed = function (id) {
-	    return $http.get(url + 'feed/' + id);
+	    return $http.get(urlReal + 'feed/' + id + '?token=' + localStorage.token);
 	  };
 
 	  APIFactory.openedArticle = function (id) {
-	    return $http.put(url + 'feed/' + id, { opened: true });
+	    return $http.put(urlReal + 'feed/' + id + '?token=' + localStorage.token, { opened: 1 });
 	  };
 
 	  APIFactory.deleteItem = function (id) {
-	    return $http.delete(url + 'subscribe/' + id);
+	    return $http.delete(urlReal + 'subscribe/' + id + '?token=' + localStorage.token);
 	  };
 
 	  APIFactory.putFav = function (id) {
-	    return $http.put(url + 'favorites', { item_id: id });
+	    console.log(id)
+	    return $http.put(urlReal + 'favorites?token=' + localStorage.token, { item_id: id });
 	  };
 
-	  APIFactory.postRSS = function (rss) {
-	    return $http.post(url + 'subscribe', { feed: rss });
+	  APIFactory.postRSS = function (url) {
+	    console.log(url)
+	    return $http.post(urlReal + 'subscribe?token=' + localStorage.token, { feed: url});
 	  };
 
 	  return APIFactory;
@@ -38318,7 +38317,41 @@
 
 
 /***/ },
-/* 30 */,
+/* 30 */
+/***/ function(module, exports) {
+
+	(function(){
+	  angular
+	    .module('zerdaReader')
+	    .service('deleteValidation', deleteValidation);
+
+	    deleteValidation.$inject = ['$rootScope', 'ModalService', '$q'];
+
+	    function deleteValidation($rootScope, ModalService, $q) {
+	      const service = {
+	        show: show,
+	      };
+
+	      return service;
+
+	      function show() {
+	        return $q(function (resolve, reject) {
+	          ModalService.showModal({
+	            templateUrl: 'app/components/deletevalidation/deletevalidation.html',
+	            controller: 'DeleteValidationController',
+	            controllerAs: 'deleteValidationCtrl',
+	          }).then(function (modal) {
+	            modal.close.then(function (result) {
+	              resolve(result)
+	            });
+	          });
+	        });
+	      }
+	    }
+	})();
+
+
+/***/ },
 /* 31 */
 /***/ function(module, exports) {
 
@@ -38415,7 +38448,7 @@
 	            email: vm.email,
 	            password: vm.password,
 	          },
-	          url: 'https://zerda-reader-mockback.gomix.me/user/login',
+	          url: 'https://murmuring-everglades-41117.herokuapp.com/user/login',
 	        }).then(function (data) {
 	          vm.respond = (data.data);
 	          if (vm.respond.result === 'success') {
@@ -38570,9 +38603,9 @@
 
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
-	        vm.subscriptions = data.data;
-	      }, function (errResponse) {
-	        console.error('Failed to load subscriptions')
+	        vm.subscriptions = data.data.subscriptions;
+	      }).catch(function (errResponse) {
+	        errorMessage.show(errResponse.status);
 	      });
 	    }
 
@@ -38596,35 +38629,35 @@
 
 	    function getFav() {
 	      APIFactory.getFav().then(function (data) {
-	        vm.allArticle = data.data;
+	        vm.allArticle = data.data.feed;
 	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = false;
 	        vm.favActivated = true;
 	        vm.subscriptions.forEach(function (feed) {
 	          feed.active = false;
 	        });
-	      }).catch(function (data) {
-	        console.error('Failed to load favorites');
+	      }).catch(function (errResponse) {
+	        errorMessage.show(errResponse.status);
 	      });
 	    }
 
-	    function generateData(){
-	      vm.allArticle.unshift({
-	       "id": 2345525,
-	       "title": "Fox on the Moon! " + Math.floor(Math.random() * 100),
-	       "description:" : "...",
-	       "created": Date.now(),
-	       "feed_name": "Fox Crunch",
-	       "feed_id": 43673,
-	       "favorite": false,
-	       "opened": false,
-	       "url": "http://fox.com/moon"
-	     })
-	     $rootScope.$broadcast('feeditems', vm.allArticle);
-
-	    }
-
-	    window.setInterval(generateData, 60000);
+	    // function generateData(){
+	    //   vm.allArticle.unshift({
+	    //    "id": 2345525,
+	    //    "title": "Fox on the Moon! " + Math.floor(Math.random() * 100),
+	    //    "description:" : "...",
+	    //    "created": Date.now(),
+	    //    "feed_name": "Fox Crunch",
+	    //    "feed_id": 43673,
+	    //    "favorite": false,
+	    //    "opened": false,
+	    //    "url": "http://fox.com/moon"
+	    //  })
+	    //  $rootScope.$broadcast('feeditems', vm.allArticle);
+	    //
+	    // }
+	    //
+	    // window.setInterval(generateData, 60000);
 
 	    function getFeed(id) {
 	      vm.feed_id = id;
@@ -38632,13 +38665,16 @@
 	    }
 
 	    function deleteFeed(id) {
-	      deleteValidation.show().then(function (x) {
-	        // console.log(response)
-	        // APIFactory.deleteItem(id).then(function (data) {
-	        //   vm.getSubs();
-	        // }).catch(function (data) {
-	        //   console.error('Failed to delete subscription');
-	        // });
+	      deleteValidation.show().then(function (response) {
+	        if (response === true) {
+	          APIFactory.deleteItem(id).then(function (data) {
+	            vm.getSubs();
+	          }).catch(function (errResponse) {
+	            errorMessage.show(errResponse.status);
+	          });
+	        }
+	      }).catch(function (response) {
+	        console.log(response);
 	      });
 	    }
 
@@ -38803,9 +38839,8 @@
 	        vm.articles[$index].active = true;
 	        vm.articles[$index].opened = true;
 
-	        APIFactory.openedArticle(vm.articles[$index].id).then(function (data){}).catch(function (data) {
-
-	          console.error('Change opened status failed');
+	        APIFactory.openedArticle(vm.articles[$index].id).then(function (data){}).catch(function (errResponse) {
+	          errorMessage.show(errResponse.status);
 	        });
 	      }
 	    }
@@ -38818,13 +38853,15 @@
 	    });
 
 	    $rootScope.$on('feed_id', function (event, id) {
+	      console.log(id)
 	      APIFactory.getFeed(id).then(function (data) {
-	        vm.allArticle = data.data;
+	        console.log(data)
+	        vm.allArticle = data.data.feed;
 	        vm.articles = [];
 	        vm.offset = 0;
 	        vm.displayFeed();
-	      }).catch(function (data) {
-	        console.error('Failed to load feed');
+	      }).catch(function (errResponse) {
+	        errorMessage.show(errResponse.status);
 	      });
 	    });
 	  }
@@ -38851,6 +38888,31 @@
 	    function close() {
 	      vm.visibility = false;
 	   }
+	  }
+	})();
+
+
+/***/ },
+/* 41 */
+/***/ function(module, exports) {
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('DeleteValidationController', DeleteValidationController);
+
+	  DeleteValidationController.$inject = ['$scope', 'close'];
+
+	  function DeleteValidationController($scope, close) {
+	    const vm = this;
+	    vm.visibility = true;
+	    // vm.response = response;
+	    vm.closeModal = closeModal;
+
+	    function closeModal(result) {
+	      vm.visibility = !vm.visibility;
+	      close(result)
+	    }
 	  }
 	})();
 
