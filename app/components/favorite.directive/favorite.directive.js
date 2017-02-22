@@ -22,7 +22,7 @@
 
       scope.favHandling = function (id) {
         scope.color = !scope.color;
-        APIFactory.putFav(id).then(function (data) {
+        APIFactory.putFavorite(id).then(function (data) {
         }).catch(function (data) {
           console.error('Change favorite status failed');
         });

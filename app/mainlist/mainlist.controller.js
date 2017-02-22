@@ -13,7 +13,6 @@
     vm.pack = 15;
 
     $rootScope.$on('searchEvent', function(event, data){
-      console.log(data);
       vm.search = data;
     })
 
@@ -52,7 +51,7 @@
         vm.articles[$index].active = true;
         vm.articles[$index].opened = true;
 
-        APIFactory.openedArticle(vm.articles[$index].id)
+        APIFactory.openArticle(vm.articles[$index].id)
         .then(function (data){})
         .catch(function (errResponse) {
           errorMessage.show(errResponse.status);
@@ -68,7 +67,7 @@
     });
 
     $rootScope.$on('feed_id', function (event, id) {
-      APIFactory.getFeed(id).then(function (data) {
+      APIFactory.getFeedItems(id).then(function (data) {
         vm.allArticle = data.data.feed;
         vm.articles = [];
         vm.offset = 0;
