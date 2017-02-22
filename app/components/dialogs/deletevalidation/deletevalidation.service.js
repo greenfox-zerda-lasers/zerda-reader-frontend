@@ -1,4 +1,6 @@
-(function(){
+'use strict';
+
+(function () {
   angular
     .module('zerdaReader')
     .service('deleteValidation', deleteValidation);
@@ -7,12 +9,10 @@
 
     function deleteValidation($rootScope, ModalService, $q) {
       const service = {
-        show: show,
+        showDeleteModal: showDeleteModal,
       };
 
-      return service;
-
-      function show() {
+      function showDeleteModal() {
         return $q(function (resolve, reject) {
           ModalService.showModal({
             templateUrl: 'app/components/deletevalidation/deletevalidation.html',
@@ -25,5 +25,6 @@
           });
         });
       }
+      return service;
     }
 })();

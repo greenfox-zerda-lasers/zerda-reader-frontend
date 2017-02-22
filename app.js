@@ -23,12 +23,12 @@ require('./router.js');
 
 // Services:
 require('./app/apirequest/api.factory.js');
-require('./app/components/errormessage/error.service.js');
-require('./app/components/deletevalidation/deletevalidation.service.js');
+require('./app/components/dialogs/errormessage/error.service.js');
+require('./app/components/dialogs/deletevalidation/deletevalidation.service.js');
 
 // Directives:
-require('./app/components/favorite.directive/favorite.directive.js');
-require('./app/components/focus.directive.js');
+require('./app/components/directives/favorite.directive/favorite.directive.js');
+require('./app/components/directives/focus.directive.js');
 
 // All the controllers:
 require('./app/login/login.controller.js');

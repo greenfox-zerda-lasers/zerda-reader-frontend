@@ -30,8 +30,8 @@
             vm.email = '';
             vm.password = '';
           }
-        }).catch(function (data) {
-          console.error('error occured');
+        }).catch(function (errResponse) {
+          errorMessage.showErrorModal(errResponse.status);
         });
       }
     }

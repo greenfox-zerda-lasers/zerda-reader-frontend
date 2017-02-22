@@ -32,8 +32,8 @@
             vm.email = '';
             vm.password = '';
           }
-        }).catch(function (data) {
-          console.log(data);
+        }).catch(function (errResponse) {
+          errorMessage.showErrorModal(errResponse.status);
         });
       }
     }

@@ -21,7 +21,7 @@
       APIFactory.getSubscritions().then(function (data) {
         vm.subscriptions = data.data.subscriptions;
       }).catch(function (errResponse) {
-        errorMessage.show(errResponse.status);
+        errorMessage.showErrorModal(errResponse.status);
       });
     }
 
@@ -37,7 +37,7 @@
           });
         }
       }).catch(function (errResponse) {
-        errorMessage.show(errResponse.status);
+        errorMessage.showErrorModal(errResponse.status);
       })
     }
 
@@ -53,7 +53,7 @@
           feed.active = false;
         });
       }).catch(function (errResponse) {
-        errorMessage.show(errResponse.status);
+        errorMessage.showErrorModal(errResponse.status);
       });
     }
 
@@ -68,7 +68,7 @@
           APIFactory.deleteFeed(id).then(function (data) {
             vm.getSubscritions();
           }).catch(function (errResponse) {
-            errorMessage.show(errResponse.status);
+            errorMessage.showErrorModal(errResponse.status);
           });
         }
       }).catch(function (response) {
