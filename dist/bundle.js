@@ -68,7 +68,7 @@
 	__webpack_require__(27);
 
 	// Services:
-	__webpack_require__(28);
+	__webpack_require__(42);
 	__webpack_require__(29);
 	__webpack_require__(30);
 
@@ -38218,59 +38218,7 @@
 
 
 /***/ },
-/* 28 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	angular
-	  .module('zerdaReader')
-	  .factory('APIFactory', APIFactory);
-	const url = 'https://zerda-reader-mockback.gomix.me/';
-	const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
-	const token = localStorage.token;
-
-	function APIFactory($http) {
-
-	  var APIFactory = {};
-
-	  APIFactory.getSubs = function () {
-	    return $http.get(urlReal + 'subscriptions?token=' + token);
-	  };
-
-	  APIFactory.getAll = function () {
-	    return $http.get(urlReal + 'feed?token=' + token);
-	  };
-
-	  APIFactory.getFav = function () {
-	    return $http.get(urlReal + 'favorites?token=' + token);
-	  };
-
-	  APIFactory.getFeed = function (id) {
-	    return $http.get(urlReal + 'feed/' + id + '?token=' + token);
-	  };
-
-	  APIFactory.openedArticle = function (id) {
-	    return $http.put(urlReal + 'feed/' + id + '?token=' + token, { opened: 1 });
-	  };
-
-	  APIFactory.deleteItem = function (id) {
-	    return $http.delete(urlReal + 'subscribe/' + id + '?token=' + token);
-	  };
-
-	  APIFactory.putFav = function (id) {
-	    return $http.put(urlReal + 'favorites?token=' + token, { item_id: id });
-	  };
-
-	  APIFactory.postNewFeed = function (link) {
-	    return $http.post(urlReal + 'subscribe?token=' + token, { feed: link });
-	  };
-
-	  return APIFactory;
-	}
-
-
-/***/ },
+/* 28 */,
 /* 29 */
 /***/ function(module, exports) {
 
@@ -38379,7 +38327,7 @@
 
 	      scope.favHandling = function (id) {
 	        scope.color = !scope.color;
-	        APIFactory.putFav(id).then(function (data) {
+	        APIFactory.putFavorite(id).then(function (data) {
 	        }).catch(function (data) {
 	          console.error('Change favorite status failed');
 	        });
@@ -38560,10 +38508,8 @@
 	    const vm = this;
 	    vm.logout = logout;
 	    vm.search = ''
-	    console.log("search", vm.search);
 
 	    $scope.$watch('navbarCtrl.search', function(value) {
-	      console.log('Name change to ' + value);
 	      $rootScope.$broadcast('searchEvent', value);
 	    });
 
@@ -38571,9 +38517,6 @@
 	      localStorage.clear();
 	      $location.path('/login');
 	    }
-
-
-
 	  }
 	})();
 
@@ -38592,24 +38535,25 @@
 	  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
 	    const vm = this;
 	    vm.allActivated = true;
-	    vm.getSubs = getSubs;
+	    vm.getSubscritions = getSubscritions;
 	    vm.deleteFeed = deleteFeed;
-	    vm.getAll = getAll;
-	    vm.getFav = getFav;
-	    vm.getFeed = getFeed;
+	    vm.getAllFeedItems = getAllFeedItems;
+	    vm.getFavoriteItems = getFavoriteItems;
+	    vm.getFeedItems = getFeedItems;
 	    vm.clickItem = clickItem;
 	    vm.makePopupVisible = makePopupVisible;
 
-	    function getSubs() {
-	      APIFactory.getSubs().then(function (data) {
+	    function getSubscritions() {
+	      console.log('haho');
+	      APIFactory.getSubscritions().then(function (data) {
 	        vm.subscriptions = data.data.subscriptions;
 	      }).catch(function (errResponse) {
 	        errorMessage.show(errResponse.status);
 	      });
 	    }
 
-	    function getAll() {
-	      APIFactory.getAll().then(function (data) {
+	    function getAllFeedItems() {
+	      APIFactory.getAllFeedItems().then(function (data) {
 	        vm.allArticle = data.data.feed;
 	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = true;
@@ -38624,10 +38568,10 @@
 	      })
 	    }
 
-	    vm.getAll();
+	    vm.getAllFeedItems();
 
-	    function getFav() {
-	      APIFactory.getFav().then(function (data) {
+	    function getFavoriteItems() {
+	      APIFactory.getFavoriteItems().then(function (data) {
 	        vm.allArticle = data.data.feed;
 	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = false;
@@ -38640,7 +38584,7 @@
 	      });
 	    }
 
-	    function getFeed(id) {
+	    function getFeedItems(id) {
 	      vm.feed_id = id;
 	      $rootScope.$broadcast('feed_id', vm.feed_id);
 	    }
@@ -38648,8 +38592,8 @@
 	    function deleteFeed(id) {
 	      deleteValidation.show().then(function (response) {
 	        if (response === true) {
-	          APIFactory.deleteItem(id).then(function (data) {
-	            vm.getSubs();
+	          APIFactory.deleteFeed(id).then(function (data) {
+	            vm.getSubscritions();
 	          }).catch(function (errResponse) {
 	            errorMessage.show(errResponse.status);
 	          });
@@ -38671,7 +38615,7 @@
 	      vm.allActivated = false;
 	      vm.favActivated = false;
 
-	      vm.getFeed(id);
+	      vm.getFeedItems(id);
 	    }
 
 	    function makePopupVisible(index) {
@@ -38686,7 +38630,7 @@
 
 	    $rootScope.$on('getSubscription', function (event) {
 	      console.log('megj0tt');
-	      vm.getSubs();
+	      vm.getSubscritions();
 	    });
 	  }
 	})();
@@ -38781,7 +38725,6 @@
 	    vm.pack = 15;
 
 	    $rootScope.$on('searchEvent', function(event, data){
-	      console.log(data);
 	      vm.search = data;
 	    })
 
@@ -38820,7 +38763,7 @@
 	        vm.articles[$index].active = true;
 	        vm.articles[$index].opened = true;
 
-	        APIFactory.openedArticle(vm.articles[$index].id)
+	        APIFactory.openArticle(vm.articles[$index].id)
 	        .then(function (data){})
 	        .catch(function (errResponse) {
 	          errorMessage.show(errResponse.status);
@@ -38836,7 +38779,7 @@
 	    });
 
 	    $rootScope.$on('feed_id', function (event, id) {
-	      APIFactory.getFeed(id).then(function (data) {
+	      APIFactory.getFeedItems(id).then(function (data) {
 	        vm.allArticle = data.data.feed;
 	        vm.articles = [];
 	        vm.offset = 0;
@@ -38894,6 +38837,68 @@
 	      vm.visibility = !vm.visibility;
 	      close(result)
 	    }
+	  }
+	})();
+
+
+/***/ },
+/* 42 */
+/***/ function(module, exports) {
+
+	'use strict';
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .factory('APIFactory', APIFactory);
+
+	  function APIFactory($http) {
+	    // const url = 'https://zerda-reader-mockback.gomix.me/';
+	    const url = 'https://murmuring-everglades-41117.herokuapp.com/';
+	    const token = localStorage.token;
+	    const service = {
+	      getAllFeedItems: getAllFeedItems,
+	      getFavoriteItems: getFavoriteItems,
+	      getSubscritions: getSubscritions,
+	      getFeedItems: getFeedItems,
+	      deleteFeed: deleteFeed,
+	      postNewFeed: postNewFeed,
+	      openArticle: openArticle,
+	      putFavorite: putFavorite,
+	    };
+
+	    function getAllFeedItems() {
+	      return $http.get(url + 'feed?token=' + token);
+	    }
+
+	    function getFavoriteItems() {
+	      return $http.get(url + 'favorites?token=' + token);
+	    }
+
+	    function getSubscritions() {
+	      return $http.get(url + 'subscriptions?token=' + token);
+	    }
+
+	    function getFeedItems(id) {
+	      return $http.get(url + 'feed/' + id + '?token=' + token);
+	    }
+
+	    function openArticle(id) {
+	      return $http.put(url + 'feed/' + id + '?token=' + token, { opened: 1 });
+	    }
+
+	    function deleteFeed(id) {
+	      return $http.delete(url + 'subscribe/' + id + '?token=' + token);
+	    }
+
+	    function putFavorite(id) {
+	      return $http.put(url + 'favorites?token=' + token, { item_id: id });
+	    }
+
+	    function postNewFeed(link) {
+	      return $http.post(url + 'subscribe?token=' + token, { feed: link });
+	    }
+
+	    return service;
 	  }
 	})();
 

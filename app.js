@@ -22,7 +22,7 @@ require('./style/home.scss');
 require('./router.js');
 
 // Services:
-require('./app/ajaxrequest/api.factory.js');
+require('./app/apirequest/api.factory.js');
 require('./app/components/errormessage/error.service.js');
 require('./app/components/deletevalidation/deletevalidation.service.js');
 

@@ -8,24 +8,25 @@
   function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
     const vm = this;
     vm.allActivated = true;
-    vm.getSubs = getSubs;
+    vm.getSubscritions = getSubscritions;
     vm.deleteFeed = deleteFeed;
-    vm.getAll = getAll;
-    vm.getFav = getFav;
-    vm.getFeed = getFeed;
+    vm.getAllFeedItems = getAllFeedItems;
+    vm.getFavoriteItems = getFavoriteItems;
+    vm.getFeedItems = getFeedItems;
     vm.clickItem = clickItem;
     vm.makePopupVisible = makePopupVisible;
 
-    function getSubs() {
-      APIFactory.getSubs().then(function (data) {
+    function getSubscritions() {
+      console.log('haho');
+      APIFactory.getSubscritions().then(function (data) {
         vm.subscriptions = data.data.subscriptions;
       }).catch(function (errResponse) {
         errorMessage.show(errResponse.status);
       });
     }
 
-    function getAll() {
-      APIFactory.getAll().then(function (data) {
+    function getAllFeedItems() {
+      APIFactory.getAllFeedItems().then(function (data) {
         vm.allArticle = data.data.feed;
         $rootScope.$broadcast('feeditems', vm.allArticle);
         vm.allActivated = true;
@@ -40,10 +41,10 @@
       })
     }
 
-    vm.getAll();
+    vm.getAllFeedItems();
 
-    function getFav() {
-      APIFactory.getFav().then(function (data) {
+    function getFavoriteItems() {
+      APIFactory.getFavoriteItems().then(function (data) {
         vm.allArticle = data.data.feed;
         $rootScope.$broadcast('feeditems', vm.allArticle);
         vm.allActivated = false;
@@ -56,7 +57,7 @@
       });
     }
 
-    function getFeed(id) {
+    function getFeedItems(id) {
       vm.feed_id = id;
       $rootScope.$broadcast('feed_id', vm.feed_id);
     }
@@ -64,8 +65,8 @@
     function deleteFeed(id) {
       deleteValidation.show().then(function (response) {
         if (response === true) {
-          APIFactory.deleteItem(id).then(function (data) {
-            vm.getSubs();
+          APIFactory.deleteFeed(id).then(function (data) {
+            vm.getSubscritions();
           }).catch(function (errResponse) {
             errorMessage.show(errResponse.status);
           });
@@ -87,7 +88,7 @@
       vm.allActivated = false;
       vm.favActivated = false;
 
-      vm.getFeed(id);
+      vm.getFeedItems(id);
     }
 
     function makePopupVisible(index) {
@@ -102,7 +103,7 @@
 
     $rootScope.$on('getSubscription', function (event) {
       console.log('megj0tt');
-      vm.getSubs();
+      vm.getSubscritions();
     });
   }
 })();
