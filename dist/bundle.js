@@ -70,6 +70,7 @@
 	// Services:
 	__webpack_require__(28);
 	__webpack_require__(29);
+	__webpack_require__(30);
 
 	// Directives:
 	__webpack_require__(31);
@@ -85,6 +86,7 @@
 	__webpack_require__(38);
 	__webpack_require__(39);
 	__webpack_require__(40);
+	__webpack_require__(41);
 
 
 /***/ },
@@ -38233,10 +38235,8 @@
 	  APIFactory.getAll = function () {
 
 	    // return $http.get(urlReal + 'feed');
-	    return $http.get(url+'feed');
-	    // return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=E6F1CEE5407B499D989065AA0D0B7836');
-
-
+	    return $http.get(url+'fed');
+	    // return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=55A28683E68C465A9E9B3B1456277399');
 	  };
 
 	  APIFactory.getFav = function () {
@@ -38290,24 +38290,20 @@
 	      return service;
 
 	      function show(error) {
-	        let displayMessage;
+	        let displayMessage = 'Something went wrong';
 
 	        messages.forEach(function (item) {
 	          if (item.status === error) {
 	            displayMessage = item.message;
-	            return
-	          } else {
-	            displayMessage = 'Something went wrong'
 	          }
 	        });
 
-	        console.log(displayMessage);
 	        ModalService.showModal({
 	          templateUrl: 'app/components/errormessage/errormessage.html',
 	          controller: 'ErrorController',
 	          controllerAs: 'errorCtrl',
 	          inputs: {
-	            error: displayMessage + error,
+	            error: error + ': ' + displayMessage,
 	          }
 	        })
 	        // .then(function (modal) {
@@ -38318,7 +38314,41 @@
 
 
 /***/ },
-/* 30 */,
+/* 30 */
+/***/ function(module, exports) {
+
+	(function(){
+	  angular
+	    .module('zerdaReader')
+	    .service('deleteValidation', deleteValidation);
+
+	    deleteValidation.$inject = ['$rootScope', 'ModalService', '$q'];
+
+	    function deleteValidation($rootScope, ModalService, $q) {
+	      const service = {
+	        show: show,
+	      };
+
+	      return service;
+
+	      function show() {
+	        return $q(function (resolve, reject) {
+	          ModalService.showModal({
+	            templateUrl: 'app/components/deletevalidation/deletevalidation.html',
+	            controller: 'DeleteValidationController',
+	            controllerAs: 'deleteValidationCtrl',
+	          }).then(function (modal) {
+	            modal.close.then(function (result) {
+	              resolve(result)
+	            });
+	          });
+	        });
+	      }
+	    }
+	})();
+
+
+/***/ },
 /* 31 */
 /***/ function(module, exports) {
 
@@ -38571,8 +38601,8 @@
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
 	        vm.subscriptions = data.data;
-	      }, function (errResponse) {
-	        console.error('Failed to load subscriptions')
+	      }).catch(function (errResponse) {
+	        errorMessage.show(errResponse.status);
 	      });
 	    }
 
@@ -38603,8 +38633,8 @@
 	        vm.subscriptions.forEach(function (feed) {
 	          feed.active = false;
 	        });
-	      }).catch(function (data) {
-	        console.error('Failed to load favorites');
+	      }).catch(function (errResponse) {
+	        errorMessage.show(errResponse.status);
 	      });
 	    }
 
@@ -38632,13 +38662,16 @@
 	    }
 
 	    function deleteFeed(id) {
-	      deleteValidation.show().then(function (x) {
-	        // console.log(response)
-	        // APIFactory.deleteItem(id).then(function (data) {
-	        //   vm.getSubs();
-	        // }).catch(function (data) {
-	        //   console.error('Failed to delete subscription');
-	        // });
+	      deleteValidation.show().then(function (response) {
+	        if (response === true) {
+	          APIFactory.deleteItem(id).then(function (data) {
+	            vm.getSubs();
+	          }).catch(function (errResponse) {
+	            errorMessage.show(errResponse.status);
+	          });
+	        }
+	      }).catch(function (response) {
+	        console.log(response);
 	      });
 	    }
 
@@ -38803,9 +38836,8 @@
 	        vm.articles[$index].active = true;
 	        vm.articles[$index].opened = true;
 
-	        APIFactory.openedArticle(vm.articles[$index].id).then(function (data){}).catch(function (data) {
-
-	          console.error('Change opened status failed');
+	        APIFactory.openedArticle(vm.articles[$index].id).then(function (data){}).catch(function (errResponse) {
+	          errorMessage.show(errResponse.status);
 	        });
 	      }
 	    }
@@ -38823,8 +38855,8 @@
 	        vm.articles = [];
 	        vm.offset = 0;
 	        vm.displayFeed();
-	      }).catch(function (data) {
-	        console.error('Failed to load feed');
+	      }).catch(function (errResponse) {
+	        errorMessage.show(errResponse.status);
 	      });
 	    });
 	  }
@@ -38851,6 +38883,31 @@
 	    function close() {
 	      vm.visibility = false;
 	   }
+	  }
+	})();
+
+
+/***/ },
+/* 41 */
+/***/ function(module, exports) {
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('DeleteValidationController', DeleteValidationController);
+
+	  DeleteValidationController.$inject = ['$scope', 'close'];
+
+	  function DeleteValidationController($scope, close) {
+	    const vm = this;
+	    vm.visibility = true;
+	    // vm.response = response;
+	    vm.closeModal = closeModal;
+
+	    function closeModal(result) {
+	      vm.visibility = !vm.visibility;
+	      close(result)
+	    }
 	  }
 	})();
 
