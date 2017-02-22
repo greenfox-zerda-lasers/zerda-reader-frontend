@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 describe('Navbar controller', function () {
   var NavbarController;
