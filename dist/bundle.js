@@ -38521,13 +38521,18 @@
 	    .module('zerdaReader')
 	    .controller('NavbarController', NavbarController);
 
-	  NavbarController.$inject = ['$location', '$rootScope'];
+	  NavbarController.$inject = ['$location', '$scope', '$rootScope'];
 
-	  function NavbarController($location) {
+	  function NavbarController($location, $scope, $rootScope) {
 	    const vm = this;
 	    vm.logout = logout;
-	    // vm.search
-	    console.log(vm.search)
+	    vm.search = ''
+	    console.log("search", vm.search);
+
+	    $scope.$watch('navbarCtrl.search', function(value) {
+	      console.log('Name change to ' + value);
+	      $rootScope.$broadcast('searchEvent', value);
+	    });
 
 	    function logout() {
 	      localStorage.clear();
@@ -38535,7 +38540,7 @@
 	    }
 
 
-	    
+
 	  }
 	})();
 
@@ -38758,6 +38763,10 @@
 	    vm.loadMore = loadMore;
 	    vm.pack = 15;
 
+	    $rootScope.$on('searchEvent', function(event, data){
+	      console.log(data);
+	      vm.search = data;
+	    })
 
 	    var main = angular.element(document.querySelector("#mainlist"));
 
