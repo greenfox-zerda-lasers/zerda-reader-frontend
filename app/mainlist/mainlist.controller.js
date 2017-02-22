@@ -54,7 +54,7 @@
         APIFactory.openArticle(vm.articles[$index].id)
         .then(function (data){})
         .catch(function (errResponse) {
-          errorMessage.show(errResponse.status);
+          errorMessage.showErrorModal(errResponse.status);
         });
       }
     }
@@ -73,7 +73,7 @@
         vm.offset = 0;
         vm.displayFeed();
       }).catch(function (errResponse) {
-        errorMessage.show(errResponse.status);
+        errorMessage.showErrorModal(errResponse.status);
       });
     });
   }
