@@ -38591,11 +38591,31 @@
 	    vm.makeActive = makeActive;
 	    vm.displayFeed = displayFeed;
 	    vm.loadMore = loadMore;
+	    vm.articles = [];
+	    vm.allArticle = [];
 	    vm.pack = 15;
+	    vm.offset = 0;
 
-	    $rootScope.$on('searchEvent', function(event, data){
-	      vm.search = data;
-	    })
+	    function makeActive($index, event) {
+	      if (event.target.classList.contains('star')) {
+	        return;
+	      }
+	      if (vm.articles[$index].active === true) {
+	        vm.articles[$index].active = false;
+	      } else {
+	        vm.articles.map(function (article) {
+	          article.active = false;
+	        });
+	        vm.articles[$index].active = true;
+	        vm.articles[$index].opened = true;
+
+	        APIFactory.openArticle(vm.articles[$index].id)
+	        .then(function () {})
+	        .catch(function (errResponse) {
+	          errorMessage.showErrorModal(errResponse.status);
+	        });
+	      }
+	    }
 
 	    var main = angular.element(document.querySelector("#mainlist"));
 
@@ -38619,27 +38639,6 @@
 	      displayFeed();
 	    }
 
-	    function makeActive($index, event) {
-	      if (event.target.classList.contains('star')) {
-	        return;
-	      }
-	      if (vm.articles[$index].active === true) {
-	        vm.articles[$index].active = false;
-	      } else {
-	        vm.articles.map(function (article) {
-	          article.active = false;
-	        });
-	        vm.articles[$index].active = true;
-	        vm.articles[$index].opened = true;
-
-	        APIFactory.openArticle(vm.articles[$index].id)
-	        .then(function (data){})
-	        .catch(function (errResponse) {
-	          errorMessage.showErrorModal(errResponse.status);
-	        });
-	      }
-	    }
-
 	    $rootScope.$on('feeditems', function (event, items) {
 	      vm.articles = [];
 	      vm.offset = 0;
@@ -38647,13 +38646,19 @@
 	      vm.displayFeed();
 	    });
 
+	    $rootScope.$on('searchEvent', function (event, data) {
+	      vm.search = data;
+	    });
+
 	    $rootScope.$on('feed_id', function (event, id) {
-	      APIFactory.getFeedItems(id).then(function (data) {
+	      APIFactory.getFeedItems(id)
+	      .then(function (data) {
 	        vm.allArticle = data.data.feed;
 	        vm.articles = [];
 	        vm.offset = 0;
 	        vm.displayFeed();
-	      }).catch(function (errResponse) {
+	      })
+	      .catch(function (errResponse) {
 	        errorMessage.showErrorModal(errResponse.status);
 	      });
 	    });
