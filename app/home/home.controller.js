@@ -7,7 +7,7 @@
 
   HomeController.$inject = ['$location', '$rootScope'];
 
-  function HomeController($location, $rootScope) {
+  function HomeController($location) {
     const vm = this;
     vm.checkLocalStorage = checkLocalStorage;
 
@@ -18,5 +18,4 @@
     }
     vm.checkLocalStorage();
   }
-
 })();

@@ -68,13 +68,13 @@
 	__webpack_require__(27);
 
 	// Services:
-	__webpack_require__(28);
-	__webpack_require__(29);
-	__webpack_require__(30);
+	__webpack_require__(42);
+	__webpack_require__(43);
+	__webpack_require__(44);
 
 	// Directives:
-	__webpack_require__(31);
-	__webpack_require__(32);
+	__webpack_require__(45);
+	__webpack_require__(46);
 
 	// All the controllers:
 	__webpack_require__(33);
@@ -85,8 +85,8 @@
 	__webpack_require__(37);
 	__webpack_require__(38);
 	__webpack_require__(39);
-	__webpack_require__(40);
-	__webpack_require__(41);
+	__webpack_require__(47);
+	__webpack_require__(48);
 
 
 /***/ },
@@ -38185,6 +38185,8 @@
 /* 27 */
 /***/ function(module, exports) {
 
+	'use strict';
+
 	(function () {
 	  angular
 	    .module('zerdaReader', [
@@ -38218,212 +38220,15 @@
 
 
 /***/ },
-/* 28 */
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */
 /***/ function(module, exports) {
 
 	'use strict';
-
-	angular
-	  .module('zerdaReader')
-	  .factory('APIFactory', APIFactory);
-	const url = 'https://zerda-reader-mockback.gomix.me/';
-	const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
-	const token = localStorage.token;
-
-	function APIFactory($http) {
-
-	  var APIFactory = {};
-
-	  APIFactory.getSubs = function () {
-	    return $http.get(urlReal + 'subscriptions?token=' + token);
-	  };
-
-	  APIFactory.getAll = function () {
-	    return $http.get(urlReal + 'feed?token=' + token);
-	  };
-
-	  APIFactory.getFav = function () {
-	    return $http.get(urlReal + 'favorites?token=' + token);
-	  };
-
-	  APIFactory.getFeed = function (id) {
-	    return $http.get(urlReal + 'feed/' + id + '?token=' + token);
-	  };
-
-	  APIFactory.openedArticle = function (id) {
-	    return $http.put(urlReal + 'feed/' + id + '?token=' + token, { opened: 1 });
-	  };
-
-	  APIFactory.deleteItem = function (id) {
-	    return $http.delete(urlReal + 'subscribe/' + id + '?token=' + token);
-	  };
-
-	  APIFactory.putFav = function (id) {
-	    return $http.put(urlReal + 'favorites?token=' + token, { item_id: id });
-	  };
-
-	  APIFactory.postNewFeed = function (link) {
-	    return $http.post(urlReal + 'subscribe?token=' + token, { feed: link });
-	  };
-
-	  return APIFactory;
-	}
-
-
-/***/ },
-/* 29 */
-/***/ function(module, exports) {
-
-	(function(){
-	  angular
-	    .module('zerdaReader')
-	    .service('errorMessage', errorMessage);
-
-	    errorMessage.$inject = ['ModalService'];
-
-	    function errorMessage(ModalService) {
-	      const messages = [
-	        { status: 404, message: 'The server doesn\'t respond.' },
-	        { status: 500, message: 'Internal server error.' },
-	      ]
-	      const service = {
-	        show: show,
-	      };
-
-	      return service;
-
-	      function show(error) {
-	        let displayMessage = 'Something went wrong';
-
-	        messages.forEach(function (item) {
-	          if (item.status === error) {
-	            displayMessage = item.message;
-	          }
-	        });
-
-	        ModalService.showModal({
-	          templateUrl: 'app/components/errormessage/errormessage.html',
-	          controller: 'ErrorController',
-	          controllerAs: 'errorCtrl',
-	          inputs: {
-	            error: error + ': ' + displayMessage,
-	          }
-	        })
-	        // .then(function (modal) {
-	        // });
-	      }
-	    }
-	})();
-
-
-/***/ },
-/* 30 */
-/***/ function(module, exports) {
-
-	(function(){
-	  angular
-	    .module('zerdaReader')
-	    .service('deleteValidation', deleteValidation);
-
-	    deleteValidation.$inject = ['$rootScope', 'ModalService', '$q'];
-
-	    function deleteValidation($rootScope, ModalService, $q) {
-	      const service = {
-	        show: show,
-	      };
-
-	      return service;
-
-	      function show() {
-	        return $q(function (resolve, reject) {
-	          ModalService.showModal({
-	            templateUrl: 'app/components/deletevalidation/deletevalidation.html',
-	            controller: 'DeleteValidationController',
-	            controllerAs: 'deleteValidationCtrl',
-	          }).then(function (modal) {
-	            modal.close.then(function (result) {
-	              resolve(result)
-	            });
-	          });
-	        });
-	      }
-	    }
-	})();
-
-
-/***/ },
-/* 31 */
-/***/ function(module, exports) {
-
-	(function () {
-	  'use strict';
-
-	  angular
-	    .module('zerdaReader')
-	    .directive('favoriteIcon', favoriteIcon);
-
-	  function favoriteIcon(APIFactory) {
-	    const directive = {
-	      restrict: 'E',
-	      scope: {
-	        article: '=',
-	        color: '=?',
-	      },
-	      templateUrl: 'app/components/favorite.directive/favorite.directive.html',
-	      link: link,
-	    };
-	    return directive;
-
-	    function link(scope) {
-	      scope.color = scope.article.favorite;
-
-	      scope.favHandling = function (id) {
-	        scope.color = !scope.color;
-	        APIFactory.putFav(id).then(function (data) {
-	        }).catch(function (data) {
-	          console.error('Change favorite status failed');
-	        });
-	      };
-	    }
-	  }
-	})();
-
-
-/***/ },
-/* 32 */
-/***/ function(module, exports) {
-
-	(function () {
-	  'use strict';
-
-	  angular
-	    .module('zerdaReader')
-	    .directive('focusAdd', focusAdd);
-
-	  function focusAdd($timeout) {
-	    return {
-	      restrict: 'A',
-	      scope: {
-	        trigger: '@focusAdd',
-	      },
-	      link: function (scope, element, attrs) {
-	        scope.$watch('trigger', function (value) {
-	          if (value) {
-	            $timeout(function () {
-	              element[0].focus();
-	              scope[attrs.focus] = false;
-	            });
-	          }
-	        });
-	      },
-	    };
-	  }
-	})();
-
-
-/***/ },
-/* 33 */
-/***/ function(module, exports) {
 
 	(function () {
 	  angular
@@ -38459,8 +38264,8 @@
 	            vm.email = '';
 	            vm.password = '';
 	          }
-	        }).catch(function (data) {
-	          console.log(data);
+	        }).catch(function (errResponse) {
+	          errorMessage.showErrorModal(errResponse.status);
 	        });
 	      }
 	    }
@@ -38474,6 +38279,8 @@
 /***/ },
 /* 34 */
 /***/ function(module, exports) {
+
+	'use strict';
 
 	(function () {
 	  angular
@@ -38507,8 +38314,8 @@
 	            vm.email = '';
 	            vm.password = '';
 	          }
-	        }).catch(function (data) {
-	          console.error('error occured');
+	        }).catch(function (errResponse) {
+	          errorMessage.showErrorModal(errResponse.status);
 	        });
 	      }
 	    }
@@ -38523,6 +38330,8 @@
 /* 35 */
 /***/ function(module, exports) {
 
+	'use strict';
+
 	(function () {
 	  angular
 	    .module('zerdaReader')
@@ -38530,7 +38339,7 @@
 
 	  HomeController.$inject = ['$location', '$rootScope'];
 
-	  function HomeController($location, $rootScope) {
+	  function HomeController($location) {
 	    const vm = this;
 	    vm.checkLocalStorage = checkLocalStorage;
 
@@ -38541,13 +38350,14 @@
 	    }
 	    vm.checkLocalStorage();
 	  }
-
 	})();
 
 
 /***/ },
 /* 36 */
 /***/ function(module, exports) {
+
+	'use strict';
 
 	(function () {
 	  angular
@@ -38560,10 +38370,8 @@
 	    const vm = this;
 	    vm.logout = logout;
 	    vm.search = ''
-	    console.log("search", vm.search);
 
 	    $scope.$watch('navbarCtrl.search', function(value) {
-	      console.log('Name change to ' + value);
 	      $rootScope.$broadcast('searchEvent', value);
 	    });
 
@@ -38571,9 +38379,6 @@
 	      localStorage.clear();
 	      $location.path('/login');
 	    }
-
-
-
 	  }
 	})();
 
@@ -38581,6 +38386,8 @@
 /***/ },
 /* 37 */
 /***/ function(module, exports) {
+
+	'use strict';
 
 	(function () {
 	  angular
@@ -38592,24 +38399,25 @@
 	  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
 	    const vm = this;
 	    vm.allActivated = true;
-	    vm.getSubs = getSubs;
+	    vm.getSubscritions = getSubscritions;
 	    vm.deleteFeed = deleteFeed;
-	    vm.getAll = getAll;
-	    vm.getFav = getFav;
-	    vm.getFeed = getFeed;
+	    vm.getAllFeedItems = getAllFeedItems;
+	    vm.getFavoriteItems = getFavoriteItems;
+	    vm.getFeedItems = getFeedItems;
 	    vm.clickItem = clickItem;
 	    vm.makePopupVisible = makePopupVisible;
 
-	    function getSubs() {
-	      APIFactory.getSubs().then(function (data) {
+	    function getSubscritions() {
+	      console.log('haho');
+	      APIFactory.getSubscritions().then(function (data) {
 	        vm.subscriptions = data.data.subscriptions;
 	      }).catch(function (errResponse) {
-	        errorMessage.show(errResponse.status);
+	        errorMessage.showErrorModal(errResponse.status);
 	      });
 	    }
 
-	    function getAll() {
-	      APIFactory.getAll().then(function (data) {
+	    function getAllFeedItems() {
+	      APIFactory.getAllFeedItems().then(function (data) {
 	        vm.allArticle = data.data.feed;
 	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = true;
@@ -38620,14 +38428,14 @@
 	          });
 	        }
 	      }).catch(function (errResponse) {
-	        errorMessage.show(errResponse.status);
+	        errorMessage.showErrorModal(errResponse.status);
 	      })
 	    }
 
-	    vm.getAll();
+	    vm.getAllFeedItems();
 
-	    function getFav() {
-	      APIFactory.getFav().then(function (data) {
+	    function getFavoriteItems() {
+	      APIFactory.getFavoriteItems().then(function (data) {
 	        vm.allArticle = data.data.feed;
 	        $rootScope.$broadcast('feeditems', vm.allArticle);
 	        vm.allActivated = false;
@@ -38636,11 +38444,11 @@
 	          feed.active = false;
 	        });
 	      }).catch(function (errResponse) {
-	        errorMessage.show(errResponse.status);
+	        errorMessage.showErrorModal(errResponse.status);
 	      });
 	    }
 
-	    function getFeed(id) {
+	    function getFeedItems(id) {
 	      vm.feed_id = id;
 	      $rootScope.$broadcast('feed_id', vm.feed_id);
 	    }
@@ -38648,10 +38456,10 @@
 	    function deleteFeed(id) {
 	      deleteValidation.show().then(function (response) {
 	        if (response === true) {
-	          APIFactory.deleteItem(id).then(function (data) {
-	            vm.getSubs();
+	          APIFactory.deleteFeed(id).then(function (data) {
+	            vm.getSubscritions();
 	          }).catch(function (errResponse) {
-	            errorMessage.show(errResponse.status);
+	            errorMessage.showErrorModal(errResponse.status);
 	          });
 	        }
 	      }).catch(function (response) {
@@ -38671,7 +38479,7 @@
 	      vm.allActivated = false;
 	      vm.favActivated = false;
 
-	      vm.getFeed(id);
+	      vm.getFeedItems(id);
 	    }
 
 	    function makePopupVisible(index) {
@@ -38686,7 +38494,7 @@
 
 	    $rootScope.$on('getSubscription', function (event) {
 	      console.log('megj0tt');
-	      vm.getSubs();
+	      vm.getSubscritions();
 	    });
 	  }
 	})();
@@ -38696,6 +38504,7 @@
 /* 38 */
 /***/ function(module, exports) {
 
+	'use strict';
 	(function () {
 	  angular
 	    .module('zerdaReader')
@@ -38766,6 +38575,8 @@
 /* 39 */
 /***/ function(module, exports) {
 
+	'use strict';
+
 	(function () {
 	  angular
 	    .module('zerdaReader')
@@ -38781,7 +38592,6 @@
 	    vm.pack = 15;
 
 	    $rootScope.$on('searchEvent', function(event, data){
-	      console.log(data);
 	      vm.search = data;
 	    })
 
@@ -38820,10 +38630,10 @@
 	        vm.articles[$index].active = true;
 	        vm.articles[$index].opened = true;
 
-	        APIFactory.openedArticle(vm.articles[$index].id)
+	        APIFactory.openArticle(vm.articles[$index].id)
 	        .then(function (data){})
 	        .catch(function (errResponse) {
-	          errorMessage.show(errResponse.status);
+	          errorMessage.showErrorModal(errResponse.status);
 	        });
 	      }
 	    }
@@ -38836,13 +38646,13 @@
 	    });
 
 	    $rootScope.$on('feed_id', function (event, id) {
-	      APIFactory.getFeed(id).then(function (data) {
+	      APIFactory.getFeedItems(id).then(function (data) {
 	        vm.allArticle = data.data.feed;
 	        vm.articles = [];
 	        vm.offset = 0;
 	        vm.displayFeed();
 	      }).catch(function (errResponse) {
-	        errorMessage.show(errResponse.status);
+	        errorMessage.showErrorModal(errResponse.status);
 	      });
 	    });
 	  }
@@ -38850,7 +38660,218 @@
 
 
 /***/ },
-/* 40 */
+/* 40 */,
+/* 41 */,
+/* 42 */
+/***/ function(module, exports) {
+
+	'use strict';
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .factory('APIFactory', APIFactory);
+
+	  function APIFactory($http) {
+	    // const url = 'https://zerda-reader-mockback.gomix.me/';
+	    const url = 'https://murmuring-everglades-41117.herokuapp.com/';
+	    const token = localStorage.token;
+	    const service = {
+	      getAllFeedItems: getAllFeedItems,
+	      getFavoriteItems: getFavoriteItems,
+	      getSubscritions: getSubscritions,
+	      getFeedItems: getFeedItems,
+	      deleteFeed: deleteFeed,
+	      postNewFeed: postNewFeed,
+	      openArticle: openArticle,
+	      putFavorite: putFavorite,
+	    };
+
+	    function getAllFeedItems() {
+	      return $http.get(url + 'feed?token=' + token);
+	    }
+
+	    function getFavoriteItems() {
+	      return $http.get(url + 'favorites?token=' + token);
+	    }
+
+	    function getSubscritions() {
+	      return $http.get(url + 'subscriptions?token=' + token);
+	    }
+
+	    function getFeedItems(id) {
+	      return $http.get(url + 'feed/' + id + '?token=' + token);
+	    }
+
+	    function openArticle(id) {
+	      return $http.put(url + 'feed/' + id + '?token=' + token, { opened: 1 });
+	    }
+
+	    function deleteFeed(id) {
+	      return $http.delete(url + 'subscribe/' + id + '?token=' + token);
+	    }
+
+	    function putFavorite(id) {
+	      return $http.put(url + 'favorites?token=' + token, { item_id: id });
+	    }
+
+	    function postNewFeed(link) {
+	      return $http.post(url + 'subscribe?token=' + token, { feed: link });
+	    }
+
+	    return service;
+	  }
+	})();
+
+
+/***/ },
+/* 43 */
+/***/ function(module, exports) {
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .service('errorMessage', errorMessage);
+
+	  errorMessage.$inject = ['ModalService'];
+
+	  function errorMessage(ModalService) {
+	    const service = {
+	      showErrorModal: showErrorModal,
+	    };
+	    const messages = [
+	      { status: 404, message: 'The server doesn\'t respond.' },
+	      { status: 500, message: 'Internal server error.' },
+	    ];
+
+	    function showErrorModal(error) {
+	      let displayMessage = 'Something went wrong';
+	      messages.forEach(function (item) {
+	        if (item.status === error) {
+	          displayMessage = item.message;
+	        }
+	      });
+	      ModalService.showModal({
+	        templateUrl: 'app/components/errormessage/errormessage.html',
+	        controller: 'ErrorController',
+	        controllerAs: 'errorCtrl',
+	        inputs: {
+	          error: error + ': ' + displayMessage,
+	        },
+	      });
+	    }
+	    return service;
+	  }
+	})();
+
+
+/***/ },
+/* 44 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .service('deleteValidation', deleteValidation);
+
+	    deleteValidation.$inject = ['$rootScope', 'ModalService', '$q'];
+
+	    function deleteValidation($rootScope, ModalService, $q) {
+	      const service = {
+	        showDeleteModal: showDeleteModal,
+	      };
+
+	      function showDeleteModal() {
+	        return $q(function (resolve, reject) {
+	          ModalService.showModal({
+	            templateUrl: 'app/components/deletevalidation/deletevalidation.html',
+	            controller: 'DeleteValidationController',
+	            controllerAs: 'deleteValidationCtrl',
+	          }).then(function (modal) {
+	            modal.close.then(function (result) {
+	              resolve(result)
+	            });
+	          });
+	        });
+	      }
+	      return service;
+	    }
+	})();
+
+
+/***/ },
+/* 45 */
+/***/ function(module, exports) {
+
+	(function () {
+	  'use strict';
+
+	  angular
+	    .module('zerdaReader')
+	    .directive('favoriteIcon', favoriteIcon);
+
+	  function favoriteIcon(APIFactory) {
+	    const directive = {
+	      restrict: 'E',
+	      scope: {
+	        article: '=',
+	        color: '=?',
+	      },
+	      templateUrl: 'app/components/directives/favorite.directive/favorite.directive.html',
+	      link: link,
+	    };
+	    return directive;
+
+	    function link(scope) {
+	      scope.color = scope.article.favorite;
+
+	      scope.favHandling = function (id) {
+	        scope.color = !scope.color;
+	        APIFactory.putFavorite(id).then(function () {
+	        }).catch(function (errResponse) {
+	          errorMessage.showErrorModal(errResponse.status);
+	        });
+	      };
+	    }
+	  }
+	})();
+
+
+/***/ },
+/* 46 */
+/***/ function(module, exports) {
+
+	'use strict';
+	(function () {
+
+	  angular
+	    .module('zerdaReader')
+	    .directive('focusAdd', focusAdd);
+
+	  function focusAdd($timeout) {
+	    return {
+	      restrict: 'A',
+	      scope: {
+	        trigger: '@focusAdd',
+	      },
+	      link: function (scope, element, attrs) {
+	        scope.$watch('trigger', function (value) {
+	          if (value) {
+	            $timeout(function () {
+	              element[0].focus();
+	              scope[attrs.focus] = false;
+	            });
+	          }
+	        });
+	      },
+	    };
+	  }
+	})();
+
+
+/***/ },
+/* 47 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38874,9 +38895,10 @@
 
 
 /***/ },
-/* 41 */
+/* 48 */
 /***/ function(module, exports) {
 
+	'use strict';
 	(function () {
 	  angular
 	    .module('zerdaReader')
@@ -38887,7 +38909,6 @@
 	  function DeleteValidationController($scope, close) {
 	    const vm = this;
 	    vm.visibility = true;
-	    // vm.response = response;
 	    vm.closeModal = closeModal;
 
 	    function closeModal(result) {

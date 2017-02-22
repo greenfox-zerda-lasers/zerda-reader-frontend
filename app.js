@@ -39,5 +39,5 @@ require('./app/navbar/navbar.controller.js');
 require('./app/sidebar/sidebar.controller.js');
 require('./app/addsubscription/addsubscription.controller.js');
 require('./app/mainlist/mainlist.controller.js');
-require('./app/components/errormessage/error.controller.js');
-require('./app/components/deletevalidation/deletevalidation.controller.js');
+require('./app/components/dialogs/errormessage/error.controller.js');
+require('./app/components/dialogs/deletevalidation/deletevalidation.controller.js');
