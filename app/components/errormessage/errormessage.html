@@ -1,7 +1,5 @@
-<div id="error" class="ui negative message modal" ng-class="{'active' : errorCtrl.visibility}">
-
+<section id="error" class="ui negative message modal" ng-class="{'active' : errorCtrl.visibility}">
   <form ng-submit="errorCtrl.close()" class="ui form" ng-class="{'visible active' : errorCtrl.visibility}">
-
     <div class="fluid column">
       <h4 class="ui header image">{{errorCtrl.error}}</h4>
       <div id="gomb" class="ui input" style="align-items: center">
@@ -10,7 +8,5 @@
         </button>
       </div>
     </div>
-
   </form>
-
-</div>
+</section>

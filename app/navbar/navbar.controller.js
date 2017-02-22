@@ -16,10 +16,12 @@
       $rootScope.$broadcast('searchEvent', value);
     });
 
-
     function logout() {
       localStorage.clear();
       $location.path('/login');
     }
+
+
+
   }
 })();

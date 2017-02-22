@@ -22,7 +22,6 @@
     main.on('scroll', function(e){
       if (e.target.scrollTop + e.target.offsetHeight >= e.target.scrollHeight-1) {
         vm.loadMore();
-        // console.log(vm.offset)
       }
     });
 
@@ -31,11 +30,8 @@
         vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset + vm.pack));
       } else {
         vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset*vm.pack, vm.allArticle.length));
-
       }
-      // $scope.$apply()
       $timeout()
-      console.log("disp", vm.articles);
     }
 
     function loadMore() {
@@ -67,19 +63,14 @@
       vm.articles = [];
       vm.offset = 0;
       vm.allArticle = items;
-      // console.log(items);
       vm.displayFeed();
     });
 
     $rootScope.$on('feed_id', function (event, id) {
-      //vm.feed_id = id;
-      // console.log(id)
       APIFactory.getFeed(id).then(function (data) {
         vm.allArticle = data.data;
-        //$rootScope.$broadcast('feeditems', vm.allArticle);
         vm.articles = [];
         vm.offset = 0;
-        //console.log(items);
         vm.displayFeed();
       }).catch(function (data) {
         console.error('Failed to load feed');
