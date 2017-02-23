@@ -48,7 +48,7 @@
 
     function loadMore() {
       vm.offset++;
-      APIFactory.getFeed(vm.id, vm.offset).then(function (data) {
+      APIFactory.getFeedItems(vm.id, vm.offset).then(function (data) {
         console.log(data)
         console.log(vm.articles)
         vm.articles.push.apply(vm.articles, data.data.feed);
@@ -70,9 +70,10 @@
     });
 
     $rootScope.$on('feed_id', function (event, id) {
-      APIFactory.getFeedItems(id, vm.offset)
+      console.log(id)
       vm.id = id;
       vm.offset = 0;
+      APIFactory.getFeedItems(id, vm.offset)
       .then(function (data) {
         vm.articles = data.data.feed;
       })
