@@ -3,7 +3,7 @@
     <a class="item {{sidebarCtrl.allActivated ? 'active' : ''}}" ng-click="sidebarCtrl.getAllFeedItems()">All</a>
     <a class="item {{sidebarCtrl.favActivated ? 'active' : ''}}" ng-click="sidebarCtrl.getFavoriteItems()">Favorites</a>
 
-    <a ng-repeat="feed in sidebarCtrl.subscriptions" class="item {{feed.active ? 'active' : ''}}" ng-click="sidebarCtrl.clickItem($index, feed.id)">
+    <a ng-repeat="feed in sidebarCtrl.subscriptions" class="item {{feed.active ? 'active' : ''}}" ng-click="sidebarCtrl.getItems($index, feed.id)">
       <i class="remove left floated icon" ng-click="sidebarCtrl.deleteFeed(feed.id)">
       </i>
       {{feed.name}}

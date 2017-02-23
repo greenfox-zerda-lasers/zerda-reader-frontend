@@ -18,7 +18,7 @@
     vm.getAllFeedItems = getAllFeedItems;
     vm.getFavoriteItems = getFavoriteItems;
     vm.getFeedItems = getFeedItems;
-    vm.clickItem = clickItem;
+    vm.getItems = getItems;
 
     function getSubscritions() {
       APIFactory.getSubscritions().then(function (data) {
@@ -79,8 +79,7 @@
       });
     }
 
-    function clickItem(index, id) {
-
+    function getItems(index, id) {
       if (event.target.classList.contains('delete')) {
         return;
       }
