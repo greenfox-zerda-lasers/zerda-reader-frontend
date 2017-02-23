@@ -4,15 +4,25 @@
   </h2>
 
   <form class="ui large form" id="reg-window" name="reg" method="post" novalidate>
+    <div class="field">
+      <div class="ui left icon input">
+        <i id="mail-outline-icon" class="mail outline icon"></i>
 
-    <!-- Email inputfield -->
-    <input type="email" placeholder="John@domain.com" name="email" ng-model="signUpCtrl.email" ng-required="true">
-    <div ng-show="reg.email.$touched && reg.email.$invalid">
-      <small>Invalid e-mail adress</small>
+        <!-- Email inputfield -->
+        <input type="email" placeholder="John@domain.com" name="email" ng-model="signUpCtrl.email" ng-required="true">
+      </div>
+      <div ng-show="reg.email.$touched && reg.email.$invalid">
+        <small>Invalid e-mail adress</small>
+      </div>
     </div>
+    <div class="field">
+      <div class="ui left icon input">
+        <i id="lock-icon" class="lock icon"></i>
 
-    <!-- Password inputfield -->
-    <input type="password" placeholder="password" name="password" ng-model="signUpCtrl.password" ng-required="true">
+        <!-- Password inputfield -->
+        <input type="password" placeholder="password" name="password" ng-model="signUpCtrl.password" ng-required="true">
+      </div>
+    </div>
     <div ng-show="reg.password.$touched && reg.password.$invalid">
       <small>Invalid password</small>
     </div>

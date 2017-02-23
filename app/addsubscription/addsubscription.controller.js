@@ -25,6 +25,7 @@
       }
       vm.newFeed = '';
     }
+
     function makePopupVisible() {
       if (event.target.id === 'add-subscription-button') {
         vm.open = !vm.open;

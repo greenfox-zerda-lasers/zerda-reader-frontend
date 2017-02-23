@@ -5,8 +5,8 @@
     .factory('APIFactory', APIFactory);
 
   function APIFactory($http) {
-    // const url = 'https://zerda-reader-mockback.gomix.me/';
-    const url = 'https://murmuring-everglades-41117.herokuapp.com/';
+    const url = 'https://zerda-reader-mockback.gomix.me/';
+    // const url = 'https://murmuring-everglades-41117.herokuapp.com/';
     const token = localStorage.token;
     const service = {
       postLogin: postLogin,

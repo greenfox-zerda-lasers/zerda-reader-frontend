@@ -5,7 +5,6 @@
     .module('zerdaReader', [
       'ngRoute',
       'ngResource',
-      'infinite-scroll',
       'angularModalService'])
     .config(config);
 
