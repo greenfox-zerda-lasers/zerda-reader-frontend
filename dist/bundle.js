@@ -38279,7 +38279,7 @@
 	    }
 
 	    function putFavorite(id) {
-	      return $http.put(url + 'favorites?token=' + token, { item_id: id });
+	      return $http.post(url + 'favorites?token=' + token, { item_id: id });
 	    }
 
 	    function postNewFeed(link) {
@@ -38796,7 +38796,6 @@
 	  function MainlistController($location, $rootScope, $http, APIFactory, $scope, $timeout) {
 	    const vm = this;
 	    vm.makeActive = makeActive;
-	    // vm.displayFeed = displayFeed;
 	    vm.loadMore = loadMore;
 	    vm.articles = [];
 	    vm.allArticle = [];

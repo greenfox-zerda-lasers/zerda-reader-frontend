@@ -10,7 +10,6 @@
   function MainlistController($location, $rootScope, $http, APIFactory, $scope, $timeout) {
     const vm = this;
     vm.makeActive = makeActive;
-    // vm.displayFeed = displayFeed;
     vm.loadMore = loadMore;
     vm.articles = [];
     vm.allArticle = [];
