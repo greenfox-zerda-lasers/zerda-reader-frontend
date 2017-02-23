@@ -38640,34 +38640,24 @@
 	    }
 
 	    function getAllFeedItems() {
-	      APIFactory.getAllFeedItems().then(function (data) {
-	        vm.allArticle = data.data.feed;
-	        $rootScope.$broadcast('feeditems', vm.allArticle);
-	        vm.allActivated = true;
-	        vm.favActivated = false;
-	        if (vm.subscriptions) {
-	          vm.subscriptions.forEach(function (feed) {
-	            feed.active = false;
-	          });
-	        }
-	      }).catch(function (errResponse) {
-	        errorMessage.showErrorModal(errResponse.status);
-	      })
+	      $rootScope.$broadcast('all_end', 'favorites');
+	      vm.allActivated = true;
+	      vm.favActivated = false;
+	      if (vm.subscriptions) {
+	        vm.subscriptions.forEach(function (feed) {
+	          feed.active = false;
+	        });
+	      }
 	    }
 
 	    vm.getAllFeedItems();
 
 	    function getFavoriteItems() {
-	      APIFactory.getFavoriteItems().then(function (data) {
-	        vm.allArticle = data.data.feed;
-	        $rootScope.$broadcast('feeditems', vm.allArticle);
-	        vm.allActivated = false;
-	        vm.favActivated = true;
-	        vm.subscriptions.forEach(function (feed) {
-	          feed.active = false;
-	        });
-	      }).catch(function (errResponse) {
-	        errorMessage.showErrorModal(errResponse.status);
+	      $rootScope.$broadcast('favorites_end', 'favorites');
+	      vm.allActivated = false;
+	      vm.favActivated = true;
+	      vm.subscriptions.forEach(function (feed) {
+	        feed.active = false;
 	      });
 	    }
 
@@ -38799,7 +38789,6 @@
 	    vm.loadMore = loadMore;
 	    vm.articles = [];
 	    vm.allArticle = [];
-	    vm.pack = 15;
 	    vm.offset = 0;
 
 	    function makeActive($index, event) {
@@ -38843,11 +38832,26 @@
 	      });
 	    }
 
-	    $rootScope.$on('feeditems', function (event, items) {
-	      vm.articles = items;
-	      // vm.offset = 0;
-	      // vm.allArticle = items;
-	      //vm.displayFeed();
+	    $rootScope.$on('favorites_end', function (event, end) {
+	      vm.offset = 0;
+	      APIFactory.getFavoriteItems()
+	      .then(function (data) {
+	        vm.articles = data.data.feed;
+	      })
+	      .catch(function (errResponse) {
+	        errorMessage.showErrorModal(errResponse.status);
+	      });
+	    });
+
+	    $rootScope.$on('all_end', function (event, end) {
+	      vm.offset = 0;
+	      APIFactory.getAllFeedItems()
+	      .then(function (data) {
+	        vm.articles = data.data.feed;
+	      })
+	      .catch(function (errResponse) {
+	        errorMessage.showErrorModal(errResponse.status);
+	      });
 	    });
 
 	    $rootScope.$on('searchEvent', function (event, data) {
