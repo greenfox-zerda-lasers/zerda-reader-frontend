@@ -9,4 +9,10 @@ This is Team MALACHITE's 6 weeks long project at Green Fox Academy. 7
 - Gábor György, https://github.com/gygabor
 - Tamás Prácser, https://github.com/tpracser
 
-**You can check the result here:** https://greenfox-zerda-lasers.github.io/zerda-reader-frontend/#!/login
+**You can check the result on github pages:** https://greenfox-zerda-lasers.github.io/zerda-reader-frontend/#!/login
+
+**The Mocked Backend on gomix.com: https://gomix.com/#!/project/zerda-reader-mockback
+
+**The Mocked Backend repository: https://github.com/gygabor/Zerda-Reader-Mocked-Backend
+
+
