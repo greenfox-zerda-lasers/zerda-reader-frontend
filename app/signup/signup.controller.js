@@ -5,38 +5,41 @@
     .module('zerdaReader')
     .controller('SignUpController', SignUpController);
 
-  SignUpController.$inject = ['$location', '$rootScope', '$http'];
+  SignUpController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', 'errorMessage'];
 
-  function SignUpController($location, $rootScope, $http) {
+  function SignUpController($location, $rootScope, $http, APIFactory, errorMessage) {
     const vm = this;
     vm.backToLogin = backToLogin;
     vm.signUp = signUp;
+    vm.respond = [];
+    vm.errMessage = '';
+    vm.email = '';
+    vm.password = '';
 
     function signUp() {
       if (vm.email !== '' && vm.password !== '') {
-        $http({
-          method: 'POST',
-          data: {
-            email: vm.email,
-            password: vm.password,
-          },
-          url: 'https://murmuring-everglades-41117.herokuapp.com/user/signup',
-        }).then(function (data) {
-          vm.respond = (data.data);
-          console.log(vm.respond)
-          if (vm.respond.result === 'success') {
-            localStorage.setItem("token", vm.respond.token);
-            $location.path('/home');
-          } else {
-            vm.errorMessage = vm.respond.message;
-            vm.email = '';
-            vm.password = '';
-          }
-        }).catch(function (errResponse) {
+        APIFactory.postSignUp(vm.email, vm.password)
+        .then(function (data) {
+          vm.signUpValidation(data);
+        })
+        .catch(function (errResponse) {
           errorMessage.showErrorModal(errResponse.status);
         });
       }
     }
+
+    function signUpValidation(data) {
+      vm.respond = data.data;
+      if (vm.respond.result === 'success') {
+        localStorage.setItem('token', vm.respond.token);
+        $location.path('/home');
+      } else {
+        vm.errMessage = vm.respond.message;
+        vm.email = '';
+        vm.password = '';
+      }
+    }
+
     function backToLogin() {
       $location.path('/login');
     }

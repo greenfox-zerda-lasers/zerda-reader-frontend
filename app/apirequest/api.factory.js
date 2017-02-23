@@ -10,6 +10,7 @@
     const token = localStorage.token;
     const service = {
       postLogin: postLogin,
+      postSignUp: postSignUp,
       getAllFeedItems: getAllFeedItems,
       getFavoriteItems: getFavoriteItems,
       getSubscritions: getSubscritions,
@@ -21,8 +22,11 @@
     };
 
     function postLogin(em, pass) {
-      console.log(em, pass);
       return $http.post(url + 'user/login', { email: em, password: pass });
+    }
+
+    function postSignUp(em, pass) {
+      return $http.post(url + 'user/signup', { email: em, password: pass });
     }
 
     function getAllFeedItems() {

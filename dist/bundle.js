@@ -38235,6 +38235,7 @@
 	    const token = localStorage.token;
 	    const service = {
 	      postLogin: postLogin,
+	      postSignUp: postSignUp,
 	      getAllFeedItems: getAllFeedItems,
 	      getFavoriteItems: getFavoriteItems,
 	      getSubscritions: getSubscritions,
@@ -38246,8 +38247,11 @@
 	    };
 
 	    function postLogin(em, pass) {
-	      console.log(em, pass);
 	      return $http.post(url + 'user/login', { email: em, password: pass });
+	    }
+
+	    function postSignUp(em, pass) {
+	      return $http.post(url + 'user/signup', { email: em, password: pass });
 	    }
 
 	    function getAllFeedItems() {
@@ -38445,19 +38449,22 @@
 	    .module('zerdaReader')
 	    .controller('LoginController', LoginController);
 
-	  LoginController.$inject = ['$location', '$rootScope', '$http', 'APIFactory'];
+	  LoginController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', 'errorMessage'];
 
-	  function LoginController($location, $rootScope, $http, APIFactory) {
+	  function LoginController($location, $rootScope, $http, APIFactory, errorMessage) {
 	    const vm = this;
 	    vm.token = {};
 	    vm.respond = '';
 	    vm.login = login;
+	    vm.errMessage = '';
+	    vm.email = '';
+	    vm.password = '';
 	    vm.userValidation = userValidation;
 	    vm.signUpView = signUpView;
 
 	    function login() {
 	      if (!vm.email && !vm.password) {
-	        vm.errorMessage = 'Wrong username or password. Try again.';
+	        vm.errMessage = 'Wrong username or password. Try again.';
 	      } else if (vm.email !== '' && vm.password !== '') {
 	        APIFactory.postLogin(vm.email, vm.password)
 	        .then(function (data) {
@@ -38475,7 +38482,7 @@
 	        localStorage.setItem('token', vm.respond.token);
 	        $location.path('/home');
 	      } else if (vm.respond.result === 'fail') {
-	        vm.errorMessage = 'Wrong username or password. Try again.';
+	        vm.errMessage = 'Wrong username or password. Try again.';
 	        vm.email = '';
 	        vm.password = '';
 	      }
@@ -38499,38 +38506,41 @@
 	    .module('zerdaReader')
 	    .controller('SignUpController', SignUpController);
 
-	  SignUpController.$inject = ['$location', '$rootScope', '$http'];
+	  SignUpController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', 'errorMessage'];
 
-	  function SignUpController($location, $rootScope, $http) {
+	  function SignUpController($location, $rootScope, $http, APIFactory, errorMessage) {
 	    const vm = this;
 	    vm.backToLogin = backToLogin;
 	    vm.signUp = signUp;
+	    vm.respond = [];
+	    vm.errMessage = '';
+	    vm.email = '';
+	    vm.password = '';
 
 	    function signUp() {
 	      if (vm.email !== '' && vm.password !== '') {
-	        $http({
-	          method: 'POST',
-	          data: {
-	            email: vm.email,
-	            password: vm.password,
-	          },
-	          url: 'https://murmuring-everglades-41117.herokuapp.com/user/signup',
-	        }).then(function (data) {
-	          vm.respond = (data.data);
-	          console.log(vm.respond)
-	          if (vm.respond.result === 'success') {
-	            localStorage.setItem("token", vm.respond.token);
-	            $location.path('/home');
-	          } else {
-	            vm.errorMessage = vm.respond.message;
-	            vm.email = '';
-	            vm.password = '';
-	          }
-	        }).catch(function (errResponse) {
+	        APIFactory.postSignUp(vm.email, vm.password)
+	        .then(function (data) {
+	          vm.signUpValidation(data);
+	        })
+	        .catch(function (errResponse) {
 	          errorMessage.showErrorModal(errResponse.status);
 	        });
 	      }
 	    }
+
+	    function signUpValidation(data) {
+	      vm.respond = data.data;
+	      if (vm.respond.result === 'success') {
+	        localStorage.setItem('token', vm.respond.token);
+	        $location.path('/home');
+	      } else {
+	        vm.errMessage = vm.respond.message;
+	        vm.email = '';
+	        vm.password = '';
+	      }
+	    }
+
 	    function backToLogin() {
 	      $location.path('/login');
 	    }
