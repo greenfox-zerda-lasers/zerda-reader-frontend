@@ -10,6 +10,9 @@
   function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
     const vm = this;
     vm.allActivated = true;
+    vm.favActivated = false;
+    vm.subscriptions = [];
+    vm.allArticle = [];
     vm.getSubscritions = getSubscritions;
     vm.deleteFeed = deleteFeed;
     vm.getAllFeedItems = getAllFeedItems;
@@ -18,7 +21,6 @@
     vm.clickItem = clickItem;
 
     function getSubscritions() {
-      console.log('haho');
       APIFactory.getSubscritions().then(function (data) {
         vm.subscriptions = data.data.subscriptions;
       }).catch(function (errResponse) {
@@ -88,7 +90,6 @@
       vm.subscriptions[index].active = true;
       vm.allActivated = false;
       vm.favActivated = false;
-
       vm.getFeedItems(id);
     }
 

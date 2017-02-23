@@ -39,27 +39,25 @@
     $window.addEventListener('click', function (event) {
       let el = event.target
       if (event.target.id !== 'add-subscription-button') {
-        vm.popupVisible = 'hidden';
-        // if (!closest(el, '#add-subscription-popup')) {
-        //   vm.popupVisible = 'hidden';
-        // }
+        if (!closest(el, '#add-subscription-popup')) {
+          vm.popupVisible = 'hidden';
+        }
       }
       $timeout();
     });
   }
 
-  // function closest(el, selector, stopSelector) {
-  //   console.log(el, selector);
-  //   let retval = null;
-  //   while (el) {
-  //     if (el.matches(selector)) {
-  //       retval = el;
-  //       break;
-  //     } else if (stopSelector && el.matches(stopSelector)) {
-  //       break;
-  //     }
-  //     el = el.parentElement;
-  //   }
-  //   return retval;
-  // }
+  function closest(el, selector, stopSelector) {
+    let retval = null;
+    while (el) {
+      if (el.matches(selector)) {
+        retval = el;
+        break;
+      } else if (stopSelector && el.matches(stopSelector)) {
+        break;
+      }
+      el = el.parentElement;
+    }
+    return retval;
+  }
 })();
