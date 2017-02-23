@@ -38170,7 +38170,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(26) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 18px; }\n  #logo img {\n    width: 35px;\n    padding-right: 5px;\n    margin-right: 10px; }\n\n#sidebar {\n  margin-top: 40px;\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal;\n    background-color: #e1f4f4; }\n    #sidebar a:hover i {\n      color: teal; }\n  #sidebar a:active {\n    color: #DD4B39;\n    background-color: #f4f4f4; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add-subscription-button {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add-subscription-button:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#add-subscription-popup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#add-subscription-popup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#add-subscription-popup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #add-subscription-popup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n  #mainlist #description > a {\n    margin-top: 12px; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding: 0.5rem 1rem 0.5rem 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n  .mainlist-item .bold {\n    font-weight: bold; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 8px;\n  line-height: 1.5; }\n\n#error {\n  width: 50%;\n  z-index: 200;\n  text-align: center;\n  margin-left: -20%; }\n  #error h4 {\n    font-size: 20px;\n    font-weight: lighter; }\n  #error #gomb {\n    margin-top: 10px;\n    height: 50px; }\n  #error button {\n    height: 40px;\n    width: 100px; }\n", ""]);
+	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(26) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 18px; }\n  #logo img {\n    width: 35px;\n    padding-right: 5px;\n    margin-right: 10px; }\n\n#sidebar {\n  margin-top: 40px;\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar div.ui.secondary.vertical.pointing.menu > a.item.active {\n    padding-top: 20px; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal;\n    background-color: #e1f4f4; }\n    #sidebar a:hover i {\n      color: teal; }\n  #sidebar a:active {\n    color: #DD4B39;\n    background-color: #f4f4f4; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add-subscription-button {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add-subscription-button:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#add-subscription-popup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#add-subscription-popup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#add-subscription-popup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #add-subscription-popup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n  #mainlist #description > a {\n    margin-top: 12px; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding: 0.5rem 1rem 0.5rem 1rem; }\n  .mainlist-item #article-title {\n    display: -webkit-inline-box;\n    white-space: nowrap;\n    width: 78%;\n    overflow: hidden; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n  .mainlist-item .bold {\n    font-weight: bold; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 8px;\n  line-height: 1.5; }\n\n#error {\n  width: 50%;\n  z-index: 200;\n  text-align: center;\n  margin-left: -20%; }\n  #error h4 {\n    font-size: 20px;\n    font-weight: lighter; }\n  #error #gomb {\n    margin-top: 10px;\n    height: 50px; }\n  #error button {\n    height: 40px;\n    width: 100px; }\n", ""]);
 
 	// exports
 
@@ -38230,8 +38230,8 @@
 	    .factory('APIFactory', APIFactory);
 
 	  function APIFactory($http) {
-	    // const url = 'https://zerda-reader-mockback.gomix.me/';
-	    const url = 'https://murmuring-everglades-41117.herokuapp.com/';
+	    const url = 'https://zerda-reader-mockback.gomix.me/';
+	    // const url = 'https://murmuring-everglades-41117.herokuapp.com/';
 	    const token = localStorage.token;
 	    const service = {
 	      postLogin: postLogin,
@@ -38246,14 +38246,9 @@
 	      putFavorite: putFavorite,
 	    };
 
-<<<<<<< HEAD
-	// module
-	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(26) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 18px; }\n  #logo img {\n    width: 35px;\n    padding-right: 5px;\n    margin-right: 10px; }\n\n#sidebar {\n  margin-top: 40px;\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar div.ui.secondary.vertical.pointing.menu > a.item.active {\n    padding-top: 20px; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal;\n    background-color: #e1f4f4; }\n    #sidebar a:hover i {\n      color: teal; }\n  #sidebar a:active {\n    color: #DD4B39;\n    background-color: #f4f4f4; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add-subscription-button {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add-subscription-button:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#add-subscription-popup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#add-subscription-popup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#add-subscription-popup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #add-subscription-popup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n  #mainlist #description > a {\n    margin-top: 12px; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding: 0.5rem 1rem 0.5rem 1rem; }\n  .mainlist-item #article-title {\n    display: -webkit-inline-box;\n    white-space: nowrap;\n    width: 78%;\n    overflow: hidden; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n  .mainlist-item .bold {\n    font-weight: bold; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 8px;\n  line-height: 1.5; }\n\n#error {\n  width: 50%;\n  z-index: 200;\n  text-align: center;\n  margin-left: -20%; }\n  #error h4 {\n    font-size: 20px;\n    font-weight: lighter; }\n  #error #gomb {\n    margin-top: 10px;\n    height: 50px; }\n  #error button {\n    height: 40px;\n    width: 100px; }\n", ""]);
-=======
 	    function postLogin(em, pass) {
 	      return $http.post(url + 'user/login', { email: em, password: pass });
 	    }
->>>>>>> c774c66635ee523f19c9c0803f74ab96a96e1686
 
 	    function postSignUp(em, pass) {
 	      return $http.post(url + 'user/signup', { email: em, password: pass });
@@ -38377,7 +38372,6 @@
 /* 31 */
 /***/ function(module, exports) {
 
-<<<<<<< HEAD
 	(function () {
 	  'use strict';
 
@@ -38410,40 +38404,6 @@
 	    }
 	  }
 	})();
-=======
-	(function () {
-	  'use strict';
-
-	  angular
-	    .module('zerdaReader')
-	    .directive('favoriteIcon', favoriteIcon);
-
-	  function favoriteIcon(APIFactory, errorMessage) {
-	    const directive = {
-	      restrict: 'E',
-	      scope: {
-	        article: '=',
-	        color: '=?',
-	      },
-	      templateUrl: 'app/components/directives/favorite.directive/favorite.directive.html',
-	      link: link,
-	    };
-	    return directive;
-
-	    function link(scope) {
-	      scope.color = scope.article.favorite;
-
-	      scope.favHandling = function (id) {
-	        scope.color = !scope.color;
-	        APIFactory.putFavorite(id).then(function () {
-	        }).catch(function (errResponse) {
-	          errorMessage.showErrorModal(errResponse.status);
-	        });
-	      };
-	    }
-	  }
-	})();
->>>>>>> c774c66635ee523f19c9c0803f74ab96a96e1686
 
 
 /***/ },
@@ -38649,108 +38609,6 @@
 /* 37 */
 /***/ function(module, exports) {
 
-<<<<<<< HEAD
-	'use strict';
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('SidebarController', SidebarController);
-
-	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document', 'errorMessage', 'deleteValidation'];
-
-	  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
-	    const vm = this;
-	    vm.allActivated = true;
-	    vm.favActivated = false;
-	    vm.subscriptions = [];
-	    vm.allArticle = [];
-	    vm.getSubscritions = getSubscritions;
-	    vm.deleteFeed = deleteFeed;
-	    vm.getAllFeedItems = getAllFeedItems;
-	    vm.getFavoriteItems = getFavoriteItems;
-	    vm.getFeedItems = getFeedItems;
-	    vm.getItems = getItems;
-
-	    function getSubscritions() {
-	      APIFactory.getSubscritions().then(function (data) {
-	        vm.subscriptions = data.data.subscriptions;
-	      }).catch(function (errResponse) {
-	        errorMessage.showErrorModal(errResponse.status);
-	      });
-	    }
-
-	    function getAllFeedItems() {
-	      APIFactory.getAllFeedItems().then(function (data) {
-	        vm.allArticle = data.data.feed;
-	        $rootScope.$broadcast('feeditems', vm.allArticle);
-	        vm.allActivated = true;
-	        vm.favActivated = false;
-	        if (vm.subscriptions) {
-	          vm.subscriptions.forEach(function (feed) {
-	            feed.active = false;
-	          });
-	        }
-	      }).catch(function (errResponse) {
-	        errorMessage.showErrorModal(errResponse.status);
-	      })
-	    }
-
-	    vm.getAllFeedItems();
-
-	    function getFavoriteItems() {
-	      APIFactory.getFavoriteItems().then(function (data) {
-	        vm.allArticle = data.data.feed;
-	        $rootScope.$broadcast('feeditems', vm.allArticle);
-	        vm.allActivated = false;
-	        vm.favActivated = true;
-	        vm.subscriptions.forEach(function (feed) {
-	          feed.active = false;
-	        });
-	      }).catch(function (errResponse) {
-	        errorMessage.showErrorModal(errResponse.status);
-	      });
-	    }
-
-	    function getFeedItems(id) {
-	      vm.feed_id = id;
-	      $rootScope.$broadcast('feed_id', vm.feed_id);
-	    }
-
-	    function deleteFeed(id) {
-	      deleteValidation.showDeleteModal().then(function (response) {
-	        if (response === true) {
-	          APIFactory.deleteFeed(id).then(function (data) {
-	            vm.getSubscritions();
-	          }).catch(function (errResponse) {
-	            errorMessage.showErrorModal(errResponse.status);
-	          });
-	        }
-	      }).catch(function (response) {
-	        console.log(response);
-	      });
-	    }
-
-	    function getItems(index, id) {
-	      if (event.target.classList.contains('delete')) {
-	        return;
-	      }
-	      vm.subscriptions.map(function (feed) {
-	        feed.active = false;
-	      });
-	      vm.subscriptions[index].active = true;
-	      vm.allActivated = false;
-	      vm.favActivated = false;
-	      vm.getFeedItems(id);
-	    }
-
-	    $rootScope.$on('getSubscription', function (event) {
-	      console.log('megj0tt');
-	      vm.getSubscritions();
-	    });
-	  }
-	})();
-=======
 	'use strict';
 
 	(function () {
@@ -38841,7 +38699,6 @@
 	    });
 	  }
 	})();
->>>>>>> c774c66635ee523f19c9c0803f74ab96a96e1686
 
 
 /***/ },
