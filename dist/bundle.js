@@ -38379,7 +38379,7 @@
 	    .module('zerdaReader')
 	    .directive('favoriteIcon', favoriteIcon);
 
-	  function favoriteIcon(APIFactory) {
+	  function favoriteIcon(APIFactory, errorMessage) {
 	    const directive = {
 	      restrict: 'E',
 	      scope: {
