@@ -41,8 +41,8 @@
       return $http.get(url + 'subscriptions?token=' + token);
     }
 
-    function getFeedItems(id) {
-      return $http.get(url + 'feed/' + id + '?token=' + token);
+    function getFeedItems(id, offset) {
+      return $http.get(url + 'feed/' + id + '?token=' + token + '&offset=' + offset + '&items=50');
     }
 
     function openArticle(id) {
@@ -54,7 +54,7 @@
     }
 
     function putFavorite(id) {
-      return $http.put(url + 'favorites?token=' + token, { item_id: id });
+      return $http.post(url + 'favorites?token=' + token, { item_id: id });
     }
 
     function postNewFeed(link) {
