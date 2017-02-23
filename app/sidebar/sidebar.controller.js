@@ -29,34 +29,24 @@
     }
 
     function getAllFeedItems() {
-      APIFactory.getAllFeedItems().then(function (data) {
-        vm.allArticle = data.data.feed;
-        $rootScope.$broadcast('feeditems', vm.allArticle);
-        vm.allActivated = true;
-        vm.favActivated = false;
-        if (vm.subscriptions) {
-          vm.subscriptions.forEach(function (feed) {
-            feed.active = false;
-          });
-        }
-      }).catch(function (errResponse) {
-        errorMessage.showErrorModal(errResponse.status);
-      })
+      $rootScope.$broadcast('all_end', 'favorites');
+      vm.allActivated = true;
+      vm.favActivated = false;
+      if (vm.subscriptions) {
+        vm.subscriptions.forEach(function (feed) {
+          feed.active = false;
+        });
+      }
     }
 
     vm.getAllFeedItems();
 
     function getFavoriteItems() {
-      APIFactory.getFavoriteItems().then(function (data) {
-        vm.allArticle = data.data.feed;
-        $rootScope.$broadcast('feeditems', vm.allArticle);
-        vm.allActivated = false;
-        vm.favActivated = true;
-        vm.subscriptions.forEach(function (feed) {
-          feed.active = false;
-        });
-      }).catch(function (errResponse) {
-        errorMessage.showErrorModal(errResponse.status);
+      $rootScope.$broadcast('favorites_end', 'favorites');
+      vm.allActivated = false;
+      vm.favActivated = true;
+      vm.subscriptions.forEach(function (feed) {
+        feed.active = false;
       });
     }
 

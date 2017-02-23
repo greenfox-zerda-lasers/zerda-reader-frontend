@@ -4,7 +4,7 @@
     <div ng-repeat="article in mainCtrl.articles | filter: mainCtrl.search" class="item nomargin">
       <div class="mainlist-item">
         <div class="{{mainCtrl.article.active ? 'active' : ''}} title" ng-click="mainCtrl.makeActive($index, $event)" ng-class=" {'bold': !article.opened}">
-          <i class="ui user icon"></i>
+          <i class="ui chevron {{article.active ? 'down' : 'right'}} icon"></i>
             {{article.title}}
           <div class="right floated content">
             <favorite-icon article="article"></favorite-icon>
