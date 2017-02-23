@@ -22,8 +22,9 @@ function APIFactory($http) {
     return $http.get(urlReal + 'favorites?token=' + localStorage.token);
   };
 
-  APIFactory.getFeed = function (id) {
-    return $http.get(urlReal + 'feed/' + id + '?token=' + localStorage.token);
+  APIFactory.getFeed = function (id, offset) {
+    console.log('hello', offset)
+    return $http.get(urlReal + 'feed/' + id +'?token=' + localStorage.token + '&offset=' + offset + '&items=50');
   };
 
   APIFactory.openedArticle = function (id) {
@@ -36,7 +37,7 @@ function APIFactory($http) {
 
   APIFactory.putFav = function (id) {
     console.log(id)
-    return $http.put(urlReal + 'favorites?token=' + localStorage.token, { item_id: id });
+    return $http.post(urlReal + 'favorites?token=' + localStorage.token, { item_id: id });
   };
 
   APIFactory.postRSS = function (url) {

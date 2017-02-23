@@ -38233,22 +38233,16 @@
 	  };
 
 	  APIFactory.getAll = function () {
-<<<<<<< HEAD
 	    return $http.get(urlReal + 'feed?token=' + localStorage.token);
-=======
-
-	    // return $http.get(urlReal + 'feed');
-	    return $http.get(url+'fed');
-	    // return  $http.get('https://murmuring-everglades-41117.herokuapp.com/feed?token=55A28683E68C465A9E9B3B1456277399');
->>>>>>> c4533d945599a800e70780afc8f0c9a5a283b9be
 	  };
 
 	  APIFactory.getFav = function () {
 	    return $http.get(urlReal + 'favorites?token=' + localStorage.token);
 	  };
 
-	  APIFactory.getFeed = function (id) {
-	    return $http.get(urlReal + 'feed/' + id + '?token=' + localStorage.token);
+	  APIFactory.getFeed = function (id, offset) {
+	    console.log('hello', offset)
+	    return $http.get(urlReal + 'feed/' + id +'?token=' + localStorage.token + '&offset=' + offset + '&items=50');
 	  };
 
 	  APIFactory.openedArticle = function (id) {
@@ -38261,7 +38255,7 @@
 
 	  APIFactory.putFav = function (id) {
 	    console.log(id)
-	    return $http.put(urlReal + 'favorites?token=' + localStorage.token, { item_id: id });
+	    return $http.post(urlReal + 'favorites?token=' + localStorage.token, { item_id: id });
 	  };
 
 	  APIFactory.postRSS = function (url) {
@@ -38606,11 +38600,7 @@
 
 	    function getSubs() {
 	      APIFactory.getSubs().then(function (data) {
-<<<<<<< HEAD
 	        vm.subscriptions = data.data.subscriptions;
-=======
-	        vm.subscriptions = data.data;
->>>>>>> c4533d945599a800e70780afc8f0c9a5a283b9be
 	      }).catch(function (errResponse) {
 	        errorMessage.show(errResponse.status);
 	      });
@@ -38802,9 +38792,10 @@
 	  function MainlistController($location, $rootScope, $http, APIFactory, $scope, $timeout) {
 	    const vm = this;
 	    vm.makeActive = makeActive;
-	    vm.displayFeed = displayFeed;
+	    // vm.displayFeed = displayFeed;
 	    vm.loadMore = loadMore;
 	    vm.pack = 15;
+	    vm.offset = 0;
 
 	    $rootScope.$on('searchEvent', function(event, data){
 	      console.log(data);
@@ -38819,18 +38810,16 @@
 	      }
 	    });
 
-	    function displayFeed() {
-	      if (vm.offset * vm.pack + vm.pack <= vm.allArticle.length) {
-	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset, vm.offset + vm.pack));
-	      } else {
-	        vm.articles = vm.articles.concat(vm.allArticle.slice(vm.offset*vm.pack, vm.allArticle.length));
-	      }
-	      $timeout()
-	    }
-
 	    function loadMore() {
 	      vm.offset++;
-	      displayFeed();
+	      APIFactory.getFeed(vm.id, vm.offset).then(function (data) {
+	        console.log(data)
+	        console.log(vm.articles)
+	        vm.articles.push.apply(vm.articles, data.data.feed);
+	        console.log(vm.articles);
+	      }).catch(function (errResponse) {
+	        errorMessage.show(errResponse.status);
+	      });
 	    }
 
 	    function makeActive($index, event) {
@@ -38853,20 +38842,17 @@
 	    }
 
 	    $rootScope.$on('feeditems', function (event, items) {
-	      vm.articles = [];
-	      vm.offset = 0;
-	      vm.allArticle = items;
-	      vm.displayFeed();
+	      vm.articles = items;
+	      // vm.offset = 0;
+	      // vm.allArticle = items;
+	      //vm.displayFeed();
 	    });
 
 	    $rootScope.$on('feed_id', function (event, id) {
-	      console.log(id)
-	      APIFactory.getFeed(id).then(function (data) {
-	        console.log(data)
-	        vm.allArticle = data.data.feed;
-	        vm.articles = [];
-	        vm.offset = 0;
-	        vm.displayFeed();
+	      vm.id = id;
+	      vm.offset = 0;
+	      APIFactory.getFeed(id, vm.offset).then(function (data) {
+	        vm.articles = data.data.feed;
 	      }).catch(function (errResponse) {
 	        errorMessage.show(errResponse.status);
 	      });
