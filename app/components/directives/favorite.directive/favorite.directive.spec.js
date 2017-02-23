@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 describe('Favorite directive', function () {
   var $compile;
@@ -45,6 +45,5 @@ describe('Favorite directive', function () {
 
     starIcon.triggerHandler('click');
     expect(starIcon.hasClass('yellow')).toBe(false);
-
   });
 })

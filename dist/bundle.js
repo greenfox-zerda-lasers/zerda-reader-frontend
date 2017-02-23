@@ -68,13 +68,13 @@
 	__webpack_require__(27);
 
 	// Services:
-	__webpack_require__(28);
-	__webpack_require__(29);
-	__webpack_require__(30);
+	__webpack_require__(42);
+	__webpack_require__(43);
+	__webpack_require__(44);
 
 	// Directives:
-	__webpack_require__(31);
-	__webpack_require__(32);
+	__webpack_require__(45);
+	__webpack_require__(46);
 
 	// All the controllers:
 	__webpack_require__(33);
@@ -84,9 +84,9 @@
 	__webpack_require__(36);
 	__webpack_require__(37);
 	__webpack_require__(38);
-	__webpack_require__(39);
-	__webpack_require__(40);
-	__webpack_require__(41);
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./app/mainlist/mainlist.controller.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	__webpack_require__(47);
+	__webpack_require__(48);
 
 
 /***/ },
@@ -38170,7 +38170,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(26) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 26px; }\n\n#sidebar {\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  padding-left: 10px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal; }\n    #sidebar a:hover i {\n      color: teal; }\n      #sidebar a:hover i:hover {\n        color: #139797; }\n      #sidebar a:hover i:active {\n        color: #DD4B39; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#addpopup, #delpopup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#addpopup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#addpopup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #addpopup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  padding-top: 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n  .mainlist-item .bold {\n    font-weight: bold; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 20px;\n  line-height: 1.5; }\n\n#error {\n  width: 50%;\n  z-index: 200;\n  text-align: center;\n  margin-left: -20%; }\n  #error h4 {\n    font-size: 20px;\n    font-weight: lighter; }\n  #error #gomb {\n    margin-top: 10px;\n    height: 50px; }\n  #error button {\n    height: 40px;\n    width: 100px; }\n", ""]);
+	exports.push([module.id, "body {\n  background: url(" + __webpack_require__(26) + ") no-repeat center center fixed;\n  background-size: cover; }\n\n#navbar {\n  width: 100%;\n  height: 40px;\n  position: fixed;\n  margin: 0px;\n  top: 0px;\n  left: 0px;\n  padding-left: 20px;\n  padding-right: 10px;\n  background-color: teal; }\n  #navbar .item {\n    color: #C0E4E6; }\n    #navbar .item:hover {\n      color: #ffffff; }\n    #navbar .item:active {\n      color: grey; }\n\n#logo {\n  font-family: 'Gloria Hallelujah', cursive;\n  padding-left: 0px;\n  font-size: 18px; }\n  #logo img {\n    width: 35px;\n    padding-right: 5px;\n    margin-right: 10px; }\n\n#sidebar {\n  margin-top: 40px;\n  position: fixed;\n  width: 20%;\n  top: 40px;\n  overflow-y: visible !important;\n  background-color: #ffffff; }\n  #sidebar a i {\n    color: #ffffff; }\n  #sidebar a:hover {\n    color: teal;\n    background-color: #e1f4f4; }\n    #sidebar a:hover i {\n      color: teal; }\n  #sidebar a:active {\n    color: #DD4B39;\n    background-color: #f4f4f4; }\n\n#folder {\n  padding-top: 0px;\n  width: 100%; }\n\n#add-subscription-button {\n  background-color: #008080;\n  color: #C0E4E6;\n  display: flex;\n  flex-flow: row;\n  font-size: 14px;\n  align-items: center;\n  position: fixed;\n  left: 0px;\n  border-radius: 0px;\n  bottom: 40px;\n  height: 40px;\n  width: 20vw; }\n  #add-subscription-button:hover {\n    background-color: #139797;\n    color: #ffffff; }\n\n#add-subscription-popup {\n  position: absolute;\n  top: -110px;\n  left: 10px;\n  z-index: 100; }\n\n#add-subscription-popup > div > div > input {\n  border-radius: 0.285714rem 0  0 0.285714rem;\n  height: 35px; }\n\n#add-subscription-popup > div > div > div {\n  border-radius: 0 0.285714rem 0.285714rem 0;\n  width: 30px;\n  height: 35px; }\n  #add-subscription-popup > div > div > div i {\n    margin-top: 2px;\n    margin-left: -7px; }\n\n#mainlist {\n  position: fixed;\n  top: 40px;\n  left: 20%;\n  width: 80%;\n  overflow-y: scroll;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin: 0px;\n  bottom: 0; }\n  #mainlist #description > a {\n    margin-top: 12px; }\n\n.nomargin {\n  margin: 0px !important;\n  padding: 0px !important; }\n  .nomargin .content {\n    padding-bottom: 8px !important; }\n  .nomargin:hover {\n    background-color: rgba(0, 128, 128, 0.16);\n    margin: 0px; }\n\n.mainlist-item {\n  width: auto;\n  padding: 0.5rem 1rem 0.5rem 1rem; }\n  .mainlist-item i:before {\n    width: 40px; }\n  .mainlist-item:active {\n    background-color: lightgrey; }\n  .mainlist-item .bold {\n    font-weight: bold; }\n\n#feed-title {\n  padding-left: 50px;\n  padding-bottom: 10px; }\n  #feed-title #feed-date {\n    position: fixed;\n    right: 200px; }\n\n.checkedstar {\n  color: yellow;\n  border-radius: 25%; }\n  .checkedstar:hover {\n    color: orange; }\n  .checkedstar:active {\n    color: red; }\n\n.uncheckedstar {\n  color: black;\n  border-radius: 25%; }\n  .uncheckedstar:hover {\n    color: white; }\n  .uncheckedstar:active {\n    color: red; }\n\n#description {\n  margin-left: 20px;\n  margin-right: 20px;\n  padding-bottom: 30px;\n  padding-top: 8px;\n  line-height: 1.5; }\n\n#error {\n  width: 50%;\n  z-index: 200;\n  text-align: center;\n  margin-left: -20%; }\n  #error h4 {\n    font-size: 20px;\n    font-weight: lighter; }\n  #error #gomb {\n    margin-top: 10px;\n    height: 50px; }\n  #error button {\n    height: 40px;\n    width: 100px; }\n", ""]);
 
 	// exports
 
@@ -38185,11 +38185,18 @@
 /* 27 */
 /***/ function(module, exports) {
 
+	'use strict';
+
 	(function () {
+	  angular
+	    .module('zerdaReader', [
+	      'ngRoute',
+	      'ngResource',
+	      'infinite-scroll',
+	      'angularModalService'])
+	    .config(config);
 
-	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngResource', 'infinite-scroll', 'angularModalService']);
-
-	  zerdaReader.config(['$routeProvider', function ($routeProvider) {
+	  function config($routeProvider) {
 	    $routeProvider
 	      .when('/login', {
 	        templateUrl: 'app/login/login.html',
@@ -38208,116 +38215,480 @@
 	      }).otherwise({
 	        redirectTo: '/login',
 	      });
-	  }]);
+	  }
 	})();
 
 
 /***/ },
-/* 28 */
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */
 /***/ function(module, exports) {
 
 	'use strict';
 
-	angular
-	  .module('zerdaReader')
-	  .factory('APIFactory', APIFactory);
-	  const url = 'https://zerda-reader-mockback.gomix.me/';
-	  const urlReal = 'https://murmuring-everglades-41117.herokuapp.com/';
-
-	function APIFactory($http) {
-
-	  var APIFactory = {};
-
-	  APIFactory.getSubs = function () {
-	    return $http.get(urlReal + 'subscriptions?token=' + localStorage.token);
-	  };
-
-	  APIFactory.getAll = function () {
-	    return $http.get(urlReal + 'feed?token=' + localStorage.token);
-	  };
-
-	  APIFactory.getFav = function () {
-	    return $http.get(urlReal + 'favorites?token=' + localStorage.token);
-	  };
-
-	  APIFactory.getFeed = function (id, offset) {
-	    console.log('hello', offset)
-	    return $http.get(urlReal + 'feed/' + id +'?token=' + localStorage.token + '&offset=' + offset + '&items=50');
-	  };
-
-	  APIFactory.openedArticle = function (id) {
-	    return $http.put(urlReal + 'feed/' + id + '?token=' + localStorage.token, { opened: 1 });
-	  };
-
-	  APIFactory.deleteItem = function (id) {
-	    return $http.delete(urlReal + 'subscribe/' + id + '?token=' + localStorage.token);
-	  };
-
-	  APIFactory.putFav = function (id) {
-	    console.log(id)
-	    return $http.post(urlReal + 'favorites?token=' + localStorage.token, { item_id: id });
-	  };
-
-	  APIFactory.postRSS = function (url) {
-	    console.log(url)
-	    return $http.post(urlReal + 'subscribe?token=' + localStorage.token, { feed: url});
-	  };
-
-	  return APIFactory;
-	}
-
-
-/***/ },
-/* 29 */
-/***/ function(module, exports) {
-
-	(function(){
+	(function () {
 	  angular
 	    .module('zerdaReader')
-	    .service('errorMessage', errorMessage);
+	    .controller('LoginController', LoginController);
 
-	    errorMessage.$inject = ['ModalService'];
+	  LoginController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', 'errorMessage'];
 
-	    function errorMessage(ModalService) {
-	      const messages = [
-	        { status: 404, message: 'The server doesn\'t respond.' },
-	        { status: 500, message: 'Internal server error.' },
-	      ]
-	      const service = {
-	        show: show,
-	      };
+	  function LoginController($location, $rootScope, $http, APIFactory, errorMessage) {
+	    const vm = this;
+	    vm.token = {};
+	    vm.respond = '';
+	    vm.login = login;
+	    vm.errMessage = '';
+	    vm.email = '';
+	    vm.password = '';
+	    vm.userValidation = userValidation;
+	    vm.signUpView = signUpView;
 
-	      return service;
-
-	      function show(error) {
-	        let displayMessage = 'Something went wrong';
-
-	        messages.forEach(function (item) {
-	          if (item.status === error) {
-	            displayMessage = item.message;
-	          }
-	        });
-
-	        ModalService.showModal({
-	          templateUrl: 'app/components/errormessage/errormessage.html',
-	          controller: 'ErrorController',
-	          controllerAs: 'errorCtrl',
-	          inputs: {
-	            error: error + ': ' + displayMessage,
-	          }
+	    function login() {
+	      if (!vm.email && !vm.password) {
+	        vm.errMessage = 'Wrong username or password. Try again.';
+	      } else if (vm.email !== '' && vm.password !== '') {
+	        APIFactory.postLogin(vm.email, vm.password)
+	        .then(function (data) {
+	          vm.userValidation(data);
 	        })
-	        // .then(function (modal) {
-	        // });
+	        .catch(function (errResponse) {
+	          errorMessage.showErrorModal(errResponse.status);
+	        });
 	      }
 	    }
+
+	    function userValidation(data) {
+	      vm.respond = (data.data);
+	      if (vm.respond.result === 'success') {
+	        localStorage.setItem('token', vm.respond.token);
+	        $location.path('/home');
+	      } else if (vm.respond.result === 'fail') {
+	        vm.errMessage = 'Wrong username or password. Try again.';
+	        vm.email = '';
+	        vm.password = '';
+	      }
+	    }
+
+	    function signUpView() {
+	      $location.path('/signup');
+	    }
+	  }
 	})();
 
 
 /***/ },
-/* 30 */
+/* 34 */
 /***/ function(module, exports) {
 
-	(function(){
+	'use strict';
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('SignUpController', SignUpController);
+
+	  SignUpController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', 'errorMessage'];
+
+	  function SignUpController($location, $rootScope, $http, APIFactory, errorMessage) {
+	    const vm = this;
+	    vm.backToLogin = backToLogin;
+	    vm.signUp = signUp;
+	    vm.respond = [];
+	    vm.errMessage = '';
+	    vm.email = '';
+	    vm.password = '';
+
+	    function signUp() {
+	      if (vm.email !== '' && vm.password !== '') {
+	        APIFactory.postSignUp(vm.email, vm.password)
+	        .then(function (data) {
+	          vm.signUpValidation(data);
+	        })
+	        .catch(function (errResponse) {
+	          errorMessage.showErrorModal(errResponse.status);
+	        });
+	      }
+	    }
+
+	    function signUpValidation(data) {
+	      vm.respond = data.data;
+	      if (vm.respond.result === 'success') {
+	        localStorage.setItem('token', vm.respond.token);
+	        $location.path('/home');
+	      } else {
+	        vm.errMessage = vm.respond.message;
+	        vm.email = '';
+	        vm.password = '';
+	      }
+	    }
+
+	    function backToLogin() {
+	      $location.path('/login');
+	    }
+	  }
+	})();
+
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('HomeController', HomeController);
+
+	  HomeController.$inject = ['$location', '$rootScope'];
+
+	  function HomeController($location) {
+	    const vm = this;
+	    vm.checkLocalStorage = checkLocalStorage;
+
+	    function checkLocalStorage() {
+	      if (!localStorage.token) {
+	        $location.path('/login');
+	      }
+	    }
+	    vm.checkLocalStorage();
+	  }
+	})();
+
+
+/***/ },
+/* 36 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('NavbarController', NavbarController);
+
+	  NavbarController.$inject = ['$location', '$scope', '$rootScope'];
+
+	  function NavbarController($location, $scope, $rootScope) {
+	    const vm = this;
+	    vm.logout = logout;
+	    vm.search = ''
+
+	    $scope.$watch('navbarCtrl.search', function(value) {
+	      $rootScope.$broadcast('searchEvent', value);
+	    });
+
+	    function logout() {
+	      localStorage.clear();
+	      $location.path('/login');
+	    }
+	  }
+	})();
+
+
+/***/ },
+/* 37 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('SidebarController', SidebarController);
+
+	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document', 'errorMessage', 'deleteValidation'];
+
+	  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
+	    const vm = this;
+	    vm.allActivated = true;
+	    vm.favActivated = false;
+	    vm.subscriptions = [];
+	    vm.allArticle = [];
+	    vm.getSubscritions = getSubscritions;
+	    vm.deleteFeed = deleteFeed;
+	    vm.getAllFeedItems = getAllFeedItems;
+	    vm.getFavoriteItems = getFavoriteItems;
+	    vm.getFeedItems = getFeedItems;
+	    vm.getItems = getItems;
+
+	    function getSubscritions() {
+	      APIFactory.getSubscritions().then(function (data) {
+	        vm.subscriptions = data.data.subscriptions;
+	      }).catch(function (errResponse) {
+	        errorMessage.showErrorModal(errResponse.status);
+	      });
+	    }
+
+	    function getAllFeedItems() {
+	      APIFactory.getAllFeedItems().then(function (data) {
+	        vm.allArticle = data.data.feed;
+	        $rootScope.$broadcast('feeditems', vm.allArticle);
+	        vm.allActivated = true;
+	        vm.favActivated = false;
+	        if (vm.subscriptions) {
+	          vm.subscriptions.forEach(function (feed) {
+	            feed.active = false;
+	          });
+	        }
+	      }).catch(function (errResponse) {
+	        errorMessage.showErrorModal(errResponse.status);
+	      })
+	    }
+
+	    vm.getAllFeedItems();
+
+	    function getFavoriteItems() {
+	      APIFactory.getFavoriteItems().then(function (data) {
+	        vm.allArticle = data.data.feed;
+	        $rootScope.$broadcast('feeditems', vm.allArticle);
+	        vm.allActivated = false;
+	        vm.favActivated = true;
+	        vm.subscriptions.forEach(function (feed) {
+	          feed.active = false;
+	        });
+	      }).catch(function (errResponse) {
+	        errorMessage.showErrorModal(errResponse.status);
+	      });
+	    }
+
+	    function getFeedItems(id) {
+	      vm.feed_id = id;
+	      $rootScope.$broadcast('feed_id', vm.feed_id);
+	    }
+
+	    function deleteFeed(id) {
+	      deleteValidation.showDeleteModal().then(function (response) {
+	        if (response === true) {
+	          APIFactory.deleteFeed(id).then(function (data) {
+	            vm.getSubscritions();
+	          }).catch(function (errResponse) {
+	            errorMessage.showErrorModal(errResponse.status);
+	          });
+	        }
+	      }).catch(function (response) {
+	        console.log(response);
+	      });
+	    }
+
+	    function getItems(index, id) {
+	      if (event.target.classList.contains('delete')) {
+	        return;
+	      }
+	      vm.subscriptions.map(function (feed) {
+	        feed.active = false;
+	      });
+	      vm.subscriptions[index].active = true;
+	      vm.allActivated = false;
+	      vm.favActivated = false;
+	      vm.getFeedItems(id);
+	    }
+
+	    $rootScope.$on('getSubscription', function (event) {
+	      console.log('megj0tt');
+	      vm.getSubscritions();
+	    });
+	  }
+	})();
+
+
+/***/ },
+/* 38 */
+/***/ function(module, exports) {
+
+	'use strict';
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .controller('SubscribeController', SubscribeController);
+
+	  SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory', '$timeout'];
+
+	  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory, $timeout) {
+	    const vm = this;
+	    vm.addSubscribe = addSubscribe;
+	    vm.makePopupVisible = makePopupVisible;
+	    vm.popupVisible = 'hidden';
+	    vm.newFeed = '';
+	    vm.open = false;
+
+	    function addSubscribe() {
+	      if (vm.newFeed !== '') {
+	        APIFactory.postNewFeed(vm.newFeed).then(function (data) {
+	          $rootScope.$broadcast('getSubscription');
+	          vm.popupVisible = 'hidden';
+	        }).catch(function (errResponse) {
+	          errorMessage.show(errResponse.status);
+	        });
+	      }
+	      vm.newFeed = '';
+	    }
+	    function makePopupVisible() {
+	      if (event.target.id === 'add-subscription-button') {
+	        vm.open = !vm.open;
+	        if (vm.popupVisible === 'visible') {
+	          vm.popupVisible = 'hidden';
+	        } else {
+	          vm.popupVisible = 'visible';
+	        }
+	      }
+	    }
+
+	    $window.addEventListener('click', function (event) {
+	      let el = event.target
+	      if (event.target.id !== 'add-subscription-button') {
+	        if (!closest(el, '#add-subscription-popup')) {
+	          vm.popupVisible = 'hidden';
+	        }
+	      }
+	      $timeout();
+	    });
+	  }
+
+	  function closest(el, selector, stopSelector) {
+	    let retval = null;
+	    while (el) {
+	      if (el.matches(selector)) {
+	        retval = el;
+	        break;
+	      } else if (stopSelector && el.matches(stopSelector)) {
+	        break;
+	      }
+	      el = el.parentElement;
+	    }
+	    return retval;
+	  }
+	})();
+
+
+/***/ },
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */
+/***/ function(module, exports) {
+
+	'use strict';
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .factory('APIFactory', APIFactory);
+
+	  function APIFactory($http) {
+	    // const url = 'https://zerda-reader-mockback.gomix.me/';
+	    const url = 'https://murmuring-everglades-41117.herokuapp.com/';
+	    const token = localStorage.token;
+	    const service = {
+	      postLogin: postLogin,
+	      postSignUp: postSignUp,
+	      getAllFeedItems: getAllFeedItems,
+	      getFavoriteItems: getFavoriteItems,
+	      getSubscritions: getSubscritions,
+	      getFeedItems: getFeedItems,
+	      deleteFeed: deleteFeed,
+	      postNewFeed: postNewFeed,
+	      openArticle: openArticle,
+	      putFavorite: putFavorite,
+	    };
+
+	    function postLogin(em, pass) {
+	      return $http.post(url + 'user/login', { email: em, password: pass });
+	    }
+
+	    function postSignUp(em, pass) {
+	      return $http.post(url + 'user/signup', { email: em, password: pass });
+	    }
+
+	    function getAllFeedItems() {
+	      return $http.get(url + 'feed?token=' + token);
+	    }
+
+	    function getFavoriteItems() {
+	      return $http.get(url + 'favorites?token=' + token);
+	    }
+
+	    function getSubscritions() {
+	      return $http.get(url + 'subscriptions?token=' + token);
+	    }
+
+	    function getFeedItems(id, offset) {
+	      return $http.get(url + 'feed/' + id + '?token=' + token + '&offset=' + offset + '&items=50');
+	    }
+
+	    function openArticle(id) {
+	      return $http.put(url + 'feed/' + id + '?token=' + token, { opened: 1 });
+	    }
+
+	    function deleteFeed(id) {
+	      return $http.delete(url + 'subscribe/' + id + '?token=' + token);
+	    }
+
+	    function putFavorite(id) {
+	      return $http.put(url + 'favorites?token=' + token, { item_id: id });
+	    }
+
+	    function postNewFeed(link) {
+	      return $http.post(url + 'subscribe?token=' + token, { feed: link });
+	    }
+
+	    return service;
+	  }
+	})();
+
+
+/***/ },
+/* 43 */
+/***/ function(module, exports) {
+
+	(function () {
+	  angular
+	    .module('zerdaReader')
+	    .service('errorMessage', errorMessage);
+
+	  errorMessage.$inject = ['ModalService'];
+
+	  function errorMessage(ModalService) {
+	    const service = {
+	      showErrorModal: showErrorModal,
+	    };
+	    const messages = [
+	      { status: 404, message: 'The server doesn\'t respond.' },
+	      { status: 500, message: 'Internal server error.' },
+	    ];
+
+	    function showErrorModal(error) {
+	      let displayMessage = 'Something went wrong';
+	      messages.forEach(function (item) {
+	        if (item.status === error) {
+	          displayMessage = item.message;
+	        }
+	      });
+	      ModalService.showModal({
+	        templateUrl: 'app/components/dialogs/errormessage/errormessage.html',
+	        controller: 'ErrorController',
+	        controllerAs: 'errorCtrl',
+	        inputs: {
+	          error: error + ': ' + displayMessage,
+	        },
+	      });
+	    }
+	    return service;
+	  }
+	})();
+
+
+/***/ },
+/* 44 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	(function () {
 	  angular
 	    .module('zerdaReader')
 	    .service('deleteValidation', deleteValidation);
@@ -38326,15 +38697,13 @@
 
 	    function deleteValidation($rootScope, ModalService, $q) {
 	      const service = {
-	        show: show,
+	        showDeleteModal: showDeleteModal,
 	      };
 
-	      return service;
-
-	      function show() {
+	      function showDeleteModal() {
 	        return $q(function (resolve, reject) {
 	          ModalService.showModal({
-	            templateUrl: 'app/components/deletevalidation/deletevalidation.html',
+	            templateUrl: 'app/components/dialogs/deletevalidation/deletevalidation.html',
 	            controller: 'DeleteValidationController',
 	            controllerAs: 'deleteValidationCtrl',
 	          }).then(function (modal) {
@@ -38344,12 +38713,13 @@
 	          });
 	        });
 	      }
+	      return service;
 	    }
 	})();
 
 
 /***/ },
-/* 31 */
+/* 45 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38359,14 +38729,14 @@
 	    .module('zerdaReader')
 	    .directive('favoriteIcon', favoriteIcon);
 
-	  function favoriteIcon(APIFactory) {
+	  function favoriteIcon(APIFactory, errorMessage) {
 	    const directive = {
 	      restrict: 'E',
 	      scope: {
 	        article: '=',
 	        color: '=?',
 	      },
-	      templateUrl: 'app/components/favorite.directive/favorite.directive.html',
+	      templateUrl: 'app/components/directives/favorite.directive/favorite.directive.html',
 	      link: link,
 	    };
 	    return directive;
@@ -38376,9 +38746,9 @@
 
 	      scope.favHandling = function (id) {
 	        scope.color = !scope.color;
-	        APIFactory.putFav(id).then(function (data) {
-	        }).catch(function (data) {
-	          console.error('Change favorite status failed');
+	        APIFactory.putFavorite(id).then(function () {
+	        }).catch(function (errResponse) {
+	          errorMessage.showErrorModal(errResponse.status);
 	        });
 	      };
 	    }
@@ -38387,11 +38757,11 @@
 
 
 /***/ },
-/* 32 */
+/* 46 */
 /***/ function(module, exports) {
 
+	'use strict';
 	(function () {
-	  'use strict';
 
 	  angular
 	    .module('zerdaReader')
@@ -38419,450 +38789,7 @@
 
 
 /***/ },
-/* 33 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('LoginController', LoginController);
-
-	  LoginController.$inject = ['$location', '$rootScope', '$http'];
-
-	  function LoginController($location, $rootScope, $http) {
-	    const vm = this;
-	    vm.token = {};
-	    vm.login = login;
-	    vm.signUpView = signUpView;
-
-	    function login() {
-	      if (!vm.email && !vm.password) {
-	        vm.errorMessage = 'Wrong username or password. Try again.';
-	      } else if (vm.email !== '' && vm.password !== '') {
-	        $http({
-	          method: 'POST',
-	          data: {
-	            email: vm.email,
-	            password: vm.password,
-	          },
-	          url: 'https://murmuring-everglades-41117.herokuapp.com/user/login',
-	        }).then(function (data) {
-	          vm.respond = (data.data);
-	          if (vm.respond.result === 'success') {
-	            localStorage.setItem('token', vm.respond.token);
-	            $location.path('/home');
-	          } else if (vm.respond.result === 'fail') {
-	            vm.errorMessage = 'Wrong username or password. Try again.';
-	            vm.email = '';
-	            vm.password = '';
-	          }
-	        }).catch(function (data) {
-	          console.log(data);
-	        });
-	      }
-	    }
-	    function signUpView() {
-	      $location.path('/signup');
-	    }
-	  }
-	})();
-
-
-/***/ },
-/* 34 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('SignUpController', SignUpController);
-
-	  SignUpController.$inject = ['$location', '$rootScope', '$http'];
-
-	  function SignUpController($location, $rootScope, $http) {
-	    const vm = this;
-	    vm.backToLogin = backToLogin;
-	    vm.signUp = signUp;
-
-	    function signUp() {
-	      if (vm.email !== '' && vm.password !== '') {
-	        $http({
-	          method: 'POST',
-	          data: {
-	            email: vm.email,
-	            password: vm.password,
-	          },
-	          url: 'https://murmuring-everglades-41117.herokuapp.com/user/signup',
-	        }).then(function (data) {
-	          vm.respond = (data.data);
-	          console.log(vm.respond)
-	          if (vm.respond.result === 'success') {
-	            localStorage.setItem("token", vm.respond.token);
-	            $location.path('/home');
-	          } else {
-	            vm.errorMessage = vm.respond.message;
-	            vm.email = '';
-	            vm.password = '';
-	          }
-	        }).catch(function (data) {
-	          console.error('error occured');
-	        });
-	      }
-	    }
-	    function backToLogin() {
-	      $location.path('/login');
-	    }
-	  }
-	})();
-
-
-/***/ },
-/* 35 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('HomeController', HomeController);
-
-	  HomeController.$inject = ['$location', '$rootScope'];
-
-	  function HomeController($location, $rootScope) {
-	    const vm = this;
-	    vm.checkLocalStorage = checkLocalStorage;
-
-	    function checkLocalStorage() {
-	      if (!localStorage.token) {
-	        $location.path('/login');
-	      }
-	    }
-	    vm.checkLocalStorage();
-	  }
-
-	})();
-
-
-/***/ },
-/* 36 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('NavbarController', NavbarController);
-
-	  NavbarController.$inject = ['$location', '$scope', '$rootScope'];
-
-	  function NavbarController($location, $scope, $rootScope) {
-	    const vm = this;
-	    vm.logout = logout;
-	    vm.search = ''
-	    console.log("search", vm.search);
-
-	    $scope.$watch('navbarCtrl.search', function(value) {
-	      console.log('Name change to ' + value);
-	      $rootScope.$broadcast('searchEvent', value);
-	    });
-
-	    function logout() {
-	      localStorage.clear();
-	      $location.path('/login');
-	    }
-
-
-
-	  }
-	})();
-
-
-/***/ },
-/* 37 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('SidebarController', SidebarController);
-
-	  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document', 'errorMessage', 'deleteValidation'];
-
-	  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
-	    const vm = this;
-	    vm.allActivated = true;
-	    vm.getSubs = getSubs;
-	    vm.deleteFeed = deleteFeed;
-	    vm.getAll = getAll;
-	    vm.getFav = getFav;
-	    vm.getFeed = getFeed;
-	    vm.clickItem = clickItem;
-	    vm.makePopupVisible = makePopupVisible;
-	    // vm.generateData = generateData;
-
-	    function getSubs() {
-	      APIFactory.getSubs().then(function (data) {
-	        vm.subscriptions = data.data.subscriptions;
-	      }).catch(function (errResponse) {
-	        errorMessage.show(errResponse.status);
-	      });
-	    }
-
-	    function getAll() {
-	      APIFactory.getAll().then(function (data) {
-	        vm.allArticle = data.data.feed;
-	        $rootScope.$broadcast('feeditems', vm.allArticle);
-	        vm.allActivated = true;
-	        vm.favActivated = false;
-	        if (vm.subscriptions) {
-	          vm.subscriptions.forEach(function (feed) {
-	            feed.active = false;
-	          });
-	        }
-	      }).catch(function (errResponse) {
-	        errorMessage.show(errResponse.status);
-	      })
-	    }
-
-	    vm.getAll();
-
-	    function getFav() {
-	      APIFactory.getFav().then(function (data) {
-	        vm.allArticle = data.data.feed;
-	        $rootScope.$broadcast('feeditems', vm.allArticle);
-	        vm.allActivated = false;
-	        vm.favActivated = true;
-	        vm.subscriptions.forEach(function (feed) {
-	          feed.active = false;
-	        });
-	      }).catch(function (errResponse) {
-	        errorMessage.show(errResponse.status);
-	      });
-	    }
-
-	    // function generateData(){
-	    //   vm.allArticle.unshift({
-	    //    "id": 2345525,
-	    //    "title": "Fox on the Moon! " + Math.floor(Math.random() * 100),
-	    //    "description:" : "...",
-	    //    "created": Date.now(),
-	    //    "feed_name": "Fox Crunch",
-	    //    "feed_id": 43673,
-	    //    "favorite": false,
-	    //    "opened": false,
-	    //    "url": "http://fox.com/moon"
-	    //  })
-	    //  $rootScope.$broadcast('feeditems', vm.allArticle);
-	    //
-	    // }
-	    //
-	    // window.setInterval(generateData, 60000);
-
-	    function getFeed(id) {
-	      vm.feed_id = id;
-	      $rootScope.$broadcast('feed_id', vm.feed_id);
-	    }
-
-	    function deleteFeed(id) {
-	      deleteValidation.show().then(function (response) {
-	        if (response === true) {
-	          APIFactory.deleteItem(id).then(function (data) {
-	            vm.getSubs();
-	          }).catch(function (errResponse) {
-	            errorMessage.show(errResponse.status);
-	          });
-	        }
-	      }).catch(function (response) {
-	        console.log(response);
-	      });
-	    }
-
-	    function clickItem(index, id) {
-
-	      if (event.target.classList.contains('delete')) {
-	        return;
-	      }
-	      vm.subscriptions.map(function (feed) {
-	        feed.active = false;
-	      });
-	      vm.subscriptions[index].active = true;
-	      vm.allActivated = false;
-	      vm.favActivated = false;
-
-	      vm.getFeed(id);
-	    }
-
-	    function makePopupVisible(index) {
-	      vm.subscriptions.map(function (feed) {
-	        if (feed.active){
-	          feed.popupVisible = 'visible';
-	        } else {
-	          feed.popupVisible = 'hidden';
-	        }
-	      });
-	    }
-
-	    $rootScope.$on('getsubscription', function (event) {
-	      vm.getSubs();
-	    });
-
-	  }
-	})();
-
-
-/***/ },
-/* 38 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('SubscribeController', SubscribeController);
-
-	  SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory', '$timeout'];
-
-	  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory, $timeout) {
-	    const vm = this;
-	    vm.addSubscribe = addSubscribe;
-	    vm.makeVisible = makeVisible;
-	    vm.visible = 'hidden';
-	    vm.newRss = '';
-	    vm.open = false;
-
-	    function makeVisible() {
-	      if (event.target.id === 'add') {
-	        vm.open = !vm.open;
-	        if (vm.visible === 'visible') {
-	          vm.visible = 'hidden';
-	        } else {
-	          vm.visible = 'visible';
-	        }
-	      }
-	    }
-
-	    $window.addEventListener('click', function (event) {
-	      let el = event.target
-	      if (event.target.id !== 'add') {
-	        if (!closest(el, '#addpopup')) {
-	          vm.visible = 'hidden';
-	        }
-	      }
-	      // $scope.$apply();
-	      $timeout();
-	    });
-
-	    function addSubscribe() {
-	      if (vm.newRss !== '') {
-	        APIFactory.postRSS(vm.newRss).then(function (data) {
-	          $rootScope.$broadcast('getsubscription');
-	          vm.visible = 'hidden';
-	        }).catch(function (data) {
-	          console.error('Connection failed');
-	        });
-	      }
-	      vm.newRss = '';
-	    }
-	  }
-
-	  function closest(el, selector, stopSelector) {
-	    let retval = null;
-	    while (el) {
-	      if (el.matches(selector)) {
-	        retval = el;
-	        break;
-	      } else if (stopSelector && el.matches(stopSelector)) {
-	        break;
-	      }
-	      el = el.parentElement;
-	    }
-	    return retval;
-	  }
-	})();
-
-
-/***/ },
-/* 39 */
-/***/ function(module, exports) {
-
-	(function () {
-	  angular
-	    .module('zerdaReader')
-	    .controller('MainlistController', MainlistController);
-
-	  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$scope', '$timeout'];
-
-	  function MainlistController($location, $rootScope, $http, APIFactory, $scope, $timeout) {
-	    const vm = this;
-	    vm.makeActive = makeActive;
-	    // vm.displayFeed = displayFeed;
-	    vm.loadMore = loadMore;
-	    vm.pack = 15;
-	    vm.offset = 0;
-
-	    $rootScope.$on('searchEvent', function(event, data){
-	      console.log(data);
-	      vm.search = data;
-	    })
-
-	    var main = angular.element(document.querySelector("#mainlist"));
-
-	    main.on('scroll', function(e){
-	      if (e.target.scrollTop + e.target.offsetHeight >= e.target.scrollHeight-1) {
-	        vm.loadMore();
-	      }
-	    });
-
-	    function loadMore() {
-	      vm.offset++;
-	      APIFactory.getFeed(vm.id, vm.offset).then(function (data) {
-	        console.log(data)
-	        console.log(vm.articles)
-	        vm.articles.push.apply(vm.articles, data.data.feed);
-	        console.log(vm.articles);
-	      }).catch(function (errResponse) {
-	        errorMessage.show(errResponse.status);
-	      });
-	    }
-
-	    function makeActive($index, event) {
-	      if (event.target.classList.contains('star')) {
-	        return;
-	      }
-	      if (vm.articles[$index].active === true) {
-	        vm.articles[$index].active = false;
-	      } else {
-	        vm.articles.map(function (article) {
-	          article.active = false;
-	        });
-	        vm.articles[$index].active = true;
-	        vm.articles[$index].opened = true;
-
-	        APIFactory.openedArticle(vm.articles[$index].id).then(function (data){}).catch(function (errResponse) {
-	          errorMessage.show(errResponse.status);
-	        });
-	      }
-	    }
-
-	    $rootScope.$on('feeditems', function (event, items) {
-	      vm.articles = items;
-	      // vm.offset = 0;
-	      // vm.allArticle = items;
-	      //vm.displayFeed();
-	    });
-
-	    $rootScope.$on('feed_id', function (event, id) {
-	      vm.id = id;
-	      vm.offset = 0;
-	      APIFactory.getFeed(id, vm.offset).then(function (data) {
-	        vm.articles = data.data.feed;
-	      }).catch(function (errResponse) {
-	        errorMessage.show(errResponse.status);
-	      });
-	    });
-	  }
-	})();
-
-
-/***/ },
-/* 40 */
+/* 47 */
 /***/ function(module, exports) {
 
 	(function () {
@@ -38886,9 +38813,10 @@
 
 
 /***/ },
-/* 41 */
+/* 48 */
 /***/ function(module, exports) {
 
+	'use strict';
 	(function () {
 	  angular
 	    .module('zerdaReader')
@@ -38899,7 +38827,6 @@
 	  function DeleteValidationController($scope, close) {
 	    const vm = this;
 	    vm.visibility = true;
-	    // vm.response = response;
 	    vm.closeModal = closeModal;
 
 	    function closeModal(result) {

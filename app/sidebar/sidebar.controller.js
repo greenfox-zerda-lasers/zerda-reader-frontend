@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
   angular
     .module('zerdaReader')
@@ -8,25 +10,26 @@
   function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
     const vm = this;
     vm.allActivated = true;
-    vm.getSubs = getSubs;
+    vm.favActivated = false;
+    vm.subscriptions = [];
+    vm.allArticle = [];
+    vm.getSubscritions = getSubscritions;
     vm.deleteFeed = deleteFeed;
-    vm.getAll = getAll;
-    vm.getFav = getFav;
-    vm.getFeed = getFeed;
-    vm.clickItem = clickItem;
-    vm.makePopupVisible = makePopupVisible;
-    // vm.generateData = generateData;
+    vm.getAllFeedItems = getAllFeedItems;
+    vm.getFavoriteItems = getFavoriteItems;
+    vm.getFeedItems = getFeedItems;
+    vm.getItems = getItems;
 
-    function getSubs() {
-      APIFactory.getSubs().then(function (data) {
+    function getSubscritions() {
+      APIFactory.getSubscritions().then(function (data) {
         vm.subscriptions = data.data.subscriptions;
       }).catch(function (errResponse) {
-        errorMessage.show(errResponse.status);
+        errorMessage.showErrorModal(errResponse.status);
       });
     }
 
-    function getAll() {
-      APIFactory.getAll().then(function (data) {
+    function getAllFeedItems() {
+      APIFactory.getAllFeedItems().then(function (data) {
         vm.allArticle = data.data.feed;
         $rootScope.$broadcast('feeditems', vm.allArticle);
         vm.allActivated = true;
@@ -37,14 +40,14 @@
           });
         }
       }).catch(function (errResponse) {
-        errorMessage.show(errResponse.status);
+        errorMessage.showErrorModal(errResponse.status);
       })
     }
 
-    vm.getAll();
+    vm.getAllFeedItems();
 
-    function getFav() {
-      APIFactory.getFav().then(function (data) {
+    function getFavoriteItems() {
+      APIFactory.getFavoriteItems().then(function (data) {
         vm.allArticle = data.data.feed;
         $rootScope.$broadcast('feeditems', vm.allArticle);
         vm.allActivated = false;
@@ -53,40 +56,22 @@
           feed.active = false;
         });
       }).catch(function (errResponse) {
-        errorMessage.show(errResponse.status);
+        errorMessage.showErrorModal(errResponse.status);
       });
     }
 
-    // function generateData(){
-    //   vm.allArticle.unshift({
-    //    "id": 2345525,
-    //    "title": "Fox on the Moon! " + Math.floor(Math.random() * 100),
-    //    "description:" : "...",
-    //    "created": Date.now(),
-    //    "feed_name": "Fox Crunch",
-    //    "feed_id": 43673,
-    //    "favorite": false,
-    //    "opened": false,
-    //    "url": "http://fox.com/moon"
-    //  })
-    //  $rootScope.$broadcast('feeditems', vm.allArticle);
-    //
-    // }
-    //
-    // window.setInterval(generateData, 60000);
-
-    function getFeed(id) {
+    function getFeedItems(id) {
       vm.feed_id = id;
       $rootScope.$broadcast('feed_id', vm.feed_id);
     }
 
     function deleteFeed(id) {
-      deleteValidation.show().then(function (response) {
+      deleteValidation.showDeleteModal().then(function (response) {
         if (response === true) {
-          APIFactory.deleteItem(id).then(function (data) {
-            vm.getSubs();
+          APIFactory.deleteFeed(id).then(function (data) {
+            vm.getSubscritions();
           }).catch(function (errResponse) {
-            errorMessage.show(errResponse.status);
+            errorMessage.showErrorModal(errResponse.status);
           });
         }
       }).catch(function (response) {
@@ -94,8 +79,7 @@
       });
     }
 
-    function clickItem(index, id) {
-
+    function getItems(index, id) {
       if (event.target.classList.contains('delete')) {
         return;
       }
@@ -105,23 +89,12 @@
       vm.subscriptions[index].active = true;
       vm.allActivated = false;
       vm.favActivated = false;
-
-      vm.getFeed(id);
+      vm.getFeedItems(id);
     }
 
-    function makePopupVisible(index) {
-      vm.subscriptions.map(function (feed) {
-        if (feed.active){
-          feed.popupVisible = 'visible';
-        } else {
-          feed.popupVisible = 'hidden';
-        }
-      });
-    }
-
-    $rootScope.$on('getsubscription', function (event) {
-      vm.getSubs();
+    $rootScope.$on('getSubscription', function (event) {
+      console.log('megj0tt');
+      vm.getSubscritions();
     });
-
   }
 })();

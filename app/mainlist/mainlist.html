@@ -1,5 +1,6 @@
 <section class="ui accordion" id="mainlist" ng-controller="MainlistController as mainCtrl" >
   <div class="ui middle aligned divided list" infinite-scroll="mainCtrl.listenFeedItems()" infinite-scroll-container="'#mainlist'">
+
     <div ng-repeat="article in mainCtrl.articles | filter: mainCtrl.search" class="item nomargin">
       <div class="mainlist-item">
         <div class="{{mainCtrl.article.active ? 'active' : ''}} title" ng-click="mainCtrl.makeActive($index, $event)" ng-class=" {'bold': !article.opened}">
@@ -8,15 +9,14 @@
           <div class="right floated content">
             <favorite-icon article="article"></favorite-icon>
           </div>
-          <div id="feed-date" class="right floated content" style="display: inline-block">
+          <div id="feed-date" class="right floated content">
             {{article.created | date: 'HH / dd / MMM'}}
           </div>
         </div>
         <div id="description" class="{{article.active ? 'active' : ''}} content">
-          <a href="{{article.url}}">{{article.url}}</a></br>
-          {{article.description}}
+          {{article.description}}</br>
+          <a class="ui teal button" href="{{article.url}}" target="_blank" focus-add={{article.active}}>Go to the article!</a>
         </div>
-
       </div>
     </div>
   </div>

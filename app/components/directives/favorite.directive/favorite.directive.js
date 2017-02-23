@@ -5,14 +5,14 @@
     .module('zerdaReader')
     .directive('favoriteIcon', favoriteIcon);
 
-  function favoriteIcon(APIFactory) {
+  function favoriteIcon(APIFactory, errorMessage) {
     const directive = {
       restrict: 'E',
       scope: {
         article: '=',
         color: '=?',
       },
-      templateUrl: 'app/components/favorite.directive/favorite.directive.html',
+      templateUrl: 'app/components/directives/favorite.directive/favorite.directive.html',
       link: link,
     };
     return directive;
@@ -22,9 +22,9 @@
 
       scope.favHandling = function (id) {
         scope.color = !scope.color;
-        APIFactory.putFav(id).then(function (data) {
-        }).catch(function (data) {
-          console.error('Change favorite status failed');
+        APIFactory.putFavorite(id).then(function () {
+        }).catch(function (errResponse) {
+          errorMessage.showErrorModal(errResponse.status);
         });
       };
     }

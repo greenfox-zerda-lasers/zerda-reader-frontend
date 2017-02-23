@@ -1,3 +1,4 @@
+'use strict';
 (function () {
   angular
     .module('zerdaReader')
@@ -8,7 +9,6 @@
   function DeleteValidationController($scope, close) {
     const vm = this;
     vm.visibility = true;
-    // vm.response = response;
     vm.closeModal = closeModal;
 
     function closeModal(result) {

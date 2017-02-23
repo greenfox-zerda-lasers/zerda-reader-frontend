@@ -1,12 +1,12 @@
 $navbar-heigth: 40px;
-$add-heigth: 40px;
+$add-subscription-button-heigth: 40px;
 $sidebar-width: 22vw;
 $addbutton-width: 20vw;
 $mainlist-width: 78vw;
 $add-rss-input-and-button: 35px;
 
 body {
-  background: url(../img/grey.jpg)  no-repeat center center fixed;
+  background: url(../img/grey.jpg) no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -34,14 +34,19 @@ body {
 #logo {
   font-family: 'Gloria Hallelujah', cursive;
   padding-left: 0px;
-  font-size: 26px;
+  font-size: 18px;
+  img {
+    width: 35px;
+    padding-right: 5px;
+    margin-right: 10px;
+  }
 }
 
 #sidebar {
+  margin-top: 40px;
   position: fixed;
   width: 20%;
   top: $navbar-heigth;
-  padding-left: 10px;
   overflow-y: visible!important;
   background-color: #ffffff;
   a{
@@ -50,15 +55,14 @@ body {
     }
     &:hover{
       color: teal;
+      background-color: #e1f4f4;
       i{
         color: teal;
-        &:hover{
-          color: #139797;
-        }
-        &:active{
-          color: #DD4B39;
         }
       }
+    &:active{
+      color: #DD4B39;
+      background-color: #f4f4f4;
     }
   }
 }
@@ -68,7 +72,7 @@ body {
   width: 100%;
 }
 
-#add {
+#add-subscription-button {
   background-color: #008080;
   color: #C0E4E6;
   display: flex;
@@ -78,8 +82,8 @@ body {
   position: fixed;
   left: 0px;
   border-radius: 0px;
-  bottom: $add-heigth;
-  height: $add-heigth;
+  bottom: $add-subscription-button-heigth;
+  height: $add-subscription-button-heigth;
   width: $addbutton-width;
   &:hover {
     background-color: #139797;
@@ -87,19 +91,19 @@ body {
   }
 }
 
-#addpopup, #delpopup {
+#add-subscription-popup {
   position: absolute;
   top: -110px;
   left: 10px;
   z-index: 100;
 }
 
-#addpopup > div > div > input {
+#add-subscription-popup > div > div > input {
   border-radius: 0.285714rem 0  0 0.285714rem;
   height: $add-rss-input-and-button;
 }
 
-#addpopup > div > div > div {
+#add-subscription-popup > div > div > div {
     border-radius: 0 0.285714rem 0.285714rem 0;
     width: 30px;
     height: $add-rss-input-and-button;
@@ -118,6 +122,9 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
   margin: 0px;
   bottom: 0;
+  #description > a {
+    margin-top: 12px;
+  }
 }
 
 .nomargin {
@@ -134,9 +141,9 @@ body {
 
 .mainlist-item {
   width: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
+  // padding-left: 1rem;
+  // padding-right: 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   i:before {
     width: 40px;
   }
@@ -183,34 +190,9 @@ body {
   margin-left: 20px;
   margin-right: 20px;
   padding-bottom: 30px;
-  padding-top: 20px;
+  padding-top: 8px;
   line-height: 1.5;
 }
-
-// a.item.ng-leave {
-//   transition: 0.5s linear all;
-//   opacity: 1;
-//   color: blue;
-//   transform: translateX(0px);
-// }
-//
-// a.item.ng-leave.ng-leave-active {
-//   transform: translateX(100px);
-// }
-//
-// a.item.ng-enter {
-//   transition: 1s linear all;
-//   background-color: red;
-//   opacity: 0;
-//   transform: translateY(-100%);
-// }
-//
-// a.item.ng-enter.ng-enter-active {
-//   opacity: 1;
-//   background-color: rgba(255,255,255,1);
-//   transform: translateY(0px);
-// }
-
 
 #error {
   width: 50%;

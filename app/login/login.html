@@ -9,7 +9,7 @@
         <i id="mail-outline-icon" class="mail outline icon"></i>
 
         <!-- Email inputfield -->
-        <input class="field" type="email" placeholder="example@gmail.com" name="email" ng-model="loginCtrl.email" ng-required="true"/>
+        <input class="field" type="email" placeholder="example@gmail.com" name="email" ng-model="loginCtrl.email" ng-required="true">
       </div>
       <div ng-show="signin.email.$touched && signin.email.$invalid">
         <small>Invalid e-mail adress</small>
@@ -20,7 +20,7 @@
         <i id="lock-icon" class="lock icon"></i>
 
         <!-- Password inputfield -->
-        <input type="password" placeholder="password" name="password" ng-model="loginCtrl.password" ng-required="true"/>
+        <input type="password" placeholder="password" name="password" ng-model="loginCtrl.password" ng-required="true">
       </div>
     </div>
     <div ng-show="signin.password.$touched && signin.password.$invalid">
@@ -31,8 +31,8 @@
         <small>{{ loginCtrl.errorMessage }}</small>
     </div>
 
-    <!-- Buttons -->
-    <input class="ui fluid large teal submit yellow button" id="button" type="submit" value="Send" ng-click="loginCtrl.login()"/>
+    <!-- Send email password or go to registering -->
+    <input class="ui fluid large teal submit yellow button" id="button" type="submit" value="Send" ng-click="loginCtrl.login()">
   </form>
   <button class="signup-button teal ui fluid message button" id="go-to-signup-button" ng-click="loginCtrl.signUpView()">
     <a class="signup">New to Zerda Reader? Sign Up!</a>

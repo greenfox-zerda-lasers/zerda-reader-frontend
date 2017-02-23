@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
   angular
     .module('zerdaReader')
@@ -10,13 +12,31 @@
     vm.makeActive = makeActive;
     // vm.displayFeed = displayFeed;
     vm.loadMore = loadMore;
+    vm.articles = [];
+    vm.allArticle = [];
     vm.pack = 15;
     vm.offset = 0;
 
-    $rootScope.$on('searchEvent', function(event, data){
-      console.log(data);
-      vm.search = data;
-    })
+    function makeActive($index, event) {
+      if (event.target.classList.contains('star')) {
+        return;
+      }
+      if (vm.articles[$index].active === true) {
+        vm.articles[$index].active = false;
+      } else {
+        vm.articles.map(function (article) {
+          article.active = false;
+        });
+        vm.articles[$index].active = true;
+        vm.articles[$index].opened = true;
+
+        APIFactory.openArticle(vm.articles[$index].id)
+        .then(function () {})
+        .catch(function (errResponse) {
+          errorMessage.showErrorModal(errResponse.status);
+        });
+      }
+    }
 
     var main = angular.element(document.querySelector("#mainlist"));
 
@@ -38,25 +58,6 @@
       });
     }
 
-    function makeActive($index, event) {
-      if (event.target.classList.contains('star')) {
-        return;
-      }
-      if (vm.articles[$index].active === true) {
-        vm.articles[$index].active = false;
-      } else {
-        vm.articles.map(function (article) {
-          article.active = false;
-        });
-        vm.articles[$index].active = true;
-        vm.articles[$index].opened = true;
-
-        APIFactory.openedArticle(vm.articles[$index].id).then(function (data){}).catch(function (errResponse) {
-          errorMessage.show(errResponse.status);
-        });
-      }
-    }
-
     $rootScope.$on('feeditems', function (event, items) {
       vm.articles = items;
       // vm.offset = 0;
@@ -64,13 +65,19 @@
       //vm.displayFeed();
     });
 
+    $rootScope.$on('searchEvent', function (event, data) {
+      vm.search = data;
+    });
+
     $rootScope.$on('feed_id', function (event, id) {
+      APIFactory.getFeedItems(id, vm.offset)
       vm.id = id;
       vm.offset = 0;
-      APIFactory.getFeed(id, vm.offset).then(function (data) {
+      .then(function (data) {
         vm.articles = data.data.feed;
-      }).catch(function (errResponse) {
-        errorMessage.show(errResponse.status);
+      })
+      .catch(function (errResponse) {
+        errorMessage.showErrorModal(errResponse.status);
       });
     });
   }
