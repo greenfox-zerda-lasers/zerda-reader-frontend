@@ -5,7 +5,9 @@
       <div class="mainlist-item">
         <div class="{{mainCtrl.article.active ? 'active' : ''}} title" ng-click="mainCtrl.makeActive($index, $event)" ng-class=" {'bold': !article.opened}">
           <i class="ui user icon"></i>
-            {{article.title}}
+            <div id="article-title">
+              {{article.title}}
+            </div>
           <div class="right floated content">
             <favorite-icon article="article"></favorite-icon>
           </div>

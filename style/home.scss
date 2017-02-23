@@ -49,6 +49,9 @@ body {
   top: $navbar-heigth;
   overflow-y: visible!important;
   background-color: #ffffff;
+  div.ui.secondary.vertical.pointing.menu > a.item.active {
+    padding-top: 20px;
+  }
   a{
     i{
       color: #ffffff;
@@ -144,6 +147,13 @@ body {
   // padding-left: 1rem;
   // padding-right: 1rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
+  #article-title {
+    display: -webkit-inline-box;
+    white-space: nowrap;
+    width: 78%;
+    overflow: hidden;
+    // http://stackoverflow.com/questions/14191254/dynamic-maximum-width-for-text
+  }
   i:before {
     width: 40px;
   }
