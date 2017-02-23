@@ -40,7 +40,8 @@
 
     var main = angular.element(document.querySelector("#mainlist"));
 
-    main.on('scroll', function(e){
+    main.on('scroll', function(e) {
+      console.log(main);
       if (e.target.scrollTop + e.target.offsetHeight >= e.target.scrollHeight-1) {
         vm.loadMore();
       }

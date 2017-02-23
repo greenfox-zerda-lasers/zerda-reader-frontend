@@ -93,7 +93,6 @@
     }
 
     $rootScope.$on('getSubscription', function (event) {
-      console.log('megj0tt');
       vm.getSubscritions();
     });
   }

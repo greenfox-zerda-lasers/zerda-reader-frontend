@@ -6,7 +6,7 @@
 
   SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory', '$timeout'];
 
-  function SubscribeController($scope, $location, $rootScope, $http, $window, APIFactory, $timeout) {
+  function SubscribeController($location, $rootScope, $scope, $http, $window, APIFactory, $timeout) {
     const vm = this;
     vm.addSubscribe = addSubscribe;
     vm.makePopupVisible = makePopupVisible;
