@@ -43,9 +43,6 @@ body {
 }
 
 #sidebar {
-  div.ui.secondary.vertical.pointing.menu > a.item.active {
-    padding-top: 20px;
-  }
   margin-top: 40px;
   position: fixed;
   width: 20%;
@@ -53,21 +50,19 @@ body {
   overflow-y: visible!important;
   background-color: #ffffff;
   a{
-
     i{
       color: #ffffff;
     }
     &:hover{
       color: teal;
+      background-color: #e1f4f4;
       i{
         color: teal;
-        &:hover{
-          color: #139797;
-        }
-        &:active{
-          color: #DD4B39;
         }
       }
+    &:active{
+      color: #DD4B39;
+      background-color: #f4f4f4;
     }
   }
 }

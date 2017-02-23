@@ -16,7 +16,6 @@
     vm.getFavoriteItems = getFavoriteItems;
     vm.getFeedItems = getFeedItems;
     vm.clickItem = clickItem;
-    vm.makePopupVisible = makePopupVisible;
 
     function getSubscritions() {
       console.log('haho');
@@ -65,7 +64,7 @@
     }
 
     function deleteFeed(id) {
-      deleteValidation.show().then(function (response) {
+      deleteValidation.showDeleteModal().then(function (response) {
         if (response === true) {
           APIFactory.deleteFeed(id).then(function (data) {
             vm.getSubscritions();
@@ -91,16 +90,6 @@
       vm.favActivated = false;
 
       vm.getFeedItems(id);
-    }
-
-    function makePopupVisible(index) {
-      vm.subscriptions.map(function (feed) {
-        if (feed.active){
-          feed.popupVisible = 'visible';
-        } else {
-          feed.popupVisible = 'hidden';
-        }
-      });
     }
 
     $rootScope.$on('getSubscription', function (event) {
