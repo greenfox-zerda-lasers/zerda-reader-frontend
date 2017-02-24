@@ -12,7 +12,7 @@
     vm.logout = logout;
     vm.search = ''
 
-    $scope.$watch('navbarCtrl.search', function(value) {
+    $scope.$watch('navbarCtrl.search', function (value) {
       $rootScope.$broadcast('searchEvent', value);
     });
 

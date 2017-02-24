@@ -5,9 +5,9 @@
     .module('zerdaReader')
     .controller('SidebarController', SidebarController);
 
-  SidebarController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$window', '$document', 'errorMessage', 'deleteValidation'];
+  SidebarController.$inject = ['$rootScope', '$location', '$http', 'APIFactory', '$window', '$document', 'errorMessage', 'deleteValidation'];
 
-  function SidebarController($location, $rootScope, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
+  function SidebarController($rootScope, $location, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
     const vm = this;
     vm.allActivated = true;
     vm.favActivated = false;
@@ -20,6 +20,7 @@
     vm.getFeedItems = getFeedItems;
     vm.getItems = getItems;
 
+
     function getSubscritions() {
       APIFactory.getSubscritions().then(function (data) {
         vm.subscriptions = data.data.subscriptions;
@@ -29,9 +30,9 @@
     }
 
     function getAllFeedItems() {
-      $rootScope.$broadcast('all_end', 'favorites');
       vm.allActivated = true;
       vm.favActivated = false;
+      $rootScope.$broadcast('allFeedItems');
       if (vm.subscriptions) {
         vm.subscriptions.forEach(function (feed) {
           feed.active = false;
@@ -39,10 +40,8 @@
       }
     }
 
-    vm.getAllFeedItems();
-
     function getFavoriteItems() {
-      $rootScope.$broadcast('favorites_end', 'favorites');
+      $rootScope.$broadcast('favorites_end');
       vm.allActivated = false;
       vm.favActivated = true;
       vm.subscriptions.forEach(function (feed) {
@@ -83,7 +82,6 @@
     }
 
     $rootScope.$on('getSubscription', function (event) {
-      console.log('megj0tt');
       vm.getSubscritions();
     });
   }

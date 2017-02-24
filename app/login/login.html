@@ -12,7 +12,7 @@
         <input class="field" type="email" placeholder="example@gmail.com" name="email" ng-model="loginCtrl.email" ng-required="true">
       </div>
       <div ng-show="signin.email.$touched && signin.email.$invalid">
-        <small>Invalid e-mail adress</small>
+        <small class="error-message">Invalid e-mail adress</small>
       </div>
     </div>
     <div class="field">
@@ -24,11 +24,11 @@
       </div>
     </div>
     <div ng-show="signin.password.$touched && signin.password.$invalid">
-      <small>Please enter your password.</small>
+      <small class="error-message">Please enter your password.</small>
     </div>
 
-    <div ng-if="loginCtrl.errorMessage">
-        <small>{{ loginCtrl.errorMessage }}</small>
+    <div ng-if="loginCtrl.errMessage">
+        <small class="error-message">{{ loginCtrl.errMessage }}</small>
     </div>
 
     <!-- Send email password or go to registering -->

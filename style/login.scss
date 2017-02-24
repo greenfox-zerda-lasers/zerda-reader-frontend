@@ -25,7 +25,7 @@ body {
       input.ng-invalid.ng-touched {
         border: 0.5px solid #DD4B39;
       }
-      div > small, div > div > small {
+      .error-message {
         color: #DD4B39;
         display: block;
         text-align: center;
