@@ -18,6 +18,7 @@
     vm.userValidation = userValidation;
     vm.signUpView = signUpView;
 
+    console.log(localStorage);
     function login() {
       if (vm.email && vm.password) {
         APIFactory.postLogin(vm.email, vm.password)

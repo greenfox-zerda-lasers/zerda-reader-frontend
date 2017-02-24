@@ -43,15 +43,13 @@ body {
 }
 
 #sidebar {
+  padding-top: 20px;
   margin-top: 40px;
   position: fixed;
   width: 20%;
   top: $navbar-heigth;
   overflow-y: visible!important;
   background-color: #ffffff;
-  div.ui.secondary.vertical.pointing.menu > a.item.active {
-    padding-top: 20px;
-  }
   a{
     i{
       color: #ffffff;

@@ -5,9 +5,9 @@
     .module('zerdaReader')
     .controller('MainlistController', MainlistController);
 
-  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$scope', '$timeout', 'errorMessage'];
+  MainlistController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', '$scope', '$timeout', 'errorMessage', 'loadingModal'];
 
-  function MainlistController($location, $rootScope, $http, APIFactory, $scope, $timeout, errorMessage) {
+  function MainlistController($location, $rootScope, $http, APIFactory, $scope, $timeout, errorMessage, loadingModal) {
     const vm = this;
     vm.makeActive = makeActive;
     vm.loadMore = loadMore;
@@ -20,11 +20,14 @@
 
     function activate(){
       vm.offset = 0;
+      loadingModal.showloadingModal(true);
       APIFactory.getAllFeedItems()
       .then(function (data) {
         vm.articles = data.data.feed;
+        loadingModal.closeLoadingModal();
       })
       .catch(function (errResponse) {
+        loadingModal.closeLoadingModal();
         errorMessage.showErrorModal(errResponse.status);
       });
     }
