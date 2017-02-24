@@ -17,9 +17,6 @@
         templateUrl: 'app/components/dialogs/loadingmodal/loadingmodal.html',
         controller: 'ModalController',
         controllerAs: 'modalCtrl',
-        inputs: {
-          active: active,
-        },
       });
     }
     function closeLoadingModal(){

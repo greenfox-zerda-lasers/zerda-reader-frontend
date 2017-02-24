@@ -38387,9 +38387,6 @@
 	        templateUrl: 'app/components/dialogs/loadingmodal/loadingmodal.html',
 	        controller: 'ModalController',
 	        controllerAs: 'modalCtrl',
-	        inputs: {
-	          active: active,
-	        },
 	      });
 	    }
 	    function closeLoadingModal(){
@@ -38675,12 +38672,9 @@
 
 
 	    function getSubscritions() {
-	      loadingModal.showloadingModal(true);
 	      APIFactory.getSubscritions().then(function (data) {
-	        loadingModal.closeLoadingModal();
 	        vm.subscriptions = data.data.subscriptions;
 	      }).catch(function (errResponse) {
-	        loadingModal.closeLoadingModal();
 	        errorMessage.showErrorModal(errResponse.status);
 	      });
 	    }
@@ -38846,11 +38840,11 @@
 
 	    function activate(){
 	      vm.offset = 0;
-	      loadingModal.showloadingModal(true);
+	      loadingModal.showloadingModal();
 	      APIFactory.getAllFeedItems()
 	      .then(function (data) {
-	        vm.articles = data.data.feed;
 	        loadingModal.closeLoadingModal();
+	        vm.articles = data.data.feed;
 	      })
 	      .catch(function (errResponse) {
 	        loadingModal.closeLoadingModal();
@@ -39008,14 +39002,11 @@
 	    .module('zerdaReader')
 	    .controller('ModalController', ModalController);
 
-	  ModalController.$inject = ['$scope', 'active'];
+	  ModalController.$inject = ['$scope'];
 
-	  function ModalController($scope, active) {
+	  function ModalController($scope) {
 	    const vm = this;
-	    vm.visibility = active;
-	    vm.close = function(){
-	      vm.visibility = false;
-	    }
+	    vm.visibility = true;
 	  }
 	})();
 

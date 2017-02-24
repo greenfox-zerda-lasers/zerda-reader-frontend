@@ -20,11 +20,11 @@
 
     function activate(){
       vm.offset = 0;
-      loadingModal.showloadingModal(true);
+      loadingModal.showloadingModal();
       APIFactory.getAllFeedItems()
       .then(function (data) {
-        vm.articles = data.data.feed;
         loadingModal.closeLoadingModal();
+        vm.articles = data.data.feed;
       })
       .catch(function (errResponse) {
         loadingModal.closeLoadingModal();

@@ -3,13 +3,10 @@
     .module('zerdaReader')
     .controller('ModalController', ModalController);
 
-  ModalController.$inject = ['$scope', 'active'];
+  ModalController.$inject = ['$scope'];
 
-  function ModalController($scope, active) {
+  function ModalController($scope) {
     const vm = this;
-    vm.visibility = active;
-    vm.close = function(){
-      vm.visibility = false;
-    }
+    vm.visibility = true;
   }
 })();

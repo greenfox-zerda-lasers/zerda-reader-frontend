@@ -22,12 +22,9 @@
 
 
     function getSubscritions() {
-      loadingModal.showloadingModal(true);
       APIFactory.getSubscritions().then(function (data) {
-        loadingModal.closeLoadingModal();
         vm.subscriptions = data.data.subscriptions;
       }).catch(function (errResponse) {
-        loadingModal.closeLoadingModal();
         errorMessage.showErrorModal(errResponse.status);
       });
     }
