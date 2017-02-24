@@ -5,9 +5,9 @@
     .module('zerdaReader')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', 'errorMessage'];
+  LoginController.$inject = ['$location', '$rootScope', '$http', 'APIFactory', 'errorMessage', 'loadingModal'];
 
-  function LoginController($location, $rootScope, $http, APIFactory, errorMessage) {
+  function LoginController($location, $rootScope, $http, APIFactory, errorMessage, loadingModal) {
     const vm = this;
     vm.token = {};
     vm.respond = '';
@@ -18,14 +18,16 @@
     vm.userValidation = userValidation;
     vm.signUpView = signUpView;
 
-    console.log(localStorage);
     function login() {
       if (vm.email && vm.password) {
+        loadingModal.showloadingModal(true);
         APIFactory.postLogin(vm.email, vm.password)
         .then(function (data) {
+          loadingModal.closeLoadingModal();
           vm.userValidation(data);
         })
         .catch(function (errResponse) {
+          loadingModal.closeLoadingModal();
           errorMessage.showErrorModal(errResponse.status);
         });
       }

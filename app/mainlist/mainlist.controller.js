@@ -44,10 +44,13 @@
         });
         vm.articles[$index].active = true;
         vm.articles[$index].opened = true;
-
+        loadingModal.showloadingModal(true);
         APIFactory.openArticle(vm.articles[$index].id)
-        .then(function () {})
+        .then(function () {
+          loadingModal.closeLoadingModal();
+        })
         .catch(function (errResponse) {
+          loadingModal.closeLoadingModal();
           errorMessage.showErrorModal(errResponse.status);
         });
       }
@@ -61,31 +64,40 @@
 
     function loadMore() {
       vm.offset++;
+      loadingModal.showloadingModal(true);
       APIFactory.getFeedItems(vm.id, vm.offset).then(function (data) {
+        loadingModal.closeLoadingModal();
         vm.articles.push.apply(vm.articles, data.data.feed);
       }).catch(function (errResponse) {
+        loadingModal.closeLoadingModal();
         errorMessage.show(errResponse.status);
       });
     }
 
     $rootScope.$on('favorites_end', function (event) {
       vm.offset = 0;
+      loadingModal.showloadingModal(true);
       APIFactory.getFavoriteItems()
       .then(function (data) {
+        loadingModal.closeLoadingModal();
         vm.articles = data.data.feed;
       })
       .catch(function (errResponse) {
+        loadingModal.closeLoadingModal();
         errorMessage.showErrorModal(errResponse.status);
       });
     });
 
     $rootScope.$on('allFeedItems', function (event) {
       vm.offset = 0;
+      loadingModal.showloadingModal(true);
       APIFactory.getAllFeedItems()
       .then(function (data) {
+        loadingModal.closeLoadingModal();
         vm.articles = data.data.feed;
       })
       .catch(function (errResponse) {
+        loadingModal.closeLoadingModal();
         errorMessage.showErrorModal(errResponse.status);
       });
     });
@@ -97,11 +109,14 @@
     $rootScope.$on('feed_id', function (event, id) {
       vm.id = id;
       vm.offset = 0;
+      loadingModal.showloadingModal(true);
       APIFactory.getFeedItems(id, vm.offset)
       .then(function (data) {
+        loadingModal.closeLoadingModal();
         vm.articles = data.data.feed;
       })
       .catch(function (errResponse) {
+        loadingModal.closeLoadingModal();
         errorMessage.showErrorModal(errResponse.status);
       });
     });

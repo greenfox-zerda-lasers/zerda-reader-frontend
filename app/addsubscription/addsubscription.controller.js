@@ -4,9 +4,9 @@
     .module('zerdaReader')
     .controller('SubscribeController', SubscribeController);
 
-  SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory', '$timeout'];
+  SubscribeController.$inject = ['$location', '$rootScope', '$scope', '$http', '$window', 'APIFactory', '$timeout', 'loadingModal'];
 
-  function SubscribeController($location, $rootScope, $scope, $http, $window, APIFactory, $timeout) {
+  function SubscribeController($location, $rootScope, $scope, $http, $window, APIFactory, $timeout, loadingModal) {
     const vm = this;
     vm.addSubscribe = addSubscribe;
     vm.makePopupVisible = makePopupVisible;
@@ -16,10 +16,13 @@
 
     function addSubscribe() {
       if (vm.newFeed !== '') {
-        APIFactory.postNewFeed(vm.newFeed).then(function (data) {
+        loadingModal.showloadingModal(true);
+        APIFactory.postNewFeed(vm.newFeed).then(function () {
+          loadingModal.closeLoadingModal();
           $rootScope.$broadcast('getSubscription');
           vm.popupVisible = 'hidden';
         }).catch(function (errResponse) {
+          loadingModal.closeLoadingModal();
           errorMessage.show(errResponse.status);
         });
       }
