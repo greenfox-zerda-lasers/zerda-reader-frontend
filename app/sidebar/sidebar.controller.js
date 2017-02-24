@@ -5,9 +5,9 @@
     .module('zerdaReader')
     .controller('SidebarController', SidebarController);
 
-  SidebarController.$inject = ['$rootScope', '$location', '$http', 'APIFactory', '$window', '$document', 'errorMessage', 'deleteValidation'];
+  SidebarController.$inject = ['$rootScope', '$location', '$http', 'APIFactory', '$window', '$document', 'errorMessage', 'deleteValidation', 'loadingModal'];
 
-  function SidebarController($rootScope, $location, $http, APIFactory, $window, $document, errorMessage, deleteValidation) {
+  function SidebarController($rootScope, $location, $http, APIFactory, $window, $document, errorMessage, deleteValidation, loadingModal) {
     const vm = this;
     vm.allActivated = true;
     vm.favActivated = false;
@@ -57,9 +57,12 @@
     function deleteFeed(id) {
       deleteValidation.showDeleteModal().then(function (response) {
         if (response === true) {
+          loadingModal.showloadingModal(true);
           APIFactory.deleteFeed(id).then(function (data) {
+            loadingModal.closeLoadingModal();
             vm.getSubscritions();
           }).catch(function (errResponse) {
+            loadingModal.closeLoadingModal();
             errorMessage.showErrorModal(errResponse.status);
           });
         }

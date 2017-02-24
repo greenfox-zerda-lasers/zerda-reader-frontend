@@ -13,6 +13,6 @@
 
     function close() {
       vm.visibility = false;
-   }
+    }
   }
 })();

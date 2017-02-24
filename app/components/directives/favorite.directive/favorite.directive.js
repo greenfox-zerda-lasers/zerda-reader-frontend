@@ -5,7 +5,7 @@
     .module('zerdaReader')
     .directive('favoriteIcon', favoriteIcon);
 
-  function favoriteIcon(APIFactory, errorMessage) {
+  function favoriteIcon(APIFactory, errorMessage, loadingModal) {
     const directive = {
       restrict: 'E',
       scope: {
@@ -22,8 +22,11 @@
 
       scope.favHandling = function (id) {
         scope.color = !scope.color;
+        loadingModal.showloadingModal(true);
         APIFactory.putFavorite(id).then(function () {
+          loadingModal.closeLoadingModal();
         }).catch(function (errResponse) {
+          loadingModal.closeLoadingModal();
           errorMessage.showErrorModal(errResponse.status);
         });
       };
