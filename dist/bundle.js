@@ -38633,6 +38633,7 @@
 
 	    function getSubscritions() {
 	      APIFactory.getSubscritions().then(function (data) {
+	        console.log(data)
 	        vm.subscriptions = data.data.subscriptions;
 	      }).catch(function (errResponse) {
 	        errorMessage.showErrorModal(errResponse.status);
@@ -38640,7 +38641,7 @@
 	    }
 
 	    function getAllFeedItems() {
-	      $rootScope.$broadcast('all_end', 'favorites');
+	      $rootScope.$broadcast('all_end', 'all');
 	      vm.allActivated = true;
 	      vm.favActivated = false;
 	      if (vm.subscriptions) {
