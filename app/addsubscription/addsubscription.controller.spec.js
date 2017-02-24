@@ -1,14 +1,14 @@
 'use strict'
 
 describe('SubscribeController controller', function () {
-  var SubscribeController;
-  var compile;
-  var scope;
-  var rootscope;
-  var element;
-  var compiledElement;
-  var addButton;
-  var httpBackend;
+  let SubscribeController;
+  let compile;
+  let scope;
+  let rootscope;
+  let element;
+  let compiledElement;
+  let addButton;
+  let httpBackend;
 
   beforeEach(function () {
     module('zerdaReader', 'templates');

@@ -1,11 +1,11 @@
 'use strict';
 
 describe('Favorite directive', function () {
-  var $compile;
-  var scope;
-  var element;
-  var compiledElement;
-  var directiveElem;
+  let $compile;
+  let scope;
+  let element;
+  let compiledElement;
+  let directiveElem;
 
   beforeEach(function () {
     module('zerdaReader', 'templates');
