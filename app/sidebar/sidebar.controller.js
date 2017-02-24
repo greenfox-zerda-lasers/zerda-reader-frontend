@@ -72,7 +72,7 @@
     }
 
     function getItems(index, id) {
-      if (event.target.classList.contains('delete')) {
+      if (event.target.classList.contains('remove')) {
         return;
       }
       vm.subscriptions.map(function (feed) {
