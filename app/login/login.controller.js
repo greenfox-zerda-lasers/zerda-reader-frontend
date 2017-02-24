@@ -19,9 +19,7 @@
     vm.signUpView = signUpView;
 
     function login() {
-      if (!vm.email && !vm.password) {
-        vm.errMessage = 'Wrong username or password. Try again.';
-      } else if (vm.email !== '' && vm.password !== '') {
+      if (vm.email && vm.password) {
         APIFactory.postLogin(vm.email, vm.password)
         .then(function (data) {
           vm.userValidation(data);
@@ -38,7 +36,7 @@
         localStorage.setItem('token', vm.respond.token);
         $location.path('/home');
       } else if (vm.respond.result === 'fail') {
-        vm.errMessage = 'Wrong username or password. Try again.';
+        vm.errMessage = vm.respond.message;
         vm.email = '';
         vm.password = '';
       }

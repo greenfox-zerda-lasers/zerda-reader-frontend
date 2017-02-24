@@ -15,9 +15,12 @@
     vm.errMessage = '';
     vm.email = '';
     vm.password = '';
+    vm.confirmPassword = '';
 
     function signUp() {
-      if (vm.email !== '' && vm.password !== '') {
+      if (vm.password !== vm.confirmPassword) {
+        vm.errMessage = 'Your passwords don\'t match. Please retype your password to confirm it.'
+      } else if (vm.email !== '' && vm.password !== '') {
         APIFactory.postSignUp(vm.email, vm.password)
         .then(function (data) {
           vm.signUpValidation(data);
