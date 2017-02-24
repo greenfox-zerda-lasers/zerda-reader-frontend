@@ -37,6 +37,7 @@
       vm.respond = (data.data);
       if (vm.respond.result === 'success') {
         localStorage.setItem('token', vm.respond.token);
+        APIFactory.refreshToken()
         $location.path('/home');
       } else if (vm.respond.result === 'fail') {
         vm.errMessage = vm.respond.message;
