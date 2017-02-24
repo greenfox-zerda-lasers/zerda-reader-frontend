@@ -8,8 +8,8 @@ describe('Sample tests', function () {
 
 //----------------------------------------------------------------------------------------------
 describe('Login controller', function () {
-  var httpBackend
-  var LoginController
+  let httpBackend
+  let LoginController
 
   beforeEach(function () {
     module('zerdaReader');
@@ -30,7 +30,7 @@ describe('Login controller', function () {
       LoginController.email = 'gabor@reader.com';
       LoginController.password = 'gabor';
       httpBackend
-      .when('POST', 'https://zerda-reader-mockback.gomix.me/user/login')
+      .when('POST', 'https://murmuring-everglades-41117.herokuapp.com/user/login')
       .respond(200, { result: 'success', token: '0-9A-Z', id: 1 });
       LoginController.login();
       httpBackend.flush();
@@ -41,7 +41,7 @@ describe('Login controller', function () {
       LoginController.email = 'ga@reader.com';
       LoginController.password = 'ga';
       httpBackend
-      .when('POST', 'https://zerda-reader-mockback.gomix.me/user/login')
+      .when('POST', 'https://murmuring-everglades-41117.herokuapp.com/user/login')
       .respond(200, { result: 'fail', message: 'invalid username or password' });
       LoginController.login();
       httpBackend.flush();
@@ -52,11 +52,11 @@ describe('Login controller', function () {
       LoginController.email = 'ga@reader.com';
       LoginController.password = 'ga';
       httpBackend
-      .when('POST', 'https://zerda-reader-mockback.gomix.me/user/login')
+      .when('POST', 'https://murmuring-everglades-41117.herokuapp.com/user/login')
       .respond(200, { result: 'fail', message: 'invalid username or password' });
       LoginController.login();
       httpBackend.flush();
-      expect(LoginController.errorMessage).toEqual('Wrong username or password. Try again.');
+      expect(LoginController.errMessage).toEqual('invalid username or password');
     });
   });
 });

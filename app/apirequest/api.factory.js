@@ -7,8 +7,9 @@
   function APIFactory($http) {
     // const url = 'https://zerda-reader-mockback.gomix.me/';
     const url = 'https://murmuring-everglades-41117.herokuapp.com/';
-    const token = localStorage.token;
+    let token = localStorage.token;
     const service = {
+      refreshToken: refreshToken,
       postLogin: postLogin,
       postSignUp: postSignUp,
       getAllFeedItems: getAllFeedItems,
@@ -20,6 +21,10 @@
       openArticle: openArticle,
       putFavorite: putFavorite,
     };
+
+    function refreshToken(){
+      token = localStorage.token;
+    }
 
     function postLogin(em, pass) {
       return $http.post(url + 'user/login', { email: em, password: pass });
