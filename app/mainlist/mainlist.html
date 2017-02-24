@@ -6,7 +6,7 @@
         <div class="{{mainCtrl.article.active ? 'active' : ''}} title" ng-click="mainCtrl.makeActive($index, $event)" ng-class=" {'bold': !article.opened}">
 
           <i class="ui chevron {{article.active ? 'down' : 'right'}} icon"></i>
-            <div id="article-title">
+            <div id="article-title-{{article.active ? 'down' : 'right'}}">
               {{article.title}}
             </div>
           <div class="right floated content">

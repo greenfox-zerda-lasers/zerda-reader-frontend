@@ -6,7 +6,7 @@ $mainlist-width: 78vw;
 $add-rss-input-and-button: 35px;
 
 body {
-  background: url(../img/grey.jpg) no-repeat center center fixed;
+  background: url(../img/grey2.jpg) no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -49,9 +49,6 @@ body {
   top: $navbar-heigth;
   overflow-y: visible!important;
   background-color: #ffffff;
-  div.ui.secondary.vertical.pointing.menu > a.item.active {
-    padding-top: 20px;
-  }
   a{
     i{
       color: #ffffff;
@@ -122,6 +119,7 @@ body {
   left: 20%;
   width: 80%;
   overflow-y: scroll;
+  overflow-x: hidden;
   background-color: rgba(255, 255, 255, 0.5);
   margin: 0px;
   bottom: 0;
@@ -147,15 +145,25 @@ body {
   // padding-left: 1rem;
   // padding-right: 1rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
-  #article-title {
-    display: -webkit-inline-box;
-    white-space: nowrap;
-    width: 78%;
+  #article-title-right {
+    display: inline-block;
+    padding-left: 4%;
+    position: absolute;
     overflow: hidden;
-    // http://stackoverflow.com/questions/14191254/dynamic-maximum-width-for-text
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 75%;
+  }
+  #article-title-down {
+    padding-left: 4%;
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    width: 75%;
   }
   i:before {
     width: 40px;
+    position: absolute;
   }
   &:active {
     background-color: lightgrey;
@@ -172,6 +180,10 @@ body {
     position: fixed;
     right: 200px;
   }
+}
+
+.ui .star .icon {
+  margin-right: 20px;
 }
 
 .checkedstar {
@@ -197,10 +209,10 @@ body {
 }
 
 #description {
-  margin-left: 20px;
+  margin-left: 6%;
   margin-right: 20px;
   padding-bottom: 30px;
-  padding-top: 8px;
+  padding-top: 18px;
   line-height: 1.5;
 }
 
