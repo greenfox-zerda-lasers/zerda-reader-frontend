@@ -18,7 +18,7 @@
             email: vm.email,
             password: vm.password,
           },
-          url: 'https://zerda-reader-mockback.gomix.me/user/signup',
+          url: 'https://zerda-reader-mockback.glitch.me/user/signup',
         }).then(function (data) {
           vm.respond = (data.data);
           if (vm.respond.result === 'success') {
