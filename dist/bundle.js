@@ -38186,6 +38186,8 @@
 
 	  const zerdaReader = angular.module('zerdaReader', ['ngRoute', 'ngResource', 'infinite-scroll']);
 
+	  console.log(zerdaReader);
+
 	  zerdaReader.config(['$routeProvider', function ($routeProvider) {
 	    $routeProvider
 	      .when('/login', {
