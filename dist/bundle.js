@@ -83,8 +83,6 @@
 	__webpack_require__(35);
 	__webpack_require__(36);
 
-	//alma
-
 
 /***/ }),
 /* 1 */
